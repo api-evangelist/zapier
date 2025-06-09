@@ -5,7 +5,10 @@ apis:
   - aid: zapier:zapier
     name: Zapier
     tags:
-      - API
+      - iPaaS
+      - Integrations
+      - Workflows
+      - Automation
     humanURL: ' https://zapier.com/'
     properties:
       - url: ' https://zapier.com/'
