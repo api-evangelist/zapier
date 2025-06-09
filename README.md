@@ -1,7 +1,7 @@
-# Prismatic (prismatic)
-The most efficient way to build, deploy, and manage integrations. Prismatic empowers everyone on your team with integration tools for devs and non-devs alike. 
+# Zapier (zapier)
+Build and ship AI workflows in minutesno IT bottlenecks, no complexity. Just results. 
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/prismatic/refs/heads/main/apis.yml)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -11,48 +11,51 @@ The most efficient way to build, deploy, and manage integrations. Prismatic empo
 
 ## Tags:
 
- - Integrations, Embedded SaaS Integration, Workflows, Connectors
+ - iPaaS, Integrations, Workflows, Automation
 
 ## Timestamps
 
-- **Created:** 2025-06-05 
-- **Modified:** 2025-06-05 
+- **Created:** 2025-06-06 
+- **Modified:** 2025-06-09 
 
 ## APIs
 
-### Prismatics GraphQL API
-Prismatic provides a GraphQL-based API for you to build, deploy, and support your integrations programmatically. While we recommend that new users use the web app or Prismatic CLI tool to manage Prismatic resources, developer users will likely want to use the API to script out integration management.
+### Zapier
+Build and ship AI workflows in minutesno IT bottlenecks, no complexity. Just results. 
 
-**Human URL:** [https://prismatic.io/docs/api/](https://prismatic.io/docs/api/)
+**Human URL:** [ https://zapier.com/]( https://zapier.com/)
 
 
 #### Tags:
 
- - Integrations, Embedded SaaS Integration, Workflows, Connectors
+ - iPaaS, Integrations, Workflows, Automation
 
 #### Properties
 
-- [Documentation](https://prismatic.io/docs/api/)
-- [Authentication](https://prismatic.io/docs/api/authentication/)
-- [Pagination](https://prismatic.io/docs/api/pagination/)
-- [Authentication](https://prismatic.io/docs/api/authentication/)
+- [Documentation]( https://zapier.com/)
 
 ## Common Properties
 
-- [SDKs](https://prismatic.io/docs/custom-connectors/)
-- [CI/CD](https://prismatic.io/docs/api/ci-cd-system/)
-- [GitHubActions](https://prismatic.io/docs/api/github-actions/)
-- [CLI](https://prismatic.io/docs/cli/)
-- [ChangeLog](https://prismatic.io/docs/changelog/)
-- [Explorer](https://prismatic.io/docs/explorer/)
-- [GettingStarted](https://prismatic.io/docs/integrations/low-code-integration-designer/get-started/first-integration/)
-- [PrivacyPolicy](https://prismatic.io/legal/privacy/)
-- [TermsOfService](https://prismatic.io/legal/terms/)
-- [Security](https://prismatic.io/legal/security/)
-- [GitHubOrganization](https://github.com/prismatic-io)
-- [Integrations](https://prismatic.io/connectors/)
+- [Website](https://zapier.com/)
+- [Blog](https://zapier.com/blog/)
+- [Customers](https://zapier.com/customer-stories)
+- [Webhooks](https://zapier.com/blog/what-are-webhooks/)
+- [Guide](https://zapier.com/resources/guides)
+- [Webinars](https://zapier.com/resources/events)
+- [Support](https://help.zapier.com/hc/en-us)
+- [Partners](https://zapier.com/experts)
+- [Support](https://zapier.com/l/support)
+- [Support](https://zapier.com/l/support-services)
+- [Documentation](https://docs.zapier.com/platform/home)
+- [GettingStarted](https://docs.zapier.com/platform/quickstart/build-integration)
+- [Glossary](https://docs.zapier.com/platform/quickstart/glossary)
+- [CLI](https://docs.zapier.com/platform/build-cli/overview)
+- [UseCases](https://docs.zapier.com/platform/reference/forms-app)
+- [Login](https://zapier.com/app/login?next=%2Fapp%2Fdeveloper%2F)
+- [SignUp](https://zapier.com/sign-up?next=%2Fapp%2Fdeveloper%2F)
+- [Pricing](https://zapier.com/pricing)
+- [UseCases](undefined)
 - [Features](undefined)
-- [Benefits](undefined)
 
 ## Maintainers
 
