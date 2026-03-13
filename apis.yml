@@ -11,9 +11,87 @@ apis:
     properties:
       - url: ' https://zapier.com/'
         type: Documentation
+      - url: https://docs.zapier.com/platform/home
+        type: Documentation
+      - url: https://zapier.com/developer-platform/integrations
+        type: GettingStarted
+      - url: https://developer.zapier.com/
+        type: Portal
+      - url: https://docs.zapier.com/platform/build/apikeyauth
+        type: Authentication
+      - url: https://github.com/zapier/zapier-platform
+        type: GitHubOrg
     description: >-
       Build and ship AI workflows in minutesno IT bottlenecks, no complexity.
-      Just results. 
+      Just results.
+  - aid: zapier:partner-api
+    name: Zapier Partner API
+    tags:
+      - iPaaS
+      - Integrations
+      - Embed
+      - Partners
+    humanURL: https://zapier.com/developer-platform/workflow-api
+    properties:
+      - url: https://zapier.com/developer-platform/workflow-api
+        type: Documentation
+      - url: https://zapier.com/developer-platform/embed-tools
+        type: Documentation
+      - url: https://zapier.com/blog/zapier-partner-api-overview/
+        type: BlogPost
+      - url: https://zapier.com/developer-platform/partner-embeds
+        type: UseCases
+    description: >-
+      The Zapier Partner API and Workflow API allow developers to embed
+      Zapier automation directly in their products, providing complete style
+      control over the user experience. The API supports Zap templates,
+      user Zap management, app directory access, and embedded workflow
+      editors with custom branding, enabling integration marketplaces and
+      in-app automation at enterprise scale.
+  - aid: zapier:ai-actions-api
+    name: Zapier AI Actions API
+    tags:
+      - iPaaS
+      - AI
+      - NaturalLanguage
+      - LLM
+    humanURL: https://actions.zapier.com/
+    properties:
+      - url: https://actions.zapier.com/
+        type: Documentation
+      - url: https://docs.zapier.com/platform/reference/ai-actions
+        type: Documentation
+    description: >-
+      Zapier AI Actions (formerly Natural Language Actions) provides a
+      universal natural language API optimized for AI and LLM-based
+      experiences. It enables AI platforms and custom integrations to
+      leverage over 20,000 searches and actions across the Zapier
+      ecosystem, handling authentication and API integration automatically.
+      Supported natively on platforms including GPTs, Claude, LangChain,
+      and LlamaIndex.
+  - aid: zapier:mcp
+    name: Zapier MCP
+    tags:
+      - iPaaS
+      - AI
+      - MCP
+      - ModelContextProtocol
+    humanURL: https://zapier.com/mcp
+    properties:
+      - url: https://zapier.com/mcp
+        type: Documentation
+      - url: https://docs.zapier.com/mcp/home
+        type: Documentation
+      - url: https://github.com/zapier/zapier-mcp
+        type: GitHubOrg
+    description: >-
+      Zapier MCP (Model Context Protocol) connects AI tools like Claude,
+      ChatGPT, and Cursor to over 8,000 apps using the open Model Context
+      Protocol standard. It provides a server endpoint for connecting a
+      Zapier account to an AI client, with meta-tools available immediately
+      and configurable actions exposed as dedicated tools. Supports API key
+      authentication for personal use and OAuth for multi-user
+      applications.
 name: Zapier
 tags:
   - iPaaS
@@ -94,6 +172,46 @@ common:
     name: Plans & Pricing | Zapier
     type: Pricing
     description: 'null'
+  - url: https://status.zapier.com
+    name: Zapier Status
+    type: StatusPage
+    description: 'null'
+  - url: https://community.zapier.com
+    name: Zapier Community
+    type: Forum
+    description: 'null'
+  - url: https://zapier.com/legal
+    name: Legal at Zapier
+    type: TermsOfService
+    description: 'null'
+  - url: https://zapier.com/legal/data-privacy
+    name: Data Privacy Overview | Zapier
+    type: PrivacyPolicy
+    description: 'null'
+  - url: https://zapier.com/developer-platform/tos
+    name: Zapier Developer Platform Terms
+    type: TermsOfService
+    description: 'null'
+  - url: https://zapier.com/developer-platform
+    name: Zapier Developer Platform
+    type: DeveloperPortal
+    description: 'null'
+  - url: https://zapier.com/developer-platform/partner-program
+    name: Zapier Integration Partner Program
+    type: PartnerProgram
+    description: 'null'
+  - url: https://github.com/zapier/zapier-platform
+    name: Zapier Platform SDK - GitHub
+    type: GitHubOrg
+    description: 'null'
+  - url: https://zapier.github.io/zapier-platform-schema/build/schema.html
+    name: Zapier Platform Schema Documentation
+    type: Schema
+    description: 'null'
+  - url: https://zapier.com/developer-platform/partner-embeds
+    name: Zapier Partner Embed Gallery
+    type: UseCases
+    description: 'null'
   - data:
       - name: Customer support
       - name: Data management
@@ -163,7 +281,7 @@ common:
     name: Features
     type: Features
 created: '2025-06-06T00:00:00.000Z'
-modified: '2025-09-02'
+modified: '2026-03-03'
 position: Consuming
 segments:
   - iPaaS
@@ -175,5 +293,5 @@ description: >-
   Google Sheets, Trello, and many others.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
