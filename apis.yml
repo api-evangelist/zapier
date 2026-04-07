@@ -5,8 +5,8 @@ apis:
   - aid: zapier:zapier
     name: Zapier
     tags:
-      - iPaaS
       - Integrations
+      - iPaaS
     humanURL: ' https://zapier.com/'
     properties:
       - url: ' https://zapier.com/'
@@ -27,9 +27,9 @@ apis:
   - aid: zapier:partner-api
     name: Zapier Partner API
     tags:
-      - iPaaS
-      - Integrations
       - Embed
+      - Integrations
+      - iPaaS
       - Partners
     humanURL: https://zapier.com/developer-platform/workflow-api
     properties:
@@ -51,10 +51,10 @@ apis:
   - aid: zapier:ai-actions-api
     name: Zapier AI Actions API
     tags:
-      - iPaaS
       - AI
-      - NaturalLanguage
+      - iPaaS
       - LLM
+      - NaturalLanguage
     humanURL: https://actions.zapier.com/
     properties:
       - url: https://actions.zapier.com/
@@ -72,8 +72,8 @@ apis:
   - aid: zapier:mcp
     name: Zapier MCP
     tags:
-      - iPaaS
       - AI
+      - iPaaS
       - MCP
       - ModelContextProtocol
     humanURL: https://zapier.com/mcp
@@ -94,8 +94,8 @@ apis:
       applications.
 name: Zapier
 tags:
-  - iPaaS
   - Integrations
+  - iPaaS
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
