@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-links-structure.json",
+  "name": "Links",
+  "description": "The links object returned in paginated response bodies.",
+  "type": "object",
+  "properties": {
+    "next": {
+      "type": "string",
+      "description": "The URL of the next page of paginated results.",
+      "example": "example-value"
+    },
+    "prev": {
+      "type": "string",
+      "description": "The URL of the previous page of paginated results.",
+      "example": "example-value"
+    }
+  }
+}

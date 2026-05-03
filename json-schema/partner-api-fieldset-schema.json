@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fieldset",
+  "description": "Represents a Fieldset",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-fieldset-schema.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of this Fieldset",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for this Fieldset",
+      "example": "500123"
+    },
+    "fields": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/FieldsetFieldsField"
+        }
+      ],
+      "description": "The fields this Fieldset consists of",
+      "example": "example-value"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Fieldset",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "fields",
+    "id",
+    "title",
+    "type"
+  ]
+}

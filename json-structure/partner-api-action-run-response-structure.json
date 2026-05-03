@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-action-run-response-structure.json",
+  "name": "ActionRunResponse",
+  "description": "The response of a given Action Run",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/_ActionRunResponse"
+        }
+      ],
+      "description": "The resulting data after a given Action was run",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

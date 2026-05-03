@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-choice-response-structure.json",
+  "name": "ChoiceResponse",
+  "description": "A successful response for getting the requested Input Fields.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Choice"
+      },
+      "description": "A list of Choices matching the given request",
+      "example": [
+        {}
+      ]
+    },
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Meta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "links",
+    "meta"
+  ]
+}

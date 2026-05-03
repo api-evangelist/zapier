@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ValueTypeEnum",
+  "description": "* `STRING` - STRING\n* `NUMBER` - NUMBER\n* `INTEGER` - INTEGER\n* `BOOLEAN` - BOOLEAN\n* `ARRAY` - ARRAY\n* `OBJECT` - OBJECT",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-value-type-enum-schema.json",
+  "type": "string",
+  "enum": [
+    "STRING",
+    "NUMBER",
+    "INTEGER",
+    "BOOLEAN",
+    "ARRAY",
+    "OBJECT"
+  ]
+}

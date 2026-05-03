@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FormatEnum",
+  "description": "* `DATETIME` - DATETIME\n* `MULTILINE` - MULTILINE\n* `PASSWORD` - PASSWORD\n* `CODE` - CODE\n* `READONLY` - READONLY\n* `FILE` - FILE\n* `SELECT` - SELECT",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-format-enum-schema.json",
+  "type": "string",
+  "enum": [
+    "DATETIME",
+    "MULTILINE",
+    "PASSWORD",
+    "CODE",
+    "READONLY",
+    "FILE",
+    "SELECT"
+  ]
+}

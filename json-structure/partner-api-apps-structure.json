@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-apps-structure.json",
+  "name": "Apps",
+  "description": "An app that integrates with Zapier",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique id of the app",
+      "example": "500123"
+    },
+    "type": {
+      "type": "string",
+      "default": "app",
+      "description": "The type of this object.",
+      "example": "app"
+    },
+    "image": {
+      "type": "string",
+      "description": "Default image/icon to represent the app.",
+      "example": "example-value"
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated.",
+      "example": {}
+    },
+    "action_types": {
+      "type": "array",
+      "items": {},
+      "description": "A list of action types for this specific App",
+      "example": [
+        "standard"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human readable name of the app",
+      "example": "Example Name"
+    },
+    "images": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AppsImages"
+        }
+      ],
+      "description": "The URL of images (of various sizes) for this specific App",
+      "example": "example-value"
+    },
+    "hex_color": {
+      "type": "string",
+      "description": "A branded color that can be used to represent the app.",
+      "example": "example-value"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Category"
+      },
+      "description": "A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.",
+      "example": [
+        {}
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human readable description of the app.",
+      "example": "Example description for this resource."
+    }
+  },
+  "required": [
+    "action_types",
+    "categories",
+    "description",
+    "hex_color",
+    "id",
+    "image",
+    "images",
+    "links",
+    "title"
+  ]
+}

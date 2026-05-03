@@ -1,0 +1,7 @@
+{
+  "type": "authentication",
+  "id": "500123",
+  "app": "example-value",
+  "is_expired": true,
+  "title": "Example Name"
+}

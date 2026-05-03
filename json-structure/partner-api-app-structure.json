@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-app-structure.json",
+  "name": "App",
+  "description": "App (Service).",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "uuid",
+      "description": "The UUID identifier of this App",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this App",
+      "example": "Example Name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The shortened slug identified of this App",
+      "pattern": "^[-a-zA-Z0-9_]+$",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of this App",
+      "example": "Example description for this resource."
+    },
+    "image": {
+      "type": "uri",
+      "description": "A URL to an image representing this App",
+      "example": "https://example.com/path/abc123"
+    },
+    "url": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A URL to an embed with your App and this one",
+      "example": "https://example.com/path/abc123"
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "description": "An object whose 'mutual:zap_templates' key is a URL to shared Zap Templates between your App and this one",
+      "example": {}
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Category"
+      },
+      "description": "A list of Categories associated with this App",
+      "example": [
+        {}
+      ]
+    },
+    "images": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "An object containing images representing this App of various sizes",
+      "example": {}
+    },
+    "app_latest": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Shorthand for referencing the latest version of this App",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "app_latest",
+    "categories",
+    "description",
+    "image",
+    "images",
+    "links",
+    "slug",
+    "title",
+    "url",
+    "uuid"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-guesser-response-structure.json",
+  "name": "ZapGuesserResponse",
+  "description": "ZapGuesserResponse schema from Partner API",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The generated title for this suggested Zap.",
+      "example": "Example Name"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ZapGuesserStep"
+      },
+      "description": "The steps this suggested Zap consists of.",
+      "example": [
+        {}
+      ]
+    },
+    "prefilled_url": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A generated prefilled URL to take you to the Zapier editor (selects the highest confidence steps).",
+      "example": "https://example.com/path/abc123"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "description": "Contains informational messages about the prompt.",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "prefilled_url",
+    "steps",
+    "title"
+  ]
+}

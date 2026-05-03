@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-apps-images-structure.json",
+  "name": "AppsImages",
+  "description": "Images/icons of various resolutions to represent the app.",
+  "type": "object",
+  "properties": {
+    "url_16x16": {
+      "type": "string",
+      "description": "16x16 resolution image URL",
+      "example": "example-value"
+    },
+    "url_32x32": {
+      "type": "string",
+      "description": "32x32 resolution image URL",
+      "example": "example-value"
+    },
+    "url_64x64": {
+      "type": "string",
+      "description": "64x64 resolution image URL",
+      "example": "example-value"
+    },
+    "url_128x128": {
+      "type": "string",
+      "description": "128x128 resolution image URL",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "url_128x128",
+    "url_16x16",
+    "url_32x32",
+    "url_64x64"
+  ]
+}

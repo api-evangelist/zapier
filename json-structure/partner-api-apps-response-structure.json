@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-apps-response-structure.json",
+  "name": "AppsResponse",
+  "description": "A page of returned apps.",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "int32",
+      "description": "The total number of Apps that matched",
+      "example": 100
+    },
+    "page": {
+      "type": "int32",
+      "readOnly": true,
+      "description": "The current page returned",
+      "example": 100
+    },
+    "pages": {
+      "type": "int32",
+      "readOnly": true,
+      "description": "The total number of pages",
+      "example": 100
+    },
+    "per_page": {
+      "type": "int32",
+      "readOnly": true,
+      "description": "How many Apps are returned per-page",
+      "example": 100
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/App"
+      },
+      "description": "A list containing all matching Apps'",
+      "example": [
+        {}
+      ]
+    },
+    "prev_url": {
+      "type": "uri",
+      "readOnly": true,
+      "description": "The URL to call to get the previous matching Apps",
+      "example": "https://example.com/path/abc123"
+    },
+    "next_url": {
+      "type": "uri",
+      "readOnly": true,
+      "description": "The URL to call to get the next matching Apps",
+      "example": "https://example.com/path/abc123"
+    }
+  },
+  "required": [
+    "next_url",
+    "objects",
+    "page",
+    "pages",
+    "per_page",
+    "prev_url",
+    "total"
+  ]
+}

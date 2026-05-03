@@ -1,0 +1,16 @@
+{
+  "type": "standard",
+  "id": "500123",
+  "default_value": "example-value",
+  "depends_on": [
+    "example-value"
+  ],
+  "description": "Example description for this resource.",
+  "format": "example-value",
+  "invalidates_input_fields": true,
+  "is_required": true,
+  "items": {},
+  "placeholder": "example-value",
+  "title": "Example Name",
+  "value_type": "standard"
+}

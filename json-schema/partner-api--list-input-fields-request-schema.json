@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "_ListInputFieldsRequest",
+  "description": "The common data object that includes inputs and an authentication id.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api--list-input-fields-request-schema.json",
+  "type": "object",
+  "properties": {
+    "authentication": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "An Authentication ID provided by the `/authentications` endpoint.",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.",
+      "example": {}
+    }
+  },
+  "required": [
+    "authentication",
+    "inputs"
+  ]
+}

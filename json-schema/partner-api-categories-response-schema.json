@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CategoriesResponse",
+  "description": "A page of returned Categories.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-categories-response-schema.json",
+  "type": "object",
+  "properties": {
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL to call to get the next set of Categories",
+      "example": "https://example.com/path/abc123"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL to call to get the prior set of Categories",
+      "example": "https://example.com/path/abc123"
+    },
+    "count": {
+      "type": "integer",
+      "description": "How many Categories exist for the given query",
+      "example": 100
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AppCategory"
+      },
+      "description": "The list of matching Category data",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "count",
+    "next",
+    "objects",
+    "previous"
+  ]
+}

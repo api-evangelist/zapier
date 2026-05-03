@@ -1,0 +1,9 @@
+{
+  "id": 100,
+  "first_name": "Example Name",
+  "last_name": "Example Name",
+  "full_name": "Example Name",
+  "email": "user@example.com",
+  "email_confirmed": true,
+  "timezone": "example-value"
+}

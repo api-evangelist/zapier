@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-base-meta-structure.json",
+  "name": "BaseMeta",
+  "description": "The meta object returned in paginated response bodies.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "int32",
+      "minimum": 0,
+      "description": "The total number of objects in the collection represented by the endpoint.",
+      "example": 100
+    },
+    "limit": {
+      "type": "int32",
+      "minimum": 1,
+      "description": "The limit value used in the request.",
+      "example": 100
+    },
+    "offset": {
+      "type": "int32",
+      "minimum": 0,
+      "default": 0,
+      "description": "The offset value used in the request.",
+      "example": 0
+    }
+  },
+  "required": [
+    "count",
+    "limit"
+  ]
+}

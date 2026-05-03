@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExpandedZapsResponse",
+  "description": "A page of returned Zaps.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-expanded-zaps-response-schema.json",
+  "type": "object",
+  "properties": {
+    "links": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "nullable": true
+      },
+      "readOnly": true,
+      "description": "Links related to the response data",
+      "example": {}
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Metadata about the response",
+      "example": {}
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ExpandedZap"
+      },
+      "description": "The (potentially) expanded data for Zaps that matched the request",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

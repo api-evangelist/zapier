@@ -1,0 +1,10 @@
+{
+  "id": 100,
+  "title": "Example Name",
+  "slug": "example-value",
+  "description": "Example description for this resource.",
+  "url": "https://example.com/path/abc123",
+  "type_of": "standard",
+  "featured_entry_slug": "example-value",
+  "role": "example-value"
+}

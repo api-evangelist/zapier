@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-list-output-fields-request-structure.json",
+  "name": "ListOutputFieldsRequest",
+  "description": "ListOutputFieldsRequest schema from Partner API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_ListOutputFieldsRequest"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

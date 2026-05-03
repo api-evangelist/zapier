@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-run-step-structure.json",
+  "name": "ZapRunStep",
+  "description": "A single step in a Zap Run.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Execution status of the step",
+      "example": "active"
+    },
+    "start_time": {
+      "type": "datetime",
+      "description": "Datetime when the step was executed",
+      "example": "2026-05-01T12:00:00Z"
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

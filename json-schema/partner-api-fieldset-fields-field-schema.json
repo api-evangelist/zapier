@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FieldsetFieldsField",
+  "description": "Somewhat confusingly named, a field that is a list of either input fields or info fields.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-fieldset-fields-field-schema.json",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/InputField"
+    },
+    {
+      "$ref": "#/components/schemas/InfoField"
+    }
+  ]
+}

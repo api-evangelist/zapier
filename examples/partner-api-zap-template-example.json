@@ -1,0 +1,15 @@
+{
+  "id": 100,
+  "steps": [
+    {}
+  ],
+  "title": "Example Name",
+  "slug": "example-value",
+  "status": "active",
+  "description_plain": "example-value",
+  "description_raw": "example-value",
+  "url": "https://example.com/path/abc123",
+  "description": "Example description for this resource.",
+  "create_url": "https://example.com/path/abc123",
+  "type": "guided_zap"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--run-action-request-structure.json",
+  "name": "_RunActionRequest",
+  "description": "_RunActionRequest schema from Partner API",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "The ID for the Action to be run",
+      "example": "example-value"
+    },
+    "authentication": {
+      "type": "string",
+      "description": "The ID for Authentication (if required)",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Inputs to be provided to the Action referenced by the ID field, when run",
+      "example": {}
+    }
+  },
+  "required": [
+    "action",
+    "authentication",
+    "inputs"
+  ]
+}

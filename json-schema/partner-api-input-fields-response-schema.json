@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InputFieldsResponse",
+  "description": "A successful response for getting the input fields for a particular Action.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-input-fields-response-schema.json",
+  "type": "object",
+  "properties": {
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/BaseMeta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "data": {
+      "$ref": "#/components/schemas/RootFieldset"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

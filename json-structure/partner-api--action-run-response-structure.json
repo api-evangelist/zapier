@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--action-run-response-structure.json",
+  "name": "_ActionRunResponse",
+  "description": "_ActionRunResponse schema from Partner API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RunTypeEnum"
+        }
+      ],
+      "description": "The type of this object\n\n* `run` - Run",
+      "example": "standard"
+    },
+    "status": {
+      "$ref": "#/components/schemas/_ActionRunResponseStatusEnum"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "description": "Could be empty, even if the action was successfully run.",
+      "example": [
+        {}
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/_ActionRunResponseError"
+      },
+      "description": "Any errors returned by the partner when running this action.",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "errors",
+    "status",
+    "type"
+  ]
+}

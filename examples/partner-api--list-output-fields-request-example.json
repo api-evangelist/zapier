@@ -1,0 +1,5 @@
+{
+  "authentication": "example-value",
+  "inputs": {},
+  "fetch_live_samples": false
+}

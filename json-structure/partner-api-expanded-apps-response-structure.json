@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-expanded-apps-response-structure.json",
+  "name": "ExpandedAppsResponse",
+  "description": "An app that integrates with Zapier.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Apps"
+      },
+      "description": "A list of the Apps matching the request",
+      "example": [
+        {}
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Used for paginating results. Specifies the maximum number of items to return per page.",
+      "example": {}
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Used for paginating results. Specifies the offset to use. Defaults to 0",
+      "example": {}
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--authentication-create-request-structure.json",
+  "name": "_AuthenticationCreateRequest",
+  "description": "The object used to create a new Authentication",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the authentication.",
+      "maxLength": 255,
+      "example": "Example Name"
+    },
+    "app": {
+      "type": "uuid",
+      "description": "A canonical App ID, as provided by the `/apps` endpoint.",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "authentication_fields": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Required values to create an authentication. These values will be used by the target integration to successfully create the Authentication. See our Adding an Authentication guide for more information.",
+      "example": {}
+    }
+  },
+  "required": [
+    "app",
+    "authentication_fields",
+    "title"
+  ]
+}

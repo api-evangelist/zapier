@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Category",
+  "description": "Category an app belongs to.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-category-schema.json",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "The shortened slug name for this category",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "slug"
+  ]
+}

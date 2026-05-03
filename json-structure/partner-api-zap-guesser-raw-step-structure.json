@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-guesser-raw-step-structure.json",
+  "name": "ZapGuesserRawStep",
+  "description": "ZapGuesserRawStep schema from Partner API",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of this step",
+      "example": "Example Name"
+    },
+    "app": {
+      "type": "string",
+      "description": "This step's human-readable name",
+      "example": "example-value"
+    },
+    "api": {
+      "type": "string",
+      "description": "The Zapier API integration this step uses",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "api",
+    "app",
+    "title"
+  ]
+}

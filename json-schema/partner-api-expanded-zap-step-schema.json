@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExpandedZapStep",
+  "description": "An ordered list of steps that define the logic of the Zap.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-expanded-zap-step-schema.json",
+  "type": "object",
+  "properties": {
+    "action": {
+      "description": "Action",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Action"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "example": "example-value"
+    },
+    "authentication": {
+      "description": "Authentication",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Authentication"
+        },
+        {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      ],
+      "example": "example-value"
+    },
+    "inputs": {
+      "readOnly": true,
+      "description": "The inputs for this specific Zap's step",
+      "example": "example-value"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "The custom title of a Zap Step. If a step has not been given a custom title by the user, then the value will be null.",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "action",
+    "authentication",
+    "inputs",
+    "title"
+  ]
+}

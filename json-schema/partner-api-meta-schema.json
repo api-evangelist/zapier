@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta",
+  "description": "Metadata about a certain response",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-meta-schema.json",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "description": "The current page",
+      "example": 100
+    }
+  },
+  "required": [
+    "page"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-whitelabel-app-links-structure.json",
+  "name": "WhitelabelAppLinks",
+  "description": "WhitelabelAppLinks schema from Partner API",
+  "type": "object",
+  "properties": {
+    "mcp_authorize_url": {
+      "type": "uri",
+      "description": "URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.",
+      "example": "https://example.com/path/abc123"
+    },
+    "mcp_server_url": {
+      "type": "uri",
+      "description": "URL of the MCP server for this app. Requires an access token bound to a connection.",
+      "example": "https://example.com/path/abc123"
+    }
+  },
+  "required": [
+    "mcp_authorize_url",
+    "mcp_server_url"
+  ]
+}

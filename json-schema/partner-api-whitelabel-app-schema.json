@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WhitelabelApp",
+  "description": "An app available for whitelabel connection.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-whitelabel-app-schema.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "default": "app",
+      "description": "The resource type.",
+      "example": "app"
+    },
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The app's unique identifier.",
+      "example": "500123"
+    },
+    "title": {
+      "type": "string",
+      "description": "The app's display name.",
+      "example": "Example Name"
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the app's icon.",
+      "example": "https://example.com/path/abc123"
+    },
+    "is_oauth": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Whether the app uses OAuth for authentication.",
+      "example": true
+    },
+    "has_fields": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Whether the app has input fields a user must fill in when connecting.",
+      "example": true
+    },
+    "has_byoc": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.",
+      "example": true
+    },
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/WhitelabelAppLinks"
+        }
+      ],
+      "readOnly": true,
+      "description": "Related URLs for this app.",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "has_byoc",
+    "has_fields",
+    "id",
+    "image",
+    "is_oauth",
+    "links",
+    "title",
+    "type"
+  ]
+}

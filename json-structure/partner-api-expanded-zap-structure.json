@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-expanded-zap-structure.json",
+  "name": "ExpandedZap",
+  "description": "A Zap is an automated workflow that connects your apps and services together.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of this object.",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A unique identifier of the Zap.",
+      "example": "500123"
+    },
+    "is_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the Zap is enabled (running) or not.",
+      "example": true
+    },
+    "last_successful_run_date": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The date/time at which this Zap last ran successfully. A null value indicates that a Zap has never run successfully.",
+      "example": "example-value"
+    },
+    "updated_at": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The last time this Zap was updated",
+      "example": "example-value"
+    },
+    "title": {
+      "type": "string",
+      "description": "The human readable name of the Zap.",
+      "example": "Example Name"
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Link to open this Zap in the Zapier Editor",
+      "example": {}
+    },
+    "steps": {
+      "type": "array",
+      "description": "A list of the steps this Zap consists of",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExpandedZapStep"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "example": [
+        "example-value"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "last_successful_run_date",
+    "links",
+    "steps",
+    "title",
+    "type",
+    "updated_at"
+  ]
+}

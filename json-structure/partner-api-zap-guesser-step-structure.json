@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-guesser-step-structure.json",
+  "name": "ZapGuesserStep",
+  "description": "ZapGuesserStep schema from Partner API",
+  "type": "object",
+  "properties": {
+    "step": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ZapGuesserRawStep"
+        }
+      ],
+      "readOnly": true,
+      "description": "The highest scoring (most relevant) step for this Zap",
+      "example": "example-value"
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ZapGuesserRawStep"
+      },
+      "readOnly": true,
+      "description": "Alternative steps that we are less confident are relevant, but may have been intended",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "alternatives",
+    "step"
+  ]
+}

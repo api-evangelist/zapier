@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-root-fieldset-structure.json",
+  "name": "RootFieldset",
+  "description": "The base concept of a Fieldset, from which others extend",
+  "type": "array",
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "#/components/schemas/InputField"
+      },
+      {
+        "$ref": "#/components/schemas/InfoField"
+      },
+      {
+        "$ref": "#/components/schemas/Fieldset"
+      }
+    ]
+  }
+}

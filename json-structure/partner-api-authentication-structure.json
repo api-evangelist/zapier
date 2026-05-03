@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-authentication-structure.json",
+  "name": "Authentication",
+  "description": "An Authentication contains various fields, often credentials such as API tokens, used to access Partner APIs on\nbehalf of a user. The actual fields are held securely by Zapier",
+  "type": "object",
+  "properties": {
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AuthenticationTypeEnum"
+        }
+      ],
+      "readOnly": true,
+      "default": "authentication",
+      "description": "The type of this object.\n\n* `authentication` - authentication",
+      "example": "authentication"
+    },
+    "id": {
+      "type": "string",
+      "description": "The identifier for this specific Authentication",
+      "example": "500123"
+    },
+    "app": {
+      "description": "An app that integrates with Zapier.",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Apps"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "example": "example-value"
+    },
+    "is_expired": {
+      "type": "boolean",
+      "description": "If `true`, this Authentication has expired. It will not be usable, and the user needs to be directed to reconnect it.",
+      "example": true
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this specific Authentication",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "app",
+    "id",
+    "is_expired",
+    "title",
+    "type"
+  ]
+}

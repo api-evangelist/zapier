@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AuthenticationCreateRequest",
+  "description": "Inputs to create a new Authentication",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-authentication-create-request-schema.json",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_AuthenticationCreateRequest"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

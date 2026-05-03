@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-step-structure.json",
+  "name": "ZapStep",
+  "description": "One step in a Zap",
+  "type": "object",
+  "properties": {
+    "type_of": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TypeOfEnum"
+        }
+      ],
+      "description": "The type of this Step\n\n* `read` - read\n* `write` - write\n* `filter` - filter\n* `search` - search\n* `search_or_write` - search_or_write",
+      "example": "standard"
+    },
+    "app": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ZapStepApp"
+        }
+      ],
+      "description": "The App used in this Step",
+      "example": "example-value"
+    },
+    "params": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "The parameters used by this Step",
+      "example": {}
+    }
+  },
+  "required": [
+    "app",
+    "params",
+    "type_of"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-code-enum-structure.json",
+  "name": "CodeEnum",
+  "description": "* `user` - user\n* `authentication` - authentication\n* `partner` - partner\n* `system` - system\n* `throttled` - throttled\n* `system_throttled` - system_throttled\n* `hydration` - hydration",
+  "type": "string",
+  "enum": [
+    "user",
+    "authentication",
+    "partner",
+    "system",
+    "throttled",
+    "system_throttled",
+    "hydration"
+  ]
+}

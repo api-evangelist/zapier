@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BaseMeta",
+  "description": "The meta object returned in paginated response bodies.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-base-meta-schema.json",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of objects in the collection represented by the endpoint.",
+      "example": 100
+    },
+    "limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "description": "The limit value used in the request.",
+      "example": 100
+    },
+    "offset": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "The offset value used in the request.",
+      "example": 0
+    }
+  },
+  "required": [
+    "count",
+    "limit"
+  ]
+}

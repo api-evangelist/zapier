@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-whitelabel-apps-response-structure.json",
+  "name": "WhitelabelAppsResponse",
+  "description": "A JSON:API-style response of apps available for whitelabel connection.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WhitelabelApp"
+      },
+      "description": "The list of apps.",
+      "example": [
+        {}
+      ]
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Pagination links.",
+      "example": {}
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Pagination metadata.",
+      "example": {}
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

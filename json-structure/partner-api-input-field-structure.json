@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-input-field-structure.json",
+  "name": "InputField",
+  "description": "Represents Input Field data as accepted by the API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of Input Field",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "description": "The identifier for this Input Field",
+      "example": "500123"
+    },
+    "default_value": {
+      "type": "string",
+      "description": "The default value for this Input Field if not otherwise specified",
+      "example": "example-value"
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of dependencies for this Input Field",
+      "example": [
+        "example-value"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of this Input Field",
+      "example": "Example description for this resource."
+    },
+    "format": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/FormatEnum"
+        }
+      ],
+      "description": "The format of this Input Field from one of options provided\n\n* `DATETIME` - DATETIME\n* `MULTILINE` - MULTILINE\n* `PASSWORD` - PASSWORD\n* `CODE` - CODE\n* `READONLY` - READONLY\n* `FILE` - FILE\n* `SELECT` - SELECT",
+      "example": "example-value"
+    },
+    "invalidates_input_fields": {
+      "type": "boolean",
+      "description": "Whether this Input Field invalidates",
+      "example": true
+    },
+    "is_required": {
+      "type": "boolean",
+      "description": "Whether this Input Field is required",
+      "example": true
+    },
+    "items": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "A freeform object of items for this Input Field",
+      "example": {}
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "The placeholder for this Input Field when shown",
+      "example": "example-value"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Input Field",
+      "example": "Example Name"
+    },
+    "value_type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ValueTypeEnum"
+        }
+      ],
+      "description": "The type of the *value* of this Input Field\n\n* `STRING` - STRING\n* `NUMBER` - NUMBER\n* `INTEGER` - INTEGER\n* `BOOLEAN` - BOOLEAN\n* `ARRAY` - ARRAY\n* `OBJECT` - OBJECT",
+      "example": "standard"
+    }
+  },
+  "required": [
+    "default_value",
+    "depends_on",
+    "description",
+    "format",
+    "id",
+    "invalidates_input_fields",
+    "is_required",
+    "items",
+    "placeholder",
+    "title",
+    "type",
+    "value_type"
+  ]
+}

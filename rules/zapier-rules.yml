@@ -1,0 +1,156 @@
+rules:
+  info-title-required:
+    description: API title is required
+    message: '{{property}} is required'
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  info-description-required:
+    description: API description is required
+    message: '{{property}} is required'
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-version-required:
+    description: API version is required
+    message: '{{property}} is required'
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  info-contact-required:
+    description: API contact is required
+    message: '{{property}} is required'
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  openapi-version-3:
+    description: OpenAPI version should be 3.x
+    message: Use OpenAPI 3.x
+    severity: warn
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: ^3\.
+  servers-required:
+    description: Servers must be defined
+    message: Define servers
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  servers-https:
+    description: Server URLs should use HTTPS
+    message: Use HTTPS
+    severity: warn
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: ^https://
+  paths-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    message: Remove trailing slash
+    severity: warn
+    given: $.paths
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        notMatch: .+/$
+  paths-kebab-case:
+    description: Path segments should be kebab-case
+    message: Use kebab-case
+    severity: warn
+    given: $.paths
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^(/[a-z0-9-]+|/\{[a-zA-Z][a-zA-Z0-9_]*\})+/?$
+  operation-summary-required:
+    description: Operation summary is required
+    message: Add a summary
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  operation-description-required:
+    description: Operation description is required
+    message: Add a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  operation-operationId-required:
+    description: operationId is required
+    message: Add operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  operation-tags-required:
+    description: Operation tags are required
+    message: Add tags
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+  operation-summary-prefix-zapier:
+    description: Operation summary should start with "Zapier"
+    message: Summary should start with "Zapier"
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Zapier
+  parameter-description-required:
+    description: Parameters need a description
+    message: Add a description
+    severity: warn
+    given: $.paths[*][*].parameters[*]
+    then:
+      field: description
+      function: truthy
+  response-2xx-required:
+    description: Operations must define a 2xx success response
+    message: Add a 2xx response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[23]
+      field: '@key'
+  schema-description-required:
+    description: Top-level schemas need a description
+    message: Add a description
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes should be defined
+    message: Define securitySchemes
+    severity: warn
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy

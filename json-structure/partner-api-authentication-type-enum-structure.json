@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-authentication-type-enum-structure.json",
+  "name": "AuthenticationTypeEnum",
+  "description": "* `authentication` - authentication",
+  "type": "string",
+  "enum": [
+    "authentication"
+  ]
+}

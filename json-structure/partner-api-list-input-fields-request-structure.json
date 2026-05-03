@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-list-input-fields-request-structure.json",
+  "name": "ListInputFieldsRequest",
+  "description": "Common inputs with inputs and an authentication id.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_ListInputFieldsRequest"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "500123",
+  "key": "example-value",
+  "app": "example-value",
+  "type": "standard",
+  "action_type": "standard",
+  "is_instant": true,
+  "title": "Example Name",
+  "description": "Example description for this resource."
+}

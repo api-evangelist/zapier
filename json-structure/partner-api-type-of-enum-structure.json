@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-type-of-enum-structure.json",
+  "name": "TypeOfEnum",
+  "description": "* `read` - read\n* `write` - write\n* `filter` - filter\n* `search` - search\n* `search_or_write` - search_or_write",
+  "type": "string",
+  "enum": [
+    "read",
+    "write",
+    "filter",
+    "search",
+    "search_or_write"
+  ]
+}

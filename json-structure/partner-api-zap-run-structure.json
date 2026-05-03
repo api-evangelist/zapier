@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-zap-run-structure.json",
+  "name": "ZapRun",
+  "description": "A single Zap Run response.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "uuid",
+      "description": "Zap Run ID",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "zap_id": {
+      "type": "int32",
+      "description": "Associated Zap ID",
+      "example": 100
+    },
+    "start_time": {
+      "type": "datetime",
+      "description": "Datetime when the Zap Run started",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "end_time": {
+      "type": "datetime",
+      "description": "Datetime when the Zap Run ended",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "status": {
+      "type": "string",
+      "description": "Execution status of the Zap Run",
+      "example": "active"
+    },
+    "zap_title": {
+      "type": "string",
+      "description": "The title of the Zap at the time it ran",
+      "example": "example-value"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ZapRunStep"
+      },
+      "description": "Contains the execution details of each step",
+      "example": [
+        {}
+      ]
+    },
+    "data_in": {
+      "oneOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The input data for the Zap Run",
+      "example": "example-value"
+    },
+    "data_out": {
+      "oneOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The output data for the Zap Run",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "id",
+    "status",
+    "steps",
+    "zap_id",
+    "zap_title"
+  ]
+}

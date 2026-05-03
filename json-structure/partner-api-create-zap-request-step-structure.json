@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-create-zap-request-step-structure.json",
+  "name": "CreateZapRequestStep",
+  "description": "CreateZapRequestStep schema from Partner API",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "The ID of the Action to be associated with this step",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The inputs for the Action associated with this step",
+      "example": {}
+    },
+    "authentication": {
+      "type": "string",
+      "description": "The authentication, if required, for this Action to run",
+      "example": "example-value"
+    },
+    "alias": {
+      "type": "string",
+      "description": "Optional alias for this step to be referenced by later steps (snake_case, max 64 chars)",
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "action",
+    "authentication",
+    "inputs"
+  ]
+}

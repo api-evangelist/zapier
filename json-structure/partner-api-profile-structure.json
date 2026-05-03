@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-profile-structure.json",
+  "name": "Profile",
+  "description": "An authenticated user profile.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "The numeric identifier of this user",
+      "example": 100
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The first name of this user",
+      "example": "Example Name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The last name of this user",
+      "example": "Example Name"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "The combined full name of this user",
+      "example": "Example Name"
+    },
+    "email": {
+      "type": "string",
+      "description": "The email this user's account is associated with",
+      "example": "user@example.com"
+    },
+    "email_confirmed": {
+      "type": "boolean",
+      "description": "Whether said email is confirmed yet or not",
+      "example": true
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The timezone set for this user",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "email",
+    "email_confirmed",
+    "first_name",
+    "full_name",
+    "id",
+    "last_name",
+    "timezone"
+  ]
+}

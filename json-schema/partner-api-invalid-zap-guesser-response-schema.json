@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InvalidZapGuesserResponse",
+  "description": "InvalidZapGuesserResponse schema from Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-invalid-zap-guesser-response-schema.json",
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "description": "Contains informational messages about the prompt.",
+      "example": [
+        {}
+      ]
+    }
+  }
+}

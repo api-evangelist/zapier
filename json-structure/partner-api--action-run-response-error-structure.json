@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--action-run-response-error-structure.json",
+  "name": "_ActionRunResponseError",
+  "description": "The error information returned from a third party when running an action.",
+  "type": "object",
+  "properties": {
+    "code": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CodeEnum"
+        }
+      ],
+      "description": "Error type of the result object.\n\n* `user` - user\n* `authentication` - authentication\n* `partner` - partner\n* `system` - system\n* `throttled` - throttled\n* `system_throttled` - system_throttled\n* `hydration` - hydration",
+      "example": "example-value"
+    },
+    "title": {
+      "type": "string",
+      "description": "A short summary of the problem.",
+      "example": "Example Name"
+    },
+    "detail": {
+      "type": "string",
+      "description": "A human-readable explanation specific to this occurrence of the problem.",
+      "example": "example-value"
+    },
+    "delay": {
+      "type": "int32",
+      "description": "When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.",
+      "example": 100
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Any additional error information returned from the partner.",
+      "example": {}
+    }
+  }
+}

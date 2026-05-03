@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-fieldset-fields-field-structure.json",
+  "name": "FieldsetFieldsField",
+  "description": "Somewhat confusingly named, a field that is a list of either input fields or info fields.",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/InputField"
+    },
+    {
+      "$ref": "#/components/schemas/InfoField"
+    }
+  ]
+}

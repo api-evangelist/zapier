@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZapTemplateStep",
+  "description": "One step in a Zap Template.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-zap-template-step-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "The numeric identifier of this step, if specified",
+      "example": 100
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID identifier of this step",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "title": {
+      "type": "string",
+      "description": "The name of this step",
+      "example": "Example Name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The shortened slug for this step",
+      "pattern": "^[-a-zA-Z0-9_]+$",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of this step",
+      "example": "Example description for this resource."
+    },
+    "image": {
+      "type": "string",
+      "description": "The image URL for this step",
+      "example": "example-value"
+    },
+    "hex_color": {
+      "type": "string",
+      "description": "The primary (hex) color for this step",
+      "example": "example-value"
+    },
+    "images": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ZapTemplateStepImages"
+        }
+      ],
+      "description": "The images (at various sizes) for this step",
+      "example": "example-value"
+    },
+    "api": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The API used in this step",
+      "example": "example-value"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL for this step",
+      "example": "https://example.com/path/abc123"
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "The label for this step",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "api",
+    "description",
+    "hex_color",
+    "id",
+    "image",
+    "images",
+    "label",
+    "slug",
+    "title",
+    "url",
+    "uuid"
+  ]
+}

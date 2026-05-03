@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-value-type-enum-structure.json",
+  "name": "ValueTypeEnum",
+  "description": "* `STRING` - STRING\n* `NUMBER` - NUMBER\n* `INTEGER` - INTEGER\n* `BOOLEAN` - BOOLEAN\n* `ARRAY` - ARRAY\n* `OBJECT` - OBJECT",
+  "type": "string",
+  "enum": [
+    "STRING",
+    "NUMBER",
+    "INTEGER",
+    "BOOLEAN",
+    "ARRAY",
+    "OBJECT"
+  ]
+}

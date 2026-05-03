@@ -1,0 +1,10 @@
+{
+  "id": 100,
+  "title": "Example Name",
+  "state": "active",
+  "steps": [
+    {}
+  ],
+  "url": "https://example.com/path/abc123",
+  "modified_at": "example-value"
+}

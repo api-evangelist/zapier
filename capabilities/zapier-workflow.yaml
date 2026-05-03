@@ -1,0 +1,228 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Zapier Workflow
+  description: Unified workflow capability composing Zapier APIs.
+  tags:
+    - Zapier
+  created: '2026-05-03'
+  modified: '2026-05-03'
+capability:
+  consumes:
+    - import: partner-api
+      location: ./shared/partner-api.yaml
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: zapier-api
+      description: Unified REST API for Zapier
+      resources:
+        - path: /v1/partner-api
+          name: partner-api
+          description: Operations for partner-api
+          operations:
+            - method: GET
+              name: v1-apps-list
+              description: Zapier Get Apps [v1]
+              call: partner-api.v1-apps-list
+            - method: GET
+              name: v1-categories-list
+              description: Zapier Get Categories
+              call: partner-api.v1-categories-list
+            - method: GET
+              name: v1-profiles-me-list
+              description: Zapier User Profile
+              call: partner-api.v1-profiles-me-list
+            - method: GET
+              name: v1-zap-templates-list
+              description: Zapier Get Zap Templates
+              call: partner-api.v1-zap-templates-list
+            - method: GET
+              name: v1-zaps-list
+              description: Zapier Get Zaps [v1]
+              call: partner-api.v1-zaps-list
+            - method: POST
+              name: create-action-run
+              description: Zapier Create an Action Run
+              call: partner-api.create-action-run
+            - method: GET
+              name: retrieve-action-run
+              description: Zapier Retrieve Action Run
+              call: partner-api.retrieve-action-run
+            - method: GET
+              name: get-actions
+              description: Zapier Get Actions
+              call: partner-api.get-actions
+            - method: POST
+              name: get-fields-inputs
+              description: Zapier Get Input Fields
+              call: partner-api.get-fields-inputs
+            - method: POST
+              name: get-choices
+              description: Zapier Get Choices
+              call: partner-api.get-choices
+            - method: POST
+              name: get-fields-outputs
+              description: Zapier Get Output Fields
+              call: partner-api.get-fields-outputs
+            - method: POST
+              name: test-action
+              description: Zapier Step Test
+              call: partner-api.test-action
+            - method: GET
+              name: get-v2-apps
+              description: Zapier Get Apps [v2]
+              call: partner-api.get-v2-apps
+            - method: GET
+              name: get-authentications
+              description: Zapier Get Authentications
+              call: partner-api.get-authentications
+            - method: POST
+              name: create-authentication
+              description: Zapier Create Authentication
+              call: partner-api.create-authentication
+            - method: GET
+              name: v2-authorize-list
+              description: Zapier Create Account
+              call: partner-api.v2-authorize-list
+            - method: POST
+              name: create-zap-guess
+              description: Zapier Guess a Zap [Beta]
+              call: partner-api.create-zap-guess
+            - method: GET
+              name: v2-whitelabel-apps-list
+              description: Zapier Get Whitelabel Apps [v2]
+              call: partner-api.v2-whitelabel-apps-list
+            - method: GET
+              name: get-zap-runs
+              description: Zapier Get Zap Runs
+              call: partner-api.get-zap-runs
+            - method: GET
+              name: get-v2-zaps
+              description: Zapier Get Zaps [v2]
+              call: partner-api.get-v2-zaps
+    - type: mcp
+      port: 9090
+      namespace: zapier-mcp
+      transport: http
+      description: MCP server for Zapier
+      tools:
+        - name: partner-api-v1-apps-list
+          description: Zapier Get Apps [v1]
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v1-apps-list
+        - name: partner-api-v1-categories-list
+          description: Zapier Get Categories
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v1-categories-list
+        - name: partner-api-v1-profiles-me-list
+          description: Zapier User Profile
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v1-profiles-me-list
+        - name: partner-api-v1-zap-templates-list
+          description: Zapier Get Zap Templates
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v1-zap-templates-list
+        - name: partner-api-v1-zaps-list
+          description: Zapier Get Zaps [v1]
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v1-zaps-list
+        - name: partner-api-create-action-run
+          description: Zapier Create an Action Run
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.create-action-run
+        - name: partner-api-retrieve-action-run
+          description: Zapier Retrieve Action Run
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.retrieve-action-run
+        - name: partner-api-get-actions
+          description: Zapier Get Actions
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.get-actions
+        - name: partner-api-get-fields-inputs
+          description: Zapier Get Input Fields
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.get-fields-inputs
+        - name: partner-api-get-choices
+          description: Zapier Get Choices
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.get-choices
+        - name: partner-api-get-fields-outputs
+          description: Zapier Get Output Fields
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.get-fields-outputs
+        - name: partner-api-test-action
+          description: Zapier Step Test
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.test-action
+        - name: partner-api-get-v2-apps
+          description: Zapier Get Apps [v2]
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.get-v2-apps
+        - name: partner-api-get-authentications
+          description: Zapier Get Authentications
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.get-authentications
+        - name: partner-api-create-authentication
+          description: Zapier Create Authentication
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.create-authentication
+        - name: partner-api-v2-authorize-list
+          description: Zapier Create Account
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v2-authorize-list
+        - name: partner-api-create-zap-guess
+          description: Zapier Guess a Zap [Beta]
+          hints:
+            readOnly: false
+            openWorld: true
+          call: partner-api.create-zap-guess
+        - name: partner-api-v2-whitelabel-apps-list
+          description: Zapier Get Whitelabel Apps [v2]
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.v2-whitelabel-apps-list
+        - name: partner-api-get-zap-runs
+          description: Zapier Get Zap Runs
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.get-zap-runs
+        - name: partner-api-get-v2-zaps
+          description: Zapier Get Zaps [v2]
+          hints:
+            readOnly: true
+            openWorld: true
+          call: partner-api.get-v2-zaps

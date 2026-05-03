@@ -1,0 +1,16 @@
+{
+  "id": "500123",
+  "type": "app",
+  "image": "example-value",
+  "links": {},
+  "action_types": [
+    "standard"
+  ],
+  "title": "Example Name",
+  "images": "example-value",
+  "hex_color": "example-value",
+  "categories": [
+    {}
+  ],
+  "description": "Example description for this resource."
+}

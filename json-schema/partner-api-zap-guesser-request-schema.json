@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZapGuesserRequest",
+  "description": "ZapGuesserRequest schema from Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-zap-guesser-request-schema.json",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "The description of the Zap you wish to create",
+      "example": "Example description for this resource."
+    }
+  },
+  "required": [
+    "description"
+  ]
+}

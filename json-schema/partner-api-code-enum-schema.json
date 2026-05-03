@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CodeEnum",
+  "description": "* `user` - user\n* `authentication` - authentication\n* `partner` - partner\n* `system` - system\n* `throttled` - throttled\n* `system_throttled` - system_throttled\n* `hydration` - hydration",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-code-enum-schema.json",
+  "type": "string",
+  "enum": [
+    "user",
+    "authentication",
+    "partner",
+    "system",
+    "throttled",
+    "system_throttled",
+    "hydration"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OutputField",
+  "description": "OutputField schema from Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-output-field-schema.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of this specific Output Field",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "description": "The identifier for this specific Output Field",
+      "example": "500123"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this specific Output Field",
+      "example": "Example Name"
+    },
+    "sample": {
+      "type": "string",
+      "description": "An (optional) sample of what an Output Field's value may look like",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "type"
+  ]
+}

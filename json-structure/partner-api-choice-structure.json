@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-choice-structure.json",
+  "name": "Choice",
+  "description": "A single element from a set of Choices, variants in an enumeration.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of this variant",
+      "example": "500123"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of this object",
+      "example": "standard"
+    },
+    "label": {
+      "type": "string",
+      "description": "An optional human-readable label for this variant. Useful if the actual value is not a human-readable value, such as an identifier.",
+      "example": "Example Name"
+    },
+    "value": {
+      "type": "string",
+      "description": "The value of this variant.",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "value"
+  ]
+}

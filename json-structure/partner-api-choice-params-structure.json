@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-choice-params-structure.json",
+  "name": "ChoiceParams",
+  "description": "A Choice as to be provided to the /choices endpoint",
+  "type": "object",
+  "properties": {
+    "authentication": {
+      "type": "string",
+      "description": "The Authentication ID for this Choice, if present/required",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The Inputs for this Choice, if present/required",
+      "example": {}
+    }
+  },
+  "required": [
+    "authentication",
+    "inputs"
+  ]
+}

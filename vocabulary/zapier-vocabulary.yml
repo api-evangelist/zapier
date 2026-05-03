@@ -1,0 +1,178 @@
+vocabulary: 1.0.0
+info:
+  provider: Zapier
+  description: Vocabulary for Zapier APIs.
+  created: '2026-05-03'
+  modified: '2026-05-03'
+operational:
+  apis:
+    - name: Partner API
+      namespace: partner-api
+      version: 2024.11.0
+      baseUrl: https://api.zapier.com
+      status: active
+  resources:
+    - name: v1
+      methods:
+        - get
+    - name: v2
+      methods:
+        - get
+        - post
+  actions:
+    - verb: v1_apps_list
+      methods:
+        - GET
+    - verb: v1_categories_list
+      methods:
+        - GET
+    - verb: v1_profiles_me_list
+      methods:
+        - GET
+    - verb: v1_zap_templates_list
+      methods:
+        - GET
+    - verb: v1_zaps_list
+      methods:
+        - GET
+    - verb: create-action-run
+      methods:
+        - POST
+    - verb: retrieve-action-run
+      methods:
+        - GET
+    - verb: get-actions
+      methods:
+        - GET
+    - verb: get-fields-inputs
+      methods:
+        - POST
+    - verb: get-choices
+      methods:
+        - POST
+    - verb: get-fields-outputs
+      methods:
+        - POST
+    - verb: test-action
+      methods:
+        - POST
+    - verb: get-v2-apps
+      methods:
+        - GET
+    - verb: get-authentications
+      methods:
+        - GET
+    - verb: create-authentication
+      methods:
+        - POST
+    - verb: v2_authorize_list
+      methods:
+        - GET
+    - verb: create-zap-guess
+      methods:
+        - POST
+    - verb: v2-whitelabel-apps-list
+      methods:
+        - GET
+    - verb: get-zap-runs
+      methods:
+        - GET
+    - verb: get-v2-zaps
+      methods:
+        - GET
+    - verb: post-zaps
+      methods:
+        - POST
+  schemas:
+    core:
+      - Action
+      - ActionRunResponse
+      - ActionTestRequest
+      - ActionTestResponse
+      - ActionTypeEnum
+      - ActionsResponse
+      - App
+      - AppCategory
+      - Apps
+      - AppsImages
+      - AppsResponse
+      - Authentication
+      - AuthenticationCreateRequest
+      - AuthenticationResponse
+      - AuthenticationTypeEnum
+      - BaseMeta
+      - CategoriesResponse
+      - Category
+      - Choice
+      - ChoiceParams
+      - ChoiceRequest
+      - ChoiceResponse
+      - CodeEnum
+      - CreateZapRequest
+      - CreateZapRequestStep
+      - Error
+      - ErrorResponse
+      - ErrorSource
+      - ExpandedAppsResponse
+      - ExpandedZap
+      - ExpandedZapStep
+      - ExpandedZapsResponse
+      - Fieldset
+      - FieldsetFieldsField
+      - FormatEnum
+      - InfoField
+      - InputField
+      - InputFieldsResponse
+      - InvalidZapGuesserResponse
+      - Links
+      - ListInputFieldsRequest
+      - ListOutputFieldsRequest
+      - Meta
+      - OutputField
+      - OutputFieldsResponse
+      - Profile
+      - RootFieldset
+      - RunActionRequest
+      - RunActionResponse
+      - RunTypeEnum
+      - TypeOfEnum
+      - ValueTypeEnum
+      - WhitelabelApp
+      - WhitelabelAppLinks
+      - WhitelabelAppsResponse
+      - Zap
+      - ZapGuesserRawStep
+      - ZapGuesserRequest
+      - ZapGuesserResponse
+      - ZapGuesserStep
+      - ZapRequest
+      - ZapRun
+      - ZapRunStep
+      - ZapRunsResponse
+      - ZapStep
+      - ZapStepApp
+      - ZapTemplate
+      - ZapTemplateStatusEnum
+      - ZapTemplateStep
+      - ZapTemplateStepImages
+      - ZapsResponse
+      - _ActionRunResponse
+      - _ActionRunResponseError
+      - _ActionRunResponseStatusEnum
+      - _ActionTestRequest
+      - _AuthenticationCreateRequest
+      - _ListInputFieldsRequest
+      - _ListOutputFieldsRequest
+      - _RunActionRequest
+      - _RunActionResponse
+capability:
+  workflows:
+    - name: Zapier Workflow
+      file: capabilities/zapier-workflow.yaml
+      description: Unified workflow for Zapier
+      apis:
+        - partner-api
+  personas:
+    - id: developer
+      name: Developer
+      description: Integrates with Zapier APIs

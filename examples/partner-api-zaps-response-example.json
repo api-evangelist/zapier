@@ -1,0 +1,8 @@
+{
+  "next": "https://example.com/path/abc123",
+  "previous": "https://example.com/path/abc123",
+  "count": 100,
+  "objects": [
+    {}
+  ]
+}

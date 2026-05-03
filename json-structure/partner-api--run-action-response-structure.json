@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--run-action-response-structure.json",
+  "name": "_RunActionResponse",
+  "description": "The response after an Action Run",
+  "type": "object",
+  "properties": {
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RunTypeEnum"
+        }
+      ],
+      "description": "The type of this object\n\n* `run` - Run",
+      "example": "standard"
+    },
+    "id": {
+      "type": "uuid",
+      "description": "The UUID of this Action Run",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

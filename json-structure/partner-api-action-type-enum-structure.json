@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-action-type-enum-structure.json",
+  "name": "ActionTypeEnum",
+  "description": "* `action` - action",
+  "type": "string",
+  "enum": [
+    "action"
+  ]
+}

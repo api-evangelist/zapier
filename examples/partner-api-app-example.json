@@ -1,0 +1,14 @@
+{
+  "uuid": "550e8400-e29b-41d4-a716-446655440000",
+  "title": "Example Name",
+  "slug": "example-value",
+  "description": "Example description for this resource.",
+  "image": "https://example.com/path/abc123",
+  "url": "https://example.com/path/abc123",
+  "links": {},
+  "categories": [
+    {}
+  ],
+  "images": {},
+  "app_latest": "example-value"
+}

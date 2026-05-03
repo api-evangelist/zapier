@@ -1,0 +1,10 @@
+{
+  "title": "Example Name",
+  "steps": [
+    {}
+  ],
+  "prefilled_url": "https://example.com/path/abc123",
+  "messages": [
+    {}
+  ]
+}

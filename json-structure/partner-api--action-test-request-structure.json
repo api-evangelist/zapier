@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--action-test-request-structure.json",
+  "name": "_ActionTestRequest",
+  "description": "The request structure to test a particular Action",
+  "type": "object",
+  "properties": {
+    "limit": {
+      "type": "int32",
+      "minimum": 1,
+      "default": 10,
+      "description": "Used for paginating results. Specifies the maximum number of items to return per page.",
+      "example": 10
+    },
+    "offset": {
+      "type": "int32",
+      "minimum": 0,
+      "default": 0,
+      "description": "Used for paginating results. Specifies the offset to use. Defaults to 0",
+      "example": 0
+    },
+    "authentication": {
+      "type": "string",
+      "description": "Authentication, if required, to be able to run the given Action",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Inputs to be provided to the given 'read' Action's test run",
+      "example": {}
+    }
+  },
+  "required": [
+    "authentication",
+    "inputs"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "total": 100,
+  "page": 100,
+  "pages": 100,
+  "per_page": 100,
+  "objects": [
+    {}
+  ],
+  "prev_url": "https://example.com/path/abc123",
+  "next_url": "https://example.com/path/abc123"
+}

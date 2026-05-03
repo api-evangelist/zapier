@@ -1,0 +1,10 @@
+{
+  "type": "app",
+  "id": "500123",
+  "title": "Example Name",
+  "image": "https://example.com/path/abc123",
+  "is_oauth": true,
+  "has_fields": true,
+  "has_byoc": true,
+  "links": "example-value"
+}

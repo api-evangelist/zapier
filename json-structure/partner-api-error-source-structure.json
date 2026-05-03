@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-error-source-structure.json",
+  "name": "ErrorSource",
+  "description": "Populates the `source` object inside our error responses.",
+  "type": "object",
+  "properties": {
+    "pointer": {
+      "type": "string",
+      "description": "Pointer to the value in the request document that caused the error e.g. `/actions`.",
+      "example": "example-value"
+    },
+    "parameter": {
+      "type": "string",
+      "description": "A string indicating which URI query parameter caused the error.",
+      "example": "example-value"
+    },
+    "header": {
+      "type": "string",
+      "description": "A string indicating the name of a single request header which caused the error.",
+      "example": "example-value"
+    }
+  }
+}

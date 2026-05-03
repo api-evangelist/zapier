@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--action-run-response-status-enum-structure.json",
+  "name": "_ActionRunResponseStatusEnum",
+  "description": "* `success` - success\n* `error` - error\n* `waiting` - waiting",
+  "type": "string",
+  "enum": [
+    "success",
+    "error",
+    "waiting"
+  ]
+}

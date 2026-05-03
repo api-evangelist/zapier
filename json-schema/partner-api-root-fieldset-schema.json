@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RootFieldset",
+  "description": "The base concept of a Fieldset, from which others extend",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-root-fieldset-schema.json",
+  "type": "array",
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "#/components/schemas/InputField"
+      },
+      {
+        "$ref": "#/components/schemas/InfoField"
+      },
+      {
+        "$ref": "#/components/schemas/Fieldset"
+      }
+    ]
+  }
+}

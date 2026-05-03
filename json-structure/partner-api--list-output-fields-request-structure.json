@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api--list-output-fields-request-structure.json",
+  "name": "_ListOutputFieldsRequest",
+  "description": "The common data object that includes inputs and an authentication id.",
+  "type": "object",
+  "properties": {
+    "authentication": {
+      "type": "string",
+      "description": "An Authentication ID, as provided by the `/authentications` endpoint.",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.",
+      "example": {}
+    },
+    "fetch_live_samples": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to retrieve live samples for the field. While this can be helpful in supporting the identification of an output, note that this has latency implications as it may require an additional request to 3rd party services. This is not supported for `WRITE` actions, please use step testing instead.",
+      "example": false
+    }
+  },
+  "required": [
+    "authentication",
+    "inputs"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunActionResponse",
+  "description": "RunActionResponse schema from Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-run-action-response-schema.json",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_RunActionResponse"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

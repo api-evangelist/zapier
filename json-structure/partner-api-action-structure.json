@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-action-structure.json",
+  "name": "Action",
+  "description": "An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID to refer to this action (unstable, may change when referenced app changes)",
+      "example": "500123"
+    },
+    "key": {
+      "type": "string",
+      "description": "The developer provided identifier for this Action (stable)",
+      "example": "example-value"
+    },
+    "app": {
+      "description": "Apps",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Apps"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "example": "example-value"
+    },
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ActionTypeEnum"
+        }
+      ],
+      "description": "The type of this object\n\n* `action` - action",
+      "example": "standard"
+    },
+    "action_type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ActionTypeEnum"
+        }
+      ],
+      "description": "The type of this Action\n\n* `READ` - READ\n* `READ_BULK` - READ_BULK\n* `WRITE` - WRITE\n* `SEARCH` - SEARCH\n* `SEARCH_OR_WRITE` - SEARCH_OR_WRITE\n* `SEARCH_AND_WRITE` - SEARCH_AND_WRITE\n* `FILTER` - FILTER",
+      "example": "standard"
+    },
+    "is_instant": {
+      "type": "boolean",
+      "description": "Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.",
+      "example": true
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Action.",
+      "example": "Example Name"
+    },
+    "description": {
+      "type": "string",
+      "description": "A longer description of this Action, usually describing what it does in more detail.",
+      "example": "Example description for this resource."
+    }
+  },
+  "required": [
+    "action_type",
+    "app",
+    "description",
+    "id",
+    "is_instant",
+    "key",
+    "title",
+    "type"
+  ]
+}

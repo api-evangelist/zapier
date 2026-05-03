@@ -1,0 +1,470 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "zapier": "https://zapier.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "_ActionRunResponseError": "zapier:_ActionRunResponseError",
+    "_ActionRunResponse": "zapier:_ActionRunResponse",
+    "_ActionTestRequest": "zapier:_ActionTestRequest",
+    "_AuthenticationCreateRequest": "zapier:_AuthenticationCreateRequest",
+    "_ListInputFieldsRequest": "zapier:_ListInputFieldsRequest",
+    "_ListOutputFieldsRequest": "zapier:_ListOutputFieldsRequest",
+    "_RunActionRequest": "zapier:_RunActionRequest",
+    "_RunActionResponse": "zapier:_RunActionResponse",
+    "ActionRunResponse": "zapier:ActionRunResponse",
+    "Action": "zapier:Action",
+    "ActionTestRequest": "zapier:ActionTestRequest",
+    "ActionTestResponse": "zapier:ActionTestResponse",
+    "ActionsResponse": "zapier:ActionsResponse",
+    "AppCategory": "zapier:AppCategory",
+    "App": "zapier:App",
+    "AppsImages": "zapier:AppsImages",
+    "AppsResponse": "zapier:AppsResponse",
+    "Apps": "zapier:Apps",
+    "AuthenticationCreateRequest": "zapier:AuthenticationCreateRequest",
+    "AuthenticationResponse": "zapier:AuthenticationResponse",
+    "Authentication": "zapier:Authentication",
+    "BaseMeta": "zapier:BaseMeta",
+    "CategoriesResponse": "zapier:CategoriesResponse",
+    "Category": "zapier:Category",
+    "ChoiceParams": "zapier:ChoiceParams",
+    "ChoiceRequest": "zapier:ChoiceRequest",
+    "ChoiceResponse": "zapier:ChoiceResponse",
+    "Choice": "zapier:Choice",
+    "CreateZapRequest": "zapier:CreateZapRequest",
+    "CreateZapRequestStep": "zapier:CreateZapRequestStep",
+    "ErrorSource": "zapier:ErrorSource",
+    "ExpandedAppsResponse": "zapier:ExpandedAppsResponse",
+    "ExpandedZap": "zapier:ExpandedZap",
+    "ExpandedZapStep": "zapier:ExpandedZapStep",
+    "ExpandedZapsResponse": "zapier:ExpandedZapsResponse",
+    "Fieldset": "zapier:Fieldset",
+    "InfoField": "zapier:InfoField",
+    "InputField": "zapier:InputField",
+    "InputFieldsResponse": "zapier:InputFieldsResponse",
+    "InvalidZapGuesserResponse": "zapier:InvalidZapGuesserResponse",
+    "Links": "zapier:Links",
+    "ListInputFieldsRequest": "zapier:ListInputFieldsRequest",
+    "ListOutputFieldsRequest": "zapier:ListOutputFieldsRequest",
+    "Meta": "zapier:Meta",
+    "OutputField": "zapier:OutputField",
+    "OutputFieldsResponse": "zapier:OutputFieldsResponse",
+    "Profile": "zapier:Profile",
+    "RunActionRequest": "zapier:RunActionRequest",
+    "RunActionResponse": "zapier:RunActionResponse",
+    "WhitelabelAppLinks": "zapier:WhitelabelAppLinks",
+    "WhitelabelApp": "zapier:WhitelabelApp",
+    "WhitelabelAppsResponse": "zapier:WhitelabelAppsResponse",
+    "ZapGuesserRawStep": "zapier:ZapGuesserRawStep",
+    "ZapGuesserRequest": "zapier:ZapGuesserRequest",
+    "ZapGuesserResponse": "zapier:ZapGuesserResponse",
+    "ZapGuesserStep": "zapier:ZapGuesserStep",
+    "ZapRequest": "zapier:ZapRequest",
+    "ZapRun": "zapier:ZapRun",
+    "ZapRunStep": "zapier:ZapRunStep",
+    "ZapRunsResponse": "zapier:ZapRunsResponse",
+    "Zap": "zapier:Zap",
+    "ZapStepApp": "zapier:ZapStepApp",
+    "ZapStep": "zapier:ZapStep",
+    "ZapTemplate": "zapier:ZapTemplate",
+    "ZapTemplateStepImages": "zapier:ZapTemplateStepImages",
+    "ZapTemplateStep": "zapier:ZapTemplateStep",
+    "ZapsResponse": "zapier:ZapsResponse",
+    "code": {
+      "@id": "zapier:code",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "zapier:title",
+      "@type": "xsd:string"
+    },
+    "detail": {
+      "@id": "zapier:detail",
+      "@type": "xsd:string"
+    },
+    "delay": {
+      "@id": "zapier:delay",
+      "@type": "xsd:integer"
+    },
+    "meta": {
+      "@id": "zapier:meta",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "zapier:type",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "zapier:status",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "zapier:results",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "errors": {
+      "@id": "zapier:errors",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "zapier:limit",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "zapier:offset",
+      "@type": "xsd:integer"
+    },
+    "authentication": {
+      "@id": "zapier:authentication",
+      "@type": "xsd:string"
+    },
+    "inputs": {
+      "@id": "zapier:inputs",
+      "@type": "@id"
+    },
+    "app": {
+      "@id": "zapier:app",
+      "@type": "xsd:string"
+    },
+    "authenticationFields": {
+      "@id": "zapier:authentication_fields",
+      "@type": "@id"
+    },
+    "fetchLiveSamples": {
+      "@id": "zapier:fetch_live_samples",
+      "@type": "xsd:boolean"
+    },
+    "action": {
+      "@id": "zapier:action",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "zapier:id",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "zapier:data",
+      "@type": "xsd:string"
+    },
+    "key": {
+      "@id": "zapier:key",
+      "@type": "xsd:string"
+    },
+    "actionType": {
+      "@id": "zapier:action_type",
+      "@type": "xsd:string"
+    },
+    "isInstant": {
+      "@id": "zapier:is_instant",
+      "@type": "xsd:boolean"
+    },
+    "description": "schema:description",
+    "links": {
+      "@id": "zapier:links",
+      "@type": "xsd:string"
+    },
+    "slug": {
+      "@id": "zapier:slug",
+      "@type": "xsd:string"
+    },
+    "url": "schema:url",
+    "typeOf": {
+      "@id": "zapier:type_of",
+      "@type": "xsd:string"
+    },
+    "featuredEntrySlug": {
+      "@id": "zapier:featured_entry_slug",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "zapier:role",
+      "@type": "xsd:string"
+    },
+    "uuid": {
+      "@id": "zapier:uuid",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "zapier:image",
+      "@type": "xsd:string"
+    },
+    "categories": {
+      "@id": "zapier:categories",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "images": {
+      "@id": "zapier:images",
+      "@type": "@id"
+    },
+    "appLatest": {
+      "@id": "zapier:app_latest",
+      "@type": "xsd:string"
+    },
+    "url16x16": {
+      "@id": "zapier:url_16x16",
+      "@type": "xsd:string"
+    },
+    "url32x32": {
+      "@id": "zapier:url_32x32",
+      "@type": "xsd:string"
+    },
+    "url64x64": {
+      "@id": "zapier:url_64x64",
+      "@type": "xsd:string"
+    },
+    "url128x128": {
+      "@id": "zapier:url_128x128",
+      "@type": "xsd:string"
+    },
+    "total": {
+      "@id": "zapier:total",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "zapier:page",
+      "@type": "xsd:integer"
+    },
+    "pages": {
+      "@id": "zapier:pages",
+      "@type": "xsd:integer"
+    },
+    "perPage": {
+      "@id": "zapier:per_page",
+      "@type": "xsd:integer"
+    },
+    "objects": {
+      "@id": "zapier:objects",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "prevUrl": {
+      "@id": "zapier:prev_url",
+      "@type": "xsd:string"
+    },
+    "nextUrl": {
+      "@id": "zapier:next_url",
+      "@type": "xsd:string"
+    },
+    "actionTypes": {
+      "@id": "zapier:action_types",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hexColor": {
+      "@id": "zapier:hex_color",
+      "@type": "xsd:string"
+    },
+    "isExpired": {
+      "@id": "zapier:is_expired",
+      "@type": "xsd:boolean"
+    },
+    "count": {
+      "@id": "zapier:count",
+      "@type": "xsd:integer"
+    },
+    "next": {
+      "@id": "zapier:next",
+      "@type": "xsd:string"
+    },
+    "previous": {
+      "@id": "zapier:previous",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "zapier:label",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "zapier:value",
+      "@type": "xsd:string"
+    },
+    "steps": {
+      "@id": "zapier:steps",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "alias": {
+      "@id": "zapier:alias",
+      "@type": "xsd:string"
+    },
+    "pointer": {
+      "@id": "zapier:pointer",
+      "@type": "xsd:string"
+    },
+    "parameter": {
+      "@id": "zapier:parameter",
+      "@type": "xsd:string"
+    },
+    "header": {
+      "@id": "zapier:header",
+      "@type": "xsd:string"
+    },
+    "isEnabled": {
+      "@id": "zapier:is_enabled",
+      "@type": "xsd:boolean"
+    },
+    "lastSuccessfulRunDate": {
+      "@id": "zapier:last_successful_run_date",
+      "@type": "xsd:string"
+    },
+    "updatedAt": "schema:dateModified",
+    "fields": {
+      "@id": "zapier:fields",
+      "@type": "xsd:string"
+    },
+    "defaultValue": {
+      "@id": "zapier:default_value",
+      "@type": "xsd:string"
+    },
+    "dependsOn": {
+      "@id": "zapier:depends_on",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "format": {
+      "@id": "zapier:format",
+      "@type": "xsd:string"
+    },
+    "invalidatesInputFields": {
+      "@id": "zapier:invalidates_input_fields",
+      "@type": "xsd:boolean"
+    },
+    "isRequired": {
+      "@id": "zapier:is_required",
+      "@type": "xsd:boolean"
+    },
+    "items": {
+      "@id": "zapier:items",
+      "@type": "@id"
+    },
+    "placeholder": {
+      "@id": "zapier:placeholder",
+      "@type": "xsd:string"
+    },
+    "valueType": {
+      "@id": "zapier:value_type",
+      "@type": "xsd:string"
+    },
+    "messages": {
+      "@id": "zapier:messages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "prev": {
+      "@id": "zapier:prev",
+      "@type": "xsd:string"
+    },
+    "sample": {
+      "@id": "zapier:sample",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "zapier:first_name",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "zapier:last_name",
+      "@type": "xsd:string"
+    },
+    "fullName": {
+      "@id": "zapier:full_name",
+      "@type": "xsd:string"
+    },
+    "email": "schema:email",
+    "emailConfirmed": {
+      "@id": "zapier:email_confirmed",
+      "@type": "xsd:boolean"
+    },
+    "timezone": {
+      "@id": "zapier:timezone",
+      "@type": "xsd:string"
+    },
+    "mcpAuthorizeUrl": {
+      "@id": "zapier:mcp_authorize_url",
+      "@type": "xsd:string"
+    },
+    "mcpServerUrl": {
+      "@id": "zapier:mcp_server_url",
+      "@type": "xsd:string"
+    },
+    "isOauth": {
+      "@id": "zapier:is_oauth",
+      "@type": "xsd:boolean"
+    },
+    "hasFields": {
+      "@id": "zapier:has_fields",
+      "@type": "xsd:boolean"
+    },
+    "hasByoc": {
+      "@id": "zapier:has_byoc",
+      "@type": "xsd:boolean"
+    },
+    "api": {
+      "@id": "zapier:api",
+      "@type": "xsd:string"
+    },
+    "prefilledUrl": {
+      "@id": "zapier:prefilled_url",
+      "@type": "xsd:string"
+    },
+    "step": {
+      "@id": "zapier:step",
+      "@type": "xsd:string"
+    },
+    "alternatives": {
+      "@id": "zapier:alternatives",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "zapId": {
+      "@id": "zapier:zap_id",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "zapier:start_time",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "zapier:end_time",
+      "@type": "xsd:dateTime"
+    },
+    "zapTitle": {
+      "@id": "zapier:zap_title",
+      "@type": "xsd:string"
+    },
+    "dataIn": {
+      "@id": "zapier:data_in",
+      "@type": "xsd:string"
+    },
+    "dataOut": {
+      "@id": "zapier:data_out",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "zapier:state",
+      "@type": "xsd:string"
+    },
+    "modifiedAt": "schema:dateModified",
+    "params": {
+      "@id": "zapier:params",
+      "@type": "@id"
+    },
+    "descriptionPlain": {
+      "@id": "zapier:description_plain",
+      "@type": "xsd:string"
+    },
+    "descriptionRaw": {
+      "@id": "zapier:description_raw",
+      "@type": "xsd:string"
+    },
+    "createUrl": {
+      "@id": "zapier:create_url",
+      "@type": "xsd:string"
+    }
+  }
+}

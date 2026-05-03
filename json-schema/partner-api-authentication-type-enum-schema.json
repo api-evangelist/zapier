@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AuthenticationTypeEnum",
+  "description": "* `authentication` - authentication",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/partner-api-authentication-type-enum-schema.json",
+  "type": "string",
+  "enum": [
+    "authentication"
+  ]
+}

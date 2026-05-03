@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/partner-api-choice-request-structure.json",
+  "name": "ChoiceRequest",
+  "description": "ChoiceRequest schema from Partner API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ChoiceParams"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}
