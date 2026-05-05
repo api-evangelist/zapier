@@ -1,6 +1,5 @@
 aid: zapier
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/apis.yml
 apis:
   - aid: zapier:zapier
     name: Zapier
@@ -21,9 +20,7 @@ apis:
         type: Authentication
       - url: https://github.com/zapier/zapier-platform
         type: GitHubOrg
-    description: >-
-      Build and ship AI workflows in minutesno IT bottlenecks, no complexity.
-      Just results.
+    description: Build and ship AI workflows in minutesno IT bottlenecks, no complexity. Just results.
   - aid: zapier:partner-api
     name: Zapier Partner API
     tags:
@@ -55,13 +52,10 @@ apis:
         type: JSON-LD
       - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
         type: Example
-    description: >-
-      The Zapier Partner API and Workflow API allow developers to embed
-      Zapier automation directly in their products, providing complete style
-      control over the user experience. The API supports Zap templates,
-      user Zap management, app directory access, and embedded workflow
-      editors with custom branding, enabling integration marketplaces and
-      in-app automation at enterprise scale.
+    description: The Zapier Partner API and Workflow API allow developers to embed Zapier automation directly
+      in their products, providing complete style control over the user experience. The API supports Zap
+      templates, user Zap management, app directory access, and embedded workflow editors with custom
+      branding, enabling integration marketplaces and in-app automation at enterprise scale.
   - aid: zapier:ai-actions-api
     name: Zapier AI Actions API
     tags:
@@ -75,13 +69,10 @@ apis:
         type: Documentation
       - url: https://docs.zapier.com/platform/reference/ai-actions
         type: Documentation
-    description: >-
-      Zapier AI Actions (formerly Natural Language Actions) provides a
-      universal natural language API optimized for AI and LLM-based
-      experiences. It enables AI platforms and custom integrations to
-      leverage over 20,000 searches and actions across the Zapier
-      ecosystem, handling authentication and API integration automatically.
-      Supported natively on platforms including GPTs, Claude, LangChain,
+    description: Zapier AI Actions (formerly Natural Language Actions) provides a universal natural language
+      API optimized for AI and LLM-based experiences. It enables AI platforms and custom integrations
+      to leverage over 20,000 searches and actions across the Zapier ecosystem, handling authentication
+      and API integration automatically. Supported natively on platforms including GPTs, Claude, LangChain,
       and LlamaIndex.
   - aid: zapier:mcp
     name: Zapier MCP
@@ -98,14 +89,11 @@ apis:
         type: Documentation
       - url: https://github.com/zapier/zapier-mcp
         type: GitHubOrg
-    description: >-
-      Zapier MCP (Model Context Protocol) connects AI tools like Claude,
-      ChatGPT, and Cursor to over 8,000 apps using the open Model Context
-      Protocol standard. It provides a server endpoint for connecting a
-      Zapier account to an AI client, with meta-tools available immediately
-      and configurable actions exposed as dedicated tools. Supports API key
-      authentication for personal use and OAuth for multi-user
-      applications.
+    description: Zapier MCP (Model Context Protocol) connects AI tools like Claude, ChatGPT, and Cursor
+      to over 8,000 apps using the open Model Context Protocol standard. It provides a server endpoint
+      for connecting a Zapier account to an AI client, with meta-tools available immediately and configurable
+      actions exposed as dedicated tools. Supports API key authentication for personal use and OAuth for
+      multi-user applications.
 name: Zapier
 tags:
   - Integrations
@@ -249,74 +237,36 @@ common:
     name: Use Cases
     type: UseCases
   - data:
-      - name: Action Restrictions
-      - name: Advanced Admin Permissions
-      - name: AI by Zapier
-      - name: AI Code Steps
-      - name: AI Custom Actions
-      - name: AI Troubleshooting
-      - name: Alerts
-      - name: Analytics
-      - name: Annual Task Limits
-      - name: App Restriction
-      - name: Approval Requests
-      - name: Audit Log
-      - name: Autoreplay
-      - name: Compare Versions
-      - name: Copilot
-      - name: Custom Data Retention
-      - name: Custom Test Records
-      - name: Customized Error Settings
-      - name: Customized Polling Time
-      - name: Domain Capture
-      - name: Drafts
-      - name: Email Support
-      - name: Filters & Paths
-      - name: Flood Protection Settings
-      - name: Folder Permissions
-      - name: Formatter
-      - name: Formatter With AI
-      - name: Global Variables
-      - name: Live Chat
-      - name: Observability API
-      - name: Owner Access
-      - name: Pay-Per-Task Billing
-      - name: Polling Time
-      - name: Premier Support
-      - name: Saml Single Sign-on (SSO)
-      - name: Seats
-      - name: Shared App Connections
-      - name: Shared Zaps
-      - name: Static IP
-      - name: Steps
-      - name: Super Admin
-      - name: Technical Account Manager
-      - name: Two-Factor Authentication
-      - name: Unlimited Premium Apps
-      - name: Unlimited Zaps
-      - name: User Provisioning (Scim)
-      - name: Versions
-      - name: Visual Editor
-      - name: Webhooks
-      - name: Zapier Agents
-      - name: Zapier Canvas
-      - name: Zapier Chatbots
-      - name: Zapier Interfaces
-      - name: Zapier Mcp
-      - name: Zapier Tables
+      - 'Free: 100 tasks/mo, two-step Zaps, Copilot (daily limit)'
+      - 'Professional at $19.99/mo: multi-step Zaps, premium apps, webhooks'
+      - 'Team at $69/mo: 25 users, SAML SSO, shared Zaps'
+      - 'Enterprise custom: unlimited users, advanced admin, TAM'
+      - 8,000+ app integrations
+      - 'Polling intervals: 15min Free, 2min Pro, 1min Team/Enterprise'
+      - Task = one successful action in a Zap
+      - Webhooks (Pro+)
+      - Tables for data storage
+      - Forms for data capture
+      - Interfaces for app building (separate)
+      - Chatbots and AI assistants (separate)
+      - Zapier Copilot AI assistant
+      - Custom integrations via Developer Platform (Zapier CLI)
+      - Error handling, paths, filters, formatters
+      - Webhook payload size 10 MB
     name: Features
     type: Features
+    sources:
+      - https://zapier.com/pricing
+    updated: '2026-05-04'
 created: '2025-06-06T00:00:00.000Z'
-modified: '2026-05-03'
+modified: '2026-05-04'
 position: Consuming
 segments:
   - iPaaS
   - Embedded_iPaaS
-description: >-
-  Zapier is an automation platform that connects different apps and services to
-  automate workflows without requiring coding knowledge. It acts as a bridge
-  between thousands of popular applications like Gmail, Slack, Salesforce,
-  Google Sheets, Trello, and many others.
+description: Zapier is an automation platform that connects different apps and services to automate workflows
+  without requiring coding knowledge. It acts as a bridge between thousands of popular applications like
+  Gmail, Slack, Salesforce, Google Sheets, Trello, and many others.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,119 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Zapier
+providerId: zapier
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Workflow
+  - Integration
+  - iPaaS
+description: Zapier task-based pricing across Free / Professional / Team / Enterprise.
+sources:
+  - https://zapier.com/pricing
+plans:
+  - id: zapier-free
+    name: Free
+    type: freemium
+    description: 100 tasks/month.
+    entries:
+      - label: Tasks/mo
+        name: tasks
+        type: quota
+        metric: task
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited Zaps, Tables, Forms
+      - name: Two-step Zaps
+      - name: Zapier Copilot (daily message limits)
+  - id: zapier-professional
+    name: Professional
+    type: paid
+    description: $19.99/mo (annual); from 100 tasks (scalable).
+    entries:
+      - label: Monthly base
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '19.99'
+        userMultiplied: false
+      - label: Tasks/mo (starting)
+        name: tasks
+        type: quota
+        metric: task
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Multi-step Zaps
+      - name: Unlimited Premium apps
+      - name: Webhooks
+      - name: Email + live chat support
+      - name: AI fields
+      - name: Conditional form logic
+  - id: zapier-team
+    name: Team
+    type: paid
+    description: $69/mo (annual); 25 users.
+    entries:
+      - label: Monthly base
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '69.00'
+        userMultiplied: false
+      - label: Users included
+        name: users
+        type: quota
+        metric: user
+        limit: 25
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 25 users
+      - name: Shared Zaps and folders
+      - name: Shared app connections
+      - name: SAML SSO
+      - name: Premier Support
+  - id: zapier-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom; annual task limits.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Unlimited users
+      - name: Advanced admin permissions
+      - name: Advanced deployment
+      - name: Observability and monitoring
+      - name: Technical Account Manager

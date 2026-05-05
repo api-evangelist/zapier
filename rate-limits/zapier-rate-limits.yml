@@ -1,0 +1,39 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Zapier
+providerId: zapier
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Workflow
+description: Zapier polling intervals + task throughput vary by plan.
+sources:
+  - https://zapier.com/pricing
+  - https://zapier.com/help/account/billing-pricing/zap-and-task-usage-and-limits
+headers: {}
+responseCodes:
+  throttled: 429
+limits:
+  - name: Polling interval (Free)
+    scope: zap
+    metric: minutes_between_polls
+    limit: 15
+  - name: Polling interval (Professional)
+    scope: zap
+    metric: minutes_between_polls
+    limit: 2
+  - name: Polling interval (Team/Enterprise)
+    scope: zap
+    metric: minutes_between_polls
+    limit: 1
+  - name: Tasks per second
+    scope: account
+    metric: tasks_per_second
+    limit: tier-based
+  - name: Webhook payload size
+    scope: request
+    metric: MB
+    limit: 10
