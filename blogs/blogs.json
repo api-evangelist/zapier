@@ -1,0 +1,13 @@
+{
+  "repo": "zapier",
+  "feeds": [
+    {
+      "source": "https://zapier.com/blog/",
+      "feed_url": "https://zapier.com/blog/feeds/latest/",
+      "saved": 10,
+      "title": "The Zapier Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:38:33Z"
+}
