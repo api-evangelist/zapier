@@ -3,11 +3,12 @@
   "feeds": [
     {
       "source": "https://zapier.com/blog/",
-      "feed_url": "https://zapier.com/blog/feeds/latest/",
-      "saved": 10,
-      "title": "The Zapier Blog"
+      "feed_url": "",
+      "title": "",
+      "saved": 0,
+      "error": "no_feed"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:38:33Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
