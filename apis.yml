@@ -258,6 +258,8 @@ common:
     sources:
       - https://zapier.com/pricing
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://zapier.com/apps
 created: '2025-06-06T00:00:00.000Z'
 modified: '2026-05-04'
 position: Consuming
@@ -267,6 +269,9 @@ segments:
 description: Zapier is an automation platform that connects different apps and services to automate workflows
   without requiring coding knowledge. It acts as a bridge between thousands of popular applications like
   Gmail, Slack, Salesforce, Google Sheets, Trello, and many others.
+integrations:
+  - name: Custom Unlimited
+  - name: Zapier AI
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
