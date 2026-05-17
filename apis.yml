@@ -49,7 +49,7 @@ apis:
       - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
         type: JSONStructure
       - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
-        type: JSON-LD
+        type: JSONLD
       - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
         type: Example
     description: The Zapier Partner API and Workflow API allow developers to embed Zapier automation directly
@@ -98,7 +98,7 @@ name: Zapier
 tags:
   - Integrations
   - iPaaS
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
