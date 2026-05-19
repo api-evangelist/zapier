@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Authentications
+  description: 'Partner API — Authentications. 2 operations. Lead operation: Zapier Get Authentications. Self-contained Naftiko
+    capability covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Authentications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-authentications
+    baseUri: https://api.zapier.com
+    description: Partner API — Authentications business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-authentications
+      path: /v2/authentications
+      operations:
+      - name: getauthentications
+        method: GET
+        description: Zapier Get Authentications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app
+          in: query
+          type: string
+          description: A canonical App ID, as provided by the `/apps` endpoint.
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the maximum number of items to return per page. If this value
+            is not set, it defaults to 10.
+        - name: offset
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the offset to use.
+      - name: createauthentication
+        method: POST
+        description: Zapier Create Authentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-authentications-rest
+    port: 8080
+    description: REST adapter for Partner API — Authentications. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/authentications
+      name: v2-authentications
+      description: REST surface for v2-authentications.
+      operations:
+      - method: GET
+        name: getauthentications
+        description: Zapier Get Authentications
+        call: partner-authentications.getauthentications
+        with:
+          app: rest.app
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createauthentication
+        description: Zapier Create Authentication
+        call: partner-authentications.createauthentication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-authentications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Authentications. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: zapier-get-authentications
+      description: Zapier Get Authentications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-authentications.getauthentications
+      with:
+        app: tools.app
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-create-authentication
+      description: Zapier Create Authentication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: partner-authentications.createauthentication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

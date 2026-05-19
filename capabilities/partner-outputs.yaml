@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Outputs
+  description: 'Partner API — Outputs. 1 operations. Lead operation: Zapier Get Output Fields. Self-contained Naftiko capability
+    covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Outputs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-outputs
+    baseUri: https://api.zapier.com
+    description: Partner API — Outputs business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-actions-action_id-outputs
+      path: /v2/actions/{action_id}/outputs
+      operations:
+      - name: getfieldsoutputs
+        method: POST
+        description: Zapier Get Output Fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          description: An Action ID, as provided by the `/actions` endpoint.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-outputs-rest
+    port: 8080
+    description: REST adapter for Partner API — Outputs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/actions/{action-id}/outputs
+      name: v2-actions-action-id-outputs
+      description: REST surface for v2-actions-action_id-outputs.
+      operations:
+      - method: POST
+        name: getfieldsoutputs
+        description: Zapier Get Output Fields
+        call: partner-outputs.getfieldsoutputs
+        with:
+          action_id: rest.action_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-outputs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Outputs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zapier-get-output-fields
+      description: Zapier Get Output Fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: partner-outputs.getfieldsoutputs
+      with:
+        action_id: tools.action_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

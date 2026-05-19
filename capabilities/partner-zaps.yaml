@@ -1,0 +1,340 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Zaps
+  description: 'Partner API — Zaps. 5 operations. Lead operation: Zapier Get Zaps [v1]. Self-contained Naftiko capability
+    covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Zaps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-zaps
+    baseUri: https://api.zapier.com
+    description: Partner API — Zaps business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-zaps
+      path: /v1/zaps
+      operations:
+      - name: v1zapslist
+        method: GET
+        description: Zapier Get Zaps [v1]
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: get_params
+          in: query
+          type: string
+          description: If set, guarantees that the 'params' of any node belonging to your app will be present in the response
+        - name: limit
+          in: query
+          type: number
+          description: '(Max: 100) Limit the number of Zap templates returned.'
+        - name: offset
+          in: query
+          type: number
+          description: The number of Zap templates to skip before beginning to return the Zap templates. The default value
+            is 0, which is the offset of the first item.
+        - name: params__{{KEY}}
+          in: query
+          type: string
+          description: 'Filter for Zaps that contain the given parameter''s {{KEY}} and the value of the query parameter.
+            Keys are defined by your app on the [developer platform](https:'
+    - name: v2-guess
+      path: /v2/guess
+      operations:
+      - name: createzapguess
+        method: POST
+        description: Zapier Guess a Zap [Beta]
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: client_id
+          in: query
+          type: string
+          description: See our authentication documentation for how to find your client ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-zap-runs
+      path: /v2/zap-runs
+      operations:
+      - name: getzapruns
+        method: GET
+        description: Zapier Get Zap Runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from_date
+          in: query
+          type: string
+          description: Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs
+            from the last 30 days.
+        - name: limit
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the maximum number of items to return per page. If this value
+            is not set, it defaults to 10.
+        - name: offset
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the offset to use.
+        - name: search
+          in: query
+          type: string
+          description: Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs
+            that match the specified keywords.
+        - name: statuses
+          in: query
+          type: array
+          description: Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the
+            specified status or statuses provided.
+        - name: to_date
+          in: query
+          type: string
+          description: Filter Zap runs that occurred before this date.
+        - name: zap_id
+          in: query
+          type: integer
+          description: Find Zap runs for the specified Zap ID.
+    - name: v2-zaps
+      path: /v2/zaps
+      operations:
+      - name: getv2zaps
+        method: GET
+        description: Zapier Get Zaps [v2]
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: expand
+          in: query
+          type: string
+          description: A comma separated list of Zap fields that should be expanded from ids to full objects in the response.
+            Fields that may not be expanded will remain as ids.
+        - name: include_shared
+          in: query
+          type: boolean
+          description: If true, all Zaps that are shared with the user, rather than only those owned by them, are returned.
+            If the zap:account:all scope is not present this has no eff
+        - name: inputs
+          in: query
+          type: string
+          description: You may pass inputs[KEY]=VALUE1,VALUE2 to filter for Zaps that contain those settings. Keys are defined
+            by your app on the developer platform.
+        - name: limit
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the maximum number of items to return per page. If this value
+            is not set, it defaults to 10.
+        - name: offset
+          in: query
+          type: integer
+          description: Used for paginating results. Specifies the offset to use.
+      - name: postzaps
+        method: POST
+        description: Zapier Create a Zap
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: expand
+          in: query
+          type: string
+          description: A comma separated list of Zap fields that should be expanded from ids to full objects in the response.
+            Fields that may not be expanded will remain as ids.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-zaps-rest
+    port: 8080
+    description: REST adapter for Partner API — Zaps. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/zaps
+      name: v1-zaps
+      description: REST surface for v1-zaps.
+      operations:
+      - method: GET
+        name: v1zapslist
+        description: Zapier Get Zaps [v1]
+        call: partner-zaps.v1zapslist
+        with:
+          get_params: rest.get_params
+          limit: rest.limit
+          offset: rest.offset
+          params__{{KEY}}: rest.params__{{KEY}}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/guess
+      name: v2-guess
+      description: REST surface for v2-guess.
+      operations:
+      - method: POST
+        name: createzapguess
+        description: Zapier Guess a Zap [Beta]
+        call: partner-zaps.createzapguess
+        with:
+          client_id: rest.client_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/zap-runs
+      name: v2-zap-runs
+      description: REST surface for v2-zap-runs.
+      operations:
+      - method: GET
+        name: getzapruns
+        description: Zapier Get Zap Runs
+        call: partner-zaps.getzapruns
+        with:
+          from_date: rest.from_date
+          limit: rest.limit
+          offset: rest.offset
+          search: rest.search
+          statuses: rest.statuses
+          to_date: rest.to_date
+          zap_id: rest.zap_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/zaps
+      name: v2-zaps
+      description: REST surface for v2-zaps.
+      operations:
+      - method: GET
+        name: getv2zaps
+        description: Zapier Get Zaps [v2]
+        call: partner-zaps.getv2zaps
+        with:
+          expand: rest.expand
+          include_shared: rest.include_shared
+          inputs: rest.inputs
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postzaps
+        description: Zapier Create a Zap
+        call: partner-zaps.postzaps
+        with:
+          expand: rest.expand
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-zaps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Zaps. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zapier-get-zaps-v1
+      description: Zapier Get Zaps [v1]
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-zaps.v1zapslist
+      with:
+        get_params: tools.get_params
+        limit: tools.limit
+        offset: tools.offset
+        params__{{KEY}}: tools.params__{{KEY}}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-guess-zap-beta
+      description: Zapier Guess a Zap [Beta]
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: partner-zaps.createzapguess
+      with:
+        client_id: tools.client_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-get-zap-runs
+      description: Zapier Get Zap Runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-zaps.getzapruns
+      with:
+        from_date: tools.from_date
+        limit: tools.limit
+        offset: tools.offset
+        search: tools.search
+        statuses: tools.statuses
+        to_date: tools.to_date
+        zap_id: tools.zap_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-get-zaps-v2
+      description: Zapier Get Zaps [v2]
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-zaps.getv2zaps
+      with:
+        expand: tools.expand
+        include_shared: tools.include_shared
+        inputs: tools.inputs
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-create-zap
+      description: Zapier Create a Zap
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: partner-zaps.postzaps
+      with:
+        expand: tools.expand
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

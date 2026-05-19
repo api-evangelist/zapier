@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Inputs
+  description: 'Partner API — Inputs. 2 operations. Lead operation: Zapier Get Input Fields. Self-contained Naftiko capability
+    covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Inputs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-inputs
+    baseUri: https://api.zapier.com
+    description: Partner API — Inputs business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-actions-action_id-inputs
+      path: /v2/actions/{action_id}/inputs
+      operations:
+      - name: getfieldsinputs
+        method: POST
+        description: Zapier Get Input Fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          description: An Action ID, as provided by the `/actions` endpoint.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-actions-action_id-inputs-input_id-choices
+      path: /v2/actions/{action_id}/inputs/{input_id}/choices
+      operations:
+      - name: getchoices
+        method: POST
+        description: Zapier Get Choices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          description: An Action ID, as provided by the `/actions` endpoint.
+          required: true
+        - name: input_id
+          in: path
+          type: string
+          description: An Input Field ID, as provided by the `/inputs` endpoint.
+          required: true
+        - name: page
+          in: query
+          type: string
+          description: The page of choices to return, defaults to the first
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-inputs-rest
+    port: 8080
+    description: REST adapter for Partner API — Inputs. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v2/actions/{action-id}/inputs
+      name: v2-actions-action-id-inputs
+      description: REST surface for v2-actions-action_id-inputs.
+      operations:
+      - method: POST
+        name: getfieldsinputs
+        description: Zapier Get Input Fields
+        call: partner-inputs.getfieldsinputs
+        with:
+          action_id: rest.action_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/actions/{action-id}/inputs/{input-id}/choices
+      name: v2-actions-action-id-inputs-input-id-choices
+      description: REST surface for v2-actions-action_id-inputs-input_id-choices.
+      operations:
+      - method: POST
+        name: getchoices
+        description: Zapier Get Choices
+        call: partner-inputs.getchoices
+        with:
+          action_id: rest.action_id
+          input_id: rest.input_id
+          page: rest.page
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-inputs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Inputs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zapier-get-input-fields
+      description: Zapier Get Input Fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: partner-inputs.getfieldsinputs
+      with:
+        action_id: tools.action_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zapier-get-choices
+      description: Zapier Get Choices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: partner-inputs.getchoices
+      with:
+        action_id: tools.action_id
+        input_id: tools.input_id
+        page: tools.page
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

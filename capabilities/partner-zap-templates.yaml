@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Zap Templates
+  description: 'Partner API — Zap Templates. 1 operations. Lead operation: Zapier Get Zap Templates. Self-contained Naftiko
+    capability covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Zap Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-zap-templates
+    baseUri: https://api.zapier.com
+    description: Partner API — Zap Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-zap-templates
+      path: /v1/zap-templates
+      operations:
+      - name: v1zaptemplateslist
+        method: GET
+        description: Zapier Get Zap Templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apps
+          in: query
+          type: string
+          description: 'A comma separated list of Zapier Apps to match Zap templates against. Note:'
+        - name: limit
+          in: query
+          type: number
+          description: '(Max: 100) Limit the number of Zap templates returned.'
+        - name: offset
+          in: query
+          type: number
+          description: The number of Zap templates to skip before beginning to return the Zap templates. The default value
+            is 0, which is the offset of the first item.
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-zap-templates-rest
+    port: 8080
+    description: REST adapter for Partner API — Zap Templates. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/zap-templates
+      name: v1-zap-templates
+      description: REST surface for v1-zap-templates.
+      operations:
+      - method: GET
+        name: v1zaptemplateslist
+        description: Zapier Get Zap Templates
+        call: partner-zap-templates.v1zaptemplateslist
+        with:
+          apps: rest.apps
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-zap-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Zap Templates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: zapier-get-zap-templates
+      description: Zapier Get Zap Templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-zap-templates.v1zaptemplateslist
+      with:
+        apps: tools.apps
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Partner API — Categories
+  description: 'Partner API — Categories. 1 operations. Lead operation: Zapier Get Categories. Self-contained Naftiko capability
+    covering one Zapier business surface.'
+  tags:
+  - Zapier
+  - Categories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZAPIER_API_KEY: ZAPIER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-categories
+    baseUri: https://api.zapier.com
+    description: Partner API — Categories business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-categories
+      path: /v1/categories
+      operations:
+      - name: v1categorieslist
+        method: GET
+        description: Zapier Get Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: number
+          description: Limit the number of Zap categories returned.
+        - name: offset
+          in: query
+          type: number
+          description: The number of Zap categories to skip over. The default value is 0, which is the offset of the first
+            item.
+    authentication:
+      type: bearer
+      token: '{{env.ZAPIER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-categories-rest
+    port: 8080
+    description: REST adapter for Partner API — Categories. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/categories
+      name: v1-categories
+      description: REST surface for v1-categories.
+      operations:
+      - method: GET
+        name: v1categorieslist
+        description: Zapier Get Categories
+        call: partner-categories.v1categorieslist
+        with:
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-categories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Partner API — Categories. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zapier-get-categories
+      description: Zapier Get Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-categories.v1categorieslist
+      with:
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
