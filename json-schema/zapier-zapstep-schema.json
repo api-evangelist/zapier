@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapStep",
+  "title": "ZapStep",
+  "type": "object",
+  "description": "One step in a Zap",
+  "properties": {
+    "type_of": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TypeOfEnum"
+        }
+      ],
+      "description": "The type of this Step\n\n* `read` - read\n* `write` - write\n* `filter` - filter\n* `search` - search\n* `search_or_write` - search_or_write",
+      "example": "standard"
+    },
+    "app": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ZapStepApp"
+        }
+      ],
+      "description": "The App used in this Step",
+      "example": "example-value"
+    },
+    "params": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "The parameters used by this Step",
+      "example": {}
+    }
+  },
+  "required": [
+    "app",
+    "params",
+    "type_of"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapTemplateStatusEnum",
+  "title": "ZapTemplateStatusEnum",
+  "enum": [
+    "draft",
+    "published"
+  ],
+  "type": "string",
+  "description": "* `draft` - draft\n* `published` - published"
+}

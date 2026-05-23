@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionTestResponse",
+  "title": "ActionTestResponse",
+  "type": "object",
+  "description": "Base Response definition to be used in other Response Serializers.\n\nBe sure to include the `data` field after using this class",
+  "properties": {
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/BaseMeta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "description": "The result of executing said Action on the third-party API",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

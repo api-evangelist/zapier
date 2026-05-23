@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionTypeEnum",
+  "title": "ActionTypeEnum",
+  "enum": [
+    "action"
+  ],
+  "type": "string",
+  "description": "* `action` - action"
+}

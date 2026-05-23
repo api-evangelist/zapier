@@ -1,0 +1,987 @@
+{
+  "provider": "Zapier",
+  "providerId": "zapier",
+  "kind": "json-structure",
+  "description": "Structural overview of the Zapier API surface; extracted from openapi/.",
+  "schemaCount": 80,
+  "operationCount": 21,
+  "schemas": [
+    {
+      "name": "Action",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "action_type",
+        "app",
+        "description",
+        "id",
+        "is_instant",
+        "key",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "name": "ActionRunResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "ActionTestRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "ActionTestResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "ActionTypeEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ActionsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "App",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "app_latest",
+        "categories",
+        "description",
+        "image",
+        "images",
+        "links",
+        "slug",
+        "title",
+        "url",
+        "uuid"
+      ]
+    },
+    {
+      "name": "AppCategory",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "description",
+        "featured_entry_slug",
+        "id",
+        "role",
+        "slug",
+        "title",
+        "type_of",
+        "url"
+      ]
+    },
+    {
+      "name": "Apps",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "action_types",
+        "categories",
+        "description",
+        "hex_color",
+        "id",
+        "image",
+        "images",
+        "links",
+        "title"
+      ]
+    },
+    {
+      "name": "AppsImages",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "url_128x128",
+        "url_16x16",
+        "url_32x32",
+        "url_64x64"
+      ]
+    },
+    {
+      "name": "AppsResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "next_url",
+        "objects",
+        "page",
+        "pages",
+        "per_page",
+        "prev_url",
+        "total"
+      ]
+    },
+    {
+      "name": "Authentication",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "app",
+        "id",
+        "is_expired",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "name": "AuthenticationCreateRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "AuthenticationResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "AuthenticationTypeEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BaseMeta",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "count",
+        "limit"
+      ]
+    },
+    {
+      "name": "CategoriesResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "count",
+        "next",
+        "objects",
+        "previous"
+      ]
+    },
+    {
+      "name": "Category",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "slug"
+      ]
+    },
+    {
+      "name": "Choice",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type",
+        "value"
+      ]
+    },
+    {
+      "name": "ChoiceParams",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "ChoiceRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "ChoiceResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "CodeEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateZapRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "steps",
+        "title"
+      ]
+    },
+    {
+      "name": "CreateZapRequestStep",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "action",
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "errors"
+      ]
+    },
+    {
+      "name": "ErrorSource",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ExpandedAppsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "ExpandedZap",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "last_successful_run_date",
+        "links",
+        "steps",
+        "title",
+        "type",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "ExpandedZapStep",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "action",
+        "authentication",
+        "inputs",
+        "title"
+      ]
+    },
+    {
+      "name": "ExpandedZapsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "Fieldset",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "fields",
+        "id",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "name": "FieldsetFieldsField",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "FormatEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InfoField",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "description",
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "InputField",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "default_value",
+        "depends_on",
+        "description",
+        "format",
+        "id",
+        "invalidates_input_fields",
+        "is_required",
+        "items",
+        "placeholder",
+        "title",
+        "type",
+        "value_type"
+      ]
+    },
+    {
+      "name": "InputFieldsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "InvalidZapGuesserResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Links",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ListInputFieldsRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "ListOutputFieldsRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "Meta",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "page"
+      ]
+    },
+    {
+      "name": "OutputField",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "name": "OutputFieldsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "Profile",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "email",
+        "email_confirmed",
+        "first_name",
+        "full_name",
+        "id",
+        "last_name",
+        "timezone"
+      ]
+    },
+    {
+      "name": "RootFieldset",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RunActionRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "RunActionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "RunTypeEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TypeOfEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ValueTypeEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WhitelabelApp",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "has_byoc",
+        "has_fields",
+        "id",
+        "image",
+        "is_oauth",
+        "links",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "name": "WhitelabelAppLinks",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "mcp_authorize_url",
+        "mcp_server_url"
+      ]
+    },
+    {
+      "name": "WhitelabelAppsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "data",
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "Zap",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "modified_at",
+        "state",
+        "steps",
+        "title",
+        "url"
+      ]
+    },
+    {
+      "name": "ZapGuesserRawStep",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "api",
+        "app",
+        "title"
+      ]
+    },
+    {
+      "name": "ZapGuesserRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "description"
+      ]
+    },
+    {
+      "name": "ZapGuesserResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "prefilled_url",
+        "steps",
+        "title"
+      ]
+    },
+    {
+      "name": "ZapGuesserStep",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "alternatives",
+        "step"
+      ]
+    },
+    {
+      "name": "ZapRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "ZapRun",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "status",
+        "steps",
+        "zap_id",
+        "zap_title"
+      ]
+    },
+    {
+      "name": "ZapRunStep",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status"
+      ]
+    },
+    {
+      "name": "ZapRunsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "links",
+        "meta"
+      ]
+    },
+    {
+      "name": "ZapStep",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "app",
+        "params",
+        "type_of"
+      ]
+    },
+    {
+      "name": "ZapStepApp",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "api",
+        "description",
+        "hex_color",
+        "id",
+        "image",
+        "images",
+        "slug",
+        "title",
+        "url",
+        "uuid"
+      ]
+    },
+    {
+      "name": "ZapTemplate",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "create_url",
+        "description",
+        "description_plain",
+        "description_raw",
+        "id",
+        "slug",
+        "status",
+        "steps",
+        "title",
+        "type",
+        "url"
+      ]
+    },
+    {
+      "name": "ZapTemplateStatusEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ZapTemplateStep",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "api",
+        "description",
+        "hex_color",
+        "id",
+        "image",
+        "images",
+        "label",
+        "slug",
+        "title",
+        "url",
+        "uuid"
+      ]
+    },
+    {
+      "name": "ZapTemplateStepImages",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "url_128x128",
+        "url_16x16",
+        "url_32x32",
+        "url_64x64"
+      ]
+    },
+    {
+      "name": "ZapsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "count",
+        "next",
+        "objects",
+        "previous"
+      ]
+    },
+    {
+      "name": "_ActionRunResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "errors",
+        "status",
+        "type"
+      ]
+    },
+    {
+      "name": "_ActionRunResponseError",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "_ActionRunResponseStatusEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "_ActionTestRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "_AuthenticationCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "app",
+        "authentication_fields",
+        "title"
+      ]
+    },
+    {
+      "name": "_ListInputFieldsRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "_ListOutputFieldsRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "_RunActionRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "action",
+        "authentication",
+        "inputs"
+      ]
+    },
+    {
+      "name": "_RunActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id",
+        "type"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/v1/apps",
+      "operationId": "v1_apps_list",
+      "summary": "Zapier Get Apps [v1]",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/categories",
+      "operationId": "v1_categories_list",
+      "summary": "Zapier Get Categories",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/profiles/me",
+      "operationId": "v1_profiles_me_list",
+      "summary": "Zapier User Profile",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/zap-templates",
+      "operationId": "v1_zap_templates_list",
+      "summary": "Zapier Get Zap Templates",
+      "tags": [
+        "Zap Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/zaps",
+      "operationId": "v1_zaps_list",
+      "summary": "Zapier Get Zaps [v1]",
+      "tags": [
+        "Zaps"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/action-runs",
+      "operationId": "create-action-run",
+      "summary": "Zapier Create an Action Run",
+      "tags": [
+        "Experimental"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/action-runs/{id}",
+      "operationId": "retrieve-action-run",
+      "summary": "Zapier Retrieve Action Run",
+      "tags": [
+        "Experimental"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/actions",
+      "operationId": "get-actions",
+      "summary": "Zapier Get Actions",
+      "tags": [
+        "Actions",
+        "Apps"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/actions/{action_id}/inputs",
+      "operationId": "get-fields-inputs",
+      "summary": "Zapier Get Input Fields",
+      "tags": [
+        "Actions",
+        "Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/actions/{action_id}/inputs/{input_id}/choices",
+      "operationId": "get-choices",
+      "summary": "Zapier Get Choices",
+      "tags": [
+        "Actions",
+        "Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/actions/{action_id}/outputs",
+      "operationId": "get-fields-outputs",
+      "summary": "Zapier Get Output Fields",
+      "tags": [
+        "Actions",
+        "Outputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/actions/{action_id}/test",
+      "operationId": "test-action",
+      "summary": "Zapier Step Test",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/apps",
+      "operationId": "get-v2-apps",
+      "summary": "Zapier Get Apps [v2]",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/authentications",
+      "operationId": "get-authentications",
+      "summary": "Zapier Get Authentications",
+      "tags": [
+        "Authentications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/authentications",
+      "operationId": "create-authentication",
+      "summary": "Zapier Create Authentication",
+      "tags": [
+        "Authentications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/authorize",
+      "operationId": "v2_authorize_list",
+      "summary": "Zapier Create Account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/guess",
+      "operationId": "create-zap-guess",
+      "summary": "Zapier Guess a Zap [Beta]",
+      "tags": [
+        "Zaps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/whitelabel/apps",
+      "operationId": "v2-whitelabel-apps-list",
+      "summary": "Zapier Get Whitelabel Apps [v2]",
+      "tags": [
+        "Apps",
+        "Experimental"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/zap-runs",
+      "operationId": "get-zap-runs",
+      "summary": "Zapier Get Zap Runs",
+      "tags": [
+        "Experimental",
+        "Zaps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/zaps",
+      "operationId": "get-v2-zaps",
+      "summary": "Zapier Get Zaps [v2]",
+      "tags": [
+        "Zaps"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/zaps",
+      "operationId": "post-zaps",
+      "summary": "Zapier Create a Zap",
+      "tags": [
+        "Zaps"
+      ]
+    }
+  ]
+}

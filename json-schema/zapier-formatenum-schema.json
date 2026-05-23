@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormatEnum",
+  "title": "FormatEnum",
+  "enum": [
+    "DATETIME",
+    "MULTILINE",
+    "PASSWORD",
+    "CODE",
+    "READONLY",
+    "FILE",
+    "SELECT"
+  ],
+  "type": "string",
+  "description": "* `DATETIME` - DATETIME\n* `MULTILINE` - MULTILINE\n* `PASSWORD` - PASSWORD\n* `CODE` - CODE\n* `READONLY` - READONLY\n* `FILE` - FILE\n* `SELECT` - SELECT"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionRunResponse",
+  "title": "ActionRunResponse",
+  "type": "object",
+  "description": "The response of a given Action Run",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/_ActionRunResponse"
+        }
+      ],
+      "description": "The resulting data after a given Action was run",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorSource",
+  "title": "ErrorSource",
+  "type": "object",
+  "description": "Populates the `source` object inside our error responses.",
+  "properties": {
+    "pointer": {
+      "type": "string",
+      "description": "Pointer to the value in the request document that caused the error e.g. `/actions`.",
+      "example": "example-value"
+    },
+    "parameter": {
+      "type": "string",
+      "description": "A string indicating which URI query parameter caused the error.",
+      "example": "example-value"
+    },
+    "header": {
+      "type": "string",
+      "description": "A string indicating the name of a single request header which caused the error.",
+      "example": "example-value"
+    }
+  }
+}

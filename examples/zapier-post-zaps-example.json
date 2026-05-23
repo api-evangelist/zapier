@@ -1,0 +1,215 @@
+{
+  "operationId": "post-zaps",
+  "method": "POST",
+  "path": "/v2/zaps",
+  "summary": "Zapier Create a Zap",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "ToBeCreatedZap",
+      "example": {
+        "data": {
+          "steps": [
+            {
+              "action": "example_core:5m2y9p7J",
+              "inputs": {
+                "code": "output = [{id: Math.round(Date.now()/1000), n: Math.random()}];"
+              },
+              "authentication": null,
+              "alias": null
+            },
+            {
+              "action": "example_core:VBz2NGB5",
+              "inputs": {
+                "code": "output = [{ id: inputData.id, n: inputData.n * 2}];",
+                "inputs": {
+                  "n": "{{n}}",
+                  "id": "{{id}}"
+                }
+              },
+              "authentication": null,
+              "alias": null
+            }
+          ],
+          "title": "My Critically Important Program"
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "ManyStepZap",
+      "example": {
+        "data": {
+          "steps": [
+            {
+              "action": "core:9QKqnTZ54VnrL2opYbkJJKveKEr2GJ",
+              "inputs": {},
+              "authentication": "Vx4PEEeV",
+              "alias": "slack_new_saved_message"
+            },
+            {
+              "action": "core:2oY5MSxlgML1jb43A0nroedgjdnVM",
+              "inputs": {
+                "to": [
+                  "chang.hsiao@irohalen.example"
+                ],
+                "subject": "3 step zap - new message saved in slack",
+                "body": "Saved new message from:\n{{slack_new_saved_message.user__real_name}}\n\n\nMessage Content:\n{{text}}"
+              },
+              "authentication": "k0QBMMDK",
+              "alias": null
+            },
+            {
+              "action": "core:vDakLS1PLO4J29eodDRLa5okErEn0",
+              "inputs": {
+                "channel": "U036ZHWNHU2",
+                "text": "Saved new message from:\n{{slack_new_saved_message.user__real_name}}\n\n\nEmail thread id:\n{{threadId}}\n\n\nMessage Content:\n{{slack_new_saved_message.text}}"
+              },
+              "authentication": "Vx4PEEeV",
+              "alias": "slack_send_direct_message"
+            }
+          ],
+          "title": "My 3 step zap"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "CustomCreatedZap",
+      "example": {
+        "type": "zap",
+        "id": "033cc069f2d3-4d63-8666-10c07ab38dac",
+        "is_enabled": true,
+        "last_successful_run_date": "2019-08-24T14:15:22Z",
+        "updated_at": "2024-03-14T22:02:36+00:00",
+        "title": "My Critically Important Program",
+        "links": {
+          "html_editor": "https://zapier.com/editor/104826178?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier"
+        },
+        "steps": [
+          {
+            "action": "example_core:Vn7xbE60",
+            "authentication": "2kyXZ8VJ",
+            "inputs": {},
+            "title": null
+          },
+          {
+            "action": "example_core:V7GpzX40",
+            "authentication": null,
+            "inputs": null,
+            "title": null
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Post-zaps403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Post-zaps401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Post-zaps409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Post-zaps429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Post-zaps503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Post-zaps504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

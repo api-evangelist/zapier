@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpandedAppsResponse",
+  "title": "ExpandedAppsResponse",
+  "type": "object",
+  "description": "An app that integrates with Zapier.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Apps"
+      },
+      "description": "A list of the Apps matching the request",
+      "example": [
+        {}
+      ]
+    },
+    "meta": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Used for paginating results. Specifies the maximum number of items to return per page.",
+      "example": {}
+    },
+    "links": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Used for paginating results. Specifies the offset to use. Defaults to 0",
+      "example": {}
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

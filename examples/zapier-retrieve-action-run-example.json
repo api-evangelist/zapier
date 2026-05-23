@@ -1,0 +1,132 @@
+{
+  "operationId": "retrieve-action-run",
+  "method": "GET",
+  "path": "/v2/action-runs/{id}",
+  "summary": "Zapier Retrieve Action Run",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "RetrievingARun",
+      "example": {
+        "data": {
+          "type": "run",
+          "status": "success",
+          "results": [
+            {
+              "id": 123
+            }
+          ],
+          "errors": []
+        }
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Retrieve-action-run504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

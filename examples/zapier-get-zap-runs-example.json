@@ -1,0 +1,151 @@
+{
+  "operationId": "get-zap-runs",
+  "method": "GET",
+  "path": "/v2/zap-runs",
+  "summary": "Zapier Get Zap Runs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v2/zap-runs",
+      "example": [
+        {
+          "links": {
+            "next": "https://api.zapier.com/v2/zap-runs?offset=10&limit=10",
+            "prev": "https://api.zapier.com/v2/zap-runs?offset=0&limit=10"
+          },
+          "meta": {
+            "count": 30,
+            "limit": 10,
+            "offset": 10
+          },
+          "data": [
+            {
+              "id": "123e4567-e89b-12d3-a456-426614174000",
+              "zap_id": 104445735,
+              "start_time": "2024-10-16T06:29:10.360000Z",
+              "end_time": "2024-10-16T06:29:10.360000Z",
+              "status": "success",
+              "zap_title": "My Awesome Zap",
+              "steps": [
+                {
+                  "status": "success",
+                  "start_time": "2024-10-16T06:29:10.360000Z"
+                }
+              ],
+              "data_in": "",
+              "data_out": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-zap-runs403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-zap-runs401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-zap-runs409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-zap-runs429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-zap-runs503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-zap-runs504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

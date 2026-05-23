@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunActionResponse",
+  "title": "RunActionResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_RunActionResponse"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

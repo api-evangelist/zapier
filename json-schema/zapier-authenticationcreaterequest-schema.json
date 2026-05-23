@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationCreateRequest",
+  "title": "AuthenticationCreateRequest",
+  "type": "object",
+  "description": "Inputs to create a new Authentication",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_AuthenticationCreateRequest"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

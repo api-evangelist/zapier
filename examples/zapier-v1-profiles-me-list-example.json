@@ -1,0 +1,55 @@
+{
+  "operationId": "v1_profiles_me_list",
+  "method": "GET",
+  "path": "/v1/profiles/me",
+  "summary": "Zapier User Profile",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "V1_profiles_me_list401Example",
+      "example": {}
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "V1_profiles_me_list409Example",
+      "example": {}
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "V1_profiles_me_list429Example",
+      "example": {}
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "V1_profiles_me_list503Example",
+      "example": {}
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "V1_profiles_me_list504Example",
+      "example": {}
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Profile",
+      "example": [
+        {
+          "id": 88998899,
+          "first_name": "Jacob",
+          "last_name": "Corwin",
+          "full_name": "Jacob Corwin",
+          "email": "jacob.corwin@zapier.example",
+          "email_confirmed": true,
+          "timezone": "America/Toronto"
+        }
+      ]
+    }
+  ]
+}

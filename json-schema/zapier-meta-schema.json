@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Meta",
+  "title": "Meta",
+  "type": "object",
+  "description": "Metadata about a certain response",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "description": "The current page",
+      "example": 100
+    }
+  },
+  "required": [
+    "page"
+  ]
+}

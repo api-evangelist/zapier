@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RootFieldset",
+  "title": "RootFieldset",
+  "type": "array",
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "#/components/schemas/InputField"
+      },
+      {
+        "$ref": "#/components/schemas/InfoField"
+      },
+      {
+        "$ref": "#/components/schemas/Fieldset"
+      }
+    ]
+  },
+  "description": "The base concept of a Fieldset, from which others extend"
+}

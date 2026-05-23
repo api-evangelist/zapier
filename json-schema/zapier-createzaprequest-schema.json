@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateZapRequest",
+  "title": "CreateZapRequest",
+  "type": "object",
+  "description": "See our Building a Zap guide to get started.",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CreateZapRequestStep"
+      },
+      "description": "The list of steps that the Zap should consist of",
+      "example": [
+        {}
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "The title to be set for this Zap",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "steps",
+    "title"
+  ]
+}

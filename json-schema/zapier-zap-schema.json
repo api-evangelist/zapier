@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Zap",
+  "title": "Zap",
+  "type": "object",
+  "description": "User Zaps.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The numeric identifier of this Zap",
+      "example": 100
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Zap",
+      "example": "Example Name"
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of this Zap",
+      "example": "active"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ZapStep"
+      },
+      "readOnly": true,
+      "description": "The steps this Zap consists of",
+      "example": [
+        {}
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL to this Zap",
+      "example": "https://example.com/path/abc123"
+    },
+    "modified_at": {
+      "type": "string",
+      "description": "The last time this Zap was modified",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "id",
+    "modified_at",
+    "state",
+    "steps",
+    "title",
+    "url"
+  ]
+}

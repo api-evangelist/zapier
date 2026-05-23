@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateZapRequestStep",
+  "title": "CreateZapRequestStep",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "The ID of the Action to be associated with this step",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The inputs for the Action associated with this step",
+      "example": {}
+    },
+    "authentication": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The authentication, if required, for this Action to run",
+      "example": "example-value"
+    },
+    "alias": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optional alias for this step to be referenced by later steps (snake_case, max 64 chars)",
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "action",
+    "authentication",
+    "inputs"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CodeEnum",
+  "title": "CodeEnum",
+  "enum": [
+    "user",
+    "authentication",
+    "partner",
+    "system",
+    "throttled",
+    "system_throttled",
+    "hydration"
+  ],
+  "type": "string",
+  "description": "* `user` - user\n* `authentication` - authentication\n* `partner` - partner\n* `system` - system\n* `throttled` - throttled\n* `system_throttled` - system_throttled\n* `hydration` - hydration"
+}

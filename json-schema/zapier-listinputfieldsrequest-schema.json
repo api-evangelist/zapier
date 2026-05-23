@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListInputFieldsRequest",
+  "title": "ListInputFieldsRequest",
+  "type": "object",
+  "description": "Common inputs with inputs and an authentication id.",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/_ListInputFieldsRequest"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

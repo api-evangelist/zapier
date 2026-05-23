@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputFieldsResponse",
+  "title": "InputFieldsResponse",
+  "type": "object",
+  "description": "A successful response for getting the input fields for a particular Action.",
+  "properties": {
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/BaseMeta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "data": {
+      "$ref": "#/components/schemas/RootFieldset"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

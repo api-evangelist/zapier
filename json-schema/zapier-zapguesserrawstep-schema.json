@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapGuesserRawStep",
+  "title": "ZapGuesserRawStep",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The title of this step",
+      "example": "Example Name"
+    },
+    "app": {
+      "type": "string",
+      "description": "This step's human-readable name",
+      "example": "example-value"
+    },
+    "api": {
+      "type": "string",
+      "description": "The Zapier API integration this step uses",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "api",
+    "app",
+    "title"
+  ]
+}

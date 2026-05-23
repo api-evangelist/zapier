@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InfoField",
+  "title": "InfoField",
+  "type": "object",
+  "description": "Represents an Info-type Fieldset",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of this Info Field",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "description": "The identifier of this Info Field",
+      "example": "500123"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description for this Info Field",
+      "example": "Example description for this resource."
+    }
+  },
+  "required": [
+    "description",
+    "id",
+    "type"
+  ]
+}

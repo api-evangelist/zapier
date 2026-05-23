@@ -1,0 +1,159 @@
+{
+  "operationId": "v1_categories_list",
+  "method": "GET",
+  "path": "/v1/categories",
+  "summary": "Zapier Get Categories",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "V1_categories_list403Example",
+      "example": {}
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "V1_categories_list401Example",
+      "example": {}
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "V1_categories_list409Example",
+      "example": {}
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "V1_categories_list429Example",
+      "example": {}
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "V1_categories_list503Example",
+      "example": {}
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "V1_categories_list504Example",
+      "example": {}
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v1/categories",
+      "example": [
+        {
+          "next": "https://api.zapier.com/v1/categories?offset=10&limit=10",
+          "previous": null,
+          "count": 90,
+          "objects": [
+            {
+              "id": 78,
+              "title": "Ads & Conversion",
+              "slug": "ads-conversion",
+              "description": "Tools to track and reach an audience online.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/ads-conversion/",
+              "type_of": "curated",
+              "featured_entry_slug": "boost-google-ads-ROI-with-zapier",
+              "role": "child"
+            },
+            {
+              "id": 1,
+              "title": "Accounting",
+              "slug": "accounting",
+              "description": "Tools for accounting and finance.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/accounting/",
+              "type_of": "curated",
+              "featured_entry_slug": "favorite-zaps-accounting",
+              "role": "child"
+            },
+            {
+              "id": 14,
+              "title": "AI Tools",
+              "slug": "ai-tools",
+              "description": "Unlock the potential of artificial intelligence in your workflow with these AI integrations. These apps use AI to tackle everything from natural language processing to image classification, providing you with unparalleled automation power.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/ai-tools/",
+              "type_of": "curated",
+              "featured_entry_slug": null,
+              "role": "parent"
+            },
+            {
+              "id": 97,
+              "title": "All",
+              "slug": "all",
+              "description": "Contains all the services.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/all/",
+              "type_of": "auto",
+              "featured_entry_slug": null,
+              "role": "parent"
+            },
+            {
+              "id": 37,
+              "title": "Amazon",
+              "slug": "aws",
+              "description": "Tools from Amazon to host and manage sites and applications on the Amazon cloud.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/aws/",
+              "type_of": "curated",
+              "featured_entry_slug": "what-you-should-automate",
+              "role": "child"
+            },
+            {
+              "id": 84,
+              "title": "Analytics",
+              "slug": "analytics",
+              "description": "Tools to measure and report on success",
+              "url": "https://zapier.com/api/v4/app-directory/categories/analytics/",
+              "type_of": "curated",
+              "featured_entry_slug": "automate-analytics-tools",
+              "role": "child"
+            },
+            {
+              "id": 21,
+              "title": "App Builder",
+              "slug": "app-builder",
+              "description": "Tools to build a custom app with forms and databases.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/app-builder/",
+              "type_of": "curated",
+              "featured_entry_slug": null,
+              "role": "child"
+            },
+            {
+              "id": 35,
+              "title": "App Families",
+              "slug": "app-families",
+              "description": "",
+              "url": "https://zapier.com/api/v4/app-directory/categories/app-families/",
+              "type_of": "curated",
+              "featured_entry_slug": null,
+              "role": "parent"
+            },
+            {
+              "id": 155,
+              "title": "Artificial Intelligence",
+              "slug": "artificial-intelligence",
+              "description": "Unlock the potential of artificial intelligence in your workflow with these AI integrations. These apps use AI to tackle everything from natural language processing to image classification, providing you with unparalleled automation power.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/artificial-intelligence/",
+              "type_of": "curated",
+              "featured_entry_slug": null,
+              "role": "parent"
+            },
+            {
+              "id": 46,
+              "title": "Beta",
+              "slug": "beta",
+              "description": "Beta services.",
+              "url": "https://zapier.com/api/v4/app-directory/categories/beta/",
+              "type_of": "auto",
+              "featured_entry_slug": null,
+              "role": "child"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

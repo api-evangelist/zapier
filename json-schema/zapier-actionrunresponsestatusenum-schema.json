@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/_ActionRunResponseStatusEnum",
+  "title": "_ActionRunResponseStatusEnum",
+  "enum": [
+    "success",
+    "error",
+    "waiting"
+  ],
+  "type": "string",
+  "description": "* `success` - success\n* `error` - error\n* `waiting` - waiting"
+}

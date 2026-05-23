@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionsResponse",
+  "title": "ActionsResponse",
+  "type": "object",
+  "description": "A valid response for fetching available actions for the App",
+  "properties": {
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/BaseMeta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Action"
+      },
+      "description": "List of Actions for the provided App",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "links",
+    "meta"
+  ]
+}

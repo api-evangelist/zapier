@@ -1,0 +1,164 @@
+{
+  "operationId": "get-v2-zaps",
+  "method": "GET",
+  "path": "/v2/zaps",
+  "summary": "Zapier Get Zaps [v2]",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v2/zaps",
+      "example": [
+        {
+          "links": {
+            "next": null,
+            "prev": null
+          },
+          "meta": {
+            "count": 1,
+            "offset": 0,
+            "limit": null
+          },
+          "data": [
+            {
+              "type": "zap",
+              "id": "00000000-0000-c000-8000-000000012345",
+              "is_enabled": false,
+              "last_successful_run_date": "2019-08-24T14:15:22Z",
+              "updated_at": "2019-08-24T14:15:22Z",
+              "title": "My Zap",
+              "links": {
+                "html_editor": "https://zapier.com/editor/7481?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier"
+              },
+              "steps": [
+                {
+                  "action": "uag:1f188536-6dd0-4172-8414-2b90914ddee9",
+                  "authentication": "QVaPP2O1",
+                  "inputs": {
+                    "deal_stage": "CLOSED_WON"
+                  },
+                  "title": "Pacific Railway Golden spike hammered"
+                },
+                {
+                  "action": "uag:1f188536-6dd0-4172-8414-2b90914ddaa7",
+                  "authentication": "MVA64zk4",
+                  "inputs": {
+                    "full_name": "{{customer__full_name}}"
+                  },
+                  "title": "Record who dunnit"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-v2-zaps504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "operationId": "get-authentications",
+  "method": "GET",
+  "path": "/v2/authentications",
+  "summary": "Zapier Get Authentications",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "AuthenticationsForGoogleSheets",
+      "example": {
+        "links": {
+          "next": null,
+          "prev": null
+        },
+        "meta": {
+          "count": 1,
+          "limit": 10,
+          "offset": 0
+        },
+        "data": [
+          {
+            "type": "authentication",
+            "id": "example_akLLd8kB",
+            "app": "81f613aa-c98a-4383-a5fc-195e68647217",
+            "is_expired": false,
+            "title": "Google Sheets some.user@mycompany.example"
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-authentications403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-authentications401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-authentications409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-authentications429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-authentications503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-authentications504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunActionRequest",
+  "title": "RunActionRequest",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/_RunActionRequest"
+        }
+      ],
+      "description": "Data for the Action Run",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

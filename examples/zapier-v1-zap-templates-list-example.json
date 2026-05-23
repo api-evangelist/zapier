@@ -1,0 +1,96 @@
+{
+  "operationId": "v1_zap_templates_list",
+  "method": "GET",
+  "path": "/v1/zap-templates",
+  "summary": "Zapier Get Zap Templates",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "V1_zap_templates_list403Example",
+      "example": {}
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "V1_zap_templates_list409Example",
+      "example": {}
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "V1_zap_templates_list429Example",
+      "example": {}
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "V1_zap_templates_list503Example",
+      "example": {}
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "V1_zap_templates_list504Example",
+      "example": {}
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v1/zap-templates",
+      "example": [
+        {
+          "id": 51652,
+          "steps": [
+            {
+              "id": 1,
+              "uuid": "b9df4eff-f311-44f9-ac54-2901f952c6ac",
+              "title": "Google Ads",
+              "slug": "google-ads",
+              "description": "Google Ads (formerly Google AdWords) is an online advertising platform developed by Google, where advertisers pay to display brief advertisements, service offerings, product listings, video content, and generate mobile application installs within the Google ad network to web users.",
+              "image": "https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50",
+              "hex_color": "4285F4",
+              "images": {
+                "url_16x16": "https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16",
+                "url_32x32": "https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32",
+                "url_64x64": "https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64",
+                "url_128x128": "https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128"
+              },
+              "api": "GoogleAdsCLIAPI@3.0.0",
+              "url": "https://zapier.com/apps/google-ads/integrations?utm_medium=partner_api",
+              "label": "New Campaign"
+            },
+            {
+              "id": 2,
+              "uuid": "ca83afc5-ee9a-470d-b577-e7f8fd555b67",
+              "title": "Slack",
+              "slug": "slack",
+              "description": "Slack is a platform for team communication: everything in one place, instantly searchable, available wherever you go. Offering instant messaging, document sharing and knowledge search for modern teams.",
+              "image": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50",
+              "hex_color": "510f4d",
+              "images": {
+                "url_16x16": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16",
+                "url_32x32": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32",
+                "url_64x64": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64",
+                "url_128x128": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128"
+              },
+              "api": "SlackAPI",
+              "url": "https://zapier.com/apps/slack/integrations?utm_medium=partner_api",
+              "label": "Send Channel Message"
+            }
+          ],
+          "title": "Send messages to Slack channels whenever new Google Ads campaigns launch",
+          "slug": "send-messages-to-slack-channels-whenever-new-google-ads-campaigns-launch",
+          "status": "published",
+          "description_plain": "A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!\n",
+          "description_raw": "A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!",
+          "url": "https://zapier.com/apps/google-ads/integrations/slack/51652/send-messages-to-slack-channels-whenever-new-google-ads-campaigns-launch?utm_medium=partner_api",
+          "description": "<p>A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!</p>\n",
+          "create_url": "https://api.zapier.com/v1/embed/google-ads/create/51652",
+          "type": "guided_zap"
+        }
+      ]
+    }
+  ]
+}

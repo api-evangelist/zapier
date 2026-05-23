@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhitelabelAppsResponse",
+  "title": "WhitelabelAppsResponse",
+  "type": "object",
+  "description": "A JSON:API-style response of apps available for whitelabel connection.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WhitelabelApp"
+      },
+      "description": "The list of apps.",
+      "example": [
+        {}
+      ]
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Pagination links.",
+      "example": {}
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "readOnly": true,
+      "description": "Pagination metadata.",
+      "example": {}
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

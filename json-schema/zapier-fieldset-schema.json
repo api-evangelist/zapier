@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Fieldset",
+  "title": "Fieldset",
+  "type": "object",
+  "description": "Represents a Fieldset",
+  "properties": {
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of this Fieldset",
+      "example": "standard"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for this Fieldset",
+      "example": "500123"
+    },
+    "fields": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/FieldsetFieldsField"
+        }
+      ],
+      "description": "The fields this Fieldset consists of",
+      "example": "example-value"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Fieldset",
+      "example": "Example Name"
+    }
+  },
+  "required": [
+    "fields",
+    "id",
+    "title",
+    "type"
+  ]
+}

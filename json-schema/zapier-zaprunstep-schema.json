@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapRunStep",
+  "title": "ZapRunStep",
+  "type": "object",
+  "description": "A single step in a Zap Run.",
+  "properties": {
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Execution status of the step",
+      "example": "active"
+    },
+    "start_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Datetime when the step was executed",
+      "example": "2026-05-01T12:00:00Z"
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

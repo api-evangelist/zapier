@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChoiceParams",
+  "title": "ChoiceParams",
+  "type": "object",
+  "description": "A Choice as to be provided to the /choices endpoint",
+  "properties": {
+    "authentication": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The Authentication ID for this Choice, if present/required",
+      "example": "example-value"
+    },
+    "inputs": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {},
+      "description": "The Inputs for this Choice, if present/required",
+      "example": {}
+    }
+  },
+  "required": [
+    "authentication",
+    "inputs"
+  ]
+}

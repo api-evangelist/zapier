@@ -1,0 +1,105 @@
+{
+  "operationId": "v1_apps_list",
+  "method": "GET",
+  "path": "/v1/apps",
+  "summary": "Zapier Get Apps [v1]",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "V1_apps_list403Example",
+      "example": {}
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "V1_apps_list409Example",
+      "example": {}
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "V1_apps_list429Example",
+      "example": {}
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "V1_apps_list503Example",
+      "example": {}
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "V1_apps_list504Example",
+      "example": {}
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v1/apps",
+      "example": [
+        {
+          "total": 3649,
+          "page": 2,
+          "pages": 1825,
+          "per_page": 2,
+          "objects": [
+            {
+              "uuid": "ca83afc5-ee9a-470d-b577-e7f8fd555b67",
+              "title": "Slack",
+              "slug": "slack",
+              "description": "Slack is a platform for team communication: everything in one place, instantly searchable, available wherever you go. Offering instant messaging, document sharing and knowledge search for modern teams.",
+              "image": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50",
+              "url": "https://api.zapier.com/v1/embed/apps/google-ads/integrations/slack",
+              "links": {
+                "mutual:zap_templates": "https://api.zapier.com/v1/zap-templates?apps=slack&utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier"
+              },
+              "categories": [
+                {
+                  "slug": "team-chat"
+                }
+              ],
+              "images": {
+                "url_16x16": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16",
+                "url_32x32": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32",
+                "url_64x64": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64",
+                "url_128x128": "https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128"
+              },
+              "app_latest": "SlackCLIAPI@latest"
+            },
+            {
+              "uuid": "d74234df-0045-436e-bd5b-ee577e74e6b8",
+              "title": "Google Calendar",
+              "slug": "google-calendar",
+              "description": "Google Calendar lets you organize your schedule and share events with co-workers and friends. With Google's free online calendar, it's easy to keep track of your daily schedule.",
+              "image": "https://zapier-images.imgix.net/storage/services/62c82a7958c6c29736f17d0495b6635c.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50",
+              "url": "https://api.zapier.com/v1/embed/apps/google-ads/integrations/google-calendar",
+              "links": {
+                "mutual:zap_templates": "https://api.zapier.com/v1/zap-templates?apps=google-calendar&utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier"
+              },
+              "categories": [
+                {
+                  "slug": "calendar"
+                },
+                {
+                  "slug": "google"
+                }
+              ],
+              "images": {
+                "url_16x16": "https://zapier-images.imgix.net/storage/services/62c82a7958c6c29736f17d0495b6635c.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16",
+                "url_32x32": "https://zapier-images.imgix.net/storage/services/62c82a7958c6c29736f17d0495b6635c.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32",
+                "url_64x64": "https://zapier-images.imgix.net/storage/services/62c82a7958c6c29736f17d0495b6635c.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64",
+                "url_128x128": "https://zapier-images.imgix.net/storage/services/62c82a7958c6c29736f17d0495b6635c.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128"
+              },
+              "app_latest": "GoogleCalendarCLIAPI@latest"
+            }
+          ],
+          "prev_url": "https://api.zapier.com/v1/apps?per_page=2&page=1",
+          "next_url": "https://api.zapier.com/v1/apps?per_page=2&page=3"
+        }
+      ]
+    }
+  ]
+}

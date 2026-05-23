@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ValueTypeEnum",
+  "title": "ValueTypeEnum",
+  "enum": [
+    "STRING",
+    "NUMBER",
+    "INTEGER",
+    "BOOLEAN",
+    "ARRAY",
+    "OBJECT"
+  ],
+  "type": "string",
+  "description": "* `STRING` - STRING\n* `NUMBER` - NUMBER\n* `INTEGER` - INTEGER\n* `BOOLEAN` - BOOLEAN\n* `ARRAY` - ARRAY\n* `OBJECT` - OBJECT"
+}

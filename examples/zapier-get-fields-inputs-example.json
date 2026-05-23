@@ -1,0 +1,171 @@
+{
+  "operationId": "get-fields-inputs",
+  "method": "POST",
+  "path": "/v2/actions/{action_id}/inputs",
+  "summary": "Zapier Get Input Fields",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "FetchInputFields",
+      "example": {
+        "data": {
+          "authentication": "928117",
+          "inputs": {
+            "spreadsheet": "my_sheet"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "InputFieldsForSomeApp",
+      "example": {
+        "links": {
+          "next": null,
+          "prev": null
+        },
+        "meta": {
+          "count": 2,
+          "limit": null,
+          "offset": 0
+        },
+        "data": [
+          {
+            "type": "input_field",
+            "id": "input",
+            "default_value": "",
+            "depends_on": [],
+            "description": "Use the Input Data fields above to assign key names (left) and map values (right) from previous steps. Use notation `inputData.keyName` or `inputData['keyName']` to access the values within your code. The data will be provided **as strings**. Learn more [here](https://zapier.com/help/create/code-webhooks/use-javascript-code-in-zaps#input-data-for-code-steps).",
+            "invalidates_input_fields": false,
+            "is_required": false,
+            "placeholder": "",
+            "title": "Input Data",
+            "value_type": "OBJECT"
+          },
+          {
+            "type": "input_field",
+            "id": "code",
+            "default_value": "// this is wrapped in an `async` function\n// you can use await throughout the function\n\noutput = [{id: 123, hello: \"world\"}];",
+            "depends_on": [],
+            "description": "**Warning! This is an advanced action!** Uses Node 10.x.x. Please read the [Code documentation for more information](/help/create/code-webhooks/use-javascript-code-in-zaps).",
+            "format": "CODE",
+            "invalidates_input_fields": false,
+            "is_required": true,
+            "placeholder": "",
+            "title": "Code",
+            "value_type": "STRING"
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-fields-inputs504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

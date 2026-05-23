@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutputFieldsResponse",
+  "title": "OutputFieldsResponse",
+  "type": "object",
+  "description": "A successful response containing Output Field data",
+  "properties": {
+    "links": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Links"
+        }
+      ],
+      "description": "The links object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "meta": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/BaseMeta"
+        }
+      ],
+      "description": "The meta object returned in paginated response bodies.",
+      "example": "example-value"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OutputField"
+      },
+      "description": "A list of the Output Fields matching the given request",
+      "example": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

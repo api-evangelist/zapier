@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapTemplate",
+  "title": "ZapTemplate",
+  "type": "object",
+  "description": "A Zap Template.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The numeric identifier of this Zap Template",
+      "example": 100
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ZapTemplateStep"
+      },
+      "readOnly": true,
+      "description": "The steps this Zap Template are composed of",
+      "example": [
+        {}
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of this Zap Template",
+      "example": "Example Name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The shortened slug for this Zap Template",
+      "pattern": "^[-a-zA-Z0-9_]+$",
+      "example": "example-value"
+    },
+    "status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ZapTemplateStatusEnum"
+        }
+      ],
+      "description": "The status of this Zap Template\n\n* `draft` - draft\n* `published` - published",
+      "example": "active"
+    },
+    "description_plain": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The plain (rendered) description for this Zap Template",
+      "example": "example-value"
+    },
+    "description_raw": {
+      "type": "string",
+      "description": "The raw description for this Zap Template. May include styling syntax intended to be rendered",
+      "example": "example-value"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL for this Zap Template",
+      "example": "https://example.com/path/abc123"
+    },
+    "description": {
+      "type": "string",
+      "description": "The HTML description for this Zap Template. Intended to be rendered in a browser",
+      "example": "Example description for this resource."
+    },
+    "create_url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true,
+      "description": "The URL to access to create a Zap from this Zap Template",
+      "example": "https://example.com/path/abc123"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "default": "guided_zap",
+      "description": "The type of this Zap Template",
+      "example": "guided_zap"
+    }
+  },
+  "required": [
+    "create_url",
+    "description",
+    "description_plain",
+    "description_raw",
+    "id",
+    "slug",
+    "status",
+    "steps",
+    "title",
+    "type",
+    "url"
+  ]
+}

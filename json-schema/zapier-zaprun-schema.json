@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapRun",
+  "title": "ZapRun",
+  "type": "object",
+  "description": "A single Zap Run response.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Zap Run ID",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "zap_id": {
+      "type": "integer",
+      "description": "Associated Zap ID",
+      "example": 100
+    },
+    "start_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Datetime when the Zap Run started",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "end_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Datetime when the Zap Run ended",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "status": {
+      "type": "string",
+      "description": "Execution status of the Zap Run",
+      "example": "active"
+    },
+    "zap_title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The title of the Zap at the time it ran",
+      "example": "example-value"
+    },
+    "steps": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ZapRunStep"
+      },
+      "description": "Contains the execution details of each step",
+      "example": [
+        {}
+      ]
+    },
+    "data_in": {
+      "oneOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The input data for the Zap Run",
+      "example": "example-value"
+    },
+    "data_out": {
+      "oneOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The output data for the Zap Run",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "id",
+    "status",
+    "steps",
+    "zap_id",
+    "zap_title"
+  ]
+}

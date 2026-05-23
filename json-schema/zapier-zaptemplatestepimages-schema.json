@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZapTemplateStepImages",
+  "title": "ZapTemplateStepImages",
+  "type": "object",
+  "description": "Images for a Zap Template at various sizes",
+  "properties": {
+    "url_16x16": {
+      "type": "string",
+      "description": "URL to 16x16 image for Zap Template",
+      "example": "example-value"
+    },
+    "url_32x32": {
+      "type": "string",
+      "description": "URL to 32x32 image for Zap Template",
+      "example": "example-value"
+    },
+    "url_64x64": {
+      "type": "string",
+      "description": "URL to 64x64 image for Zap Template",
+      "example": "example-value"
+    },
+    "url_128x128": {
+      "type": "string",
+      "description": "URL to 128x128 image for Zap Template",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "url_128x128",
+    "url_16x16",
+    "url_32x32",
+    "url_64x64"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "operationId": "create-authentication",
+  "method": "POST",
+  "path": "/v2/authentications",
+  "summary": "Zapier Create Authentication",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "NewAuthentication",
+      "example": {
+        "data": {
+          "title": "My new auth",
+          "app": "8cdbc496-c95c-4f19-b3a3-fee03ed5f924",
+          "authentication_fields": {
+            "secret": "example_E4CrHVvRuxTXrPFLyyZFeRJwJcx2ELQZ"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "CreatedAuth",
+      "example": {
+        "links": {
+          "next": null,
+          "prev": null
+        },
+        "meta": {
+          "count": 1,
+          "limit": 1,
+          "offset": 0
+        },
+        "data": [
+          {
+            "type": "authentication",
+            "id": "example_DOb4nWkz",
+            "app": "a8aaed31-e257-4479-aaa9-ca02fe2fab04",
+            "is_expired": false,
+            "title": "Example zapier@example.com #5"
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Create-authentication403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Create-authentication401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Create-authentication409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Create-authentication429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Create-authentication503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Create-authentication504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

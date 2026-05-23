@@ -1,0 +1,164 @@
+{
+  "operationId": "get-fields-outputs",
+  "method": "POST",
+  "path": "/v2/actions/{action_id}/outputs",
+  "summary": "Zapier Get Output Fields",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "FetchingOutputsForSomeApp",
+      "example": {
+        "data": {
+          "authentication": "example_QVaAreV1",
+          "inputs": {
+            "someparam": "somevalue"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "OutputFieldsForSomeApp",
+      "example": {
+        "links": {
+          "next": null,
+          "prev": null
+        },
+        "meta": {
+          "count": 3,
+          "limit": null,
+          "offset": 0
+        },
+        "data": [
+          {
+            "type": "output_fields",
+            "id": "commit__message",
+            "title": "Commit Message",
+            "sample": "Git 2.0"
+          },
+          {
+            "type": "output_field",
+            "id": "parents[]sha",
+            "title": "Parents Sha",
+            "sample": "4a28f169ad29ba452e0e7bea2583914c10c58322"
+          },
+          {
+            "type": "output_field",
+            "id": "parents[]url",
+            "title": "Parents Url",
+            "sample": "https://github.com/git/git/commit/4a28f169ad29ba452e0e7bea2583914c10c58322"
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-fields-outputs504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

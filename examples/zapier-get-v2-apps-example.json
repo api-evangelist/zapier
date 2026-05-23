@@ -1,0 +1,160 @@
+{
+  "operationId": "get-v2-apps",
+  "method": "GET",
+  "path": "/v2/apps",
+  "summary": "Zapier Get Apps [v2]",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "/v2/apps",
+      "example": [
+        {
+          "data": [
+            {
+              "id": "1e4fcbf4-d80b-4ec3-b33b-c085f1ecbbaa",
+              "type": "app",
+              "image": "https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50",
+              "links": {
+                "connect_new_authentication": "https://zapier.com/engine/auth/start/HubSpotCLIAPI@1.7.1?redirect=https%3A%2F%2Fapi.zapier.com%2Fv2%2Fauthentications%2Fredirect"
+              },
+              "action_types": [
+                "READ"
+              ],
+              "title": "HubSpot",
+              "images": {
+                "url_16x16": "https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16",
+                "url_32x32": "https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32",
+                "url_64x64": "https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64",
+                "url_128x128": "https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128"
+              },
+              "hex_color": "8bcbca",
+              "categories": [
+                {
+                  "slug": "partners"
+                }
+              ],
+              "description": "HubSpot is your all-in-one stop for all of your marketing software needs."
+            }
+          ],
+          "meta": {
+            "count": 1,
+            "offset": 10,
+            "limit": 10
+          },
+          "links": {
+            "next": "https://api.zapier.com/v2/apps?offset=20&limit=10",
+            "previous": "https://api.zapier.com/v2/apps?offset=0&limit=10"
+          }
+        }
+      ]
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Get-v2-apps403Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Get-v2-apps401Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Get-v2-apps409Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Get-v2-apps429Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "503",
+      "contentType": "application/json",
+      "name": "Get-v2-apps503Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "504",
+      "contentType": "application/json",
+      "name": "Get-v2-apps504Example",
+      "example": {
+        "errors": [
+          {}
+        ]
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "MalformedRequest.",
+      "example": {
+        "errors": [
+          {
+            "status": 400,
+            "code": "parse_error",
+            "title": "ParseError",
+            "detail": "Malformed request.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "Malformed request.",
+                "code": "parse_error"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "AServerErrorOccurred.",
+      "example": {
+        "errors": [
+          {
+            "status": 500,
+            "code": "error",
+            "title": "APIException",
+            "detail": "A server error occurred.",
+            "source": null,
+            "meta": {
+              "source": "ZAPIER",
+              "full_details": {
+                "message": "A server error occurred.",
+                "code": "error"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
