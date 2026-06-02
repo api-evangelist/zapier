@@ -2,12 +2,27 @@
   "repo": "zapier",
   "feeds": [
     {
+      "source": "https://zapier.com/blog/feeds/latest/",
+      "feed_url": "https://zapier.com/blog/feeds/latest/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://zapier.com/blog/zapier-partner-api-overview/",
+      "feed_url": "https://zapier.com/blog/feeds/latest/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://zapier.com/blog/",
       "feed_url": "https://zapier.com/blog/feeds/latest/",
-      "title": "The Zapier Blog",
-      "saved": 25
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 35,
-  "fetched": "2026-05-17T20:48:52Z"
+  "post_count": 59,
+  "fetched": "2026-06-01T23:35:02Z"
 }
