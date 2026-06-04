@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: Zapier Inspect an Action Schema
+  summary: List an app's actions, then fetch both the input and output field schemas for a chosen action.
+  description: >-
+    A schema-introspection flow for understanding what an action consumes and
+    produces. It lists the actions an app exposes, fetches the input field
+    definitions for the target action, and fetches the output field definitions
+    for the same action so the full request/response shape is known before
+    building a Zap step. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: zapierPartnerApi
+  url: ../openapi/zapier-partner-api.yml
+  type: openapi
+workflows:
+- workflowId: inspect-action-schema
+  summary: Retrieve the full input and output field schema for a single action.
+  description: >-
+    Lists the actions for an app, then reads the input field schema and the
+    output field schema for the target action so callers know both what to
+    supply and what to expect back.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - appId
+    - actionId
+    - authentication
+    properties:
+      accessToken:
+        type: string
+        description: OAuth2 bearer token used in the Authorization header.
+      appId:
+        type: string
+        description: Canonical App ID (UUID) as provided by the /apps endpoint.
+      actionId:
+        type: string
+        description: The Action ID whose input and output schemas are needed.
+      authentication:
+        type: string
+        description: The Authentication ID granting access to the third-party app.
+  steps:
+  - stepId: listActions
+    description: >-
+      List the actions exposed by the app so the target action id can be
+      confirmed before reading its schema.
+    operationId: get-actions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: app
+      in: query
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actions: $response.body#/0/data
+  - stepId: resolveInputFields
+    description: >-
+      Fetch the input field definitions for the target action, describing what
+      the action consumes.
+    operationId: get-fields-inputs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: action_id
+      in: path
+      value: $inputs.actionId
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          authentication: $inputs.authentication
+          inputs: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      inputFields: $response.body#/data
+  - stepId: resolveOutputFields
+    description: >-
+      Fetch the output field definitions for the target action, describing what
+      the action produces.
+    operationId: get-fields-outputs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: action_id
+      in: path
+      value: $inputs.actionId
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          authentication: $inputs.authentication
+          inputs: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      outputFields: $response.body#/data
+  outputs:
+    inputFields: $steps.resolveInputFields.outputs.inputFields
+    outputFields: $steps.resolveOutputFields.outputs.outputFields

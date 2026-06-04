@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Zapier Create a Zap from Actions
+  summary: List an app's actions, create a multi-step Zap, and confirm it appears in the user's Zap list.
+  description: >-
+    A programmatic Zap-building flow. It lists the actions an app exposes so the
+    caller can reference valid action ids, creates a Zap from the supplied steps
+    and title, and then lists the user's Zaps to confirm the new Zap was
+    created. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: zapierPartnerApi
+  url: ../openapi/zapier-partner-api.yml
+  type: openapi
+workflows:
+- workflowId: create-zap-from-actions
+  summary: Build a new Zap from a set of steps and verify it in the user's Zap list.
+  description: >-
+    Lists the actions for an app to confirm valid action ids, posts a new Zap
+    built from the supplied steps and title, and lists the user's Zaps to verify
+    the created Zap is present.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - appId
+    - steps
+    - title
+    properties:
+      accessToken:
+        type: string
+        description: OAuth2 bearer token used in the Authorization header.
+      appId:
+        type: string
+        description: Canonical App ID (UUID) whose actions back the Zap steps.
+      steps:
+        type: array
+        description: >-
+          Ordered list of Zap step objects, each with action, inputs,
+          authentication and alias keys as accepted by the create-Zap endpoint.
+        items:
+          type: object
+      title:
+        type: string
+        description: Title for the new Zap.
+  steps:
+  - stepId: listActions
+    description: >-
+      List the actions exposed by the app so the action ids used in the Zap
+      steps can be confirmed before creating it.
+    operationId: get-actions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: app
+      in: query
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actions: $response.body#/0/data
+  - stepId: createZap
+    description: >-
+      Create a new Zap from the supplied steps and title. The response returns
+      the created Zap id.
+    operationId: post-zaps
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          steps: $inputs.steps
+          title: $inputs.title
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      zapId: $response.body#/id
+      isEnabled: $response.body#/is_enabled
+  - stepId: confirmZap
+    description: >-
+      List the user's Zaps to confirm the newly created Zap is present in the
+      account.
+    operationId: get-v2-zaps
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: limit
+      in: query
+      value: 10
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zaps: $response.body#/0/data
+  outputs:
+    zapId: $steps.createZap.outputs.zapId
+    isEnabled: $steps.createZap.outputs.isEnabled
+    zaps: $steps.confirmZap.outputs.zaps

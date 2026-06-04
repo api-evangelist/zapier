@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Zapier Discover and Configure an Action
+  summary: Search for an app, list its actions, read the input fields, and resolve the choices for a dropdown field.
+  description: >-
+    A configuration-time flow for building an action step in an embedded Zapier
+    experience. It searches the Zapier app directory for a matching app, lists
+    the actions that app exposes, fetches the input fields for the chosen
+    action, and then resolves the available choices for a SELECT input field so
+    a dropdown can be populated. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: zapierPartnerApi
+  url: ../openapi/zapier-partner-api.yml
+  type: openapi
+workflows:
+- workflowId: discover-and-configure-action
+  summary: Find an app, pick an action, and populate a dropdown input field with its choices.
+  description: >-
+    Searches the app directory by query, lists actions for the matched app,
+    reads the input field schema for the target action, and fetches the choices
+    for a SELECT input field so a configuration UI can be rendered.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - appQuery
+    - actionId
+    - authentication
+    - inputId
+    properties:
+      accessToken:
+        type: string
+        description: OAuth2 bearer token used in the Authorization header.
+      appQuery:
+        type: string
+        description: Text query to find an app by title in the app directory.
+      actionId:
+        type: string
+        description: The Action ID whose input fields and choices are needed.
+      authentication:
+        type: string
+        description: The Authentication ID granting access to the third-party app.
+      inputId:
+        type: string
+        description: The Input Field ID of the SELECT field whose choices to resolve.
+  steps:
+  - stepId: searchApps
+    description: >-
+      Search the Zapier app directory for an app whose title matches the query
+      and capture its canonical id.
+    operationId: get-v2-apps
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: query
+      in: query
+      value: $inputs.appQuery
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appId: $response.body#/0/data/0/id
+  - stepId: listActions
+    description: >-
+      List the actions exposed by the matched app so the target action can be
+      confirmed.
+    operationId: get-actions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: app
+      in: query
+      value: $steps.searchApps.outputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actions: $response.body#/0/data
+  - stepId: resolveInputFields
+    description: >-
+      Read the input field definitions for the target action so the UI knows
+      which fields exist and which require choices.
+    operationId: get-fields-inputs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: action_id
+      in: path
+      value: $inputs.actionId
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          authentication: $inputs.authentication
+          inputs: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      inputFields: $response.body#/data
+  - stepId: resolveChoices
+    description: >-
+      Fetch the possible values for the SELECT input field so a dropdown can be
+      populated in the configuration UI.
+    operationId: get-choices
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: action_id
+      in: path
+      value: $inputs.actionId
+    - name: input_id
+      in: path
+      value: $inputs.inputId
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          authentication: $inputs.authentication
+          inputs: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      choices: $response.body
+  outputs:
+    appId: $steps.searchApps.outputs.appId
+    inputFields: $steps.resolveInputFields.outputs.inputFields
+    choices: $steps.resolveChoices.outputs.choices

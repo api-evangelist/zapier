@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Zapier Monitor Zap Runs
+  summary: List the user's Zaps, pull recent runs, and branch when errored runs are present.
+  description: >-
+    An operational monitoring flow. It lists the Zaps owned by the authenticated
+    user, fetches the recent Zap runs across the account, and then branches: when
+    errored runs are present it pulls the error-only run detail for triage, and
+    otherwise it ends cleanly. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: zapierPartnerApi
+  url: ../openapi/zapier-partner-api.yml
+  type: openapi
+workflows:
+- workflowId: monitor-zap-runs
+  summary: Surface errored Zap runs for the authenticated user's account.
+  description: >-
+    Lists the user's Zaps, retrieves recent Zap runs, and when any errored runs
+    are found re-queries the runs filtered to the error status so they can be
+    inspected.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    properties:
+      accessToken:
+        type: string
+        description: OAuth2 bearer token used in the Authorization header.
+      fromDate:
+        type: string
+        description: Only include Zap runs on or after this ISO-8601 timestamp.
+      zapId:
+        type: integer
+        description: Optional Zap ID to scope the run query to a single Zap.
+  steps:
+  - stepId: listZaps
+    description: >-
+      List the Zaps owned by the authenticated user to establish the set of
+      Zaps being monitored.
+    operationId: get-v2-zaps
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: limit
+      in: query
+      value: 10
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zaps: $response.body#/0/data
+  - stepId: listRuns
+    description: >-
+      Retrieve recent Zap runs across the account, then branch when any errored
+      runs are present.
+    operationId: get-zap-runs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: zap_id
+      in: query
+      value: $inputs.zapId
+    - name: limit
+      in: query
+      value: 25
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runs: $response.body#/0/data
+      runCount: $response.body#/0/meta/count
+    onSuccess:
+    - name: hasErroredRuns
+      type: goto
+      stepId: listErroredRuns
+      criteria:
+      - context: $response.body
+        condition: $[0].data[?(@.status == 'error')]
+        type: jsonpath
+  - stepId: listErroredRuns
+    description: >-
+      Re-query the Zap runs filtered to the error status so failing runs can be
+      triaged.
+    operationId: get-zap-runs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: from_date
+      in: query
+      value: $inputs.fromDate
+    - name: zap_id
+      in: query
+      value: $inputs.zapId
+    - name: statuses
+      in: query
+      value: error
+    - name: limit
+      in: query
+      value: 25
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      erroredRuns: $response.body#/0/data
+      erroredCount: $response.body#/0/meta/count
+  outputs:
+    zaps: $steps.listZaps.outputs.zaps
+    runCount: $steps.listRuns.outputs.runCount
+    erroredRuns: $steps.listErroredRuns.outputs.erroredRuns

@@ -120,6 +120,27 @@ kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/zapier-connect-and-test-action-workflow.yml
+      name: Zapier Connect and Test an Action
+      summary: Create an authentication for an app, list its actions, and test an action against the live third-party API.
+    - url: arazzo/zapier-create-zap-from-actions-workflow.yml
+      name: Zapier Create a Zap from Actions
+      summary: List an app's actions, create a multi-step Zap, and confirm it appears in the user's Zap list.
+    - url: arazzo/zapier-discover-and-configure-action-workflow.yml
+      name: Zapier Discover and Configure an Action
+      summary: Search for an app, list its actions, read the input fields, and resolve the choices for a dropdown field.
+    - url: arazzo/zapier-inspect-action-schema-workflow.yml
+      name: Zapier Inspect an Action Schema
+      summary: List an app's actions, then fetch both the input and output field schemas for a chosen action.
+    - url: arazzo/zapier-monitor-zap-runs-workflow.yml
+      name: Zapier Monitor Zap Runs
+      summary: List the user's Zaps, pull recent runs, and branch when errored runs are present.
+    - url: arazzo/zapier-run-ai-action-workflow.yml
+      name: Zapier Run an AI Action
+      summary: Discover an action on an app, resolve its input fields, run it, and poll for the result.
   - type: LinkedIn
     url: https://www.linkedin.com/company/zapier
   - url: https://zapier.com/

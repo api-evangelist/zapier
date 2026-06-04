@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Zapier Connect and Test an Action
+  summary: Create an authentication for an app, list its actions, and test an action against the live third-party API.
+  description: >-
+    A connection-onboarding flow. It creates a new Authentication for an app
+    using the supplied credential fields, lists the actions that app exposes,
+    and then runs a step test against the live third-party API to confirm the
+    connection and inputs actually work before a Zap is built. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: zapierPartnerApi
+  url: ../openapi/zapier-partner-api.yml
+  type: openapi
+workflows:
+- workflowId: connect-and-test-action
+  summary: Add a new app connection and verify it by testing an action.
+  description: >-
+    Creates an Authentication for the app from supplied credential fields, lists
+    the app's actions, and runs a step test for the chosen action using the new
+    authentication to confirm the connection works.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - appId
+    - authTitle
+    - authenticationFields
+    - actionId
+    - inputs
+    properties:
+      accessToken:
+        type: string
+        description: OAuth2 bearer token used in the Authorization header.
+      appId:
+        type: string
+        description: Canonical App ID (UUID) the authentication is created for.
+      authTitle:
+        type: string
+        description: Human-readable title for the new authentication.
+      authenticationFields:
+        type: object
+        description: Map of credential field name/value pairs required by the app.
+      actionId:
+        type: string
+        description: The Action ID to test against the third-party API.
+      inputs:
+        type: object
+        description: Map of input field id/value pairs to use for the test.
+  steps:
+  - stepId: createAuthentication
+    description: >-
+      Create a new Authentication for the app using the supplied credential
+      fields and capture the resulting authentication id.
+    operationId: create-authentication
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          title: $inputs.authTitle
+          app: $inputs.appId
+          authentication_fields: $inputs.authenticationFields
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      authenticationId: $response.body#/data/0/id
+  - stepId: listActions
+    description: >-
+      List the actions exposed by the app so the action to test can be
+      confirmed.
+    operationId: get-actions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: app
+      in: query
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actions: $response.body#/0/data
+  - stepId: testAction
+    description: >-
+      Run a step test for the chosen action using the newly created
+      authentication to confirm the connection and inputs work end to end.
+    operationId: test-action
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: action_id
+      in: path
+      value: $inputs.actionId
+    requestBody:
+      contentType: application/json
+      payload:
+        data:
+          limit: 10
+          offset: 0
+          authentication: $steps.createAuthentication.outputs.authenticationId
+          inputs: $inputs.inputs
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      testResults: $response.body#/data
+  outputs:
+    authenticationId: $steps.createAuthentication.outputs.authenticationId
+    testResults: $steps.testAction.outputs.testResults
