@@ -1,0 +1,971 @@
+"""
+Zapier GraphQL Schema
+Conceptual schema representing the Zapier integration automation platform domain model.
+Zapier exposes a REST-based Partner API; this schema models the equivalent GraphQL surface.
+Source: https://platform.zapier.com/reference | https://github.com/zapier/zapier-platform
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar URL
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum ZapStatus {
+  ON
+  OFF
+  DRAFT
+  PAUSED
+  DELETED
+}
+
+enum ZapRunStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  ERROR
+  HALTED
+  FILTERED
+}
+
+enum ZapStepType {
+  TRIGGER
+  ACTION
+  SEARCH
+  FILTER
+  FORMATTER
+  PATH
+  DELAY
+}
+
+enum FieldType {
+  STRING
+  INTEGER
+  NUMBER
+  BOOLEAN
+  DATETIME
+  FILE
+  PASSWORD
+  TEXT
+  CODE
+  JSON
+}
+
+enum AuthScheme {
+  OAUTH2
+  API_KEY
+  SESSION
+  BASIC
+  DIGEST
+  CUSTOM
+}
+
+enum TriggerType {
+  POLL
+  REST_HOOK
+  HOOK
+}
+
+enum PlanTier {
+  FREE
+  PROFESSIONAL
+  TEAM
+  ENTERPRISE
+}
+
+enum PollingInterval {
+  ONE_MINUTE
+  TWO_MINUTES
+  FIVE_MINUTES
+  FIFTEEN_MINUTES
+}
+
+# ─── Interfaces ─────────────────────────────────────────────────────────────
+
+"""Abstract authentication configuration."""
+interface Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+}
+
+"""Abstract field definition."""
+interface Field {
+  key: String!
+  label: String
+  helpText: String
+  required: Boolean!
+  altersDynamicFields: Boolean
+}
+
+# ─── Pagination ─────────────────────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# ─── Workflow Objects ────────────────────────────────────────────────────────
+
+"""A Zap is an automated workflow connecting a trigger to one or more action steps."""
+type Zap {
+  id: ID!
+  name: String!
+  status: ZapStatus!
+  description: String
+  steps: [ZapStep!]!
+  trigger: ZapStep
+  actions: [ZapStep!]!
+  owner: User
+  workspace: Workspace
+  team: Team
+  history(first: Int, after: String): ZapHistoryConnection
+  lastRunAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isEnabled: Boolean!
+  taskCount: Int
+  errorRate: Float
+}
+
+type ZapConnection {
+  nodes: [Zap!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A single step within a Zap (trigger, action, filter, path, etc.)."""
+type ZapStep {
+  id: ID!
+  type: ZapStepType!
+  order: Int!
+  app: App
+  appVersion: AppVersion
+  action: Action
+  trigger: Trigger
+  search: Search
+  filter: Filter
+  formatter: Formatter
+  inputData: JSON
+  outputData: JSON
+  credential: Credential
+  isEnabled: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A trigger watches for events in a connected app and starts a Zap."""
+type Trigger {
+  key: String!
+  display: Display!
+  operation: TriggerOperation!
+  noun: String!
+  type: TriggerType!
+  inputFields: [InputField!]!
+  outputFields: [OutputField!]!
+  sample: JSON
+}
+
+"""A trigger operation describing how data is fetched or received."""
+type TriggerOperation {
+  type: TriggerType!
+  resource: URL
+  perform: PerformConfig
+  performList: PerformConfig
+  performSubscribe: PerformConfig
+  performUnsubscribe: PerformConfig
+  hook: TriggerHook
+  canPaginate: Boolean
+  shouldLock: Boolean
+}
+
+"""An action performs an operation in a connected app."""
+type Action {
+  key: String!
+  display: Display!
+  operation: ActionOperation!
+  noun: String!
+  inputFields: [InputField!]!
+  outputFields: [OutputField!]!
+  sample: JSON
+}
+
+"""An action operation describing how the action is executed."""
+type ActionOperation {
+  resource: URL
+  perform: PerformConfig!
+  performGet: PerformConfig
+  inputFields: [InputField!]!
+  outputFields: [OutputField!]!
+  shouldLock: Boolean
+}
+
+"""A search looks up existing records in a connected app."""
+type Search {
+  key: String!
+  display: Display!
+  operation: SearchOperation!
+  noun: String!
+  inputFields: [InputField!]!
+  outputFields: [OutputField!]!
+  sample: JSON
+}
+
+"""A search operation describing how records are located."""
+type SearchOperation {
+  resource: URL
+  perform: PerformConfig!
+  performGet: PerformConfig
+  canPaginate: Boolean
+  inputFields: [InputField!]!
+  outputFields: [OutputField!]!
+}
+
+"""A filter halts a Zap run when its conditions are not met."""
+type Filter {
+  id: ID!
+  conditions: [FilterCondition!]!
+  logic: FilterLogic!
+}
+
+type FilterCondition {
+  field: String!
+  operator: String!
+  value: String
+}
+
+enum FilterLogic {
+  AND
+  OR
+}
+
+"""A formatter transforms text, numbers, or dates using Zapier's built-in utilities."""
+type Formatter {
+  id: ID!
+  type: FormatterType!
+  input: String!
+  output: String
+  options: JSON
+}
+
+enum FormatterType {
+  TEXT
+  NUMBERS
+  DATES
+  UTILITIES
+}
+
+"""A webhook is a URL endpoint that receives real-time event payloads."""
+type Webhook {
+  id: ID!
+  url: URL!
+  subscriptionId: String
+  app: App
+  trigger: Trigger
+  isActive: Boolean!
+  secret: String
+  createdAt: DateTime!
+}
+
+# ─── App Catalog ─────────────────────────────────────────────────────────────
+
+"""An App is a Zapier-connected application available in the app directory."""
+type App {
+  id: ID!
+  title: String!
+  slug: String!
+  description: String
+  logo: URL
+  url: URL
+  categories: [AppCategory!]!
+  currentVersion: AppVersion
+  versions: [AppVersion!]!
+  isPublic: Boolean!
+  partnerProfile: JSON
+  links: AppLinks
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AppConnection {
+  nodes: [App!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A versioned release of an App integration."""
+type AppVersion {
+  id: ID!
+  app: App!
+  version: String!
+  definition: IntegrationVersion
+  isDeprecated: Boolean!
+  publishedAt: DateTime
+  createdAt: DateTime!
+}
+
+"""A classification grouping similar Apps."""
+type AppCategory {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  apps(first: Int, after: String): AppConnection
+}
+
+"""A paginated listing of available Apps for embedding in partner products."""
+type AppDirectory {
+  apps(categoryId: ID, search: String, first: Int, after: String): AppConnection!
+  categories: [AppCategory!]!
+  featuredApps: [App!]!
+}
+
+# ─── Developer Integration ───────────────────────────────────────────────────
+
+"""A developer-built integration definition on the Zapier platform."""
+type Integration {
+  id: ID!
+  title: String!
+  description: String
+  authentication: Authentication
+  triggers: [Trigger!]!
+  actions: [Action!]!
+  searches: [Search!]!
+  versions: [IntegrationVersion!]!
+  currentVersion: IntegrationVersion
+  owner: User
+  collaborators: [User!]!
+  isPublic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A versioned snapshot of a developer Integration."""
+type IntegrationVersion {
+  id: ID!
+  integration: Integration!
+  version: String!
+  authentication: Authentication
+  triggers: [Trigger!]!
+  actions: [Action!]!
+  searches: [Search!]!
+  middleware: [Middleware!]!
+  throttleConfig: ThrottleConfig
+  isDeprecated: Boolean!
+  publishedAt: DateTime
+  createdAt: DateTime!
+}
+
+# ─── Authentication Types ─────────────────────────────────────────────────────
+
+"""Stored authentication credentials linking a user account to an App."""
+type Credential {
+  id: ID!
+  label: String!
+  app: App!
+  user: User!
+  scheme: AuthScheme!
+  isValid: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""OAuth 2.0 authorization code flow authentication."""
+type OAuth2 implements Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+  authorizeUrl: URL!
+  accessTokenUrl: URL!
+  refreshTokenUrl: URL
+  clientId: String
+  scope: String
+  autoRefresh: Boolean!
+  pkce: Boolean
+}
+
+"""API key authentication."""
+type APIKeyAuth implements Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+  headerName: String
+  paramName: String
+  placement: APIKeyPlacement!
+}
+
+enum APIKeyPlacement {
+  HEADER
+  QUERY
+  BODY
+}
+
+"""Session token-based authentication."""
+type SessionAuth implements Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+  sessionTokenUrl: URL!
+  refreshSessionUrl: URL
+}
+
+"""HTTP Basic username/password authentication."""
+type BasicAuth implements Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+  usernameField: String
+  passwordField: String
+}
+
+"""HTTP Digest authentication."""
+type DigestAuth implements Authentication {
+  id: ID!
+  scheme: AuthScheme!
+  label: String
+  testUrl: URL
+  fields: [InputField!]!
+  realm: String
+}
+
+# ─── Fields ─────────────────────────────────────────────────────────────────
+
+"""A field capturing user-provided configuration for a step."""
+type InputField implements Field {
+  key: String!
+  label: String
+  helpText: String
+  required: Boolean!
+  altersDynamicFields: Boolean
+  type: FieldType!
+  placeholder: String
+  default: String
+  choices: [FieldChoice!]
+  dynamic: String
+  search: String
+  computed: Boolean
+  list: Boolean
+  dict: Boolean
+  code: Boolean
+}
+
+"""A field describing data returned by a step for use downstream."""
+type OutputField implements Field {
+  key: String!
+  label: String
+  helpText: String
+  required: Boolean!
+  altersDynamicFields: Boolean
+  type: FieldType!
+  important: Boolean
+  example: String
+}
+
+"""A key-value pair rendered as a line item in Zapier's UI."""
+type Line {
+  key: String!
+  value: String
+  label: String
+}
+
+"""A choice option for a select/dropdown InputField."""
+type FieldChoice {
+  value: String!
+  label: String
+  sample: String
+}
+
+"""Display metadata controlling how a trigger, action, or search appears in Zapier's UI."""
+type Display {
+  label: String!
+  description: String!
+  directions: String
+  important: Boolean
+  hidden: Boolean
+}
+
+# ─── Hook Infrastructure ──────────────────────────────────────────────────────
+
+"""A lifecycle callback invoked at specific points during Zap execution."""
+type Hook {
+  id: ID!
+  event: String!
+  handler: String!
+  integration: Integration
+  middleware: [Middleware!]!
+}
+
+"""Request/response transformers applied to API calls in an integration."""
+type Middleware {
+  id: ID!
+  type: MiddlewareType!
+  label: String
+  code: String!
+}
+
+enum MiddlewareType {
+  BEFORE_REQUEST
+  AFTER_RESPONSE
+}
+
+"""A REST Hook subscription registration payload."""
+type HookSubscribe {
+  url: URL!
+  hookId: String!
+  event: String!
+  bundleData: JSON
+  subscriptionId: String
+  createdAt: DateTime!
+}
+
+"""A REST Hook subscription removal payload."""
+type HookUnsubscribe {
+  subscriptionId: String!
+  hookId: String!
+  removedAt: DateTime!
+}
+
+"""A hook type bound to trigger events."""
+type TriggerHook {
+  subscribeUrl: URL!
+  unsubscribeUrl: URL!
+  hookId: String!
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+"""A trigger polling an API endpoint on an interval."""
+type PollTrigger {
+  key: String!
+  pollUrl: URL!
+  interval: PollingInterval!
+  deduplicationKey: String
+  lastPolledAt: DateTime
+}
+
+"""A trigger receiving real-time payloads via webhook subscription."""
+type RestHookTrigger {
+  key: String!
+  subscribeUrl: URL!
+  unsubscribeUrl: URL!
+  webhookUrl: URL!
+  isActive: Boolean!
+  subscriptionId: String
+}
+
+"""Alias for RestHookTrigger emphasizing real-time delivery."""
+type InstantTrigger {
+  key: String!
+  webhookUrl: URL!
+  isActive: Boolean!
+  subscriptionId: String
+  deliveredAt: DateTime
+}
+
+"""Configuration describing how a trigger or action performs its API call."""
+type PerformConfig {
+  url: URL
+  method: String
+  headers: JSON
+  params: JSON
+  body: JSON
+  code: String
+}
+
+# ─── Account and Team ────────────────────────────────────────────────────────
+
+"""An authenticated Zapier user."""
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  avatarUrl: URL
+  account: Account
+  workspaces: [Workspace!]!
+  teams: [Team!]!
+  zaps(first: Int, after: String): ZapConnection
+  credentials: [Credential!]!
+  createdAt: DateTime!
+}
+
+"""A Zapier account, which may contain multiple users and workspaces."""
+type Account {
+  id: ID!
+  name: String!
+  owner: User!
+  members: [User!]!
+  plan: Plan!
+  billing: Billing!
+  workspaces: [Workspace!]!
+  teams: [Team!]!
+  usage(period: String): Usage
+  quota: Quota
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A group of users within an Account with shared Zap access."""
+type Team {
+  id: ID!
+  name: String!
+  account: Account!
+  members: [User!]!
+  zaps(first: Int, after: String): ZapConnection
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""An organizational container scoping Zaps, credentials, and members."""
+type Workspace {
+  id: ID!
+  name: String!
+  account: Account!
+  members: [User!]!
+  zaps(first: Int, after: String): ZapConnection
+  teams: [Team!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A pending invitation for a user to join a Team or Workspace."""
+type Invite {
+  id: ID!
+  email: String!
+  role: String!
+  team: Team
+  workspace: Workspace
+  invitedBy: User!
+  status: InviteStatus!
+  expiresAt: DateTime
+  createdAt: DateTime!
+}
+
+enum InviteStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  REVOKED
+}
+
+"""A transfer of Zap ownership between users or teams."""
+type Transfer {
+  id: ID!
+  zap: Zap!
+  fromUser: User!
+  toUser: User
+  toTeam: Team
+  status: TransferStatus!
+  initiatedAt: DateTime!
+  completedAt: DateTime
+}
+
+enum TransferStatus {
+  PENDING
+  COMPLETED
+  REJECTED
+  CANCELLED
+}
+
+# ─── Operational Data ─────────────────────────────────────────────────────────
+
+"""A paginated log of Zap activity for a given Zap."""
+type ZapHistory {
+  zap: Zap!
+  runs(first: Int, after: String): ZapRunConnection!
+  errorRate: Float
+  successRate: Float
+  totalRuns: Int!
+}
+
+type ZapHistoryConnection {
+  nodes: [ZapHistory!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""A single execution instance of a Zap."""
+type ZapRun {
+  id: ID!
+  zap: Zap!
+  status: ZapRunStatus!
+  startedAt: DateTime!
+  completedAt: DateTime
+  durationMs: Int
+  stepResults: [RunResult!]!
+  errors: [Error!]!
+  triggerData: JSON
+}
+
+type ZapRunConnection {
+  nodes: [ZapRun!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+"""The output produced by a ZapStep during a ZapRun."""
+type RunResult {
+  id: ID!
+  zapRun: ZapRun!
+  step: ZapStep!
+  status: ZapRunStatus!
+  inputData: JSON
+  outputData: JSON
+  startedAt: DateTime!
+  completedAt: DateTime
+  durationMs: Int
+  error: Error
+}
+
+"""A structured error record from a failed ZapRun or ZapStep."""
+type Error {
+  id: ID!
+  code: String!
+  message: String!
+  details: JSON
+  zapRun: ZapRun
+  step: ZapStep
+  isRetryable: Boolean!
+  occurredAt: DateTime!
+}
+
+"""Rate limiting configuration applied to an integration's API calls."""
+type ThrottleConfig {
+  requestsPerSecond: Int
+  requestsPerMinute: Int
+  requestsPerHour: Int
+  burstSize: Int
+  retryAfterHeader: String
+}
+
+"""Task or API call limits attached to a Plan."""
+type Quota {
+  taskLimit: Int
+  zapLimit: Int
+  stepLimit: Int
+  pollingIntervalMinutes: Int
+  webhooksEnabled: Boolean!
+  premiumAppsEnabled: Boolean!
+  multiStepEnabled: Boolean!
+}
+
+"""Aggregated task consumption metrics for an Account."""
+type Usage {
+  accountId: ID!
+  period: String!
+  tasksUsed: Int!
+  tasksLimit: Int
+  zapsCount: Int!
+  zapsEnabled: Int!
+  percentUsed: Float
+  resetAt: DateTime
+}
+
+# ─── Commercial ──────────────────────────────────────────────────────────────
+
+"""Payment and subscription information for an Account."""
+type Billing {
+  id: ID!
+  account: Account!
+  plan: Plan!
+  status: BillingStatus!
+  currentPeriodStart: DateTime
+  currentPeriodEnd: DateTime
+  cancelAtPeriodEnd: Boolean!
+  paymentMethod: String
+  updatedAt: DateTime!
+}
+
+enum BillingStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELLED
+  UNPAID
+}
+
+"""A Zapier subscription tier defining feature access and quotas."""
+type Plan {
+  id: ID!
+  name: String!
+  tier: PlanTier!
+  monthlyPrice: Float
+  annualPrice: Float
+  quota: Quota!
+  features: [String!]!
+  maxUsers: Int
+  ssoEnabled: Boolean!
+  advancedAdminEnabled: Boolean!
+  description: String
+}
+
+# ─── Queries ─────────────────────────────────────────────────────────────────
+
+type Query {
+  """Fetch a single Zap by ID."""
+  zap(id: ID!): Zap
+
+  """Paginated list of Zaps, optionally filtered by workspace or status."""
+  zaps(workspaceId: ID, status: ZapStatus, first: Int, after: String): ZapConnection!
+
+  """Execution history for a specific Zap."""
+  zapRuns(zapId: ID!, status: ZapRunStatus, first: Int, after: String): ZapRunConnection!
+
+  """Fetch a single App from the directory."""
+  app(id: ID!): App
+
+  """Search and browse the Zapier App directory."""
+  apps(categoryId: ID, search: String, first: Int, after: String): AppConnection!
+
+  """List all app categories."""
+  appCategories: [AppCategory!]!
+
+  """Browse the App directory (partner embed view)."""
+  appDirectory(categoryId: ID, search: String, first: Int, after: String): AppDirectory!
+
+  """Fetch a developer Integration by ID."""
+  integration(id: ID!): Integration
+
+  """List integrations owned by or accessible to the current user."""
+  integrations(first: Int, after: String): [Integration!]!
+
+  """Current authenticated User."""
+  me: User!
+
+  """Fetch an Account by ID."""
+  account(id: ID!): Account
+
+  """Fetch a Team by ID."""
+  team(id: ID!): Team
+
+  """Fetch a Workspace by ID."""
+  workspace(id: ID!): Workspace
+
+  """Task usage for a billing period."""
+  usage(accountId: ID!, period: String): Usage
+
+  """Fetch a Plan by ID."""
+  plan(id: ID!): Plan
+
+  """List all available Plans."""
+  plans: [Plan!]!
+
+  """Fetch stored Credentials for the current user."""
+  credentials(appId: ID): [Credential!]!
+
+  """List pending Invites for a Team or Workspace."""
+  invites(teamId: ID, workspaceId: ID): [Invite!]!
+}
+
+# ─── Mutations ───────────────────────────────────────────────────────────────
+
+input CreateZapInput {
+  name: String!
+  workspaceId: ID
+  teamId: ID
+  description: String
+}
+
+input UpdateZapInput {
+  name: String
+  description: String
+  status: ZapStatus
+}
+
+input CreateCredentialInput {
+  appId: ID!
+  label: String!
+  scheme: AuthScheme!
+  data: JSON!
+}
+
+input InviteInput {
+  email: String!
+  role: String!
+  teamId: ID
+  workspaceId: ID
+}
+
+input TransferInput {
+  zapId: ID!
+  toUserId: ID
+  toTeamId: ID
+}
+
+input HookSubscribeInput {
+  zapId: ID!
+  stepId: ID!
+  hookUrl: URL!
+  event: String!
+  bundleData: JSON
+}
+
+input HookUnsubscribeInput {
+  subscriptionId: String!
+  zapId: ID!
+  stepId: ID!
+}
+
+type Mutation {
+  """Create a new Zap."""
+  createZap(input: CreateZapInput!): Zap!
+
+  """Update Zap name, description, or status."""
+  updateZap(id: ID!, input: UpdateZapInput!): Zap!
+
+  """Enable a Zap (turn it on)."""
+  enableZap(id: ID!): Zap!
+
+  """Disable a Zap (turn it off)."""
+  disableZap(id: ID!): Zap!
+
+  """Permanently delete a Zap."""
+  deleteZap(id: ID!): Boolean!
+
+  """Store new authentication credentials for an App."""
+  createCredential(input: CreateCredentialInput!): Credential!
+
+  """Remove stored credentials."""
+  deleteCredential(id: ID!): Boolean!
+
+  """Invite a user to a Team or Workspace."""
+  inviteUser(input: InviteInput!): Invite!
+
+  """Revoke a pending invitation."""
+  revokeInvite(id: ID!): Invite!
+
+  """Transfer Zap ownership to another user or team."""
+  transferZap(input: TransferInput!): Transfer!
+
+  """Register a REST Hook subscription."""
+  subscribeHook(input: HookSubscribeInput!): HookSubscribe!
+
+  """Remove a REST Hook subscription."""
+  unsubscribeHook(input: HookUnsubscribeInput!): HookUnsubscribe!
+}
+
+# ─── Subscriptions ───────────────────────────────────────────────────────────
+
+type Subscription {
+  """Fires when a Zap run begins."""
+  zapRunStarted(zapId: ID!): ZapRun!
+
+  """Fires when a Zap run finishes (success or filtered)."""
+  zapRunCompleted(zapId: ID!): ZapRun!
+
+  """Fires when a Zap run encounters an error."""
+  zapRunErrored(zapId: ID!): ZapRun!
+}
