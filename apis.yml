@@ -54,7 +54,7 @@ apis:
   - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
     type: JSONLD
   - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
-    type: Example
+    type: Examples
   description: The Zapier Partner API and Workflow API allow developers to embed Zapier
     automation directly in their products, providing complete style control over the
     user experience. The API supports Zap templates, user Zap management, app directory
@@ -109,33 +109,24 @@ access: 3rd-Party
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/zapier/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/zapier-connect-and-test-action-workflow.yml
-    name: Zapier Connect and Test an Action
-    summary: Create an authentication for an app, list its actions, and test an action
-      against the live third-party API.
-  - url: arazzo/zapier-create-zap-from-actions-workflow.yml
-    name: Zapier Create a Zap from Actions
-    summary: List an app's actions, create a multi-step Zap, and confirm it appears
-      in the user's Zap list.
-  - url: arazzo/zapier-discover-and-configure-action-workflow.yml
-    name: Zapier Discover and Configure an Action
-    summary: Search for an app, list its actions, read the input fields, and resolve
-      the choices for a dropdown field.
-  - url: arazzo/zapier-inspect-action-schema-workflow.yml
-    name: Zapier Inspect an Action Schema
-    summary: List an app's actions, then fetch both the input and output field schemas
-      for a chosen action.
-  - url: arazzo/zapier-monitor-zap-runs-workflow.yml
-    name: Zapier Monitor Zap Runs
-    summary: List the user's Zaps, pull recent runs, and branch when errored runs
-      are present.
-  - url: arazzo/zapier-run-ai-action-workflow.yml
-    name: Zapier Run an AI Action
-    summary: Discover an action on an app, resolve its input fields, run it, and poll
-      for the result.
+- type: Arazzo
+  url: arazzo/zapier-connect-and-test-action-workflow.yml
+  name: Zapier Connect and Test an Action
+- type: Arazzo
+  url: arazzo/zapier-create-zap-from-actions-workflow.yml
+  name: Zapier Create a Zap from Actions
+- type: Arazzo
+  url: arazzo/zapier-discover-and-configure-action-workflow.yml
+  name: Zapier Discover and Configure an Action
+- type: Arazzo
+  url: arazzo/zapier-inspect-action-schema-workflow.yml
+  name: Zapier Inspect an Action Schema
+- type: Arazzo
+  url: arazzo/zapier-monitor-zap-runs-workflow.yml
+  name: Zapier Monitor Zap Runs
+- type: Arazzo
+  url: arazzo/zapier-run-ai-action-workflow.yml
+  name: Zapier Run an AI Action
 - type: LinkedIn
   url: https://www.linkedin.com/company/zapier
 - url: https://zapier.com/
@@ -204,7 +195,7 @@ common:
   description: 'null'
 - url: https://zapier.com/sign-up?next=%2Fapp%2Fdeveloper%2F
   name: Sign up | Zapier
-  type: SignUp
+  type: Signup
   description: 'null'
 - url: https://zapier.com/pricing
   name: Plans & Pricing | Zapier
@@ -216,7 +207,7 @@ common:
   description: 'null'
 - url: https://community.zapier.com
   name: Zapier Community
-  type: Forum
+  type: Forums
   description: 'null'
 - url: https://zapier.com/legal
   name: Legal at Zapier
@@ -293,7 +284,7 @@ common:
   updated: '2026-05-04'
 - type: Integrations
   url: https://zapier.com/apps
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.zapier.com/llms.txt
 created: '2025-06-06T00:00:00.000Z'
 modified: '2026-05-19'
