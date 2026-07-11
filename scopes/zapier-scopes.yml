@@ -1,0 +1,76 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/zapier-partner-api.yml
+schemes:
+- name: OAuth
+  source: openapi/zapier-partner-api.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://zapier.com/oauth/authorize/
+    tokenUrl: https://zapier.com/oauth/token/
+  - flow: implicit
+    authorizationUrl: https://zapier.com/oauth/authorize/
+  description: 'See our OAuth2 authentication documentation here: https://docs.zapier.com/powered-by-zapier/api-reference/authentication'
+scopes:
+- scope: action:run
+  description: Run an Action
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: authentication
+  description: Read Authentications
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: authentication:write
+  description: Write Authentications
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: connection:read
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: connection:write
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: profile
+  description: Read profile information about the currently-authenticated user
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: zap
+  description: Read Zaps
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: zap:all
+  description: Read Zaps accessible to the account
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: zap:runs
+  description: Read Zap Runs
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
+- scope: zap:write
+  description: Write Zaps
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/zapier-partner-api.yml
