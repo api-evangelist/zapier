@@ -1,0 +1,26 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.zapier.com/integrations/publish/zps (Zapier Partner Sandbox),
+  https://docs.zapier.com/integrations/build-cli/testing-and-debugging,
+  https://docs.zapier.com/integrations/build/env (environment variables).
+description: >-
+  Zapier does not publish payment-style magic test values. Its testing surface is
+  a real development environment: a complimentary Partner Sandbox account, local
+  invocation/unit-test tooling in the Platform CLI, and private integration
+  versions that only you and your team can access. Captured verbatim from the
+  docs — no values invented.
+partner_sandbox:
+  name: Zapier Partner Sandbox (ZPS)
+  what: A complimentary Zapier account provided to integration partners for building and testing integrations without consuming a paid plan.
+  docs: https://docs.zapier.com/integrations/publish/zps
+test_vs_live:
+  private_versions: New integration versions start Private — only you and your team can access and test them before promotion (see lifecycle/zapier-lifecycle.yml).
+  environments: Per-integration environment variables toggle between environments/secrets (docs.zapier.com/integrations/build/env).
+local_testing:
+  invoke: "`zapier invoke` runs a trigger/action locally against real or mocked input; `--remote` runs it on Zapier's infrastructure."
+  unit_tests: Platform CLI scaffolds Jest-based unit tests; `zapier test` runs them.
+  docs: https://docs.zapier.com/integrations/build-cli/testing-and-debugging
+mock_data:
+  note: The harvested OpenAPI carries x-microcks default response examples per operation (see examples/), usable to stand up a Microcks mock of the Partner API.
+  source: openapi/zapier-partner-api.yml

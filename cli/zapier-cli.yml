@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://github.com/zapier/zapier-platform/blob/main/packages/cli/docs/cli.md
+  (Platform CLI command reference) and https://docs.zapier.com/sdk/cli-reference
+  (Zapier SDK CLI). Zapier ships two distinct first-party CLIs.
+description: >-
+  Zapier's first-party command-line tools. The Platform CLI builds, tests, and
+  publishes integrations to the Zapier App Directory; the Zapier SDK CLI is a
+  terminal surface for connecting agents/code to Zapier's app integrations.
+clis:
+  - name: zapier-platform-cli
+    binary: zapier   # v18+ also installs a "zapier-platform" binary alias
+    package: zapier-platform-cli
+    purpose: Build, test, and publish Zapier integrations (Platform CLI development).
+    install:
+      - npm install -g zapier-platform-cli
+    docs: https://docs.zapier.com/integrations/build-cli/overview
+    command_groups:
+      - group: Authentication & setup
+        commands: [login, logout, register, link]
+      - group: Development
+        commands: [init, scaffold, convert, build, validate, test]
+      - group: Deployment
+        commands: [push, upload, promote, pull]
+      - group: Versions & lifecycle
+        commands: [versions, migrate, deprecate, legacy, "canary:create", "canary:delete", "canary:list"]
+      - group: Integration management
+        commands: [integrations, describe, history, "delete:integration", "delete:version", jobs]
+      - group: Users & team
+        commands: ["users:add", "users:get", "users:links", "users:remove", "team:add", "team:get", "team:remove"]
+      - group: Dev tools
+        commands: [invoke, logs, "env:get", "env:set", "env:unset", analytics]
+    key_flows:
+      - "Scaffold and iterate locally then `zapier push` a private version."
+      - "`zapier invoke` runs a trigger/action locally (supports `--remote`) for testing and debugging."
+      - "`zapier promote <version>` sets the public default; `zapier migrate` moves users between versions."
+      - "`zapier deprecate <version> <date>` starts the date-driven sunset of an old version."
+  - name: zapier-sdk-cli
+    binary: zapier-sdk
+    package: "@zapier/zapier-sdk-cli"
+    purpose: Terminal access to the Zapier SDK — connect to 9,000+ apps and run actions/triggers from the shell.
+    install:
+      - npm install -g @zapier/zapier-sdk-cli
+    docs: https://docs.zapier.com/sdk/cli-reference
+    notes: Companion to @zapier/zapier-sdk; see packages/zapier-packages.yml. Trigger inboxes and action execution are driven from this CLI (docs.zapier.com/sdk/using-the-cli).

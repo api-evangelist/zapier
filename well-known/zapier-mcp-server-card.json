@@ -1,0 +1,30 @@
+{
+  "name": "com.zapier/mcp",
+  "version": "1.0.0",
+  "description": "Connect AI agents to 9,000+ app integrations and 40,000+ actions via the Model Context Protocol. Execute actions across Slack, Gmail, Google Sheets, Jira, GitHub, HubSpot, and thousands more.",
+  "title": "Zapier MCP",
+  "websiteUrl": "https://docs.zapier.com/mcp/home",
+  "repository": {
+    "url": "https://github.com/zapier/zapier-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.zapier.com/api/v1/connect",
+      "supportedProtocolVersions": ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05", "2024-10-07"]
+    }
+  ],
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "auth": {
+    "type": "oauth2",
+    "authorizationUrl": "https://mcp.zapier.com/oauth/authorize",
+    "tokenUrl": "https://mcp.zapier.com/api/v1/oauth/token",
+    "authorizationServers": ["https://mcp.zapier.com"],
+    "scopes": ["openid", "profile", "email"]
+  }
+}

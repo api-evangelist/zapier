@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.zapier.com/powered-by-zapier/embedding-zapier/,
+  https://docs.zapier.com/powered-by-zapier/embedding-zapier/workflow-element,
+  https://docs.zapier.com/mcp/embed/getting-embed-code,
+  https://zapier.com/developer-platform/embed-tools. Client-side / embeddable
+  surfaces that render Zapier inside a partner's own product — distinct from the
+  server-side SDKs in packages/.
+description: >-
+  Zapier's "Powered by Zapier" embed toolkit lets a partner surface Zapier
+  automation natively inside their product UI without sending users to
+  zapier.com. Components range from a full embedded Zap editor to prebuilt UI
+  elements and framework-native MCP embed snippets.
+families:
+  - family: Embedded Zap Editor
+    kind: hosted-iframe
+    description: Embed Zapier's full Zap creation/editing experience directly in your product so users build and modify Zaps without leaving your app.
+    docs: https://docs.zapier.com/powered-by-zapier/embedding-zapier/getting-started
+    features:
+      - Pre-filled Zap workflows — define input fields on behalf of the user.
+      - Element security controls (docs.zapier.com/powered-by-zapier/embedding-zapier/elements-security).
+      - Embed insights / activation analytics.
+  - family: Workflow Element
+    kind: prebuilt-ui-component
+    description: A prebuilt, styleable UI component that surfaces your integration's Zap templates and lets users set them up inline.
+    docs: https://docs.zapier.com/powered-by-zapier/embedding-zapier/workflow-element
+    tutorial: https://docs.zapier.com/integrations/reference/zapier-workflow-element-tutorial
+  - family: Zapier MCP Embed
+    kind: framework-snippet
+    description: Embed code that lets your product's agent connect users to Zapier MCP servers and execute actions across 9,000+ apps.
+    docs: https://docs.zapier.com/mcp/embed/getting-started
+    embed_code: https://docs.zapier.com/mcp/embed/getting-embed-code
+    loaders:
+      - HTML
+      - React
+      - Angular
+      - Vue
+      - vanilla JS
+    related: mcp/zapier-mcp.yml
+  - family: Partner Embeds Gallery
+    kind: catalog
+    description: Gallery of embeddable widgets and app-directory surfaces for partners (app directory, Zap templates, recommended integrations).
+    docs: https://zapier.com/developer-platform/partner-embeds
+    gallery: https://zapier.com/developer-platform/embed-tools

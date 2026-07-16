@@ -1,0 +1,53 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/zapier-partner-api.yml (securitySchemes, error/pagination
+  schemas, rate-limit headers) and Zapier docs/compliance claims
+  (docs.zapier.com/powered-by-zapier/api-reference, trust.zapier.com). Cross-cutting
+  standards the Partner/Workflow API conforms to.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: openapi securitySchemes define an oauth2 scheme (OAuth) with authorizationCode and implicit flows (zapier.com/oauth/authorize, /oauth/token).
+  - id: oauth2-authorization-server-metadata   # RFC 8414
+    conforms: true
+    evidence: mcp.zapier.com serves /.well-known/oauth-authorization-server (well-known/zapier-mcp-oauth-authorization-server.json).
+  - id: api-key-auth
+    conforms: true
+    evidence: ClientIDAuthentication apiKey scheme (client_id query parameter).
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration on api.zapier.com (401) or zapier.com (404); MCP AS advertises openid scope but no OIDC discovery doc on the API host.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a JSON:API-style application/json envelope ({ status, code, title, detail, source }), not application/problem+json.
+  - id: json-api-errors
+    conforms: true
+    evidence: Error/ErrorSource schemas mirror the JSON:API error object (status, code, title, detail, source.pointer/parameter/header).
+  - id: pagination
+    conforms: true
+    evidence: Page-number pagination via page/per_page with Links{next,prev} and Meta{page} response objects.
+  - id: rate-limit-headers
+    conforms: true
+    evidence: 429/503 responses carry X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset and Retry-After.
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: zapier.com serves /.well-known/api-catalog as an RFC 9727 linkset (well-known/zapier-api-catalog.json).
+  - id: model-context-protocol
+    conforms: true
+    evidence: Official hosted MCP server at mcp.zapier.com (streamable-http) with a published server card; see mcp/zapier-mcp.yml.
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/zapier-partner-api.yml is OpenAPI 3.1.0; live schema served at https://api.zapier.com/schema.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key header documented for the Partner/Workflow API.
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 listed at trust.zapier.com (see security/zapier-trust-center.yml).
+  - id: iso-27001
+    conforms: true
+    evidence: ISO 27001/27017/27018 listed at trust.zapier.com.
+  - id: hipaa
+    conforms: true
+    evidence: HIPAA listed at trust.zapier.com.

@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.zapier.com/integrations/manage/versions,
+  https://docs.zapier.com/integrations/manage/version-lifecycle-states,
+  https://docs.zapier.com/integrations/manage/deprecate,
+  https://docs.zapier.com/powered-by-zapier/versioning,
+  https://docs.zapier.com/integrations/news (Platform News changelog),
+  https://status.zapier.com. Two distinct lifecycle regimes: the developer
+  platform (integrations you publish) and Zapier's own public REST APIs.
+platform_integration_versioning:
+  scheme: semantic (semver) per integration version, plus optional labeled versions
+  states:   # docs.zapier.com/integrations/manage/version-lifecycle-states
+    - {state: private, meaning: New version, editable, only you/your team can access and test.}
+    - {state: promoted, meaning: The default version for all new automations; appears in the App Directory; no longer editable; only one at a time.}
+    - {state: available, meaning: Previously-promoted version; still works for existing automations but not the default for new ones.}
+    - {state: legacy, meaning: No longer recommended; usable by existing automations, unavailable for new ones.}
+    - {state: deprecating, meaning: Transitional state after a deprecation date is set; functions until that date.}
+    - {state: deprecated, meaning: Final state; after the deprecation date the version no longer functions; users are notified beforehand.}
+  rules:
+    - You must deprecate a private, demoted, or legacy version — not a currently-promoted one.
+    - A newer version must exist as a migration target before deprecating.
+    - Public integrations must always keep at least one promoted version.
+    - Version pushes must be sequential (no skipping); migrations must stay within the same major version.
+  migration: https://docs.zapier.com/integrations/manage/migrate
+public_api_versioning:
+  scheme: uri-path (e.g. /v1/, /v2/ on api.zapier.com) plus dated OpenAPI (Partner API version 2024.11.0)
+  docs: https://docs.zapier.com/powered-by-zapier/versioning
+  notes: The Workflow/Partner API exposes v1 and v2 endpoint families side by side; the live schema is served at https://api.zapier.com/schema.
+deprecation:
+  policy_url: https://docs.zapier.com/integrations/manage/deprecate
+  changelog: https://docs.zapier.com/integrations/news
+  sunset_header: false
+  notes: Deprecation is date-driven with advance user notification and enforced migration targets rather than RFC 8594 Sunset/Deprecation response headers.
+sla:
+  url: https://zapier.com/legal
+  public_uptime_target: null
+  notes: No public numeric uptime SLA for standard plans; enterprise commitments handled by agreement.
+status_page: https://status.zapier.com
+rate_limits: rate-limits/zapier-rate-limits.yml
+deprecated_operations: []   # none flagged deprecated in openapi/zapier-partner-api.yml

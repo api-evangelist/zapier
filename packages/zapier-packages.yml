@@ -1,0 +1,74 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.zapier.com/llms.txt (the Zapier developer docs package index),
+  the GitHub org github.com/zapier, and the npm registry
+  (registry.npmjs.org). All first-party. Zapier's client tooling is
+  JavaScript/TypeScript-only; no first-party PyPI, Maven, NuGet, Go, RubyGems,
+  Packagist, or crates.io libraries were found.
+packages:
+  # --- Integration Builder: Platform CLI/Core/Schema (build apps for the Zapier directory) ---
+  - language: javascript
+    registry: npm
+    name: zapier-platform-cli
+    url: https://www.npmjs.com/package/zapier-platform-cli
+    source: https://github.com/zapier/zapier-platform
+    install: npm install -g zapier-platform-cli
+    official: true
+    note: CLI for building, testing, and publishing Zapier integrations (binary now "zapier-platform"). Command surface in cli/zapier-cli.yml.
+  - language: javascript
+    registry: npm
+    name: zapier-platform-core
+    url: https://www.npmjs.com/package/zapier-platform-core
+    source: https://github.com/zapier/zapier-platform
+    install: npm install zapier-platform-core
+    official: true
+    note: Runtime that executes a CLI integration's triggers, actions, and searches.
+  - language: javascript
+    registry: npm
+    name: zapier-platform-schema
+    url: https://www.npmjs.com/package/zapier-platform-schema
+    source: https://github.com/zapier/zapier-platform
+    install: npm install zapier-platform-schema
+    official: true
+    note: JSON Schema definition of a Zapier integration (json-schema/zapier-platform-schema.json).
+  # --- Zapier SDK: programmatic access to Zapier's integrations for agents/apps ---
+  - language: typescript
+    registry: npm
+    name: "@zapier/zapier-sdk"
+    url: https://www.npmjs.com/package/@zapier/zapier-sdk
+    source: https://github.com/zapier/sdk
+    install: npm install @zapier/zapier-sdk
+    official: true
+    note: TypeScript SDK for connecting code/agents to Zapier's 9,000+ app integrations; Zapier handles auth, tokens, retries.
+  - language: typescript
+    registry: npm
+    name: "@zapier/zapier-sdk-core"
+    url: https://www.npmjs.com/package/@zapier/zapier-sdk-core
+    source: https://github.com/zapier/sdk
+    install: npm install @zapier/zapier-sdk-core
+    official: true
+  - language: typescript
+    registry: npm
+    name: "@zapier/zapier-sdk-cli"
+    url: https://www.npmjs.com/package/@zapier/zapier-sdk-cli
+    source: https://github.com/zapier/sdk
+    install: npm install -g @zapier/zapier-sdk-cli
+    official: true
+    note: Terminal surface of the Zapier SDK. Command surface in cli/zapier-cli.yml.
+  - language: typescript
+    registry: npm
+    name: "@zapier/zapier-sdk-mcp"
+    url: https://www.npmjs.com/package/@zapier/zapier-sdk-mcp
+    source: https://github.com/zapier/zapier-mcp
+    install: npm install @zapier/zapier-sdk-mcp
+    official: true
+    note: MCP surface of the Zapier SDK; complements the hosted server at https://mcp.zapier.com. See mcp/zapier-mcp.yml.
+  - language: javascript
+    registry: npm
+    name: "@zapier/install-zapier"
+    url: https://www.npmjs.com/package/@zapier/install-zapier
+    source: https://github.com/zapier/install-zapier
+    install: npx @zapier/install-zapier
+    official: true
+    note: Front-door router that installs the right Zapier surface (MCP, SDK, or CLI) for an AI agent; also installable as an agent skill.

@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Zapier Partner API
+  version: 1.0.0
+# Non-destructive OpenAPI Overlay 1.0.0 capturing API Evangelist's enrichment of
+# the harvested spec. Apply against openapi/zapier-partner-api.yml; never mutates
+# the original.
+extends: openapi/zapier-partner-api.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: zapier
+      x-apievangelist-aid: zapier:partner-api
+      x-apievangelist-segments: [iPaaS, Embedded_iPaaS]
+      x-apievangelist-position: Consuming
+      x-apievangelist-artifacts:
+        authentication: authentication/zapier-authentication.yml
+        scopes: scopes/zapier-scopes.yml
+        conventions: conventions/zapier-conventions.yml
+        errors: errors/zapier-problem-types.yml
+        lifecycle: lifecycle/zapier-lifecycle.yml
+        conformance: conformance/zapier-conformance.yml
+        data_model: data-model/zapier-data-model.yml
+        rate_limits: rate-limits/zapier-rate-limits.yml
+        mcp: mcp/zapier-mcp.yml
+        well_known: well-known/zapier-well-known.yml
+        packages: packages/zapier-packages.yml
+  - target: $.info
+    update:
+      x-apievangelist-error-format: json-api-errors
+      x-apievangelist-pagination: page-number (page/per_page; Links{next,prev}, Meta{page})
+      x-apievangelist-rate-limit-headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After]
+  - target: $.servers
+    update:
+      - url: https://api.zapier.com
+        description: Zapier Partner / Workflow API production host (live schema at /schema).

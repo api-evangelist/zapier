@@ -1,0 +1,28 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://mcp.zapier.com/mcp",
+      "service-desc": [
+        {
+          "href": "https://zapier.com/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.zapier.com/mcp/home",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://zapier.com/api/",
+      "service-doc": [
+        {
+          "href": "https://docs.zapier.com/powered-by-zapier/workflow-api",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

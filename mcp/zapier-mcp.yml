@@ -1,0 +1,73 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: >-
+  https://docs.zapier.com/mcp/home, https://zapier.com/mcp, the RFC 9727 API
+  catalog at https://zapier.com/.well-known/api-catalog, the MCP server card at
+  https://zapier.com/.well-known/mcp/server-card.json, and the RFC 8414 OAuth
+  authorization-server metadata at
+  https://mcp.zapier.com/.well-known/oauth-authorization-server. Tool model
+  captured verbatim from the Zapier MCP documentation.
+description: >-
+  Zapier operates an official hosted (remote) MCP server that connects MCP-aware
+  clients (Claude, ChatGPT, Cursor, VS Code, Windsurf, Kiro, Microsoft Copilot
+  Studio) to Zapier's 9,000+ app integrations and 40,000+ actions over the open
+  Model Context Protocol. The server exposes meta-tools for dynamic tool
+  discovery immediately, and any configured Zapier action is surfaced as a
+  dedicated MCP tool. Authenticated with OAuth 2.0 (RFC 8414 authorization
+  server https://mcp.zapier.com) for multi-user apps, or a connection token /
+  API key for personal use.
+server:
+  name: com.zapier/mcp
+  version: 1.0.0
+  title: Zapier MCP
+  transport: streamable-http
+  url: https://mcp.zapier.com/api/v1/connect
+  legacy_endpoint: https://mcp.zapier.com/mcp
+  website: https://docs.zapier.com/mcp/home
+  repository: https://github.com/zapier/zapier-mcp
+  server_card: well-known/zapier-mcp-server-card.json
+  supported_protocol_versions:
+    - '2025-11-25'
+    - '2025-06-18'
+    - '2025-03-26'
+    - '2024-11-05'
+    - '2024-10-07'
+  capabilities:
+    tools:
+      listChanged: false
+auth:
+  type: oauth2
+  authorization_endpoint: https://mcp.zapier.com/oauth/authorize
+  token_endpoint: https://mcp.zapier.com/api/v1/oauth/token
+  registration_endpoint: https://mcp.zapier.com/api/v1/oauth/register
+  revocation_endpoint: https://mcp.zapier.com/api/v1/oauth/revoke
+  userinfo_endpoint: https://mcp.zapier.com/api/v1/oauth/userinfo
+  authorization_servers:
+    - https://mcp.zapier.com
+  scopes: [openid, profile, email]
+  code_challenge_methods: [plain, S256]
+  grant_types: [authorization_code, refresh_token]
+  metadata: well-known/zapier-mcp-oauth-authorization-server.json
+  alternatives:
+    - Connection token (personal use)
+    - API key (personal use)
+  docs: https://docs.zapier.com/mcp/authentication
+package:
+  name: "@zapier/zapier-sdk-mcp"
+  registry: npm
+  url: https://www.npmjs.com/package/@zapier/zapier-sdk-mcp
+tools:
+  # Meta-tools available immediately (dynamic discovery model)
+  - name: dynamic_tool_discovery
+    description: >-
+      Meta-tools that let the client search Zapier's action catalog and add,
+      configure, and manage tools at runtime without pre-registering each one.
+    kind: meta
+  # Beyond the meta-tools, each Zapier action the user configures on their
+  # server is exposed as its own dedicated MCP tool (9,000+ apps / 40,000+
+  # actions). The concrete tool list is per-account and not statically enumerable.
+notes: >-
+  Also embeddable in third-party products via Zapier MCP Embed
+  (docs.zapier.com/mcp/embed) with HTML, React, Angular, Vue, and vanilla-JS
+  snippets. See components/zapier-components.yml.

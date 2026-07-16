@@ -117,6 +117,34 @@ common:
   url: authentication/zapier-authentication.yml
 - type: OAuthScopes
   url: scopes/zapier-scopes.yml
+- type: Packages
+  url: packages/zapier-packages.yml
+- type: WellKnown
+  url: well-known/zapier-well-known.yml
+- type: MCPServer
+  url: mcp/zapier-mcp.yml
+- type: LlmsText
+  url: llms/zapier-llms.txt
+- type: Overlay
+  url: overlays/zapier-partner-api-overlay.yaml
+- type: Conformance
+  url: conformance/zapier-conformance.yml
+- type: ErrorCatalog
+  url: errors/zapier-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/zapier-lifecycle.yml
+- type: Conventions
+  url: conventions/zapier-conventions.yml
+- type: ChangeLog
+  url: changelog/zapier-changelog.yml
+- type: CLI
+  url: cli/zapier-cli.yml
+- type: Components
+  url: components/zapier-components.yml
+- type: DataModel
+  url: data-model/zapier-data-model.yml
+- type: Sandbox
+  url: sandbox/zapier-sandbox.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/zapier/overview
 - type: Arazzo
@@ -297,7 +325,7 @@ common:
 - type: LlmsText
   url: https://docs.zapier.com/llms.txt
 created: '2025-06-06T00:00:00.000Z'
-modified: '2026-05-19'
+modified: '2026-06-20'
 position: Consuming
 segments:
 - iPaaS

@@ -1,0 +1,57 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  Live probe of the /.well-known/ discovery surface for every base host in
+  apis.yml (baseURL https://api.zapier.com) and the OpenAPI servers[] plus the
+  Zapier docs/MCP/actions hosts. Status is the HTTP code observed at fetch time.
+  Only documents that returned a real, correctly-typed JSON payload were saved
+  verbatim. api.zapier.com answers 401 (auth wall) for every /.well-known/ path;
+  actions.zapier.com 301-redirects them.
+hosts:
+  - host: https://zapier.com
+    documents:
+      - path: /.well-known/api-catalog          # RFC 9727 API catalog (linkset)
+        status: 200
+        file: zapier-api-catalog.json
+      - path: /.well-known/mcp/server-card.json  # MCP server card (referenced by api-catalog)
+        status: 200
+        file: zapier-mcp-server-card.json
+      - path: /.well-known/ai-plugin.json
+        status: 301
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+  - host: https://mcp.zapier.com
+    documents:
+      - path: /.well-known/oauth-authorization-server  # RFC 8414 authorization server metadata
+        status: 200
+        file: zapier-mcp-oauth-authorization-server.json
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://api.zapier.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/oauth-protected-resource
+        status: 401
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+  - host: https://actions.zapier.com
+    documents:
+      - path: /.well-known/ai-plugin.json
+        status: 301
+      - path: /.well-known/security.txt
+        status: 301

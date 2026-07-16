@@ -1,0 +1,78 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  Derived from openapi/zapier-partner-api.yml (securitySchemes, Links/Meta
+  pagination schemas, X-RateLimit-* / Retry-After headers, JSON:API-style Error
+  schema) and confirmed against the docs common-types reference
+  (https://docs.zapier.com/powered-by-zapier/api-reference/common-types/,
+  /pagination, /errors, /rate-limiting, /authentication).
+description: >-
+  Cross-cutting request/response conventions that apply to every Zapier Partner
+  / Workflow API operation on api.zapier.com — the runtime semantics OpenAPI
+  does not fully express.
+base_url: https://api.zapier.com
+api_style: REST over HTTPS, JSON request and response bodies, JSON:API-influenced envelope
+
+authentication:
+  schemes:
+    - name: Client ID Authentication
+      type: apiKey
+      in: query
+      parameter: client_id
+      use: App-level endpoints (app directory, Zap templates).
+    - name: OAuth 2.0 (User Access Token)
+      type: oauth2
+      flows: [authorizationCode, implicit]
+      authorization_url: https://zapier.com/oauth/authorize/
+      token_url: https://zapier.com/oauth/token/
+      note: Implicit grant is used, so no client_secret is issued.
+  detail: authentication/zapier-authentication.yml
+  scopes: scopes/zapier-scopes.yml
+  docs: https://docs.zapier.com/powered-by-zapier/authentication/getting-started
+
+pagination:
+  style: page-number
+  request_params:
+    page: 1-based page number
+    per_page: page size (seen in examples, e.g. per_page=2)
+  response_fields:
+    links: "{ next, prev } — absolute URLs of adjacent pages (null at ends)"
+    meta: "{ page } — the current page number"
+  legacy_fields: [prev_url, next_url]   # present on some v1 list payloads
+  docs: https://docs.zapier.com/powered-by-zapier/api-reference/common-types/pagination
+
+error_envelope:
+  shape: JSON:API-style errors
+  fields:
+    status: HTTP status code applicable to the problem (integer).
+    code: Unique identifier for this occurrence of the problem (string).
+    title: Short summary of the problem.
+    detail: Human-readable explanation specific to this occurrence.
+    source: "{ pointer | parameter | header } — what in the request caused it."
+    meta: Freeform metadata about the error.
+  code_categories: [user, authentication, partner, system, throttled, system_throttled, hydration]
+  catalog: errors/zapier-problem-types.yml
+  docs: https://docs.zapier.com/powered-by-zapier/api-reference/common-types/errors
+
+rate_limiting:
+  signaling_headers:
+    - X-RateLimit-Limit       # max requests per hour
+    - X-RateLimit-Remaining   # remaining in the current window
+    - X-RateLimit-Reset       # window reset time (UTC epoch seconds)
+    - Retry-After             # when to retry (on 429 / 503)
+  throttled_status: [429, 503]
+  detail: rate-limits/zapier-rate-limits.yml
+  docs: https://docs.zapier.com/powered-by-zapier/api-reference/rate-limiting
+
+versioning:
+  style: uri-path
+  current: v2 (v1 still available)
+  detail: lifecycle/zapier-lifecycle.yml
+
+idempotency:
+  supported: null
+  notes: No dedicated idempotency-key header is documented for the Partner/Workflow API; action runs are executed and polled via retrieve-action-run.
+
+request_tracing:
+  request_id_header: null
+  notes: No documented request-id/trace header in the OpenAPI or common-types reference.

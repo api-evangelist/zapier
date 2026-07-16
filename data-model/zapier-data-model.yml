@@ -1,0 +1,85 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from the component schemas in openapi/zapier-partner-api.yml
+  (json-schema/zapier-*.json) — id-reference fields (app, zap_id, categories,
+  steps) and $ref links become relationships. Domains/id-shapes confirmed against
+  the docs common-types reference
+  (https://docs.zapier.com/powered-by-zapier/api-reference/common-types/).
+description: >-
+  Entity-relationship graph of the Zapier Partner / Workflow API. Root domain is
+  the App Directory (App, Category, Action, Authentication) feeding the
+  automation domain (Zap, ZapStep, ZapRun, ZapTemplate).
+entities:
+  - name: App
+    key: uuid
+    description: An application in Zapier's directory (Slack, Gmail, ...). ~9,000 apps.
+    relationships:
+      - {type: has_many, target: Category, via: categories}
+      - {type: has_many, target: Action, via: app}
+      - {type: has_many, target: Authentication, via: app}
+      - {type: has_one, target: App, via: app_latest, note: latest published version}
+  - name: Category
+    key: slug
+    description: App-directory category (e.g. ai-tools, crm, analytics).
+  - name: Action
+    key: id
+    description: A trigger, search, or create action exposed by an App.
+    relationships:
+      - {type: belongs_to, target: App, via: app}
+      - {type: has_many, target: InputField, via: input fields endpoint}
+      - {type: has_many, target: OutputField, via: output fields endpoint}
+  - name: InputField
+    key: id
+    description: A form field the user fills in for an action; may offer Choices.
+    relationships:
+      - {type: has_many, target: Choice, via: choices endpoint}
+      - {type: belongs_to, target: Fieldset, via: fieldset}
+      - {type: has_one, target: InputField, via: depends_on}
+  - name: OutputField
+    key: id
+    description: A field an action emits for use by downstream steps.
+  - name: Choice
+    key: id
+    description: A selectable value for a SELECT-type InputField (dynamic dropdown).
+  - name: Fieldset
+    key: id
+    description: A grouping of input fields for an action.
+    relationships:
+      - {type: has_many, target: InputField, via: fields}
+  - name: Authentication
+    key: id
+    description: A user's connected-account credential for an App.
+    relationships:
+      - {type: belongs_to, target: App, via: app}
+  - name: Zap
+    key: id
+    description: A user's automation workflow made of ordered steps.
+    relationships:
+      - {type: has_many, target: ZapStep, via: steps}
+      - {type: has_many, target: ZapRun, via: zap_id}
+  - name: ZapStep
+    key: (ordinal)
+    description: One trigger/action step within a Zap.
+    relationships:
+      - {type: belongs_to, target: App, via: app}
+      - {type: belongs_to, target: Action, via: params/action}
+  - name: ZapRun
+    key: id
+    description: A single execution of a Zap, with per-step data_in/data_out.
+    relationships:
+      - {type: belongs_to, target: Zap, via: zap_id}
+  - name: ZapTemplate
+    key: id
+    description: A prebuilt, forkable Zap published by an integration partner.
+    relationships:
+      - {type: has_many, target: ZapTemplateStep, via: steps}
+  - name: WhitelabelApp
+    key: id
+    description: An app available for white-label connection (experimental).
+    relationships:
+      - {type: belongs_to, target: App, via: app}
+  - name: Profile
+    key: id
+    description: The authenticated user's account profile (v1/profiles/me).
+render: null   # no subway/ visual in this repo

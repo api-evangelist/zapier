@@ -1,0 +1,52 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from the 4xx/5xx responses declared across
+  openapi/zapier-partner-api.yml and the Error / ErrorSource / CodeEnum schemas
+  (json-schema/zapier-error-schema.json,
+  json-schema/zapier-errorsource-schema.json). Titles/remediation enriched from
+  https://docs.zapier.com/powered-by-zapier/api-reference/common-types/errors
+  and /rate-limiting.
+format: json-api-errors   # NOT RFC 9457 problem+json — Zapier uses a JSON:API-style { errors: [ { status, code, title, detail, source, meta } ] } envelope
+envelope:
+  content_type: application/json
+  fields: [status, code, title, detail, source, meta]
+  source_pointers: [pointer, parameter, header]
+code_categories:   # CodeEnum — the machine category on each error
+  - {code: user, meaning: The request was invalid due to user-supplied input.}
+  - {code: authentication, meaning: Authentication/authorization failed or is missing.}
+  - {code: partner, meaning: A problem attributable to the partner integration/app configuration.}
+  - {code: system, meaning: An internal Zapier system error.}
+  - {code: throttled, meaning: The caller exceeded a rate limit.}
+  - {code: system_throttled, meaning: A downstream/system-level throttle was hit.}
+  - {code: hydration, meaning: A deferred-data (hydration) resolution failure.}
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid credentials (e.g. missing client_id in query parameters, or an invalid/expired access token).
+    category: authentication
+    remediation: Provide a valid client_id or OAuth access token. See authentication/zapier-authentication.yml.
+  - status: 403
+    title: Forbidden
+    detail: The authenticated principal is not permitted to perform this operation.
+    category: authentication
+  - status: 409
+    title: Conflict
+    detail: The request conflicts with the current state of the resource.
+    category: user
+  - status: 429
+    title: Too Many Requests
+    detail: Rate limit exceeded for the current window.
+    category: throttled
+    headers: [Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset]
+    remediation: Honor Retry-After and back off. See rate-limits/zapier-rate-limits.yml.
+  - status: 503
+    title: Service Unavailable
+    detail: The service is temporarily unavailable (may also carry rate-limit / Retry-After headers).
+    category: system_throttled
+    headers: [Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset]
+  - status: 504
+    title: Gateway Timeout
+    detail: The upstream/underlying operation did not complete in time.
+    category: system
+docs: https://docs.zapier.com/powered-by-zapier/api-reference/common-types/errors

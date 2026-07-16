@@ -1,0 +1,55 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.zapier.com/integrations/news (Zapier Platform News — the dated
+  changelog for zapier-platform-cli / zapier-platform-core) and
+  https://docs.zapier.com/sdk/changelog (Zapier TypeScript SDK/CLI changelog).
+  Recent window only; the live pages are the source of truth.
+scheme: semver (per npm release), dated Platform News entries
+current_version:
+  zapier-platform-cli: 19.0.0
+  channel: https://www.npmjs.com/package/zapier-platform-cli
+changelogs:
+  - name: Platform News (Developer Platform)
+    url: https://docs.zapier.com/integrations/news
+    single_page: https://docs.zapier.com/integrations/news/single-page
+    covers: zapier-platform-cli, zapier-platform-core
+  - name: Zapier SDK changelog
+    url: https://docs.zapier.com/sdk/changelog
+    covers: "@zapier/zapier-sdk, @zapier/zapier-sdk-cli"
+entries:
+  - version: 18.5.1
+    date: '2026'
+    highlights: Actionable errors; `platformData` removed; `zapier-platform` binary name.
+    breaking: true
+  - version: 18.5.0
+    date: '2026'
+    highlights: Line item support in `invoke`; falsy value fixes.
+    breaking: false
+  - version: 18.4.0
+    date: '2026'
+    highlights: JSON input field type; `versions` improvements.
+    breaking: false
+  - version: 18.3.0
+    date: '2026'
+    highlights: Bug fixes and improvements.
+    breaking: false
+  - version: 18.2.0
+    date: '2026'
+    highlights: "`invoke` supports function-based choices."
+    breaking: false
+  - version: 18.1.0
+    date: '2026'
+    highlights: "`invoke --remote` flag; package manager detection fix."
+    breaking: false
+  - version: 18.0.0
+    date: '2025'
+    highlights: Node.js 22; throttling middleware; new `zapier-platform` binary.
+    breaking: true
+  - version: 17.0.0
+    date: '2025'
+    highlights: ES module support; complete typing; removal of `{{curlies}}` templating.
+    breaking: true
+policy_notes:
+  - Version pushes must be sequential (no skipping intermediate versions).
+  - Migrations must stay within the same major version.
