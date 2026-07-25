@@ -1,0 +1,1503 @@
+openapi: 3.1.0
+info:
+  title: Partner Accounts Experimental API
+  version: 2024.11.0
+  description: '
+
+    ## Introduction
+
+
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
+
+    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
+
+    feel, and flow.
+
+
+    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
+
+    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
+
+    expose relevant Zap information, and more!
+
+
+    With the Partner API, you can:
+
+
+    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
+
+    users all the integration possibilities with your Zapier integration.
+
+    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
+
+    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
+
+    and feel.
+
+    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
+
+    - Streamline Zap setup by pre-filling fields on behalf of your users.
+
+    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
+
+    complete confidence in their Zapier integration.
+
+    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
+
+    your product.
+
+
+    ## Authentication
+
+
+    There are two ways to authenticate with the Partner API.
+
+
+    1. Your application''s `client_id` which you will receive once you are approved for access to the API
+
+    (Client ID Authentication)
+
+    2. A user''s access token (Access Token Authentication).
+
+
+    Which authentication method you should use depends on which endpoint(s) you are using.
+
+    Review each endpoint''s documentation to understand which parameters are required.
+
+
+    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
+
+    need it so it''s not something we provide.''
+
+
+    ## Learn more
+
+
+    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
+
+    '
+  contact:
+    name: Zapier
+    url: https://developer.zapier.com/contact
+servers:
+- url: https://api.zapier.com
+tags:
+- name: Experimental
+  description: Refers to resources interacting with 'Experimental' associated resources
+paths:
+  /v2/action-runs:
+    post:
+      operationId: create-action-run
+      description: 'Runs an action (step) in the third party API, using the provided authentication and inputs.
+
+
+        This endpoint is asynchronous, and the response will contain an Action Run ID. You can use the `/v2/action-runs/:id` endpoint to check the status of the run and retrieve the results.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `action:run` OAuth scope.'
+      summary: Zapier Create an Action Run
+      tags:
+      - Experimental
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunActionRequest'
+            examples:
+              CreatingAnActionRun(runningAnAction):
+                value:
+                  data:
+                    action: example_core:Vn7xbE60
+                    authentication: example_QVaAreV1
+                    inputs:
+                      email: me@example.com
+                summary: Creating an Action Run (running an action)
+        required: true
+      security:
+      - OAuth:
+        - action:run
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunActionResponse'
+              examples:
+                CreateActionRunResponse:
+                  value:
+                    data:
+                      type: run
+                      id: 123e4567-e89b-12d3-a456-426614174000
+                  summary: Create Action Run Response
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run403Example:
+                  summary: Default create-action-run 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id001
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run401Example:
+                  summary: Default create-action-run 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run409Example:
+                  summary: Default create-action-run 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run429Example:
+                  summary: Default create-action-run 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run503Example:
+                  summary: Default create-action-run 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-action-run504Example:
+                  summary: Default create-action-run 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/action-runs/{id}:
+    get:
+      operationId: retrieve-action-run
+      description: 'Retrieves an Action Run.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `action:run` OAuth scope.'
+      summary: Zapier Retrieve Action Run
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: An Action Run ID.
+        required: true
+        example: '500123'
+      tags:
+      - Experimental
+      security:
+      - OAuth:
+        - action:run
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionRunResponse'
+              examples:
+                RetrievingARun:
+                  value:
+                    data:
+                      type: run
+                      status: success
+                      results:
+                      - id: 123
+                      errors: []
+                  summary: Retrieving a run
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run403Example:
+                  summary: Default retrieve-action-run 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id002
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run401Example:
+                  summary: Default retrieve-action-run 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run409Example:
+                  summary: Default retrieve-action-run 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run429Example:
+                  summary: Default retrieve-action-run 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run503Example:
+                  summary: Default retrieve-action-run 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Retrieve-action-run504Example:
+                  summary: Default retrieve-action-run 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/whitelabel/apps:
+    get:
+      operationId: v2-whitelabel-apps-list
+      description: This endpoint returns a list of apps available for whitelabel connection. It is only for customers enrolled in the Zapier Whitelabel program. All others likely want the `Get Apps` endpoint instead.
+      summary: Zapier Get Whitelabel Apps [v2]
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+        description: Filter apps by category slug.
+        example: standard
+      - in: query
+        name: limit
+        schema:
+          type: number
+        description: Limit the number of apps returned.
+        example: 42.5
+      - in: query
+        name: offset
+        schema:
+          type: number
+          default: 0
+        description: The number of apps to skip before beginning to return results.
+        example: 0
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Case-insensitive search to filter apps by title.
+        example: example-value
+      tags:
+      - Experimental
+      responses:
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list403Example:
+                  summary: Default v2-whitelabel-apps-list 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id003
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list401Example:
+                  summary: Default v2-whitelabel-apps-list 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list409Example:
+                  summary: Default v2-whitelabel-apps-list 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list429Example:
+                  summary: Default v2-whitelabel-apps-list 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list503Example:
+                  summary: Default v2-whitelabel-apps-list 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                V2-whitelabel-apps-list504Example:
+                  summary: Default v2-whitelabel-apps-list 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WhitelabelAppsResponse'
+              examples:
+                V2-whitelabel-apps-list200Example:
+                  summary: Default v2-whitelabel-apps-list 200 response
+                  x-microcks-default: true
+                  value:
+                  - data:
+                    - {}
+                    links: {}
+                    meta: {}
+          description: ''
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/zap-runs:
+    get:
+      operationId: get-zap-runs
+      description: 'This endpoint returns runs for the specified Zaps and provides basic yet essential details about their execution. As the initial version, it serves foundational information, with plans for continuous enhancement to expand its capabilities and improve data output over time.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:runs` OAuth scope.'
+      summary: Zapier Get Zap Runs
+      parameters:
+      - in: query
+        name: from_date
+        schema:
+          type: string
+        description: Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs from the last 30 days.
+        example: '2024-10-16T06:29:10.360000Z'
+      - in: query
+        name: limit
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10.
+        example: 10
+      - in: query
+        name: offset
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the offset to use.
+        example: 100
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs that match the specified keywords.
+        x-maxLength: 150
+        example: My Zap Title
+      - in: query
+        name: statuses
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - delayed
+            - scheduled
+            - pending
+            - error
+            - error_handled
+            - halted
+            - throttled
+            - held
+            - filtered
+            - skipped
+            - success
+        description: Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the specified status or statuses provided.
+        explode: false
+        style: form
+        example:
+        - error
+        - success
+      - in: query
+        name: to_date
+        schema:
+          type: string
+        description: Filter Zap runs that occurred before this date.
+        example: '2024-10-16T06:29:10.360000Z'
+      - in: query
+        name: zap_id
+        schema:
+          type: integer
+        description: Find Zap runs for the specified Zap ID.
+        example: 104445735
+      tags:
+      - Experimental
+      security:
+      - OAuth:
+        - zap:runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ZapRunsResponse'
+              examples:
+                /v2/zap-runs:
+                  value:
+                  - links:
+                      next: https://api.zapier.com/v2/zap-runs?offset=10&limit=10
+                      prev: https://api.zapier.com/v2/zap-runs?offset=0&limit=10
+                    meta:
+                      count: 30
+                      limit: 10
+                      offset: 10
+                    data:
+                    - id: 123e4567-e89b-12d3-a456-426614174000
+                      zap_id: 104445735
+                      start_time: '2024-10-16T06:29:10.360000Z'
+                      end_time: '2024-10-16T06:29:10.360000Z'
+                      status: success
+                      zap_title: My Awesome Zap
+                      steps:
+                      - status: success
+                        start_time: '2024-10-16T06:29:10.360000Z'
+                      data_in: ''
+                      data_out: ''
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs403Example:
+                  summary: Default get-zap-runs 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id004
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs401Example:
+                  summary: Default get-zap-runs 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs409Example:
+                  summary: Default get-zap-runs 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs429Example:
+                  summary: Default get-zap-runs 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs503Example:
+                  summary: Default get-zap-runs 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs504Example:
+                  summary: Default get-zap-runs 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ZapRunStep:
+      type: object
+      description: A single step in a Zap Run.
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
+      required:
+      - status
+    RunTypeEnum:
+      enum:
+      - run
+      type: string
+      description: '* `run` - Run'
+    _ActionRunResponse:
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        status:
+          $ref: '#/components/schemas/_ActionRunResponseStatusEnum'
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Could be empty, even if the action was successfully run.
+          example:
+          - {}
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/_ActionRunResponseError'
+          description: Any errors returned by the partner when running this action.
+          example:
+          - {}
+      required:
+      - errors
+      - status
+      - type
+    ZapRun:
+      type: object
+      description: A single Zap Run response.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Zap Run ID
+          example: 550e8400-e29b-41d4-a716-446655440000
+        zap_id:
+          type: integer
+          description: Associated Zap ID
+          example: 100
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the Zap Run started
+          example: '2026-05-01T12:00:00Z'
+        end_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the Zap Run ended
+          example: '2026-05-01T12:00:00Z'
+        status:
+          type: string
+          description: Execution status of the Zap Run
+          example: active
+        zap_title:
+          type:
+          - string
+          - 'null'
+          description: The title of the Zap at the time it ran
+          example: example-value
+        steps:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ZapRunStep'
+          description: Contains the execution details of each step
+          example:
+          - {}
+        data_in:
+          oneOf:
+          - {}
+          - type: 'null'
+          description: The input data for the Zap Run
+          example: example-value
+        data_out:
+          oneOf:
+          - {}
+          - type: 'null'
+          description: The output data for the Zap Run
+          example: example-value
+      required:
+      - id
+      - status
+      - steps
+      - zap_id
+      - zap_title
+    WhitelabelApp:
+      type: object
+      description: An app available for whitelabel connection.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          default: app
+          description: The resource type.
+          example: app
+        id:
+          type: string
+          readOnly: true
+          description: The app's unique identifier.
+          example: '500123'
+        title:
+          type: string
+          description: The app's display name.
+          example: Example Name
+        image:
+          type: string
+          format: uri
+          description: URL of the app's icon.
+          example: https://example.com/path/abc123
+        is_oauth:
+          type: boolean
+          readOnly: true
+          description: Whether the app uses OAuth for authentication.
+          example: true
+        has_fields:
+          type: boolean
+          readOnly: true
+          description: Whether the app has input fields a user must fill in when connecting.
+          example: true
+        has_byoc:
+          type: boolean
+          readOnly: true
+          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
+          example: true
+        links:
+          allOf:
+          - $ref: '#/components/schemas/WhitelabelAppLinks'
+          readOnly: true
+          description: Related URLs for this app.
+          example: example-value
+      required:
+      - has_byoc
+      - has_fields
+      - id
+      - image
+      - is_oauth
+      - links
+      - title
+      - type
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    CodeEnum:
+      enum:
+      - user
+      - authentication
+      - partner
+      - system
+      - throttled
+      - system_throttled
+      - hydration
+      type: string
+      description: '* `user` - user
+
+        * `authentication` - authentication
+
+        * `partner` - partner
+
+        * `system` - system
+
+        * `throttled` - throttled
+
+        * `system_throttled` - system_throttled
+
+        * `hydration` - hydration'
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    RunActionResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_RunActionResponse'
+      required:
+      - data
+    _RunActionResponse:
+      type: object
+      description: The response after an Action Run
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        id:
+          type: string
+          format: uuid
+          description: The UUID of this Action Run
+          example: 550e8400-e29b-41d4-a716-446655440000
+      required:
+      - id
+      - type
+    WhitelabelAppsResponse:
+      type: object
+      description: A JSON:API-style response of apps available for whitelabel connection.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelabelApp'
+          description: The list of apps.
+          example:
+          - {}
+        links:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Pagination links.
+          example: {}
+        meta:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Pagination metadata.
+          example: {}
+      required:
+      - data
+      - links
+      - meta
+    WhitelabelAppLinks:
+      type: object
+      properties:
+        mcp_authorize_url:
+          type: string
+          format: uri
+          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
+          example: https://example.com/path/abc123
+        mcp_server_url:
+          type: string
+          format: uri
+          description: URL of the MCP server for this app. Requires an access token bound to a connection.
+          example: https://example.com/path/abc123
+      required:
+      - mcp_authorize_url
+      - mcp_server_url
+    ZapRunsResponse:
+      type: object
+      description: A list of Zap Runs.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    ActionRunResponse:
+      type: object
+      description: The response of a given Action Run
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_ActionRunResponse'
+          description: The resulting data after a given Action was run
+          example: example-value
+      required:
+      - data
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    _RunActionRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The ID for the Action to be run
+          example: example-value
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: The ID for Authentication (if required)
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: Inputs to be provided to the Action referenced by the ID field, when run
+          example: {}
+      required:
+      - action
+      - authentication
+      - inputs
+    _ActionRunResponseStatusEnum:
+      enum:
+      - success
+      - error
+      - waiting
+      type: string
+      description: '* `success` - success
+
+        * `error` - error
+
+        * `waiting` - waiting'
+    _ActionRunResponseError:
+      type: object
+      description: The error information returned from a third party when running an action.
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/CodeEnum'
+          description: 'Error type of the result object.
+
+
+            * `user` - user
+
+            * `authentication` - authentication
+
+            * `partner` - partner
+
+            * `system` - system
+
+            * `throttled` - throttled
+
+            * `system_throttled` - system_throttled
+
+            * `hydration` - hydration'
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        delay:
+          type: integer
+          description: When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.
+          example: 100
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Any additional error information returned from the partner.
+          example: {}
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    RunActionRequest:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_RunActionRequest'
+          description: Data for the Action Run
+          example: example-value
+      required:
+      - data
+  securitySchemes:
+    ClientIDAuthentication:
+      type: apiKey
+      in: query
+      name: client_id
+      description: See our authentication documentation for how to find your Client ID
+      x-zapier-auth-scheme-exempt: true
+    OAuth:
+      type: oauth2
+      description: 'See our OAuth2 authentication documentation here: https://docs.zapier.com/powered-by-zapier/api-reference/authentication'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          tokenUrl: https://zapier.com/oauth/token/
+          refreshUrl: https://zapier.com/oauth/token/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account
+        implicit:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account

@@ -1,0 +1,534 @@
+openapi: 3.1.0
+info:
+  title: Partner Accounts Outputs API
+  version: 2024.11.0
+  description: '
+
+    ## Introduction
+
+
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
+
+    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
+
+    feel, and flow.
+
+
+    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
+
+    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
+
+    expose relevant Zap information, and more!
+
+
+    With the Partner API, you can:
+
+
+    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
+
+    users all the integration possibilities with your Zapier integration.
+
+    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
+
+    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
+
+    and feel.
+
+    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
+
+    - Streamline Zap setup by pre-filling fields on behalf of your users.
+
+    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
+
+    complete confidence in their Zapier integration.
+
+    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
+
+    your product.
+
+
+    ## Authentication
+
+
+    There are two ways to authenticate with the Partner API.
+
+
+    1. Your application''s `client_id` which you will receive once you are approved for access to the API
+
+    (Client ID Authentication)
+
+    2. A user''s access token (Access Token Authentication).
+
+
+    Which authentication method you should use depends on which endpoint(s) you are using.
+
+    Review each endpoint''s documentation to understand which parameters are required.
+
+
+    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
+
+    need it so it''s not something we provide.''
+
+
+    ## Learn more
+
+
+    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
+
+    '
+  contact:
+    name: Zapier
+    url: https://developer.zapier.com/contact
+servers:
+- url: https://api.zapier.com
+tags:
+- name: Outputs
+  description: Refers to resources interacting with 'Outputs' associated resources
+paths:
+  /v2/actions/{action_id}/outputs:
+    post:
+      operationId: get-fields-outputs
+      description: 'Get the Output Fields for a particular Action, using the provided authentication and inputs.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:write` OAuth scope.'
+      summary: Zapier Get Output Fields
+      parameters:
+      - in: path
+        name: action_id
+        schema:
+          type: string
+        description: An Action ID, as provided by the `/actions` endpoint.
+        required: true
+        example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+      tags:
+      - Outputs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListOutputFieldsRequest'
+            examples:
+              FetchingOutputsForSomeApp:
+                value:
+                  data:
+                    authentication: example_QVaAreV1
+                    inputs:
+                      someparam: somevalue
+                summary: Fetching outputs for some app
+        required: true
+      security:
+      - OAuth:
+        - zap:write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputFieldsResponse'
+              examples:
+                OutputFieldsForSomeApp:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 3
+                      limit: null
+                      offset: 0
+                    data:
+                    - type: output_fields
+                      id: commit__message
+                      title: Commit Message
+                      sample: Git 2.0
+                    - type: output_field
+                      id: parents[]sha
+                      title: Parents Sha
+                      sample: 4a28f169ad29ba452e0e7bea2583914c10c58322
+                    - type: output_field
+                      id: parents[]url
+                      title: Parents Url
+                      sample: https://github.com/git/git/commit/4a28f169ad29ba452e0e7bea2583914c10c58322
+                  summary: Output fields for some app
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs403Example:
+                  summary: Default get-fields-outputs 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id001
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs401Example:
+                  summary: Default get-fields-outputs 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs409Example:
+                  summary: Default get-fields-outputs 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs429Example:
+                  summary: Default get-fields-outputs 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs503Example:
+                  summary: Default get-fields-outputs 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs504Example:
+                  summary: Default get-fields-outputs 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    _ListOutputFieldsRequest:
+      type: object
+      description: The common data object that includes inputs and an authentication id.
+      properties:
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID, as provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+        fetch_live_samples:
+          type: boolean
+          default: false
+          description: Whether to retrieve live samples for the field. While this can be helpful in supporting the identification of an output, note that this has latency implications as it may require an additional request to 3rd party services. This is not supported for `WRITE` actions, please use step testing instead.
+          example: false
+      required:
+      - authentication
+      - inputs
+    OutputField:
+      type: object
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this specific Output Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this specific Output Field
+          example: '500123'
+        title:
+          type: string
+          description: The title of this specific Output Field
+          example: Example Name
+        sample:
+          type: string
+          description: An (optional) sample of what an Output Field's value may look like
+          example: example-value
+      required:
+      - id
+      - title
+      - type
+    OutputFieldsResponse:
+      type: object
+      description: A successful response containing Output Field data
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputField'
+          description: A list of the Output Fields matching the given request
+          example:
+          - {}
+      required:
+      - data
+      - links
+      - meta
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ListOutputFieldsRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListOutputFieldsRequest'
+      required:
+      - data
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+  securitySchemes:
+    ClientIDAuthentication:
+      type: apiKey
+      in: query
+      name: client_id
+      description: See our authentication documentation for how to find your Client ID
+      x-zapier-auth-scheme-exempt: true
+    OAuth:
+      type: oauth2
+      description: 'See our OAuth2 authentication documentation here: https://docs.zapier.com/powered-by-zapier/api-reference/authentication'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          tokenUrl: https://zapier.com/oauth/token/
+          refreshUrl: https://zapier.com/oauth/token/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account
+        implicit:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account

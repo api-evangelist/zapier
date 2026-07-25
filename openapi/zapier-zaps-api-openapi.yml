@@ -1,0 +1,2282 @@
+openapi: 3.1.0
+info:
+  title: Partner Accounts Zaps API
+  version: 2024.11.0
+  description: '
+
+    ## Introduction
+
+
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
+
+    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
+
+    feel, and flow.
+
+
+    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
+
+    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
+
+    expose relevant Zap information, and more!
+
+
+    With the Partner API, you can:
+
+
+    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
+
+    users all the integration possibilities with your Zapier integration.
+
+    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
+
+    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
+
+    and feel.
+
+    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
+
+    - Streamline Zap setup by pre-filling fields on behalf of your users.
+
+    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
+
+    complete confidence in their Zapier integration.
+
+    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
+
+    your product.
+
+
+    ## Authentication
+
+
+    There are two ways to authenticate with the Partner API.
+
+
+    1. Your application''s `client_id` which you will receive once you are approved for access to the API
+
+    (Client ID Authentication)
+
+    2. A user''s access token (Access Token Authentication).
+
+
+    Which authentication method you should use depends on which endpoint(s) you are using.
+
+    Review each endpoint''s documentation to understand which parameters are required.
+
+
+    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
+
+    need it so it''s not something we provide.''
+
+
+    ## Learn more
+
+
+    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
+
+    '
+  contact:
+    name: Zapier
+    url: https://developer.zapier.com/contact
+servers:
+- url: https://api.zapier.com
+tags:
+- name: Zaps
+  description: Refers to resources interacting with 'Zaps' associated resources
+paths:
+  /v1/zaps:
+    get:
+      operationId: v1_zaps_list
+      description: 'This endpoint returns a list of Zaps for the authenticated Zapier user.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap` OAuth scope.'
+      summary: Zapier Get Zaps [v1]
+      parameters:
+      - in: query
+        name: get_params
+        schema: {}
+        description: If set, guarantees that the 'params' of any node belonging to your app will be present in the response
+        example: ''
+      - in: query
+        name: limit
+        schema:
+          type: number
+          default: 5
+        description: '(Max: 100) Limit the number of Zap templates returned.'
+        example: 5
+      - in: query
+        name: offset
+        schema:
+          type: number
+          default: 0
+        description: The number of Zap templates to skip before beginning to return the Zap templates. The default value is 0, which is the offset of the first item.
+        example: 0
+      - in: query
+        name: params__{{KEY}}
+        schema:
+          type: string
+        description: Filter for Zaps that contain the given parameter's {{KEY}} and the value of the query parameter. Keys are defined by your app on the [developer platform](https://zapier.com/platform/login).
+        example: ex@mp1e47c4e6ff1a44e7800
+      tags:
+      - Zaps
+      security:
+      - OAuth:
+        - zap
+      responses:
+        '403':
+          description: Invalid authentication
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                V1_zaps_list401Example:
+                  summary: Default v1_zaps_list 401 response
+                  x-microcks-default: true
+                  value: {}
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                V1_zaps_list409Example:
+                  summary: Default v1_zaps_list 409 response
+                  x-microcks-default: true
+                  value: {}
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                V1_zaps_list429Example:
+                  summary: Default v1_zaps_list 429 response
+                  x-microcks-default: true
+                  value: {}
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                V1_zaps_list503Example:
+                  summary: Default v1_zaps_list 503 response
+                  x-microcks-default: true
+                  value: {}
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                V1_zaps_list504Example:
+                  summary: Default v1_zaps_list 504 response
+                  x-microcks-default: true
+                  value: {}
+          description: 504 Response
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ZapsResponse'
+              examples:
+                /v1/zaps:
+                  value:
+                  - next: https://api.zapier.com/v1/zaps?limit=2&offset=2
+                    previous: null
+                    count: 2
+                    objects:
+                    - id: 125
+                      title: Create Trello cards from new Typeform entries
+                      state: 'on'
+                      steps:
+                      - type_of: read
+                        app:
+                          id: 4259
+                          uuid: 5e2ba0e469b0-4754-bf69-d46221122aa2
+                          title: Typeform
+                          slug: typeform
+                          description: Typeform helps you ask awesomely online! If you ever need to run a survey, questionnaire, form, contest etc... Typeform will help you achieve it beautifully across all devices, every time, using its next generation platform.
+                          hex_color: 8bcbca
+                          image: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.png
+                          images:
+                            url_16x16: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.16x16.png
+                            url_32x32: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.32x32.png
+                            url_64x64: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.64x64.png
+                            url_128x128: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.128x128.png
+                          api: TypeformDevAPI
+                          url: https://zapier.com/apps/typeform/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                        params: null
+                      - type_of: write
+                        app:
+                          id: 4192
+                          uuid: ee7e5c50a7d2-4bb4-b5b8-a7e55aa00521
+                          title: Trello
+                          slug: trello
+                          description: Trello is team collaboration tool that lets you organize anything and everything to keep your projects on task.
+                          hex_color: 0079bf
+                          image: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.png
+                          images:
+                            url_16x16: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.16x16.png
+                            url_32x32: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.32x32.png
+                            url_64x64: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.64x64.png
+                            url_128x128: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.128x128.png
+                          api: TrelloAPI
+                          url: https://zapier.com/apps/trello/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                        params: null
+                      url: https://zapier.com/editor/125?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                      modified_at: '2017-03-22T09:38:11-05:00'
+                    - id: 123
+                      title: Create Trello cards from new Typeform entries
+                      state: 'off'
+                      steps:
+                      - type_of: read
+                        app:
+                          id: 4259
+                          uuid: 5e2ba0e469b0-4754-bf69-d46221122aa2
+                          title: Typeform
+                          slug: typeform
+                          description: Typeform helps you ask awesomely online! If you ever need to run a survey, questionnaire, form, contest etc... Typeform will help you achieve it beautifully across all devices, every time, using its next generation platform.
+                          hex_color: 8bcbca
+                          image: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.png
+                          images:
+                            url_16x16: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.16x16.png
+                            url_32x32: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.32x32.png
+                            url_64x64: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.64x64.png
+                            url_128x128: https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.128x128.png
+                          api: TypeformDevAPI
+                          url: https://zapier.com/apps/typeform/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                        params: null
+                      - type_of: write
+                        app:
+                          id: 4192
+                          uuid: ee7e5c50a7d2-4bb4-b5b8-a7e55aa00521
+                          title: Trello
+                          slug: trello
+                          description: Trello is team collaboration tool that lets you organize anything and everything to keep your projects on task.
+                          hex_color: 0079bf
+                          image: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.png
+                          images:
+                            url_16x16: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.16x16.png
+                            url_32x32: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.32x32.png
+                            url_64x64: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.64x64.png
+                            url_128x128: https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.128x128.png
+                          api: TrelloAPI
+                          url: https://zapier.com/apps/trello/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                        params: null
+                      url: https://zapier.com/editor/123?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                      modified_at: '2017-03-21T22:04:05-05:00'
+          description: ''
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/guess:
+    post:
+      operationId: create-zap-guess
+      description: This endpoint returns a suggested Zap and pre-filled URL to Zapier from a given prompt.
+      summary: Zapier Guess a Zap [Beta]
+      parameters:
+      - in: query
+        name: client_id
+        schema:
+          type: string
+        description: See our authentication documentation for how to find your client ID
+        required: true
+        example: '500123'
+      tags:
+      - Zaps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZapGuesserRequest'
+            examples:
+              ZapGuessRequest:
+                value:
+                  description: Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail
+                summary: Zap Guess Request
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZapGuesserResponse'
+              examples:
+                ZapGuessResponse:
+                  value:
+                    title: Save Facebook Lead Ads leads to Google Sheets and send an email
+                    steps:
+                    - step:
+                        title: Trigger when a new lead is created in Facebook Lead Ads
+                        app: Facebook Lead Ads
+                        api: FacebookLeadsAPI
+                      alternatives:
+                      - title: null
+                        app: LinkedIn Ads
+                        api: LinkedInLeadGenFormsCLIAPI@2.7.1
+                    - step:
+                        title: Save the lead information to a Google Sheet
+                        app: Google Sheets
+                        api: GoogleSheetsV2API
+                      alternatives: []
+                    prefilled_url: https://api.zapier.com/v1/embed/my-app/create?steps%5B0%5D%5Bapp%5D=FacebookLeadsAPI&steps%5B0%5D%5Baction%5D=lead&steps%5B0%5D%5Btype%5D=read&steps%5B1%5D%5Bapp%5D=GoogleSheetsV2API&steps%5B1%5D%5Baction%5D=add_row&steps%5B1%5D%5Btype%5D=write&utm_campaign=partner_zap_guesser&copilot_prompt=Save+new+leads+from+Facebook+Lead+Ads+to+Google+Sheets%2C+and+email+me+the+lead+in+Gmail&partner_zap_guesser_attempt_id=22f44602-db8f-4a2a-8b09-420b0d277b5f
+                  summary: Zap Guess Response
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess403Example:
+                  summary: Default create-zap-guess 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id001
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess401Example:
+                  summary: Default create-zap-guess 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess409Example:
+                  summary: Default create-zap-guess 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess429Example:
+                  summary: Default create-zap-guess 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess503Example:
+                  summary: Default create-zap-guess 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Create-zap-guess504Example:
+                  summary: Default create-zap-guess 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidZapGuesserResponse'
+              examples:
+                InvalidGuessAZapPrompt:
+                  value:
+                    messages:
+                    - detail: This doesn't seem to be a workflow. You could try something like, 'When a new NFL...
+                  summary: Invalid Guess a Zap Prompt
+          description: This schema can be expected for 400 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/zap-runs:
+    get:
+      operationId: get-zap-runs
+      description: 'This endpoint returns runs for the specified Zaps and provides basic yet essential details about their execution. As the initial version, it serves foundational information, with plans for continuous enhancement to expand its capabilities and improve data output over time.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:runs` OAuth scope.'
+      summary: Zapier Get Zap Runs
+      parameters:
+      - in: query
+        name: from_date
+        schema:
+          type: string
+        description: Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs from the last 30 days.
+        example: '2024-10-16T06:29:10.360000Z'
+      - in: query
+        name: limit
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10.
+        example: 10
+      - in: query
+        name: offset
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the offset to use.
+        example: 100
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs that match the specified keywords.
+        x-maxLength: 150
+        example: My Zap Title
+      - in: query
+        name: statuses
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - delayed
+            - scheduled
+            - pending
+            - error
+            - error_handled
+            - halted
+            - throttled
+            - held
+            - filtered
+            - skipped
+            - success
+        description: Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the specified status or statuses provided.
+        explode: false
+        style: form
+        example:
+        - error
+        - success
+      - in: query
+        name: to_date
+        schema:
+          type: string
+        description: Filter Zap runs that occurred before this date.
+        example: '2024-10-16T06:29:10.360000Z'
+      - in: query
+        name: zap_id
+        schema:
+          type: integer
+        description: Find Zap runs for the specified Zap ID.
+        example: 104445735
+      tags:
+      - Zaps
+      security:
+      - OAuth:
+        - zap:runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ZapRunsResponse'
+              examples:
+                /v2/zap-runs:
+                  value:
+                  - links:
+                      next: https://api.zapier.com/v2/zap-runs?offset=10&limit=10
+                      prev: https://api.zapier.com/v2/zap-runs?offset=0&limit=10
+                    meta:
+                      count: 30
+                      limit: 10
+                      offset: 10
+                    data:
+                    - id: 123e4567-e89b-12d3-a456-426614174000
+                      zap_id: 104445735
+                      start_time: '2024-10-16T06:29:10.360000Z'
+                      end_time: '2024-10-16T06:29:10.360000Z'
+                      status: success
+                      zap_title: My Awesome Zap
+                      steps:
+                      - status: success
+                        start_time: '2024-10-16T06:29:10.360000Z'
+                      data_in: ''
+                      data_out: ''
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs403Example:
+                  summary: Default get-zap-runs 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id002
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs401Example:
+                  summary: Default get-zap-runs 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs409Example:
+                  summary: Default get-zap-runs 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs429Example:
+                  summary: Default get-zap-runs 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs503Example:
+                  summary: Default get-zap-runs 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-zap-runs504Example:
+                  summary: Default get-zap-runs 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/zaps:
+    get:
+      operationId: get-v2-zaps
+      description: 'This endpoint returns a list of Zaps for the authenticated Zapier user.
+
+
+        The `expand` array can be used to expand selected fields into full objects in the response.  Inputs with keys can
+
+        also be passed to filter Zaps by certain criteria.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap`, `zap:all`, or `zap:account:all` OAuth scopes.'
+      summary: Zapier Get Zaps [v2]
+      parameters:
+      - in: query
+        name: expand
+        schema:
+          type: string
+        description: A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids.
+        example: steps.action
+      - in: query
+        name: include_shared
+        schema:
+          type: boolean
+        description: If true, all Zaps that are shared with the user, rather than only those owned by them, are returned. If the zap:account:all scope is not present this has no effect.
+        example: true
+      - in: query
+        name: inputs
+        schema:
+          type: string
+        description: You may pass inputs[KEY]=VALUE1,VALUE2 to filter for Zaps that contain those settings. Keys are defined by your app on the developer platform.
+        example: inputs[board]=BOARD_ID
+      - in: query
+        name: limit
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10.
+        example: 10
+      - in: query
+        name: offset
+        schema:
+          type: integer
+        description: Used for paginating results. Specifies the offset to use.
+        example: 100
+      tags:
+      - Zaps
+      security:
+      - OAuth:
+        - zap
+        - zap:all
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpandedZapsResponse'
+              examples:
+                /v2/zaps:
+                  value:
+                  - links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 1
+                      offset: 0
+                      limit: null
+                    data:
+                    - type: zap
+                      id: 00000000-0000-c000-8000-000000012345
+                      is_enabled: false
+                      last_successful_run_date: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
+                      title: My Zap
+                      links:
+                        html_editor: https://zapier.com/editor/7481?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                      steps:
+                      - action: uag:1f188536-6dd0-4172-8414-2b90914ddee9
+                        authentication: QVaPP2O1
+                        inputs:
+                          deal_stage: CLOSED_WON
+                        title: Pacific Railway Golden spike hammered
+                      - action: uag:1f188536-6dd0-4172-8414-2b90914ddaa7
+                        authentication: MVA64zk4
+                        inputs:
+                          full_name: '{{customer__full_name}}'
+                        title: Record who dunnit
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps403Example:
+                  summary: Default get-v2-zaps 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id003
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps401Example:
+                  summary: Default get-v2-zaps 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps409Example:
+                  summary: Default get-v2-zaps 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps429Example:
+                  summary: Default get-v2-zaps 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps503Example:
+                  summary: Default get-v2-zaps 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-v2-zaps504Example:
+                  summary: Default get-v2-zaps 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: post-zaps
+      description: 'This URL creates a Zap based on the given steps and title.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:write` OAuth scope.'
+      summary: Zapier Create a Zap
+      parameters:
+      - in: query
+        name: expand
+        schema:
+          type: string
+        description: A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids.
+        example: steps.action
+      tags:
+      - Zaps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZapRequest'
+            examples:
+              ToBeCreatedZap:
+                value:
+                  data:
+                    steps:
+                    - action: example_core:5m2y9p7J
+                      inputs:
+                        code: 'output = [{id: Math.round(Date.now()/1000), n: Math.random()}];'
+                      authentication: null
+                      alias: null
+                    - action: example_core:VBz2NGB5
+                      inputs:
+                        code: 'output = [{ id: inputData.id, n: inputData.n * 2}];'
+                        inputs:
+                          n: '{{n}}'
+                          id: '{{id}}'
+                      authentication: null
+                      alias: null
+                    title: My Critically Important Program
+                summary: To be created Zap
+              ManyStepZap:
+                value:
+                  data:
+                    steps:
+                    - action: core:9QKqnTZ54VnrL2opYbkJJKveKEr2GJ
+                      inputs: {}
+                      authentication: Vx4PEEeV
+                      alias: slack_new_saved_message
+                    - action: core:2oY5MSxlgML1jb43A0nroedgjdnVM
+                      inputs:
+                        to:
+                        - chang.hsiao@irohalen.example
+                        subject: 3 step zap - new message saved in slack
+                        body: 'Saved new message from:
+
+                          {{slack_new_saved_message.user__real_name}}
+
+
+
+                          Message Content:
+
+                          {{text}}'
+                      authentication: k0QBMMDK
+                      alias: null
+                    - action: core:vDakLS1PLO4J29eodDRLa5okErEn0
+                      inputs:
+                        channel: U036ZHWNHU2
+                        text: 'Saved new message from:
+
+                          {{slack_new_saved_message.user__real_name}}
+
+
+
+                          Email thread id:
+
+                          {{threadId}}
+
+
+
+                          Message Content:
+
+                          {{slack_new_saved_message.text}}'
+                      authentication: Vx4PEEeV
+                      alias: slack_send_direct_message
+                    title: My 3 step zap
+                summary: Many Step Zap
+        required: true
+      security:
+      - OAuth:
+        - zap:write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpandedZap'
+              examples:
+                CustomCreatedZap:
+                  value:
+                    type: zap
+                    id: 033cc069f2d3-4d63-8666-10c07ab38dac
+                    is_enabled: true
+                    last_successful_run_date: '2019-08-24T14:15:22Z'
+                    updated_at: '2024-03-14T22:02:36+00:00'
+                    title: My Critically Important Program
+                    links:
+                      html_editor: https://zapier.com/editor/104826178?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier
+                    steps:
+                    - action: example_core:Vn7xbE60
+                      authentication: 2kyXZ8VJ
+                      inputs: {}
+                      title: null
+                    - action: example_core:V7GpzX40
+                      authentication: null
+                      inputs: null
+                      title: null
+                  summary: Custom created zap
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps403Example:
+                  summary: Default post-zaps 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id004
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps401Example:
+                  summary: Default post-zaps 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps409Example:
+                  summary: Default post-zaps 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps429Example:
+                  summary: Default post-zaps 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps503Example:
+                  summary: Default post-zaps 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Post-zaps504Example:
+                  summary: Default post-zaps 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ZapRunStep:
+      type: object
+      description: A single step in a Zap Run.
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
+      required:
+      - status
+    ZapRun:
+      type: object
+      description: A single Zap Run response.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Zap Run ID
+          example: 550e8400-e29b-41d4-a716-446655440000
+        zap_id:
+          type: integer
+          description: Associated Zap ID
+          example: 100
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the Zap Run started
+          example: '2026-05-01T12:00:00Z'
+        end_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the Zap Run ended
+          example: '2026-05-01T12:00:00Z'
+        status:
+          type: string
+          description: Execution status of the Zap Run
+          example: active
+        zap_title:
+          type:
+          - string
+          - 'null'
+          description: The title of the Zap at the time it ran
+          example: example-value
+        steps:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ZapRunStep'
+          description: Contains the execution details of each step
+          example:
+          - {}
+        data_in:
+          oneOf:
+          - {}
+          - type: 'null'
+          description: The input data for the Zap Run
+          example: example-value
+        data_out:
+          oneOf:
+          - {}
+          - type: 'null'
+          description: The output data for the Zap Run
+          example: example-value
+      required:
+      - id
+      - status
+      - steps
+      - zap_id
+      - zap_title
+    ExpandedZapsResponse:
+      type: object
+      description: A page of returned Zaps.
+      properties:
+        links:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          readOnly: true
+          description: Links related to the response data
+          example: {}
+        meta:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Metadata about the response
+          example: {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpandedZap'
+          description: The (potentially) expanded data for Zaps that matched the request
+          example:
+          - {}
+      required:
+      - data
+      - links
+      - meta
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    Zap:
+      type: object
+      description: User Zaps.
+      properties:
+        id:
+          type: integer
+          description: The numeric identifier of this Zap
+          example: 100
+        title:
+          type: string
+          description: The title of this Zap
+          example: Example Name
+        state:
+          type: string
+          description: The current state of this Zap
+          example: active
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapStep'
+          readOnly: true
+          description: The steps this Zap consists of
+          example:
+          - {}
+        url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL to this Zap
+          example: https://example.com/path/abc123
+        modified_at:
+          type: string
+          description: The last time this Zap was modified
+          example: example-value
+      required:
+      - id
+      - modified_at
+      - state
+      - steps
+      - title
+      - url
+    ZapTemplateStepImages:
+      type: object
+      description: Images for a Zap Template at various sizes
+      properties:
+        url_16x16:
+          type: string
+          description: URL to 16x16 image for Zap Template
+          example: example-value
+        url_32x32:
+          type: string
+          description: URL to 32x32 image for Zap Template
+          example: example-value
+        url_64x64:
+          type: string
+          description: URL to 64x64 image for Zap Template
+          example: example-value
+        url_128x128:
+          type: string
+          description: URL to 128x128 image for Zap Template
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    TypeOfEnum:
+      enum:
+      - read
+      - write
+      - filter
+      - search
+      - search_or_write
+      type: string
+      description: '* `read` - read
+
+        * `write` - write
+
+        * `filter` - filter
+
+        * `search` - search
+
+        * `search_or_write` - search_or_write'
+    ZapsResponse:
+      type: object
+      description: A page of returned Zaps.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          readOnly: true
+          description: The URL to get the next set of records
+          example: https://example.com/path/abc123
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          readOnly: true
+          description: The URL to get the previous set of records
+          example: https://example.com/path/abc123
+        count:
+          type: integer
+          readOnly: true
+          description: The total number of records matching the request
+          example: 100
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Zap'
+          description: The returned Zap data
+          example:
+          - {}
+      required:
+      - count
+      - next
+      - objects
+      - previous
+    ZapRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateZapRequest'
+      required:
+      - data
+    AuthenticationTypeEnum:
+      enum:
+      - authentication
+      type: string
+      description: '* `authentication` - authentication'
+    ZapGuesserResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The generated title for this suggested Zap.
+          example: Example Name
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapGuesserStep'
+          description: The steps this suggested Zap consists of.
+          example:
+          - {}
+        prefilled_url:
+          type: string
+          readOnly: true
+          description: A generated prefilled URL to take you to the Zapier editor (selects the highest confidence steps).
+          example: https://example.com/path/abc123
+        messages:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Contains informational messages about the prompt.
+          example:
+          - {}
+      required:
+      - prefilled_url
+      - steps
+      - title
+    ZapRunsResponse:
+      type: object
+      description: A list of Zap Runs.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    ZapStepApp:
+      type: object
+      description: Data for the App used in a given Zap's step
+      properties:
+        id:
+          type: integer
+          description: The numerical identifier of this Zap step's App
+          example: 100
+        uuid:
+          type: string
+          description: UUID identifier for this Zap step's App
+          example: 550e8400-e29b-41d4-a716-446655440000
+        title:
+          type: string
+          description: The name of this App
+          example: Example Name
+        slug:
+          type: string
+          description: The shortened slug for this App
+          example: example-value
+        description:
+          type: string
+          description: The description of this App
+          example: Example description for this resource.
+        hex_color:
+          type: string
+          description: The primary (hex) color for this App
+          example: example-value
+        image:
+          type: string
+          description: The image for this App
+          example: example-value
+        images:
+          allOf:
+          - $ref: '#/components/schemas/ZapTemplateStepImages'
+          description: A set of images of various sizes for this App
+          example: example-value
+        api:
+          type: string
+          description: The name of the API this App references
+          example: example-value
+        url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL for this App
+          example: https://example.com/path/abc123
+      required:
+      - api
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - slug
+      - title
+      - url
+      - uuid
+    ExpandedZapStep:
+      type: object
+      description: An ordered list of steps that define the logic of the Zap.
+      properties:
+        action:
+          description: Action
+          oneOf:
+          - $ref: '#/components/schemas/Action'
+          - type: string
+          example: example-value
+        authentication:
+          description: Authentication
+          oneOf:
+          - $ref: '#/components/schemas/Authentication'
+          - type:
+            - string
+            - 'null'
+          example: example-value
+        inputs:
+          readOnly: true
+          description: The inputs for this specific Zap's step
+          example: example-value
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: The custom title of a Zap Step. If a step has not been given a custom title by the user, then the value will be null.
+          example: Example Name
+      required:
+      - action
+      - authentication
+      - inputs
+      - title
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
+    ZapGuesserRawStep:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of this step
+          example: Example Name
+        app:
+          type: string
+          description: This step's human-readable name
+          example: example-value
+        api:
+          type: string
+          description: The Zapier API integration this step uses
+          example: example-value
+      required:
+      - api
+      - app
+      - title
+    ExpandedZap:
+      type: object
+      description: A Zap is an automated workflow that connects your apps and services together.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this object.
+          example: standard
+        id:
+          type: string
+          readOnly: true
+          description: A unique identifier of the Zap.
+          example: '500123'
+        is_enabled:
+          type: boolean
+          default: true
+          description: Whether the Zap is enabled (running) or not.
+          example: true
+        last_successful_run_date:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: The date/time at which this Zap last ran successfully. A null value indicates that a Zap has never run successfully.
+          example: example-value
+        updated_at:
+          type: string
+          readOnly: true
+          description: The last time this Zap was updated
+          example: example-value
+        title:
+          type: string
+          description: The human readable name of the Zap.
+          example: Example Name
+        links:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Link to open this Zap in the Zapier Editor
+          example: {}
+        steps:
+          description: A list of the steps this Zap consists of
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ExpandedZapStep'
+            - type: string
+          example:
+          - example-value
+      required:
+      - id
+      - last_successful_run_date
+      - links
+      - steps
+      - title
+      - type
+      - updated_at
+    Action:
+      type: object
+      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
+      properties:
+        id:
+          type: string
+          description: The ID to refer to this action (unstable, may change when referenced app changes)
+          example: '500123'
+        key:
+          type: string
+          description: The developer provided identifier for this Action (stable)
+          example: example-value
+        app:
+          description: Apps
+          oneOf:
+          - $ref: '#/components/schemas/Apps'
+          - type: string
+          example: example-value
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this object
+
+
+            * `action` - action'
+          example: standard
+        action_type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this Action
+
+
+            * `READ` - READ
+
+            * `READ_BULK` - READ_BULK
+
+            * `WRITE` - WRITE
+
+            * `SEARCH` - SEARCH
+
+            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
+
+            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
+
+            * `FILTER` - FILTER'
+          example: standard
+        is_instant:
+          type: boolean
+          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
+          example: true
+        title:
+          type: string
+          description: The title of this Action.
+          example: Example Name
+        description:
+          type: string
+          description: A longer description of this Action, usually describing what it does in more detail.
+          example: Example description for this resource.
+      required:
+      - action_type
+      - app
+      - description
+      - id
+      - is_instant
+      - key
+      - title
+      - type
+    CreateZapRequest:
+      type: object
+      description: See our Building a Zap guide to get started.
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateZapRequestStep'
+          description: The list of steps that the Zap should consist of
+          example:
+          - {}
+        title:
+          type: string
+          description: The title to be set for this Zap
+          example: Example Name
+      required:
+      - steps
+      - title
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    Authentication:
+      type: object
+      description: 'An Authentication contains various fields, often credentials such as API tokens, used to access Partner APIs on
+
+        behalf of a user. The actual fields are held securely by Zapier'
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/AuthenticationTypeEnum'
+          readOnly: true
+          default: authentication
+          description: 'The type of this object.
+
+
+            * `authentication` - authentication'
+          example: authentication
+        id:
+          type: string
+          description: The identifier for this specific Authentication
+          example: '500123'
+        app:
+          description: An app that integrates with Zapier.
+          oneOf:
+          - $ref: '#/components/schemas/Apps'
+          - type: string
+          example: example-value
+        is_expired:
+          type: boolean
+          description: If `true`, this Authentication has expired. It will not be usable, and the user needs to be directed to reconnect it.
+          example: true
+        title:
+          type: string
+          description: The title of this specific Authentication
+          example: Example Name
+      required:
+      - app
+      - id
+      - is_expired
+      - title
+      - type
+    ZapStep:
+      type: object
+      description: One step in a Zap
+      properties:
+        type_of:
+          allOf:
+          - $ref: '#/components/schemas/TypeOfEnum'
+          description: 'The type of this Step
+
+
+            * `read` - read
+
+            * `write` - write
+
+            * `filter` - filter
+
+            * `search` - search
+
+            * `search_or_write` - search_or_write'
+          example: standard
+        app:
+          allOf:
+          - $ref: '#/components/schemas/ZapStepApp'
+          description: The App used in this Step
+          example: example-value
+        params:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          readOnly: true
+          description: The parameters used by this Step
+          example: {}
+      required:
+      - app
+      - params
+      - type_of
+    ActionTypeEnum:
+      enum:
+      - action
+      type: string
+      description: '* `action` - action'
+    ZapGuesserRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: The description of the Zap you wish to create
+          example: Example description for this resource.
+      required:
+      - description
+    ZapGuesserStep:
+      type: object
+      properties:
+        step:
+          allOf:
+          - $ref: '#/components/schemas/ZapGuesserRawStep'
+          readOnly: true
+          description: The highest scoring (most relevant) step for this Zap
+          example: example-value
+        alternatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapGuesserRawStep'
+          readOnly: true
+          description: Alternative steps that we are less confident are relevant, but may have been intended
+          example:
+          - {}
+      required:
+      - alternatives
+      - step
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    CreateZapRequestStep:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The ID of the Action to be associated with this step
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The inputs for the Action associated with this step
+          example: {}
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: The authentication, if required, for this Action to run
+          example: example-value
+        alias:
+          type:
+          - string
+          - 'null'
+          description: Optional alias for this step to be referenced by later steps (snake_case, max 64 chars)
+          maxLength: 64
+          pattern: ^[a-z][a-z0-9_]*$
+          example: example-value
+      required:
+      - action
+      - authentication
+      - inputs
+    InvalidZapGuesserResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Contains informational messages about the prompt.
+          example:
+          - {}
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Apps:
+      type: object
+      description: An app that integrates with Zapier
+      properties:
+        id:
+          type: string
+          description: Unique id of the app
+          example: '500123'
+        type:
+          type: string
+          default: app
+          description: The type of this object.
+          example: app
+        image:
+          type: string
+          description: Default image/icon to represent the app.
+          example: example-value
+        links:
+          type: object
+          additionalProperties: {}
+          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
+          example: {}
+        action_types:
+          type: array
+          items: {}
+          description: A list of action types for this specific App
+          example:
+          - standard
+        title:
+          type: string
+          description: Human readable name of the app
+          example: Example Name
+        images:
+          allOf:
+          - $ref: '#/components/schemas/AppsImages'
+          description: The URL of images (of various sizes) for this specific App
+          example: example-value
+        hex_color:
+          type: string
+          description: A branded color that can be used to represent the app.
+          example: example-value
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
+          example:
+          - {}
+        description:
+          type: string
+          description: Human readable description of the app.
+          example: Example description for this resource.
+      required:
+      - action_types
+      - categories
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - links
+      - title
+  securitySchemes:
+    ClientIDAuthentication:
+      type: apiKey
+      in: query
+      name: client_id
+      description: See our authentication documentation for how to find your Client ID
+      x-zapier-auth-scheme-exempt: true
+    OAuth:
+      type: oauth2
+      description: 'See our OAuth2 authentication documentation here: https://docs.zapier.com/powered-by-zapier/api-reference/authentication'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          tokenUrl: https://zapier.com/oauth/token/
+          refreshUrl: https://zapier.com/oauth/token/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account
+        implicit:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account

@@ -1,0 +1,2087 @@
+openapi: 3.1.0
+info:
+  title: Partner Accounts Actions API
+  version: 2024.11.0
+  description: '
+
+    ## Introduction
+
+
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
+
+    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
+
+    feel, and flow.
+
+
+    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
+
+    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
+
+    expose relevant Zap information, and more!
+
+
+    With the Partner API, you can:
+
+
+    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
+
+    users all the integration possibilities with your Zapier integration.
+
+    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
+
+    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
+
+    and feel.
+
+    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
+
+    - Streamline Zap setup by pre-filling fields on behalf of your users.
+
+    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
+
+    complete confidence in their Zapier integration.
+
+    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
+
+    your product.
+
+
+    ## Authentication
+
+
+    There are two ways to authenticate with the Partner API.
+
+
+    1. Your application''s `client_id` which you will receive once you are approved for access to the API
+
+    (Client ID Authentication)
+
+    2. A user''s access token (Access Token Authentication).
+
+
+    Which authentication method you should use depends on which endpoint(s) you are using.
+
+    Review each endpoint''s documentation to understand which parameters are required.
+
+
+    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
+
+    need it so it''s not something we provide.''
+
+
+    ## Learn more
+
+
+    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
+
+    '
+  contact:
+    name: Zapier
+    url: https://developer.zapier.com/contact
+servers:
+- url: https://api.zapier.com
+tags:
+- name: Actions
+  description: Refers to resources interacting with 'Actions' associated resources
+paths:
+  /v2/actions:
+    get:
+      operationId: get-actions
+      description: 'Fetch the available actions for the provided App. It''s typical to filter by type so that only actions that make sense for a particular step are shown. Action IDs may not be reused, see our documentation for how to hardcode a particular action.
+
+
+        #### When using Client ID
+
+
+        Simply providing a client ID query parameter is sufficient. If an Authorization header is present, it will be used instead.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap` OAuth scope.'
+      summary: Zapier Get Actions
+      parameters:
+      - in: query
+        name: action_type
+        schema:
+          type: string
+          enum:
+          - READ
+          - READ_BULK
+          - SEARCH
+          - SEARCH_AND_WRITE
+          - SEARCH_OR_WRITE
+          - WRITE
+        description: The type of Action to filter for. Defaults to returning all actions regardless of type.
+        example: READ
+      - in: query
+        name: app
+        schema:
+          type: string
+          format: uuid
+        description: A canonical App ID, as provided by the `/apps` endpoint.
+        required: true
+        example: 868f9d3c-2ea0-4f19-a32d-a61b276ab8de
+      tags:
+      - Actions
+      security:
+      - OAuth:
+        - zap
+      - ClientIDAuthentication: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionsResponse'
+              examples:
+                ActionsExample:
+                  value:
+                  - links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 1
+                      limit: 10
+                      offset: 0
+                    data:
+                    - id: uag:1f188536-6dd0-4172-8414-2b90914ddee9
+                      key: new_lead
+                      app: 83b47c0e-adda-44da-a45d-42565fe521ef
+                      type: action
+                      action_type: action
+                      is_instant: true
+                      title: New Lead
+                      description: Triggers when a new lead is added to SuperExampleCRM
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions403Example:
+                  summary: Default get-actions 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id001
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions401Example:
+                  summary: Default get-actions 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions409Example:
+                  summary: Default get-actions 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions429Example:
+                  summary: Default get-actions 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions503Example:
+                  summary: Default get-actions 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-actions504Example:
+                  summary: Default get-actions 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id001
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/actions/{action_id}/inputs:
+    post:
+      operationId: get-fields-inputs
+      description: 'Get the Input Fields for a particular Action, using the provided authentication and inputs. See the fields and fieldsets guide for more information.
+
+        See [our docs](https://docs.zapier.com/powered-by-zapier/zap-creation/fields-and-fieldsets#input-fields) for more information.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:write` OAuth scope.'
+      summary: Zapier Get Input Fields
+      parameters:
+      - in: path
+        name: action_id
+        schema:
+          type: string
+        description: An Action ID, as provided by the `/actions` endpoint.
+        required: true
+        example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+      tags:
+      - Actions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListInputFieldsRequest'
+            examples:
+              FetchInputFields:
+                value:
+                  data:
+                    authentication: '928117'
+                    inputs:
+                      spreadsheet: my_sheet
+                summary: Fetch input fields
+        required: true
+      security:
+      - OAuth:
+        - zap:write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InputFieldsResponse'
+              examples:
+                InputFieldsForSomeApp:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 2
+                      limit: null
+                      offset: 0
+                    data:
+                    - type: input_field
+                      id: input
+                      default_value: ''
+                      depends_on: []
+                      description: Use the Input Data fields above to assign key names (left) and map values (right) from previous steps. Use notation `inputData.keyName` or `inputData['keyName']` to access the values within your code. The data will be provided **as strings**. Learn more [here](https://zapier.com/help/create/code-webhooks/use-javascript-code-in-zaps#input-data-for-code-steps).
+                      invalidates_input_fields: false
+                      is_required: false
+                      placeholder: ''
+                      title: Input Data
+                      value_type: OBJECT
+                    - type: input_field
+                      id: code
+                      default_value: '// this is wrapped in an `async` function
+
+                        // you can use await throughout the function
+
+
+                        output = [{id: 123, hello: "world"}];'
+                      depends_on: []
+                      description: '**Warning! This is an advanced action!** Uses Node 10.x.x. Please read the [Code documentation for more information](/help/create/code-webhooks/use-javascript-code-in-zaps).'
+                      format: CODE
+                      invalidates_input_fields: false
+                      is_required: true
+                      placeholder: ''
+                      title: Code
+                      value_type: STRING
+                  summary: Input fields for some app
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs403Example:
+                  summary: Default get-fields-inputs 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id002
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs401Example:
+                  summary: Default get-fields-inputs 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs409Example:
+                  summary: Default get-fields-inputs 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs429Example:
+                  summary: Default get-fields-inputs 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs503Example:
+                  summary: Default get-fields-inputs 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-inputs504Example:
+                  summary: Default get-fields-inputs 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id002
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/actions/{action_id}/inputs/{input_id}/choices:
+    post:
+      operationId: get-choices
+      description: 'Get the possible values for a `SELECT` Input Field.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap` OAuth scope.'
+      summary: Zapier Get Choices
+      parameters:
+      - in: path
+        name: action_id
+        schema:
+          type: string
+        description: An Action ID, as provided by the `/actions` endpoint.
+        required: true
+        example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+      - in: path
+        name: input_id
+        schema:
+          type: string
+        description: An Input Field ID, as provided by the `/inputs` endpoint.
+        required: true
+        example: lead_id
+      - in: query
+        name: page
+        schema:
+          type: string
+          default: '1'
+        description: The page of choices to return, defaults to the first
+        example: '1'
+      tags:
+      - Actions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChoiceRequest'
+            examples:
+              Get-choicesRequestExample:
+                summary: Default get-choices request
+                x-microcks-default: true
+                value:
+                  data:
+                    authentication: {}
+                    inputs: {}
+        required: true
+      security:
+      - OAuth:
+        - zap
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChoiceResponse'
+              examples:
+                ChoicesForSomeAction:
+                  value:
+                  - data:
+                    - id: 55c
+                      type: choice
+                      label: First
+                      value: example
+                    - id: a73
+                      type: choice
+                      label: Second
+                      value: example
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      page: 1
+                  summary: Choices for Some Action
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices403Example:
+                  summary: Default get-choices 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id003
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices401Example:
+                  summary: Default get-choices 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices409Example:
+                  summary: Default get-choices 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices429Example:
+                  summary: Default get-choices 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices503Example:
+                  summary: Default get-choices 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-choices504Example:
+                  summary: Default get-choices 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id003
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/actions/{action_id}/outputs:
+    post:
+      operationId: get-fields-outputs
+      description: 'Get the Output Fields for a particular Action, using the provided authentication and inputs.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:write` OAuth scope.'
+      summary: Zapier Get Output Fields
+      parameters:
+      - in: path
+        name: action_id
+        schema:
+          type: string
+        description: An Action ID, as provided by the `/actions` endpoint.
+        required: true
+        example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+      tags:
+      - Actions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListOutputFieldsRequest'
+            examples:
+              FetchingOutputsForSomeApp:
+                value:
+                  data:
+                    authentication: example_QVaAreV1
+                    inputs:
+                      someparam: somevalue
+                summary: Fetching outputs for some app
+        required: true
+      security:
+      - OAuth:
+        - zap:write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputFieldsResponse'
+              examples:
+                OutputFieldsForSomeApp:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 3
+                      limit: null
+                      offset: 0
+                    data:
+                    - type: output_fields
+                      id: commit__message
+                      title: Commit Message
+                      sample: Git 2.0
+                    - type: output_field
+                      id: parents[]sha
+                      title: Parents Sha
+                      sample: 4a28f169ad29ba452e0e7bea2583914c10c58322
+                    - type: output_field
+                      id: parents[]url
+                      title: Parents Url
+                      sample: https://github.com/git/git/commit/4a28f169ad29ba452e0e7bea2583914c10c58322
+                  summary: Output fields for some app
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs403Example:
+                  summary: Default get-fields-outputs 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id004
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs401Example:
+                  summary: Default get-fields-outputs 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs409Example:
+                  summary: Default get-fields-outputs 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs429Example:
+                  summary: Default get-fields-outputs 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs503Example:
+                  summary: Default get-fields-outputs 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Get-fields-outputs504Example:
+                  summary: Default get-fields-outputs 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id004
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/actions/{action_id}/test:
+    post:
+      operationId: test-action
+      description: 'Tests the action (step) in the third party api, using the provided authentication and inputs.
+
+
+        #### When using OAuth
+
+
+        This endpoint requires the `zap:write` OAuth scope.'
+      summary: Zapier Step Test
+      parameters:
+      - in: path
+        name: action_id
+        schema:
+          type: string
+        description: An Action ID, as provided by the `/actions` endpoint.
+        required: true
+        example: '500123'
+      tags:
+      - Actions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionTestRequest'
+            examples:
+              TestingAnAction:
+                value:
+                  data:
+                    limit: 10
+                    offset: 0
+                    authentication: example_QVaAreV1
+                    inputs:
+                      email: me@example.com
+                summary: Testing an action
+        required: true
+      security:
+      - OAuth:
+        - zap:write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionTestResponse'
+              examples:
+                ActionTestResponse:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      count: 1
+                      limit: null
+                      offset: 0
+                    data:
+                    - Description: A response from some example third party API related to the action
+                      Source: RFC 8259
+                      Image:
+                        Width: 800
+                        Height: 600
+                        Title: View from 15th Floor
+                        Thumbnail:
+                          Url: https://www.example.com/image/481989943
+                          Height: 125
+                          Width: 100
+                        Animated: false
+                        IDs:
+                        - 116
+                        - 943
+                        - 234
+                        - 38793
+                  summary: Action Test Response
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action403Example:
+                  summary: Default test-action 403 response
+                  x-microcks-default: true
+                  value:
+                    errors: &id005
+                    - {}
+          description: 403 Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action401Example:
+                  summary: Default test-action 401 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id005
+          description: 401 Response
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action409Example:
+                  summary: Default test-action 409 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id005
+          description: 409 Response
+        '429':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action429Example:
+                  summary: Default test-action 429 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id005
+          description: 429 Response
+        '503':
+          headers:
+            Retry-After:
+              schema:
+                type: string
+                format: uri
+              description: Indicates when to retry the request
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                format: uri
+              description: The maximum number of requests you're permitted to make per hour.
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                format: uri
+              description: The number of requests remaining in the current rate limit window.
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: uri
+              description: The time at which the current rate limit window resets in UTC epoch seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action503Example:
+                  summary: Default test-action 503 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id005
+          description: 503 Response
+        '504':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Test-action504Example:
+                  summary: Default test-action 504 response
+                  x-microcks-default: true
+                  value:
+                    errors: *id005
+          description: 504 Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MalformedRequest.:
+                  value:
+                    errors:
+                    - status: 400
+                      code: parse_error
+                      title: ParseError
+                      detail: Malformed request.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: Malformed request.
+                          code: parse_error
+                  summary: Malformed request.
+          description: This schema can be expected for 4xx 'Malformed request.' errors
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AServerErrorOccurred.:
+                  value:
+                    errors:
+                    - status: 500
+                      code: error
+                      title: APIException
+                      detail: A server error occurred.
+                      source: null
+                      meta:
+                        source: ZAPIER
+                        full_details:
+                          message: A server error occurred.
+                          code: error
+                  summary: A server error occurred.
+          description: This schema can be expected for 5xx 'A server error occurred.' errors
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    OutputField:
+      type: object
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this specific Output Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this specific Output Field
+          example: '500123'
+        title:
+          type: string
+          description: The title of this specific Output Field
+          example: Example Name
+        sample:
+          type: string
+          description: An (optional) sample of what an Output Field's value may look like
+          example: example-value
+      required:
+      - id
+      - title
+      - type
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ActionTestResponse:
+      type: object
+      description: 'Base Response definition to be used in other Response Serializers.
+
+
+        Be sure to include the `data` field after using this class'
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: The result of executing said Action on the third-party API
+          example:
+          - {}
+      required:
+      - data
+      - links
+      - meta
+    ChoiceResponse:
+      type: object
+      description: A successful response for getting the requested Input Fields.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+          description: A list of Choices matching the given request
+          example:
+          - {}
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/Meta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+      required:
+      - links
+      - meta
+    Meta:
+      type: object
+      description: Metadata about a certain response
+      properties:
+        page:
+          type: integer
+          description: The current page
+          example: 100
+      required:
+      - page
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ActionsResponse:
+      type: object
+      description: A valid response for fetching available actions for the App
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+          description: List of Actions for the provided App
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    Choice:
+      type: object
+      description: A single element from a set of Choices, variants in an enumeration.
+      properties:
+        id:
+          type: string
+          description: The ID of this variant
+          example: '500123'
+        type:
+          type: string
+          description: The type of this object
+          example: standard
+        label:
+          type:
+          - string
+          - 'null'
+          description: An optional human-readable label for this variant. Useful if the actual value is not a human-readable value, such as an identifier.
+          example: Example Name
+        value:
+          type: string
+          description: The value of this variant.
+          example: example-value
+      required:
+      - id
+      - type
+      - value
+    _ListInputFieldsRequest:
+      type: object
+      description: The common data object that includes inputs and an authentication id.
+      properties:
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+      required:
+      - authentication
+      - inputs
+    OutputFieldsResponse:
+      type: object
+      description: A successful response containing Output Field data
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputField'
+          description: A list of the Output Fields matching the given request
+          example:
+          - {}
+      required:
+      - data
+      - links
+      - meta
+    ListOutputFieldsRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListOutputFieldsRequest'
+      required:
+      - data
+    _ListOutputFieldsRequest:
+      type: object
+      description: The common data object that includes inputs and an authentication id.
+      properties:
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID, as provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+        fetch_live_samples:
+          type: boolean
+          default: false
+          description: Whether to retrieve live samples for the field. While this can be helpful in supporting the identification of an output, note that this has latency implications as it may require an additional request to 3rd party services. This is not supported for `WRITE` actions, please use step testing instead.
+          example: false
+      required:
+      - authentication
+      - inputs
+    FieldsetFieldsField:
+      anyOf:
+      - $ref: '#/components/schemas/InputField'
+      - $ref: '#/components/schemas/InfoField'
+      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
+    InfoField:
+      type: object
+      description: Represents an Info-type Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Info Field
+          example: standard
+        id:
+          type: string
+          description: The identifier of this Info Field
+          example: '500123'
+        description:
+          type: string
+          description: The description for this Info Field
+          example: Example description for this resource.
+      required:
+      - description
+      - id
+      - type
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
+    Action:
+      type: object
+      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
+      properties:
+        id:
+          type: string
+          description: The ID to refer to this action (unstable, may change when referenced app changes)
+          example: '500123'
+        key:
+          type: string
+          description: The developer provided identifier for this Action (stable)
+          example: example-value
+        app:
+          description: Apps
+          oneOf:
+          - $ref: '#/components/schemas/Apps'
+          - type: string
+          example: example-value
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this object
+
+
+            * `action` - action'
+          example: standard
+        action_type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this Action
+
+
+            * `READ` - READ
+
+            * `READ_BULK` - READ_BULK
+
+            * `WRITE` - WRITE
+
+            * `SEARCH` - SEARCH
+
+            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
+
+            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
+
+            * `FILTER` - FILTER'
+          example: standard
+        is_instant:
+          type: boolean
+          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
+          example: true
+        title:
+          type: string
+          description: The title of this Action.
+          example: Example Name
+        description:
+          type: string
+          description: A longer description of this Action, usually describing what it does in more detail.
+          example: Example description for this resource.
+      required:
+      - action_type
+      - app
+      - description
+      - id
+      - is_instant
+      - key
+      - title
+      - type
+    InputField:
+      type: object
+      description: Represents Input Field data as accepted by the API
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of Input Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this Input Field
+          example: '500123'
+        default_value:
+          type: string
+          description: The default value for this Input Field if not otherwise specified
+          example: example-value
+        depends_on:
+          type: array
+          items:
+            type: string
+          description: A list of dependencies for this Input Field
+          example:
+          - example-value
+        description:
+          type: string
+          description: The description of this Input Field
+          example: Example description for this resource.
+        format:
+          allOf:
+          - $ref: '#/components/schemas/FormatEnum'
+          description: 'The format of this Input Field from one of options provided
+
+
+            * `DATETIME` - DATETIME
+
+            * `MULTILINE` - MULTILINE
+
+            * `PASSWORD` - PASSWORD
+
+            * `CODE` - CODE
+
+            * `READONLY` - READONLY
+
+            * `FILE` - FILE
+
+            * `SELECT` - SELECT'
+          example: example-value
+        invalidates_input_fields:
+          type: boolean
+          description: Whether this Input Field invalidates
+          example: true
+        is_required:
+          type: boolean
+          description: Whether this Input Field is required
+          example: true
+        items:
+          type: object
+          additionalProperties:
+            type: string
+          description: A freeform object of items for this Input Field
+          example: {}
+        placeholder:
+          type: string
+          description: The placeholder for this Input Field when shown
+          example: example-value
+        title:
+          type: string
+          description: The title of this Input Field
+          example: Example Name
+        value_type:
+          allOf:
+          - $ref: '#/components/schemas/ValueTypeEnum'
+          description: 'The type of the *value* of this Input Field
+
+
+            * `STRING` - STRING
+
+            * `NUMBER` - NUMBER
+
+            * `INTEGER` - INTEGER
+
+            * `BOOLEAN` - BOOLEAN
+
+            * `ARRAY` - ARRAY
+
+            * `OBJECT` - OBJECT'
+          example: standard
+      required:
+      - default_value
+      - depends_on
+      - description
+      - format
+      - id
+      - invalidates_input_fields
+      - is_required
+      - items
+      - placeholder
+      - title
+      - type
+      - value_type
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    ActionTypeEnum:
+      enum:
+      - action
+      type: string
+      description: '* `action` - action'
+    InputFieldsResponse:
+      type: object
+      description: A successful response for getting the input fields for a particular Action.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          $ref: '#/components/schemas/RootFieldset'
+      required:
+      - data
+      - links
+      - meta
+    ListInputFieldsRequest:
+      type: object
+      description: Common inputs with inputs and an authentication id.
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListInputFieldsRequest'
+      required:
+      - data
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    FormatEnum:
+      enum:
+      - DATETIME
+      - MULTILINE
+      - PASSWORD
+      - CODE
+      - READONLY
+      - FILE
+      - SELECT
+      type: string
+      description: '* `DATETIME` - DATETIME
+
+        * `MULTILINE` - MULTILINE
+
+        * `PASSWORD` - PASSWORD
+
+        * `CODE` - CODE
+
+        * `READONLY` - READONLY
+
+        * `FILE` - FILE
+
+        * `SELECT` - SELECT'
+    RootFieldset:
+      type: array
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/InputField'
+        - $ref: '#/components/schemas/InfoField'
+        - $ref: '#/components/schemas/Fieldset'
+      description: The base concept of a Fieldset, from which others extend
+    ChoiceRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ChoiceParams'
+      required:
+      - data
+    ValueTypeEnum:
+      enum:
+      - STRING
+      - NUMBER
+      - INTEGER
+      - BOOLEAN
+      - ARRAY
+      - OBJECT
+      type: string
+      description: '* `STRING` - STRING
+
+        * `NUMBER` - NUMBER
+
+        * `INTEGER` - INTEGER
+
+        * `BOOLEAN` - BOOLEAN
+
+        * `ARRAY` - ARRAY
+
+        * `OBJECT` - OBJECT'
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Apps:
+      type: object
+      description: An app that integrates with Zapier
+      properties:
+        id:
+          type: string
+          description: Unique id of the app
+          example: '500123'
+        type:
+          type: string
+          default: app
+          description: The type of this object.
+          example: app
+        image:
+          type: string
+          description: Default image/icon to represent the app.
+          example: example-value
+        links:
+          type: object
+          additionalProperties: {}
+          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
+          example: {}
+        action_types:
+          type: array
+          items: {}
+          description: A list of action types for this specific App
+          example:
+          - standard
+        title:
+          type: string
+          description: Human readable name of the app
+          example: Example Name
+        images:
+          allOf:
+          - $ref: '#/components/schemas/AppsImages'
+          description: The URL of images (of various sizes) for this specific App
+          example: example-value
+        hex_color:
+          type: string
+          description: A branded color that can be used to represent the app.
+          example: example-value
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
+          example:
+          - {}
+        description:
+          type: string
+          description: Human readable description of the app.
+          example: Example description for this resource.
+      required:
+      - action_types
+      - categories
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - links
+      - title
+    _ActionTestRequest:
+      type: object
+      description: The request structure to test a particular Action
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          default: 10
+          description: Used for paginating results. Specifies the maximum number of items to return per page.
+          example: 10
+        offset:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          default: 0
+          description: Used for paginating results. Specifies the offset to use. Defaults to 0
+          example: 0
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: Authentication, if required, to be able to run the given Action
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: Inputs to be provided to the given 'read' Action's test run
+          example: {}
+      required:
+      - authentication
+      - inputs
+    ChoiceParams:
+      type: object
+      description: A Choice as to be provided to the /choices endpoint
+      properties:
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: The Authentication ID for this Choice, if present/required
+          example: example-value
+        inputs:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: The Inputs for this Choice, if present/required
+          example: {}
+      required:
+      - authentication
+      - inputs
+    ActionTestRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ActionTestRequest'
+      required:
+      - data
+    Fieldset:
+      type: object
+      description: Represents a Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Fieldset
+          example: standard
+        id:
+          type: string
+          description: The unique identifier for this Fieldset
+          example: '500123'
+        fields:
+          allOf:
+          - $ref: '#/components/schemas/FieldsetFieldsField'
+          description: The fields this Fieldset consists of
+          example: example-value
+        title:
+          type: string
+          description: The title of this Fieldset
+          example: Example Name
+      required:
+      - fields
+      - id
+      - title
+      - type
+  securitySchemes:
+    ClientIDAuthentication:
+      type: apiKey
+      in: query
+      name: client_id
+      description: See our authentication documentation for how to find your Client ID
+      x-zapier-auth-scheme-exempt: true
+    OAuth:
+      type: oauth2
+      description: 'See our OAuth2 authentication documentation here: https://docs.zapier.com/powered-by-zapier/api-reference/authentication'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          tokenUrl: https://zapier.com/oauth/token/
+          refreshUrl: https://zapier.com/oauth/token/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account
+        implicit:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+            action:run: Run an Action
+            zap:all: Read Zaps accessible to the account
