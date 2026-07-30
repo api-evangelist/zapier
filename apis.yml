@@ -22,44 +22,7 @@ apis:
     type: GitHubOrg
   - url: graphql/zapier-graphql.md
     type: GraphQL
-  description: Build and ship AI workflows in minutesno IT bottlenecks, no complexity.
-    Just results.
-- aid: zapier:partner-api
-  name: Zapier Partner API
-  tags:
-  - Embed
-  - Integrations
-  - iPaaS
-  - Partners
-  humanURL: https://zapier.com/developer-platform/workflow-api
-  baseURL: https://api.zapier.com
-  properties:
-  - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/openapi/zapier-partner-api.yml
-    type: OpenAPI
-  - url: https://api.zapier.com/schema
-    type: OpenAPI
-    title: Live OpenAPI
-  - url: https://zapier.com/developer-platform/workflow-api
-    type: Documentation
-  - url: https://zapier.com/developer-platform/embed-tools
-    type: Documentation
-  - url: https://zapier.com/blog/zapier-partner-api-overview/
-    type: BlogPost
-  - url: https://zapier.com/developer-platform/partner-embeds
-    type: UseCases
-  - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
-    type: JSONSchema
-  - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
-    type: JSONStructure
-  - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
-    type: JSONLD
-  - url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
-    type: Examples
-  description: The Zapier Partner API and Workflow API allow developers to embed Zapier
-    automation directly in their products, providing complete style control over the
-    user experience. The API supports Zap templates, user Zap management, app directory
-    access, and embedded workflow editors with custom branding, enabling integration
-    marketplaces and in-app automation at enterprise scale.
+  description: Build and ship AI workflows in minutesno IT bottlenecks, no complexity. Just results.
 - aid: zapier:ai-actions-api
   name: Zapier AI Actions API
   tags:
@@ -73,11 +36,11 @@ apis:
     type: Documentation
   - url: https://docs.zapier.com/platform/reference/ai-actions
     type: Documentation
-  description: Zapier AI Actions (formerly Natural Language Actions) provides a universal
-    natural language API optimized for AI and LLM-based experiences. It enables AI
-    platforms and custom integrations to leverage over 20,000 searches and actions
-    across the Zapier ecosystem, handling authentication and API integration automatically.
-    Supported natively on platforms including GPTs, Claude, LangChain, and LlamaIndex.
+  description: >-
+    Zapier AI Actions (formerly Natural Language Actions) provides a universal natural language API optimized
+    for AI and LLM-based experiences. It enables AI platforms and custom integrations to leverage over
+    20,000 searches and actions across the Zapier ecosystem, handling authentication and API integration
+    automatically. Supported natively on platforms including GPTs, Claude, LangChain, and LlamaIndex.
 - aid: zapier:mcp
   name: Zapier MCP
   tags:
@@ -93,18 +56,300 @@ apis:
     type: Documentation
   - url: https://github.com/zapier/zapier-mcp
     type: GitHubOrg
-  description: Zapier MCP (Model Context Protocol) connects AI tools like Claude,
-    ChatGPT, and Cursor to over 8,000 apps using the open Model Context Protocol standard.
-    It provides a server endpoint for connecting a Zapier account to an AI client,
-    with meta-tools available immediately and configurable actions exposed as dedicated
-    tools. Supports API key authentication for personal use and OAuth for multi-user
-    applications.
+  description: >-
+    Zapier MCP (Model Context Protocol) connects AI tools like Claude, ChatGPT, and Cursor to over 8,000
+    apps using the open Model Context Protocol standard. It provides a server endpoint for connecting
+    a Zapier account to an AI client, with meta-tools available immediately and configurable actions exposed
+    as dedicated tools. Supports API key authentication for personal use and OAuth for multi-user applications.
+- aid: zapier:zapier-accounts-api
+  name: Zapier Accounts API
+  description: Refers to resources interacting with 'Accounts' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-actions-api
+  name: Zapier Actions API
+  description: Refers to resources interacting with 'Actions' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-actions-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-apps-api
+  name: Zapier Apps API
+  description: Refers to resources interacting with 'Apps' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-apps-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-authentications-api
+  name: Zapier Authentications API
+  description: Refers to resources interacting with 'Authentications' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Authentications
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-authentications-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-categories-api
+  name: Zapier Categories API
+  description: Refers to resources interacting with 'Categories' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-categories-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-experimental-api
+  name: Zapier Experimental API
+  description: Refers to resources interacting with 'Experimental' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Experimental
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-experimental-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-inputs-api
+  name: Zapier Inputs API
+  description: Refers to resources interacting with 'Inputs' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Inputs
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-inputs-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-outputs-api
+  name: Zapier Outputs API
+  description: Refers to resources interacting with 'Outputs' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Outputs
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-outputs-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-zap-templates-api
+  name: Zapier Zap Templates API
+  description: Refers to resources interacting with 'Zap Templates' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Zap Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-zap-templates-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
+- aid: zapier:zapier-zaps-api
+  name: Zapier Zaps API
+  description: Refers to resources interacting with 'Zaps' associated resources
+  humanURL: ' https://zapier.com/'
+  baseURL: https://api.zapier.com
+  tags:
+  - Zaps
+  properties:
+  - type: OpenAPI
+    url: openapi/zapier-zaps-api-openapi.yml
+  - type: Documentation
+    url: https://zapier.com/developer-platform/workflow-api
+  - type: Documentation
+    url: https://zapier.com/developer-platform/embed-tools
+  - type: BlogPost
+    url: https://zapier.com/blog/zapier-partner-api-overview/
+  - type: UseCases
+    url: https://zapier.com/developer-platform/partner-embeds
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
 name: Zapier
 tags:
 - Integrations
 - iPaaS
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zapier.png
 access: 3rd-Party
 common:
 - type: AgenticAccess
