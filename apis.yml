@@ -569,6 +569,8 @@ common:
   url: https://zapier.com/apps
 - type: LlmsText
   url: https://docs.zapier.com/llms.txt
+- type: AICatalog
+  url: ai-catalog/zapier-ai-catalog.yml
 created: '2025-06-06T00:00:00.000Z'
 modified: '2026-06-20'
 position: Consuming

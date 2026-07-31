@@ -1,0 +1,100 @@
+generated: '2026-07-31'
+method: probed
+source: https://zapier.com/.well-known/ai-catalog.json
+description: 'AI Catalog manifest observed at /.well-known/ai-catalog.json on zapier.com. The AI Catalog
+  Standard 1.0 is the publishing half of the Agentic Resource Discovery (ARD) v0.9 draft: a JSON manifest
+  listing the agentic resources a domain offers — MCP servers, agent cards, skills, APIs — each typed
+  by media type and identified by a domain-anchored urn:air: URN. Two verdicts are recorded: a structural
+  grade against the AI Catalog 1.0 data model, and the result of the ARD project''s own conformance CLI
+  run against this exact body. Provider-published by construction — served from the provider''s own host;
+  nothing here is derived or generated.'
+discovery:
+  path: /.well-known/ai-catalog.json
+  canonical: true
+  host: zapier.com
+conformance:
+  spec: AI Catalog 1.0 / ARD v0.9 (Draft)
+  grade: near-conformant
+  spec_version_declared: '1.0'
+  hard_failures: []
+  soft_gaps:
+  - host-identifier-not-did-web
+  official_tool:
+    tool: ARD conformance-test v0.5.0 (ards-project/ard-spec)
+    status: PASS
+    critical_errors: 0
+    errors: []
+    warnings:
+    - '[AGENTS.md (agent guide)] Media type ''text/markdown'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Agent auth guide (auth.md)] Media type ''text/markdown'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Install Zapier (router)] Media type ''text/markdown'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Powered by Zapier (embedded MCP + Workflow API)] Media type ''text/markdown'' is not one of standard
+      discovery types: [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier Agent Skills] Media type ''application/json'' is not one of standard discovery types: [''application/ai-catalog+json'',
+      ''application/agent-card+json'', ''application/a2a-agent-card+json'', ''application/mcp-server-card+json'',
+      ''application/agent-skills+zip'', ''application/agent-skills+gzip'', ''text/markdown; profile="urn:air:agent-skills"'',
+      ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier Partner API] Media type ''application/vnd.oai.openapi'' is not one of standard discovery
+      types: [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier Platform CLI] Media type ''text/markdown'' is not one of standard discovery types: [''application/ai-catalog+json'',
+      ''application/agent-card+json'', ''application/a2a-agent-card+json'', ''application/mcp-server-card+json'',
+      ''application/agent-skills+zip'', ''application/agent-skills+gzip'', ''text/markdown; profile="urn:air:agent-skills"'',
+      ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier Public API Reference] Media type ''text/html'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier SDK (TypeScript)] Media type ''text/markdown'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier Web Tools (WebMCP)] Media type ''application/json'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier app catalog] Media type ''text/html'' is not one of standard discovery types: [''application/ai-catalog+json'',
+      ''application/agent-card+json'', ''application/a2a-agent-card+json'', ''application/mcp-server-card+json'',
+      ''application/agent-skills+zip'', ''application/agent-skills+gzip'', ''text/markdown; profile="urn:air:agent-skills"'',
+      ''application/ai-registry'', ''application/ai-registry+json''].'
+    - '[Zapier root map (llms.txt)] Media type ''text/plain'' is not one of standard discovery types:
+      [''application/ai-catalog+json'', ''application/agent-card+json'', ''application/a2a-agent-card+json'',
+      ''application/mcp-server-card+json'', ''application/agent-skills+zip'', ''application/agent-skills+gzip'',
+      ''text/markdown; profile="urn:air:agent-skills"'', ''application/ai-registry'', ''application/ai-registry+json''].'
+catalog:
+  host_display_name: Zapier
+  host_identifier: zapier.com
+  entry_count: 13
+  types:
+    application/mcp-server-card+json: 1
+    application/json: 2
+    application/vnd.oai.openapi: 1
+    text/html: 2
+    text/markdown: 6
+    text/plain: 1
+  representative_queries: 29
+  trust_manifests: 0
+  file: zapier-ai-catalog.json
+transport:
+  http_status: 200
+  content_type: application/json
+  access_control_allow_origin: '*'
+  meets_publish_guide_requirements: true
+x-evidence:
+  fetched: '2026-07-31'
+  url: https://zapier.com/.well-known/ai-catalog.json
+  http_status: 200
+  content_type: application/json
+  note: Verbatim body saved alongside this manifest. No field inferred.
