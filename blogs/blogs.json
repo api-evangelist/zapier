@@ -9,11 +9,11 @@
       "method": "feed"
     },
     {
-      "source": "https://zapier.com/blog/zapier-partner-api-overview/",
-      "feed_url": "https://zapier.com/blog/feeds/latest/",
+      "source": "https://zapier.com/developer-platform/embed-tools",
+      "feed_url": "https://zapier.com/developer-platform/embed-tools",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "none"
     },
     {
       "source": "https://zapier.com/blog/",
@@ -23,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 163,
-  "fetched": "2026-07-11T11:50:51Z"
+  "post_count": 210,
+  "fetched": "2026-08-01T15:49:00Z"
 }

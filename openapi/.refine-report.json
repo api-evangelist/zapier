@@ -1,0 +1,32 @@
+{
+  "provider": "zapier",
+  "sources": [
+    "zapier-accounts-api-openapi.yml",
+    "zapier-actions-api-openapi.yml",
+    "zapier-apps-api-openapi.yml",
+    "zapier-authentications-api-openapi.yml",
+    "zapier-categories-api-openapi.yml",
+    "zapier-experimental-api-openapi.yml",
+    "zapier-inputs-api-openapi.yml",
+    "zapier-outputs-api-openapi.yml",
+    "zapier-zap-templates-api-openapi.yml",
+    "zapier-zaps-api-openapi.yml"
+  ],
+  "outputs": [
+    "zapier-accounts-api-openapi.yml",
+    "zapier-actions-api-openapi.yml",
+    "zapier-apps-api-openapi.yml",
+    "zapier-authentications-api-openapi.yml",
+    "zapier-categories-api-openapi.yml",
+    "zapier-experimental-api-openapi.yml",
+    "zapier-inputs-api-openapi.yml",
+    "zapier-outputs-api-openapi.yml",
+    "zapier-zap-templates-api-openapi.yml",
+    "zapier-zaps-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
