@@ -8,8 +8,6 @@ apis:
   - iPaaS
   humanURL: ' https://zapier.com/'
   properties:
-  - url: ' https://zapier.com/'
-    type: Documentation
   - url: https://docs.zapier.com/platform/home
     type: Documentation
   - url: https://zapier.com/developer-platform/integrations
