@@ -5,7 +5,7 @@
       "source": "https://zapier.com/blog/feeds/latest/",
       "feed_url": "https://zapier.com/blog/feeds/latest/",
       "title": "",
-      "saved": 0,
+      "saved": 22,
       "method": "feed"
     },
     {
@@ -13,7 +13,8 @@
       "feed_url": "https://zapier.com/developer-platform/embed-tools",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     },
     {
       "source": "https://zapier.com/blog/",
@@ -23,6 +24,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 224,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 246,
+  "fetched": "2026-08-15T12:11:08Z"
 }
