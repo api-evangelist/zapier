@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts Authentications API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier Get Authentications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/authentications",
+            "params": [
+              {
+                "name": "app",
+                "value": "868f9d3c-2ea0-4f19-a32d-a61b276ab8de",
+                "type": "query",
+                "description": "A canonical App ID, as provided by the `/apps` endpoint."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the offset to use."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch the available Authentications for the provided App. This will only return Authentications that are owned by the user and not those that are shared with them, since it's not possible to create Zaps with Authentications you don't own.\n\n#### When using OAuth\n\nThis endpoint requires the `connection:read` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Create Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/authentications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new Authentication for the provided App. See our Adding an Authentication guide to get started.\n\n#### When using OAuth\n\nThis endpoint requires the `connection:write` OAuth scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

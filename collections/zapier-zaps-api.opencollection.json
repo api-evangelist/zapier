@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts Zaps API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zaps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier Get Zaps [v1]",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v1/zaps",
+            "params": [
+              {
+                "name": "get_params",
+                "value": "",
+                "type": "query",
+                "description": "If set, guarantees that the 'params' of any node belonging to your app will be present in the response"
+              },
+              {
+                "name": "limit",
+                "value": "5",
+                "type": "query",
+                "description": "(Max: 100) Limit the number of Zap templates returned."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of Zap templates to skip before beginning to return the Zap templates. The default value is 0, which is the offset of the first item."
+              },
+              {
+                "name": "params__{{KEY}}",
+                "value": "ex@mp1e47c4e6ff1a44e7800",
+                "type": "query",
+                "description": "Filter for Zaps that contain the given parameter's {{KEY}} and the value of the query parameter. Keys are defined by your app on the [developer platform](https://zapier.com/platform/login)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint returns a list of Zaps for the authenticated Zapier user.\n\n#### When using OAuth\n\nThis endpoint requires the `zap` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Guess a Zap [Beta]",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/guess",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "500123",
+                "type": "query",
+                "description": "See our authentication documentation for how to find your client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a suggested Zap and pre-filled URL to Zapier from a given prompt."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Zap Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/zap-runs",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "2024-10-16T06:29:10.360000Z",
+                "type": "query",
+                "description": "Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs from the last 30 days."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the offset to use."
+              },
+              {
+                "name": "search",
+                "value": "My Zap Title",
+                "type": "query",
+                "description": "Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs that match the specified keywords."
+              },
+              {
+                "name": "statuses",
+                "value": "error,success",
+                "type": "query",
+                "description": "Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the specified status or statuses provided."
+              },
+              {
+                "name": "to_date",
+                "value": "2024-10-16T06:29:10.360000Z",
+                "type": "query",
+                "description": "Filter Zap runs that occurred before this date."
+              },
+              {
+                "name": "zap_id",
+                "value": "104445735",
+                "type": "query",
+                "description": "Find Zap runs for the specified Zap ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint returns runs for the specified Zaps and provides basic yet essential details about their execution. As the initial version, it serves foundational information, with plans for continuous enhancement to expand its capabilities and improve data output over time.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:runs` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Zaps [v2]",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/zaps",
+            "params": [
+              {
+                "name": "expand",
+                "value": "steps.action",
+                "type": "query",
+                "description": "A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids."
+              },
+              {
+                "name": "include_shared",
+                "value": "true",
+                "type": "query",
+                "description": "If true, all Zaps that are shared with the user, rather than only those owned by them, are returned. If the zap:account:all scope is not present this has no effect."
+              },
+              {
+                "name": "inputs",
+                "value": "inputs[board]=BOARD_ID",
+                "type": "query",
+                "description": "You may pass inputs[KEY]=VALUE1,VALUE2 to filter for Zaps that contain those settings. Keys are defined by your app on the developer platform."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the offset to use."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint returns a list of Zaps for the authenticated Zapier user.\n\nThe `expand` array can be used to expand selected fields into full objects in the response.  Inputs with keys can\nalso be passed to filter Zaps by certain criteria.\n\n#### When using OAuth\n\nThis endpoint requires the `zap`, `zap:all`, or `zap:account:all` OAuth scopes."
+        },
+        {
+          "info": {
+            "name": "Zapier Create a Zap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/zaps",
+            "params": [
+              {
+                "name": "expand",
+                "value": "steps.action",
+                "type": "query",
+                "description": "A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This URL creates a Zap based on the given steps and title.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts Zap Templates API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zap Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier Get Zap Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v1/zap-templates",
+            "params": [
+              {
+                "name": "apps",
+                "value": "mailchimp",
+                "type": "query",
+                "description": "A comma separated list of Zapier Apps to match Zap templates against. Note:\n- Your app will always be one of the apps in the template\n- The list will return Zap Templates with all the provided apps, not a subset"
+              },
+              {
+                "name": "limit",
+                "value": "5",
+                "type": "query",
+                "description": "(Max: 100) Limit the number of Zap templates returned."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of Zap templates to skip before beginning to return the Zap templates. The default value is 0, which is the offset of the first item."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "client_id",
+              "value": "{{client_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "List popular Zap Templates using your app. See our List Zap Templates guide to get started."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

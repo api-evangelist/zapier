@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts Actions API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier Get Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/actions",
+            "params": [
+              {
+                "name": "action_type",
+                "value": "READ",
+                "type": "query",
+                "description": "The type of Action to filter for. Defaults to returning all actions regardless of type."
+              },
+              {
+                "name": "app",
+                "value": "868f9d3c-2ea0-4f19-a32d-a61b276ab8de",
+                "type": "query",
+                "description": "A canonical App ID, as provided by the `/apps` endpoint."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch the available actions for the provided App. It's typical to filter by type so that only actions that make sense for a particular step are shown. Action IDs may not be reused, see our documentation for how to hardcode a particular action.\n\n#### When using Client ID\n\nSimply providing a client ID query parameter is sufficient. If an Authorization header is present, it will be used instead.\n\n#### When using OAuth\n\nThis endpoint requires the `zap` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Input Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/actions/:action_id/inputs",
+            "params": [
+              {
+                "name": "action_id",
+                "value": "uag:87b1c14e-ef30-43d5-9395-6c6514dbb123",
+                "type": "path",
+                "description": "An Action ID, as provided by the `/actions` endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the Input Fields for a particular Action, using the provided authentication and inputs. See the fields and fieldsets guide for more information.\nSee [our docs](https://docs.zapier.com/powered-by-zapier/zap-creation/fields-and-fieldsets#input-fields) for more information.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Choices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/actions/:action_id/inputs/:input_id/choices",
+            "params": [
+              {
+                "name": "action_id",
+                "value": "uag:87b1c14e-ef30-43d5-9395-6c6514dbb123",
+                "type": "path",
+                "description": "An Action ID, as provided by the `/actions` endpoint."
+              },
+              {
+                "name": "input_id",
+                "value": "lead_id",
+                "type": "path",
+                "description": "An Input Field ID, as provided by the `/inputs` endpoint."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page of choices to return, defaults to the first"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the possible values for a `SELECT` Input Field.\n\n#### When using OAuth\n\nThis endpoint requires the `zap` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Output Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/actions/:action_id/outputs",
+            "params": [
+              {
+                "name": "action_id",
+                "value": "uag:87b1c14e-ef30-43d5-9395-6c6514dbb123",
+                "type": "path",
+                "description": "An Action ID, as provided by the `/actions` endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the Output Fields for a particular Action, using the provided authentication and inputs.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Step Test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/actions/:action_id/test",
+            "params": [
+              {
+                "name": "action_id",
+                "value": "500123",
+                "type": "path",
+                "description": "An Action ID, as provided by the `/actions` endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Tests the action (step) in the third party api, using the provided authentication and inputs.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

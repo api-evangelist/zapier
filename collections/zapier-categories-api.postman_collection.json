@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "5ac0dd20-6d9b-46d7-98c5-50cb90c557cf",
+      "name": "Categories",
+      "description": {
+        "content": "Refers to resources interacting with 'Categories' associated resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "135ddfb0-1ad9-4225-bccd-7600972d1d8f",
+          "name": "Zapier Get Categories",
+          "request": {
+            "name": "Zapier Get Categories",
+            "description": {
+              "content": "List of Zap categories",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit the number of Zap categories returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of Zap categories to skip over. The default value is 0, which is the offset of the first item."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "570d36ab-62da-4904-b4df-b229eb77d78d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"next\": \"https://api.zapier.com/v1/categories?offset=10&limit=10\",\n    \"previous\": null,\n    \"count\": 90,\n    \"objects\": [\n      {\n        \"id\": 78,\n        \"title\": \"Ads & Conversion\",\n        \"slug\": \"ads-conversion\",\n        \"description\": \"Tools to track and reach an audience online.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/ads-conversion/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": \"boost-google-ads-ROI-with-zapier\",\n        \"role\": \"child\"\n      },\n      {\n        \"id\": 1,\n        \"title\": \"Accounting\",\n        \"slug\": \"accounting\",\n        \"description\": \"Tools for accounting and finance.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/accounting/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": \"favorite-zaps-accounting\",\n        \"role\": \"child\"\n      },\n      {\n        \"id\": 14,\n        \"title\": \"AI Tools\",\n        \"slug\": \"ai-tools\",\n        \"description\": \"Unlock the potential of artificial intelligence in your workflow with these AI integrations. These apps use AI to tackle everything from natural language processing to image classification, providing you with unparalleled automation power.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/ai-tools/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": null,\n        \"role\": \"parent\"\n      },\n      {\n        \"id\": 97,\n        \"title\": \"All\",\n        \"slug\": \"all\",\n        \"description\": \"Contains all the services.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/all/\",\n        \"type_of\": \"auto\",\n        \"featured_entry_slug\": null,\n        \"role\": \"parent\"\n      },\n      {\n        \"id\": 37,\n        \"title\": \"Amazon\",\n        \"slug\": \"aws\",\n        \"description\": \"Tools from Amazon to host and manage sites and applications on the Amazon cloud.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/aws/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": \"what-you-should-automate\",\n        \"role\": \"child\"\n      },\n      {\n        \"id\": 84,\n        \"title\": \"Analytics\",\n        \"slug\": \"analytics\",\n        \"description\": \"Tools to measure and report on success\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/analytics/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": \"automate-analytics-tools\",\n        \"role\": \"child\"\n      },\n      {\n        \"id\": 21,\n        \"title\": \"App Builder\",\n        \"slug\": \"app-builder\",\n        \"description\": \"Tools to build a custom app with forms and databases.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/app-builder/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": null,\n        \"role\": \"child\"\n      },\n      {\n        \"id\": 35,\n        \"title\": \"App Families\",\n        \"slug\": \"app-families\",\n        \"description\": \"\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/app-families/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": null,\n        \"role\": \"parent\"\n      },\n      {\n        \"id\": 155,\n        \"title\": \"Artificial Intelligence\",\n        \"slug\": \"artificial-intelligence\",\n        \"description\": \"Unlock the potential of artificial intelligence in your workflow with these AI integrations. These apps use AI to tackle everything from natural language processing to image classification, providing you with unparalleled automation power.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/artificial-intelligence/\",\n        \"type_of\": \"curated\",\n        \"featured_entry_slug\": null,\n        \"role\": \"parent\"\n      },\n      {\n        \"id\": 46,\n        \"title\": \"Beta\",\n        \"slug\": \"beta\",\n        \"description\": \"Beta services.\",\n        \"url\": \"https://zapier.com/api/v4/app-directory/categories/beta/\",\n        \"type_of\": \"auto\",\n        \"featured_entry_slug\": null,\n        \"role\": \"child\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c07eb74-7ff1-4333-823c-8ad23361f89f",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46de3188-38c8-442c-a0d4-9e1debdb0f85",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60fcd224-5b6d-4565-9012-0997b226c8cf",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dbdae94-c435-475b-89a9-71d445730677",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a4856af-6ce9-490b-af87-fc0703e4356e",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://vTcUvCqNCwMCiNWhoqF.bjezoSkgaxNW7hxQu-DvM+Ddwi,wVltYL3l6rJcb,Q63FRk-NH3pI"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c70087b8-e758-4f7e-8d56-eb14c76383d1",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zapier.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5046914b-7b6e-4275-a484-d2efc67cb7ea",
+    "name": "Partner Accounts Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Introduction\n\nThe Partner API is the best tool for complete style control over a user's Zapier experience within your app.\nEssentially, it lets you customize how you present Zapier within your product without sacrificing your app's look,\nfeel, and flow.\n\nThink of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it's most\nhelpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,\nexpose relevant Zap information, and more!\n\nWith the Partner API, you can:\n\n- Get a list of all the apps available in Zapier's app directory so you can power your app directory and show your\nusers all the integration possibilities with your Zapier integration.\n- Have complete style control over how you present Zap templates in your product. The Partner API gives you access\nto the raw Zap Template data so you can give your users access to your Zap template with your product's style, look\nand feel.\n- Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.\n- Streamline Zap setup by pre-filling fields on behalf of your users.\n- Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them\ncomplete confidence in their Zapier integration.\n- Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave\nyour product.\n\n## Authentication\n\nThere are two ways to authenticate with the Partner API.\n\n1. Your application's `client_id` which you will receive once you are approved for access to the API\n(Client ID Authentication)\n2. A user's access token (Access Token Authentication).\n\nWhich authentication method you should use depends on which endpoint(s) you are using.\nReview each endpoint's documentation to understand which parameters are required.\n\n> Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn't\nneed it so it's not something we provide.'\n\n## Learn more\n\nSee the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.\n\n\nContact Support:\n Name: Zapier",
+      "type": "text/plain"
+    }
+  }
+}

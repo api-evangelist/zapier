@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts Experimental API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier Create an Action Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zapier.com/v2/action-runs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Runs an action (step) in the third party API, using the provided authentication and inputs.\n\nThis endpoint is asynchronous, and the response will contain an Action Run ID. You can use the `/v2/action-runs/:id` endpoint to check the status of the run and retrieve the results.\n\n#### When using OAuth\n\nThis endpoint requires the `action:run` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Retrieve Action Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/action-runs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "500123",
+                "type": "path",
+                "description": "An Action Run ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves an Action Run.\n\n#### When using OAuth\n\nThis endpoint requires the `action:run` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Whitelabel Apps [v2]",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/whitelabel/apps",
+            "params": [
+              {
+                "name": "category",
+                "value": "standard",
+                "type": "query",
+                "description": "Filter apps by category slug."
+              },
+              {
+                "name": "limit",
+                "value": "42.5",
+                "type": "query",
+                "description": "Limit the number of apps returned."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of apps to skip before beginning to return results."
+              },
+              {
+                "name": "search",
+                "value": "example-value",
+                "type": "query",
+                "description": "Case-insensitive search to filter apps by title."
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of apps available for whitelabel connection. It is only for customers enrolled in the Zapier Whitelabel program. All others likely want the `Get Apps` endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Zapier Get Zap Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/zap-runs",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "2024-10-16T06:29:10.360000Z",
+                "type": "query",
+                "description": "Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs from the last 30 days."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query",
+                "description": "Used for paginating results. Specifies the offset to use."
+              },
+              {
+                "name": "search",
+                "value": "My Zap Title",
+                "type": "query",
+                "description": "Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs that match the specified keywords."
+              },
+              {
+                "name": "statuses",
+                "value": "error,success",
+                "type": "query",
+                "description": "Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the specified status or statuses provided."
+              },
+              {
+                "name": "to_date",
+                "value": "2024-10-16T06:29:10.360000Z",
+                "type": "query",
+                "description": "Filter Zap runs that occurred before this date."
+              },
+              {
+                "name": "zap_id",
+                "value": "104445735",
+                "type": "query",
+                "description": "Find Zap runs for the specified Zap ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint returns runs for the specified Zaps and provides basic yet essential details about their execution. As the initial version, it serves foundational information, with plans for continuous enhancement to expand its capabilities and improve data output over time.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:runs` OAuth scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

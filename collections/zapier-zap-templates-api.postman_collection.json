@@ -1,0 +1,515 @@
+{
+  "item": [
+    {
+      "id": "7a8172b9-b641-4da6-9629-0f0f15f02016",
+      "name": "Zap Templates",
+      "description": {
+        "content": "Refers to resources interacting with 'Zap Templates' associated resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "258bd4f8-71d8-42d7-94aa-625c705b3d0e",
+          "name": "Zapier Get Zap Templates",
+          "request": {
+            "name": "Zapier Get Zap Templates",
+            "description": {
+              "content": "List popular Zap Templates using your app. See our List Zap Templates guide to get started.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "zap-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apps",
+                  "value": "<string>",
+                  "description": "A comma separated list of Zapier Apps to match Zap templates against. Note:\n- Your app will always be one of the apps in the template\n- The list will return Zap Templates with all the provided apps, not a subset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "(Max: 100) Limit the number of Zap templates returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of Zap templates to skip before beginning to return the Zap templates. The default value is 0, which is the offset of the first item."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "client_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84d69c82-08ce-4976-a03c-7be5ab588182",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 51652,\n    \"steps\": [\n      {\n        \"id\": 1,\n        \"uuid\": \"b9df4eff-f311-44f9-ac54-2901f952c6ac\",\n        \"title\": \"Google Ads\",\n        \"slug\": \"google-ads\",\n        \"description\": \"Google Ads (formerly Google AdWords) is an online advertising platform developed by Google, where advertisers pay to display brief advertisements, service offerings, product listings, video content, and generate mobile application installs within the Google ad network to web users.\",\n        \"image\": \"https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50\",\n        \"hex_color\": \"4285F4\",\n        \"images\": {\n          \"url_16x16\": \"https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16\",\n          \"url_32x32\": \"https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32\",\n          \"url_64x64\": \"https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64\",\n          \"url_128x128\": \"https://zapier-images.imgix.net/storage/services/4058ec8b47ad751cbd39bd686cf4eab7.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128\"\n        },\n        \"api\": \"GoogleAdsCLIAPI@3.0.0\",\n        \"url\": \"https://zapier.com/apps/google-ads/integrations?utm_medium=partner_api\",\n        \"label\": \"New Campaign\"\n      },\n      {\n        \"id\": 2,\n        \"uuid\": \"ca83afc5-ee9a-470d-b577-e7f8fd555b67\",\n        \"title\": \"Slack\",\n        \"slug\": \"slack\",\n        \"description\": \"Slack is a platform for team communication: everything in one place, instantly searchable, available wherever you go. Offering instant messaging, document sharing and knowledge search for modern teams.\",\n        \"image\": \"https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50\",\n        \"hex_color\": \"510f4d\",\n        \"images\": {\n          \"url_16x16\": \"https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16\",\n          \"url_32x32\": \"https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32\",\n          \"url_64x64\": \"https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64\",\n          \"url_128x128\": \"https://zapier-images.imgix.net/storage/services/6cf3f5a461feadfba7abc93c4c395b33_2.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128\"\n        },\n        \"api\": \"SlackAPI\",\n        \"url\": \"https://zapier.com/apps/slack/integrations?utm_medium=partner_api\",\n        \"label\": \"Send Channel Message\"\n      }\n    ],\n    \"title\": \"Send messages to Slack channels whenever new Google Ads campaigns launch\",\n    \"slug\": \"send-messages-to-slack-channels-whenever-new-google-ads-campaigns-launch\",\n    \"status\": \"published\",\n    \"description_plain\": \"A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!\\n\",\n    \"description_raw\": \"A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!\",\n    \"url\": \"https://zapier.com/apps/google-ads/integrations/slack/51652/send-messages-to-slack-channels-whenever-new-google-ads-campaigns-launch?utm_medium=partner_api\",\n    \"description\": \"<p>A new Google Ads campaign can mean the start of your next marketing push, but it can also mean the start of a ton of new sales and service workflows. Zapier gives you a head start on those projects by automatically posting a new message in Slack to a specific channel you choose. Give your teams the heads up they need before your new clients come rolling in!</p>\\n\",\n    \"create_url\": \"https://api.zapier.com/v1/embed/google-ads/create/51652\",\n    \"type\": \"guided_zap\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b1a5cdf-6e47-4ca9-b40f-782f7f3be84f",
+              "name": "Missing client_id in query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbe966e2-0524-4f77-806c-55ffb99a0599",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b97cd1a8-618f-4e4e-bf3f-69987f3479d5",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d31f5f52-20f5-44a1-8ae8-95efd5d0dd0c",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1861f431-b6d1-42c3-bcdb-b06516c9f514",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://VKnmJuqcqpBXhgLyqJvjo.yxemycPrnZ472QO"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9937284-8378-4bf9-9aa0-c7f4448ca041",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zap-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apps",
+                      "value": "mailchimp"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zapier.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9753cbac-2de8-4e28-9509-357fa448bf06",
+    "name": "Partner Accounts Zap Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Introduction\n\nThe Partner API is the best tool for complete style control over a user's Zapier experience within your app.\nEssentially, it lets you customize how you present Zapier within your product without sacrificing your app's look,\nfeel, and flow.\n\nThink of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it's most\nhelpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,\nexpose relevant Zap information, and more!\n\nWith the Partner API, you can:\n\n- Get a list of all the apps available in Zapier's app directory so you can power your app directory and show your\nusers all the integration possibilities with your Zapier integration.\n- Have complete style control over how you present Zap templates in your product. The Partner API gives you access\nto the raw Zap Template data so you can give your users access to your Zap template with your product's style, look\nand feel.\n- Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.\n- Streamline Zap setup by pre-filling fields on behalf of your users.\n- Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them\ncomplete confidence in their Zapier integration.\n- Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave\nyour product.\n\n## Authentication\n\nThere are two ways to authenticate with the Partner API.\n\n1. Your application's `client_id` which you will receive once you are approved for access to the API\n(Client ID Authentication)\n2. A user's access token (Access Token Authentication).\n\nWhich authentication method you should use depends on which endpoint(s) you are using.\nReview each endpoint's documentation to understand which parameters are required.\n\n> Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn't\nneed it so it's not something we provide.'\n\n## Learn more\n\nSee the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.\n\n\nContact Support:\n Name: Zapier",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1550 @@
+{
+  "item": [
+    {
+      "id": "8c94e522-8d84-4ac2-8e6e-9be86f6da583",
+      "name": "Inputs",
+      "description": {
+        "content": "Refers to resources interacting with 'Inputs' associated resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "173e6ae6-5d30-4fbc-8bae-6630249d9421",
+          "name": "Zapier Get Input Fields",
+          "request": {
+            "name": "Zapier Get Input Fields",
+            "description": {
+              "content": "Get the Input Fields for a particular Action, using the provided authentication and inputs. See the fields and fieldsets guide for more information.\nSee [our docs](https://docs.zapier.com/powered-by-zapier/zap-creation/fields-and-fieldsets#input-fields) for more information.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "actions",
+                ":action_id",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action_id",
+                  "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"authentication\": \"<string,null>\",\n    \"inputs\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46acee67-b8e3-4514-97cf-ec02514103bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": {\n    \"next\": null,\n    \"prev\": null\n  },\n  \"meta\": {\n    \"count\": 2,\n    \"limit\": null,\n    \"offset\": 0\n  },\n  \"data\": [\n    {\n      \"type\": \"input_field\",\n      \"id\": \"input\",\n      \"default_value\": \"\",\n      \"depends_on\": [],\n      \"description\": \"Use the Input Data fields above to assign key names (left) and map values (right) from previous steps. Use notation `inputData.keyName` or `inputData['keyName']` to access the values within your code. The data will be provided **as strings**. Learn more [here](https://zapier.com/help/create/code-webhooks/use-javascript-code-in-zaps#input-data-for-code-steps).\",\n      \"invalidates_input_fields\": false,\n      \"is_required\": false,\n      \"placeholder\": \"\",\n      \"title\": \"Input Data\",\n      \"value_type\": \"OBJECT\"\n    },\n    {\n      \"type\": \"input_field\",\n      \"id\": \"code\",\n      \"default_value\": \"// this is wrapped in an `async` function\\n// you can use await throughout the function\\n\\noutput = [{id: 123, hello: \\\"world\\\"}];\",\n      \"depends_on\": [],\n      \"description\": \"**Warning! This is an advanced action!** Uses Node 10.x.x. Please read the [Code documentation for more information](/help/create/code-webhooks/use-javascript-code-in-zaps).\",\n      \"format\": \"CODE\",\n      \"invalidates_input_fields\": false,\n      \"is_required\": true,\n      \"placeholder\": \"\",\n      \"title\": \"Code\",\n      \"value_type\": \"STRING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41314ec9-183c-4c3a-baf0-de729fc075b7",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "832f1118-3085-414f-b19f-3c45fb359991",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f7601d5-2e8f-40ff-9ad2-da32e47b3e79",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc27eeb0-ff4d-436e-a92a-7146120ef598",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "763f4dbd-dd02-4be3-b15c-7b9497460f88",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7147c11b-0ff9-4509-ae63-31c596f2b418",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c9c1a55-c58e-4891-be6c-c8a5bd605829",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9231135-4346-483c-ac6f-736eceb030ce",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": \"928117\",\n    \"inputs\": {\n      \"spreadsheet\": \"my_sheet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5918e01-07c5-402b-9406-e470583d2d98",
+          "name": "Zapier Get Choices",
+          "request": {
+            "name": "Zapier Get Choices",
+            "description": {
+              "content": "Get the possible values for a `SELECT` Input Field.\n\n#### When using OAuth\n\nThis endpoint requires the `zap` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "actions",
+                ":action_id",
+                "inputs",
+                ":input_id",
+                "choices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page of choices to return, defaults to the first"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action_id",
+                  "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "input_id",
+                  "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"authentication\": \"<string,null>\",\n    \"inputs\": {\n      \"key_0\": {}\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4434bb7a-6131-4663-96c4-f4dc185bbb22",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"data\": [\n      {\n        \"id\": \"55c\",\n        \"type\": \"choice\",\n        \"label\": \"First\",\n        \"value\": \"example\"\n      },\n      {\n        \"id\": \"a73\",\n        \"type\": \"choice\",\n        \"label\": \"Second\",\n        \"value\": \"example\"\n      }\n    ],\n    \"links\": {\n      \"next\": null,\n      \"prev\": null\n    },\n    \"meta\": {\n      \"page\": 1\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8076a75-aec5-45f5-9eea-85794096b02f",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "feeebadf-c738-4237-8fdf-8015b3b90f0c",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84b1744c-9604-4f1d-9c12-26725e5aa4f7",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e557192d-b64a-4f92-b70b-f6352250fc23",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5628400-1321-4c0e-aaf0-0992eadfc48f",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "246e728d-f59f-4eb1-97c3-c2f3a0b2eec5",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae0c6da6-10b0-4782-9b94-bce7d26b70c8",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://yLtMb.pdzdSlmPH+Sk6-ocsSJfOD0i7gShidqrDOKJR.-x"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d88df6b-2df5-43fd-bb86-efdad7be9940",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions",
+                    ":action_id",
+                    "inputs",
+                    ":input_id",
+                    "choices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) An Action ID, as provided by the `/actions` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "input_id",
+                      "description": "(Required) An Input Field ID, as provided by the `/inputs` endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"authentication\": {},\n    \"inputs\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zapier.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3bb11365-d7ec-41ae-8bc9-7251e2bd0d76",
+    "name": "Partner Accounts Inputs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Introduction\n\nThe Partner API is the best tool for complete style control over a user's Zapier experience within your app.\nEssentially, it lets you customize how you present Zapier within your product without sacrificing your app's look,\nfeel, and flow.\n\nThink of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it's most\nhelpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,\nexpose relevant Zap information, and more!\n\nWith the Partner API, you can:\n\n- Get a list of all the apps available in Zapier's app directory so you can power your app directory and show your\nusers all the integration possibilities with your Zapier integration.\n- Have complete style control over how you present Zap templates in your product. The Partner API gives you access\nto the raw Zap Template data so you can give your users access to your Zap template with your product's style, look\nand feel.\n- Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.\n- Streamline Zap setup by pre-filling fields on behalf of your users.\n- Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them\ncomplete confidence in their Zapier integration.\n- Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave\nyour product.\n\n## Authentication\n\nThere are two ways to authenticate with the Partner API.\n\n1. Your application's `client_id` which you will receive once you are approved for access to the API\n(Client ID Authentication)\n2. A user's access token (Access Token Authentication).\n\nWhich authentication method you should use depends on which endpoint(s) you are using.\nReview each endpoint's documentation to understand which parameters are required.\n\n> Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn't\nneed it so it's not something we provide.'\n\n## Learn more\n\nSee the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.\n\n\nContact Support:\n Name: Zapier",
+      "type": "text/plain"
+    }
+  }
+}

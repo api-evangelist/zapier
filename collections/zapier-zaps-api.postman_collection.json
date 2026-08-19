@@ -1,0 +1,3267 @@
+{
+  "item": [
+    {
+      "id": "8eb6e963-9e4f-41eb-988b-16b7a62c2772",
+      "name": "Zaps",
+      "description": {
+        "content": "Refers to resources interacting with 'Zaps' associated resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e8f1ccd-4711-4ee0-a0d9-6d174a80194c",
+          "name": "Zapier Get Zaps [v1]",
+          "request": {
+            "name": "Zapier Get Zaps [v1]",
+            "description": {
+              "content": "This endpoint returns a list of Zaps for the authenticated Zapier user.\n\n#### When using OAuth\n\nThis endpoint requires the `zap` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "zaps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "(Max: 100) Limit the number of Zap templates returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of Zap templates to skip before beginning to return the Zap templates. The default value is 0, which is the offset of the first item."
+                },
+                {
+                  "disabled": false,
+                  "key": "params__{{KEY}}",
+                  "value": "<string>",
+                  "description": "Filter for Zaps that contain the given parameter's {{KEY}} and the value of the query parameter. Keys are defined by your app on the [developer platform](https://zapier.com/platform/login)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17ab7e00-a624-4d7e-9c4c-325f816047c5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"next\": \"https://api.zapier.com/v1/zaps?limit=2&offset=2\",\n    \"previous\": null,\n    \"count\": 2,\n    \"objects\": [\n      {\n        \"id\": 125,\n        \"title\": \"Create Trello cards from new Typeform entries\",\n        \"state\": \"on\",\n        \"steps\": [\n          {\n            \"type_of\": \"read\",\n            \"app\": {\n              \"id\": 4259,\n              \"uuid\": \"5e2ba0e469b0-4754-bf69-d46221122aa2\",\n              \"title\": \"Typeform\",\n              \"slug\": \"typeform\",\n              \"description\": \"Typeform helps you ask awesomely online! If you ever need to run a survey, questionnaire, form, contest etc... Typeform will help you achieve it beautifully across all devices, every time, using its next generation platform.\",\n              \"hex_color\": \"8bcbca\",\n              \"image\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.png\",\n              \"images\": {\n                \"url_16x16\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.16x16.png\",\n                \"url_32x32\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.32x32.png\",\n                \"url_64x64\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.64x64.png\",\n                \"url_128x128\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.128x128.png\"\n              },\n              \"api\": \"TypeformDevAPI\",\n              \"url\": \"https://zapier.com/apps/typeform/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n            },\n            \"params\": null\n          },\n          {\n            \"type_of\": \"write\",\n            \"app\": {\n              \"id\": 4192,\n              \"uuid\": \"ee7e5c50a7d2-4bb4-b5b8-a7e55aa00521\",\n              \"title\": \"Trello\",\n              \"slug\": \"trello\",\n              \"description\": \"Trello is team collaboration tool that lets you organize anything and everything to keep your projects on task.\",\n              \"hex_color\": \"0079bf\",\n              \"image\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.png\",\n              \"images\": {\n                \"url_16x16\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.16x16.png\",\n                \"url_32x32\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.32x32.png\",\n                \"url_64x64\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.64x64.png\",\n                \"url_128x128\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.128x128.png\"\n              },\n              \"api\": \"TrelloAPI\",\n              \"url\": \"https://zapier.com/apps/trello/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n            },\n            \"params\": null\n          }\n        ],\n        \"url\": \"https://zapier.com/editor/125?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\",\n        \"modified_at\": \"2017-03-22T09:38:11-05:00\"\n      },\n      {\n        \"id\": 123,\n        \"title\": \"Create Trello cards from new Typeform entries\",\n        \"state\": \"off\",\n        \"steps\": [\n          {\n            \"type_of\": \"read\",\n            \"app\": {\n              \"id\": 4259,\n              \"uuid\": \"5e2ba0e469b0-4754-bf69-d46221122aa2\",\n              \"title\": \"Typeform\",\n              \"slug\": \"typeform\",\n              \"description\": \"Typeform helps you ask awesomely online! If you ever need to run a survey, questionnaire, form, contest etc... Typeform will help you achieve it beautifully across all devices, every time, using its next generation platform.\",\n              \"hex_color\": \"8bcbca\",\n              \"image\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.png\",\n              \"images\": {\n                \"url_16x16\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.16x16.png\",\n                \"url_32x32\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.32x32.png\",\n                \"url_64x64\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.64x64.png\",\n                \"url_128x128\": \"https://cdn.zapier.com/storage/developer/5e21b4c1e0a2a3346a801dbc0a2a5a6d_2.128x128.png\"\n              },\n              \"api\": \"TypeformDevAPI\",\n              \"url\": \"https://zapier.com/apps/typeform/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n            },\n            \"params\": null\n          },\n          {\n            \"type_of\": \"write\",\n            \"app\": {\n              \"id\": 4192,\n              \"uuid\": \"ee7e5c50a7d2-4bb4-b5b8-a7e55aa00521\",\n              \"title\": \"Trello\",\n              \"slug\": \"trello\",\n              \"description\": \"Trello is team collaboration tool that lets you organize anything and everything to keep your projects on task.\",\n              \"hex_color\": \"0079bf\",\n              \"image\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.png\",\n              \"images\": {\n                \"url_16x16\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.16x16.png\",\n                \"url_32x32\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.32x32.png\",\n                \"url_64x64\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.64x64.png\",\n                \"url_128x128\": \"https://cdn.zapier.com/storage/services/da3ff465abd3a3e1b687c52ff803af74.128x128.png\"\n              },\n              \"api\": \"TrelloAPI\",\n              \"url\": \"https://zapier.com/apps/trello/integrations?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n            },\n            \"params\": null\n          }\n        ],\n        \"url\": \"https://zapier.com/editor/123?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\",\n        \"modified_at\": \"2017-03-21T22:04:05-05:00\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7a83646-6d45-4d55-91ff-44084d242721",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd39dbed-3960-459a-be65-41d1274670e8",
+              "name": "Invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c3df8dc-7d18-4e81-a47e-8fb7123d3dbd",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0413cd79-f378-4e15-a04b-8586c569f996",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23ebca27-7d7e-430b-bb26-c62ada4852a1",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cbb6822-e9a9-4fde-aa28-49a863dcf5b5",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "params__{{KEY}}",
+                      "value": "ex@mp1e47c4e6ff1a44e7800"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45e36424-da54-4625-af63-c072a6a8be0c",
+          "name": "Zapier Guess a Zap [Beta]",
+          "request": {
+            "name": "Zapier Guess a Zap [Beta]",
+            "description": {
+              "content": "This endpoint returns a suggested Zap and pre-filled URL to Zapier from a given prompt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "guess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) See our authentication documentation for how to find your client ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "09dc83a0-f756-41b6-b90b-08d516796758",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Save Facebook Lead Ads leads to Google Sheets and send an email\",\n  \"steps\": [\n    {\n      \"step\": {\n        \"title\": \"Trigger when a new lead is created in Facebook Lead Ads\",\n        \"app\": \"Facebook Lead Ads\",\n        \"api\": \"FacebookLeadsAPI\"\n      },\n      \"alternatives\": [\n        {\n          \"title\": null,\n          \"app\": \"LinkedIn Ads\",\n          \"api\": \"LinkedInLeadGenFormsCLIAPI@2.7.1\"\n        }\n      ]\n    },\n    {\n      \"step\": {\n        \"title\": \"Save the lead information to a Google Sheet\",\n        \"app\": \"Google Sheets\",\n        \"api\": \"GoogleSheetsV2API\"\n      },\n      \"alternatives\": []\n    }\n  ],\n  \"prefilled_url\": \"https://api.zapier.com/v1/embed/my-app/create?steps%5B0%5D%5Bapp%5D=FacebookLeadsAPI&steps%5B0%5D%5Baction%5D=lead&steps%5B0%5D%5Btype%5D=read&steps%5B1%5D%5Bapp%5D=GoogleSheetsV2API&steps%5B1%5D%5Baction%5D=add_row&steps%5B1%5D%5Btype%5D=write&utm_campaign=partner_zap_guesser&copilot_prompt=Save+new+leads+from+Facebook+Lead+Ads+to+Google+Sheets%2C+and+email+me+the+lead+in+Gmail&partner_zap_guesser_attempt_id=22f44602-db8f-4a2a-8b09-420b0d277b5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a024fc73-983b-4055-97c6-1d948d6eb3b5",
+              "name": "This schema can be expected for 400 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"detail\": \"This doesn't seem to be a workflow. You could try something like, 'When a new NFL...\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c554ab0b-3380-467f-9dde-dc922789f1cf",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82fa13d8-90cd-48b6-91d2-edd302134c8f",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d156aa4-07af-4e5e-af5a-83fd72aa9c3a",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f18360a-6a7f-412b-a5a1-4c90e37eba7b",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75f3efba-b41c-4ead-8eaf-a42bf8111563",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3986a7c9-74e0-44cb-89cd-10a08f5d7888",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9db06f6-6cdc-4c58-bf76-e683f0df8852",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "guess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Save new leads from Facebook Lead Ads to Google Sheets, and email me the lead in Gmail\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bac89db3-d129-4435-9aaf-a8288e2d574a",
+          "name": "Zapier Get Zap Runs",
+          "request": {
+            "name": "Zapier Get Zap Runs",
+            "description": {
+              "content": "This endpoint returns runs for the specified Zaps and provides basic yet essential details about their execution. As the initial version, it serves foundational information, with plans for continuous enhancement to expand its capabilities and improve data output over time.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:runs` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zap-runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<string>",
+                  "description": "Filter Zap runs that occurred on or after this date. If not provided, the results default to Zap runs from the last 30 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Used for paginating results. Specifies the offset to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Performs a text search against the zap_title, data_in, and data_out fields, returning only zap runs that match the specified keywords."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>,<string>",
+                  "description": "Accepts one or more status values separated by comma, enabling the filtering of zap runs based on the specified status or statuses provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<string>",
+                  "description": "Filter Zap runs that occurred before this date."
+                },
+                {
+                  "disabled": false,
+                  "key": "zap_id",
+                  "value": "<integer>",
+                  "description": "Find Zap runs for the specified Zap ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1d2ac965-055b-4b07-8360-f9a2fcf81efe",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"links\": {\n      \"next\": \"https://api.zapier.com/v2/zap-runs?offset=10&limit=10\",\n      \"prev\": \"https://api.zapier.com/v2/zap-runs?offset=0&limit=10\"\n    },\n    \"meta\": {\n      \"count\": 30,\n      \"limit\": 10,\n      \"offset\": 10\n    },\n    \"data\": [\n      {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"zap_id\": 104445735,\n        \"start_time\": \"2024-10-16T06:29:10.360000Z\",\n        \"end_time\": \"2024-10-16T06:29:10.360000Z\",\n        \"status\": \"success\",\n        \"zap_title\": \"My Awesome Zap\",\n        \"steps\": [\n          {\n            \"status\": \"success\",\n            \"start_time\": \"2024-10-16T06:29:10.360000Z\"\n          }\n        ],\n        \"data_in\": \"\",\n        \"data_out\": \"\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "833e8c6b-9921-459e-ba84-0ba17628eee7",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8fddfb7-adaf-43ee-a7e5-11f301afa526",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30337096-39f4-4d8d-91c5-736729e7fe34",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01c68c33-152a-4e6d-b4f7-09b84fefb484",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "092b4c17-d512-4820-9733-3023b01fbc5e",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce1d4a4-713b-42ea-aad6-985629c2e4a2",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22b45b02-45aa-4154-ab4d-9c71db7fbdb2",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd4cff84-38a7-4f3a-818a-416fb44e3953",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zap-runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "My Zap Title"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "error,success"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2024-10-16T06:29:10.360000Z"
+                    },
+                    {
+                      "key": "zap_id",
+                      "value": "104445735"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76a972ae-7354-42af-aef7-4e817c8b62c2",
+          "name": "Zapier Get Zaps [v2]",
+          "request": {
+            "name": "Zapier Get Zaps [v2]",
+            "description": {
+              "content": "This endpoint returns a list of Zaps for the authenticated Zapier user.\n\nThe `expand` array can be used to expand selected fields into full objects in the response.  Inputs with keys can\nalso be passed to filter Zaps by certain criteria.\n\n#### When using OAuth\n\nThis endpoint requires the `zap`, `zap:all`, or `zap:account:all` OAuth scopes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zaps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_shared",
+                  "value": "<boolean>",
+                  "description": "If true, all Zaps that are shared with the user, rather than only those owned by them, are returned. If the zap:account:all scope is not present this has no effect."
+                },
+                {
+                  "disabled": false,
+                  "key": "inputs",
+                  "value": "<string>",
+                  "description": "You may pass inputs[KEY]=VALUE1,VALUE2 to filter for Zaps that contain those settings. Keys are defined by your app on the developer platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Used for paginating results. Specifies the maximum number of items to return per page. If this value is not set, it defaults to 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Used for paginating results. Specifies the offset to use."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b6a33da-2306-4c5d-bccb-ef0d49dcae29",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"links\": {\n      \"next\": null,\n      \"prev\": null\n    },\n    \"meta\": {\n      \"count\": 1,\n      \"offset\": 0,\n      \"limit\": null\n    },\n    \"data\": [\n      {\n        \"type\": \"zap\",\n        \"id\": \"00000000-0000-c000-8000-000000012345\",\n        \"is_enabled\": false,\n        \"last_successful_run_date\": \"2019-08-24T14:15:22Z\",\n        \"updated_at\": \"2019-08-24T14:15:22Z\",\n        \"title\": \"My Zap\",\n        \"links\": {\n          \"html_editor\": \"https://zapier.com/editor/7481?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n        },\n        \"steps\": [\n          {\n            \"action\": \"uag:1f188536-6dd0-4172-8414-2b90914ddee9\",\n            \"authentication\": \"QVaPP2O1\",\n            \"inputs\": {\n              \"deal_stage\": \"CLOSED_WON\"\n            },\n            \"title\": \"Pacific Railway Golden spike hammered\"\n          },\n          {\n            \"action\": \"uag:1f188536-6dd0-4172-8414-2b90914ddaa7\",\n            \"authentication\": \"MVA64zk4\",\n            \"inputs\": {\n              \"full_name\": \"{{customer__full_name}}\"\n            },\n            \"title\": \"Record who dunnit\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6a6cfe4-722e-4a44-a923-1ede96f7c4bd",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f784e0a-ecab-450a-a299-9d372b2aeb05",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82790afd-b252-418b-a81c-0e0d84ad5d34",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dfe2476-bab7-47a0-95c6-51e0cddc2f34",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5db58299-a745-4f40-b1cd-4deb64c9e393",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "670ff11f-acfa-42ea-baa4-93147dabf5f7",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "324da56d-b39d-4aaf-af29-134c3f11c738",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdbf6cb7-67c3-4a8a-bd88-82162a67e671",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    },
+                    {
+                      "key": "include_shared",
+                      "value": "true"
+                    },
+                    {
+                      "key": "inputs",
+                      "value": "inputs[board]=BOARD_ID"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5951533f-f0ac-45f3-affa-6e69e35467bc",
+          "name": "Zapier Create a Zap",
+          "request": {
+            "name": "Zapier Create a Zap",
+            "description": {
+              "content": "This URL creates a Zap based on the given steps and title.\n\n#### When using OAuth\n\nThis endpoint requires the `zap:write` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zaps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "A comma separated list of Zap fields that should be expanded from ids to full objects in the response. Fields that may not be expanded will remain as ids."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"<string>\",\n        \"authentication\": \"<string,null>\",\n        \"inputs\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"alias\": \"<string,null>\"\n      },\n      {\n        \"action\": \"<string>\",\n        \"authentication\": \"<string,null>\",\n        \"inputs\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"alias\": \"<string,null>\"\n      }\n    ],\n    \"title\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b8e77b8-48b3-4737-9f1b-619fb6b51ff6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"zap\",\n  \"id\": \"033cc069f2d3-4d63-8666-10c07ab38dac\",\n  \"is_enabled\": true,\n  \"last_successful_run_date\": \"2019-08-24T14:15:22Z\",\n  \"updated_at\": \"2024-03-14T22:02:36+00:00\",\n  \"title\": \"My Critically Important Program\",\n  \"links\": {\n    \"html_editor\": \"https://zapier.com/editor/104826178?utm_source=partner&utm_medium=embed&utm_campaign=partner_api&referer=zapier\"\n  },\n  \"steps\": [\n    {\n      \"action\": \"example_core:Vn7xbE60\",\n      \"authentication\": \"2kyXZ8VJ\",\n      \"inputs\": {},\n      \"title\": null\n    },\n    {\n      \"action\": \"example_core:V7GpzX40\",\n      \"authentication\": null,\n      \"inputs\": null,\n      \"title\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c0f6e59-ff10-4aa1-acda-c06eaecff71e",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20ce458d-101a-45a5-ab02-435105dd73f0",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82ec3ac0-ff5f-48c0-a52e-6919df73dd47",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "041f6527-bb88-46bc-b15d-aaff61fe946e",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e116f7cd-dca0-4233-b7ed-818c49a910fb",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92517dac-c395-403a-9cfb-1a10f24dcb10",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e7e90d3-94ac-4060-aa0d-e0fd35ce57fb",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "http://zUUgQBxkkJxvtsMWXYqitaxHfeY.zkgRIe40yesh6OsHRL4HS6xxqQZnym6yqAe-1Q3W5mJEM"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f7a29f-2efe-4831-b276-154e301609fe",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "steps.action"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"steps\": [\n      {\n        \"action\": \"example_core:5m2y9p7J\",\n        \"inputs\": {\n          \"code\": \"output = [{id: Math.round(Date.now()/1000), n: Math.random()}];\"\n        },\n        \"authentication\": null,\n        \"alias\": null\n      },\n      {\n        \"action\": \"example_core:VBz2NGB5\",\n        \"inputs\": {\n          \"code\": \"output = [{ id: inputData.id, n: inputData.n * 2}];\",\n          \"inputs\": {\n            \"n\": \"{{n}}\",\n            \"id\": \"{{id}}\"\n          }\n        },\n        \"authentication\": null,\n        \"alias\": null\n      }\n    ],\n    \"title\": \"My Critically Important Program\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zapier.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bafd012a-6fcd-49d8-9d22-df7cafb4b78d",
+    "name": "Partner Accounts Zaps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Introduction\n\nThe Partner API is the best tool for complete style control over a user's Zapier experience within your app.\nEssentially, it lets you customize how you present Zapier within your product without sacrificing your app's look,\nfeel, and flow.\n\nThink of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it's most\nhelpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,\nexpose relevant Zap information, and more!\n\nWith the Partner API, you can:\n\n- Get a list of all the apps available in Zapier's app directory so you can power your app directory and show your\nusers all the integration possibilities with your Zapier integration.\n- Have complete style control over how you present Zap templates in your product. The Partner API gives you access\nto the raw Zap Template data so you can give your users access to your Zap template with your product's style, look\nand feel.\n- Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.\n- Streamline Zap setup by pre-filling fields on behalf of your users.\n- Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them\ncomplete confidence in their Zapier integration.\n- Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave\nyour product.\n\n## Authentication\n\nThere are two ways to authenticate with the Partner API.\n\n1. Your application's `client_id` which you will receive once you are approved for access to the API\n(Client ID Authentication)\n2. A user's access token (Access Token Authentication).\n\nWhich authentication method you should use depends on which endpoint(s) you are using.\nReview each endpoint's documentation to understand which parameters are required.\n\n> Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn't\nneed it so it's not something we provide.'\n\n## Learn more\n\nSee the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.\n\n\nContact Support:\n Name: Zapier",
+      "type": "text/plain"
+    }
+  }
+}

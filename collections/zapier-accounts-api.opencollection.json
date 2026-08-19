@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Accounts API",
+    "version": "2024.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zapier User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v1/profiles/me",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://zapier.com/oauth/authorize/",
+              "accessTokenUrl": "https://zapier.com/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint returns the authenticated user information\n\n#### When using OAuth\n\nThis endpoint requires the `profile` OAuth scope."
+        },
+        {
+          "info": {
+            "name": "Zapier Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zapier.com/v2/authorize",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Your application Client ID."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "https://example.com/path/abc123",
+                "type": "query",
+                "description": "The page the user will be redirect to after OAuth flow."
+              },
+              {
+                "name": "referer",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Only OAuth response type `code` is supported"
+              },
+              {
+                "name": "scope",
+                "value": "example-value",
+                "type": "query",
+                "description": "Space (`%20`) separated values"
+              },
+              {
+                "name": "sign_up_email",
+                "value": "user@example.com",
+                "type": "query",
+                "description": "Email of the user signing up."
+              },
+              {
+                "name": "sign_up_first_name",
+                "value": "Example Name",
+                "type": "query",
+                "description": "First name of the user signing up."
+              },
+              {
+                "name": "sign_up_last_name",
+                "value": "Example Name",
+                "type": "query",
+                "description": "Last name of the user signing up."
+              },
+              {
+                "name": "utm_campaign",
+                "value": "workflow_api",
+                "type": "query"
+              },
+              {
+                "name": "utm_content",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "utm_medium",
+                "value": "embed",
+                "type": "query"
+              },
+              {
+                "name": "utm_source",
+                "value": "partner",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "client_id",
+              "value": "{{client_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Create a new user and obtain an access token. See our Quick Account Creation guide to get started."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

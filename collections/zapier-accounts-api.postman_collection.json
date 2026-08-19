@@ -1,0 +1,1414 @@
+{
+  "item": [
+    {
+      "id": "222758c5-1717-401e-98b6-860788981df8",
+      "name": "Accounts",
+      "description": {
+        "content": "Refers to resources interacting with 'Accounts' associated resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc0db7c0-2ec7-4ec7-b25c-b813b8e4666b",
+          "name": "Zapier User Profile",
+          "request": {
+            "name": "Zapier User Profile",
+            "description": {
+              "content": "This endpoint returns the authenticated user information\n\n#### When using OAuth\n\nThis endpoint requires the `profile` OAuth scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "profiles",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "profile zap zap:write authentication authentication:write zap:runs action:run zap:all"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://zapier.com/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://zapier.com/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9a784612-a10f-4f94-b3fa-f6af320d76a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 88998899,\n    \"first_name\": \"Jacob\",\n    \"last_name\": \"Corwin\",\n    \"full_name\": \"Jacob Corwin\",\n    \"email\": \"jacob.corwin@zapier.example\",\n    \"email_confirmed\": true,\n    \"timezone\": \"America/Toronto\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aafa27ab-7a02-4907-bcf1-5da7a987e295",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deb721aa-701f-47a7-9bc1-b75716d0e3e3",
+              "name": "Invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63558369-1bf5-4859-9985-a494dcd43eb6",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a40a7f37-7298-44fe-8450-fff09708d379",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "390ccc5a-81e9-485d-a1f2-d1781e328ce2",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d1bb807-9007-43f7-9539-12fba9a2e165",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "profiles",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59bd46cc-b517-40bd-bccc-6cea3944c86c",
+          "name": "Zapier Create Account",
+          "request": {
+            "name": "Zapier Create Account",
+            "description": {
+              "content": "Create a new user and obtain an access token. See our Quick Account Creation guide to get started.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your application Client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>",
+                  "description": "(Required) The page the user will be redirect to after OAuth flow."
+                },
+                {
+                  "disabled": false,
+                  "key": "referer",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) Only OAuth response type `code` is supported"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(Required) Space (`%20`) separated values"
+                },
+                {
+                  "disabled": false,
+                  "key": "sign_up_email",
+                  "value": "<email>",
+                  "description": "Email of the user signing up."
+                },
+                {
+                  "disabled": false,
+                  "key": "sign_up_first_name",
+                  "value": "<string>",
+                  "description": "First name of the user signing up."
+                },
+                {
+                  "disabled": false,
+                  "key": "sign_up_last_name",
+                  "value": "<string>",
+                  "description": "Last name of the user signing up."
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_campaign",
+                  "value": "workflow_api"
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_content",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_medium",
+                  "value": "embed"
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_source",
+                  "value": "partner"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "client_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "00f22430-f52b-405d-8f84-fdfb05c386c1",
+              "name": "Redirect to authorization URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c809520b-da85-4980-867e-50b5b4dd983d",
+              "name": "This schema can be expected for 4xx 'Malformed request.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": \"parse_error\",\n      \"title\": \"ParseError\",\n      \"detail\": \"Malformed request.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"Malformed request.\",\n          \"code\": \"parse_error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68d86d9b-04fd-4d10-9295-b1b48fa77793",
+              "name": "401 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69fc7a5d-ff7e-4378-acee-7410c3e25d09",
+              "name": "403 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ce92da9-d5b3-424b-ae52-ca952c7beb20",
+              "name": "409 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70502202-1b5d-446c-9a4d-b3ba36d7f8c0",
+              "name": "429 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0c5042f-d92c-49a9-ab76-c33ef319b447",
+              "name": "This schema can be expected for 5xx 'A server error occurred.' errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": \"error\",\n      \"title\": \"APIException\",\n      \"detail\": \"A server error occurred.\",\n      \"source\": null,\n      \"meta\": {\n        \"source\": \"ZAPIER\",\n        \"full_details\": {\n          \"message\": \"A server error occurred.\",\n          \"code\": \"error\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ece7d80-49df-479c-af3b-313f13a27315",
+              "name": "503 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates when to retry the request",
+                  "key": "Retry-After",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "https://WG.zolherXuxkeynHqw-fFenEPNwbOdQmpbNIiB"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f9f02b4-1d30-4b71-8ef4-b7606e59a7fc",
+              "name": "504 Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/path/abc123"
+                    },
+                    {
+                      "key": "referer",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "sign_up_email",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "sign_up_first_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "sign_up_last_name",
+                      "value": "Example Name"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "workflow_api"
+                    },
+                    {
+                      "key": "utm_content",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "utm_medium",
+                      "value": "embed"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "partner"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zapier.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "776b2be0-a7e6-4e02-8c8a-c0706e74374d",
+    "name": "Partner Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Introduction\n\nThe Partner API is the best tool for complete style control over a user's Zapier experience within your app.\nEssentially, it lets you customize how you present Zapier within your product without sacrificing your app's look,\nfeel, and flow.\n\nThink of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it's most\nhelpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,\nexpose relevant Zap information, and more!\n\nWith the Partner API, you can:\n\n- Get a list of all the apps available in Zapier's app directory so you can power your app directory and show your\nusers all the integration possibilities with your Zapier integration.\n- Have complete style control over how you present Zap templates in your product. The Partner API gives you access\nto the raw Zap Template data so you can give your users access to your Zap template with your product's style, look\nand feel.\n- Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.\n- Streamline Zap setup by pre-filling fields on behalf of your users.\n- Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them\ncomplete confidence in their Zapier integration.\n- Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave\nyour product.\n\n## Authentication\n\nThere are two ways to authenticate with the Partner API.\n\n1. Your application's `client_id` which you will receive once you are approved for access to the API\n(Client ID Authentication)\n2. A user's access token (Access Token Authentication).\n\nWhich authentication method you should use depends on which endpoint(s) you are using.\nReview each endpoint's documentation to understand which parameters are required.\n\n> Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn't\nneed it so it's not something we provide.'\n\n## Learn more\n\nSee the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.\n\n\nContact Support:\n Name: Zapier",
+      "type": "text/plain"
+    }
+  }
+}
