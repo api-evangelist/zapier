@@ -4,6 +4,9 @@ apis:
 - aid: zapier:zapier
   name: Zapier
   tags:
+  - Integration
+  - iPaaS
+  tags_raw:
   - Integrations
   - iPaaS
   humanURL: ' https://zapier.com/'
@@ -24,6 +27,11 @@ apis:
 - aid: zapier:ai-actions-api
   name: Zapier AI Actions API
   tags:
+  - Artificial Intelligence
+  - iPaaS
+  - LLM
+  - Natural-Language
+  tags_raw:
   - AI
   - iPaaS
   - LLM
@@ -42,6 +50,10 @@ apis:
 - aid: zapier:mcp
   name: Zapier MCP
   tags:
+  - Artificial Intelligence
+  - iPaaS
+  - MCP
+  tags_raw:
   - AI
   - iPaaS
   - MCP
@@ -65,6 +77,8 @@ apis:
   humanURL: ' https://zapier.com/'
   baseURL: https://api.zapier.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -119,6 +133,8 @@ apis:
   humanURL: ' https://zapier.com/'
   baseURL: https://api.zapier.com
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -331,6 +347,9 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
 name: Zapier
 tags:
+- Integration
+- iPaaS
+tags_raw:
 - Integrations
 - iPaaS
 kind: contract
