@@ -1,0 +1,8 @@
+---
+title: "How Rozas uses Zapier to give every lead a 2-minute headstart"
+url: "https://zapier.com/blog/rozas-two-minute-lead-response"
+date: "2026-08-19"
+author: "Rob Ayre"
+feed_url: "https://zapier.com/blog/feeds/latest/"
+---
+As COO of Rozas, Matthew Rozas oversees the systems behind a firm that receives about 1,800 calls a week on its main line. He owns finance, HR, marketing, and operations, so he sees exactly where a new lead can slow down: in the gap between someone asking for help and the intake team getting that request into Clio Grow. Rozas represents clients nationwide in family-based immigration petitions, asylum cases, removal defense, employment visas, and other immigration matters.
