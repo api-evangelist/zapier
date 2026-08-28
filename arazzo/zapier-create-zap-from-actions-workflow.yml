@@ -10,8 +10,11 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: zapierPartnerApi
-  url: ../openapi/zapier-partner-api.yml
+- name: actionsApi
+  url: ../openapi/zapier-actions-api-openapi.yml
+  type: openapi
+- name: zapsApi
+  url: ../openapi/zapier-zaps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-zap-from-actions

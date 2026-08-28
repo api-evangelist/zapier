@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: zapierPartnerApi
-  url: ../openapi/zapier-partner-api.yml
+- name: actionsApi
+  url: ../openapi/zapier-actions-api-openapi.yml
+  type: openapi
+- name: appsApi
+  url: ../openapi/zapier-apps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: discover-and-configure-action
