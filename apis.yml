@@ -30,7 +30,7 @@ apis:
   - Artificial Intelligence
   - iPaaS
   - LLM
-  - Natural-Language
+  - NaturalLanguage
   tags_raw:
   - AI
   - iPaaS
@@ -53,6 +53,7 @@ apis:
   - Artificial Intelligence
   - iPaaS
   - MCP
+  - ModelContextProtocol
   tags_raw:
   - AI
   - iPaaS
