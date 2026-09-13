@@ -75,6 +75,7 @@ conformance:
       media type. ARD permits extension types without core registration.'
     - '[Zapier Agent Skills] Media type ''application/json'' is a valid application extension media type.
       ARD permits extension types without core registration.'
+  did_web: null
 catalog:
   host_display_name: Zapier
   host_identifier: zapier.com
