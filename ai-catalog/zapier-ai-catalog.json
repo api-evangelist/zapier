@@ -16,7 +16,12 @@
       "type": "application/mcp-server-card+json",
       "url": "https://zapier.com/.well-known/mcp/server-card.json",
       "description": "Connect any MCP-aware agent to 9,000+ app integrations and 40,000+ actions. Remote streamable-HTTP server with OAuth2. Take actions across Slack, Gmail, Google Sheets, Jira, GitHub, HubSpot, and thousands more.",
-      "tags": ["mcp", "integrations", "actions", "automation"],
+      "tags": [
+        "mcp",
+        "integrations",
+        "actions",
+        "automation"
+      ],
       "representativeQueries": [
         "send a Slack message from my agent",
         "create a row in Google Sheets",
@@ -37,7 +42,11 @@
       "type": "application/json",
       "url": "https://zapier.com/.well-known/webmcp.json",
       "description": "WebMCP manifest exposing machine-discoverable website tools for browser-resident agents, such as browsing Zapier's app directory and docs before navigating.",
-      "tags": ["webmcp", "web-tools", "discovery"],
+      "tags": [
+        "webmcp",
+        "web-tools",
+        "discovery"
+      ],
       "representativeQueries": [
         "browse Zapier apps starting with N",
         "find Zapier apps for CRM"
@@ -50,8 +59,17 @@
       "type": "application/vnd.oai.openapi",
       "url": "https://api.zapier.com/schema",
       "description": "OpenAPI 3.1 spec for the Partner API. Programmatically manage connections, Zaps, and embedded workflows for Powered by Zapier and White Label integrations.",
-      "tags": ["openapi", "partner-api", "embed", "rest"],
-      "capabilities": ["manage-connections", "manage-zaps", "embed-workflows"],
+      "tags": [
+        "openapi",
+        "partner-api",
+        "embed",
+        "rest"
+      ],
+      "capabilities": [
+        "manage-connections",
+        "manage-zaps",
+        "embed-workflows"
+      ],
       "representativeQueries": [
         "manage a user's Zapier connections via API",
         "create a Zap programmatically"
@@ -67,7 +85,12 @@
       "type": "text/html",
       "url": "https://docs.zapier.com/api-reference/overview",
       "description": "Unified reference for the public Zapier APIs on api.zapier.com — build workflows, execute actions, set up trigger inboxes, and more. Browsable by developers and AI agents, rendered from per-service OpenAPI specs.",
-      "tags": ["openapi", "api-reference", "rest", "public-api"],
+      "tags": [
+        "openapi",
+        "api-reference",
+        "rest",
+        "public-api"
+      ],
       "representativeQueries": [
         "what public APIs does Zapier offer",
         "Zapier REST API reference",
@@ -81,8 +104,17 @@
       "type": "text/markdown",
       "url": "https://docs.zapier.com/sdk/index.md",
       "description": "TypeScript SDK and CLI for building agent tools and backend integrations against Zapier's connection layer. Zapier handles auth, tokens, and retries.",
-      "tags": ["sdk", "typescript", "cli", "integrations"],
-      "capabilities": ["actions", "triggers", "connections"],
+      "tags": [
+        "sdk",
+        "typescript",
+        "cli",
+        "integrations"
+      ],
+      "capabilities": [
+        "actions",
+        "triggers",
+        "connections"
+      ],
       "representativeQueries": [
         "add Zapier tools to my TypeScript agent",
         "programmatically run a Zapier action from code"
@@ -105,13 +137,20 @@
       "type": "text/markdown",
       "url": "https://docs.zapier.com/integrations/index.md",
       "description": "Build and publish app integrations to the Zapier directory. For developers adding an app to Zapier's catalog, distinct from the consumer SDK.",
-      "tags": ["platform", "cli", "integration-builder"],
+      "tags": [
+        "platform",
+        "cli",
+        "integration-builder"
+      ],
       "representativeQueries": [
         "build a Zapier integration for my app",
         "publish an app to the Zapier directory"
       ],
       "metadata": {
-        "npmPackages": ["zapier-platform-cli", "zapier-platform-core"],
+        "npmPackages": [
+          "zapier-platform-cli",
+          "zapier-platform-core"
+        ],
         "repository": "https://github.com/zapier/zapier-platform"
       },
       "updatedAt": "2026-07-02T00:00:00Z"
@@ -122,7 +161,12 @@
       "type": "text/markdown",
       "url": "https://docs.zapier.com/powered-by-zapier/index.md",
       "description": "Embed Zapier's automation, MCP, and connections inside your own product. Covers embedded MCP, the Workflow API, embedded editors, and White Label.",
-      "tags": ["embed", "mcp", "white-label", "workflow-api"],
+      "tags": [
+        "embed",
+        "mcp",
+        "white-label",
+        "workflow-api"
+      ],
       "representativeQueries": [
         "embed Zapier MCP in my product",
         "let my users connect their apps through my agent"
@@ -134,8 +178,12 @@
       "displayName": "Zapier Agent Skills",
       "type": "application/json",
       "url": "https://zapier.com/.well-known/agent-skills/index.json",
-      "description": "Discovery index of installable Zapier agent skills (SKILL.md), following the agentskills.io schema. Covers MCP, SDK, embedded MCP, and Platform CLI.",
-      "tags": ["skills", "skill-md", "install"],
+      "description": "Discovery index of installable Zapier agent skills (SKILL.md), following the agentskills.io schema. Covers the core Zapier surfaces (MCP, SDK, embedded MCP, Platform CLI) plus every published connector.",
+      "tags": [
+        "skills",
+        "skill-md",
+        "install"
+      ],
       "representativeQueries": [
         "install the Zapier skill for my agent",
         "how do I set up Zapier with Claude"
@@ -143,6 +191,7 @@
       "metadata": {
         "registry": "https://skills.sh/zapier/agent-skills",
         "repository": "https://github.com/zapier/agent-skills",
+        "connectorsRepository": "https://github.com/zapier/connectors",
         "skills": [
           "https://zapier.com/.well-known/agent-skills/zapier-mcp/SKILL.md",
           "https://zapier.com/.well-known/agent-skills/zapier-sdk/SKILL.md",
@@ -150,7 +199,39 @@
           "https://zapier.com/.well-known/agent-skills/zapier-platform-cli/SKILL.md"
         ]
       },
-      "updatedAt": "2026-07-02T00:00:00Z"
+      "updatedAt": "2026-07-31T00:00:00Z"
+    },
+    {
+      "identifier": "urn:air:zapier.com:connectors:catalog",
+      "displayName": "Zapier Connectors",
+      "type": "application/ai-catalog+json",
+      "url": "https://connectors-skills.zapier.com/.well-known/ai-catalog.json",
+      "description": "Open source agent-callable connectors for apps Zapier integrates with. Each connector is simultaneously an agentskills.io skill and an MCP tool module. Runs with user-held credentials or Zapier-managed auth.",
+      "tags": [
+        "connectors",
+        "skills",
+        "mcp",
+        "opensource",
+        "typescript"
+      ],
+      "capabilities": [
+        "install-skill",
+        "mcp-server",
+        "npm-package",
+        "cli"
+      ],
+      "representativeQueries": [
+        "install a Notion connector for my agent",
+        "call Google Sheets from my agent without writing auth code",
+        "run a Trello tool as a local MCP server"
+      ],
+      "metadata": {
+        "repository": "https://github.com/zapier/connectors",
+        "packageNamePattern": "@zapier/<slug>-connector",
+        "license": "Elastic-2.0",
+        "status": "prototype"
+      },
+      "updatedAt": "2026-07-31T00:00:00Z"
     },
     {
       "identifier": "urn:air:zapier.com:install:router",
@@ -158,7 +239,11 @@
       "type": "text/markdown",
       "url": "https://docs.zapier.com/install.md",
       "description": "Front-door router. Picks the right surface (MCP for AI clients, SDK for code, CLI for terminal) for connecting Zapier to an agent, with steps for each.",
-      "tags": ["install", "onboarding", "router"],
+      "tags": [
+        "install",
+        "onboarding",
+        "router"
+      ],
       "representativeQueries": [
         "how do I connect Zapier to my agent",
         "which Zapier surface should I use"
@@ -171,7 +256,11 @@
       "type": "text/markdown",
       "url": "https://zapier.com/AGENTS.md",
       "description": "Agent onboarding guide: how to connect to, discover, and interact with Zapier across MCP, SDK, and the APIs.",
-      "tags": ["agents-md", "onboarding", "guide"],
+      "tags": [
+        "agents-md",
+        "onboarding",
+        "guide"
+      ],
       "representativeQueries": [
         "how should an agent use Zapier",
         "Zapier agent guide"
@@ -184,7 +273,11 @@
       "type": "text/markdown",
       "url": "https://zapier.com/auth.md",
       "description": "OAuth 2.0 + PKCE walkthrough for agents authenticating to Zapier.",
-      "tags": ["auth", "oauth", "pkce"],
+      "tags": [
+        "auth",
+        "oauth",
+        "pkce"
+      ],
       "representativeQueries": [
         "how does an agent authenticate to Zapier",
         "Zapier OAuth for agents"
@@ -197,7 +290,11 @@
       "type": "text/plain",
       "url": "https://zapier.com/llms.txt",
       "description": "Canonical agent-readable map of Zapier. Per-surface indexes and topic-keyed cross-references with stable anchors. Expanded inline content at /llms-full.txt.",
-      "tags": ["llms.txt", "site-map", "discovery"],
+      "tags": [
+        "llms.txt",
+        "site-map",
+        "discovery"
+      ],
       "representativeQueries": [
         "what does Zapier offer for agents",
         "map of Zapier's developer surfaces"
@@ -214,7 +311,11 @@
       "type": "text/html",
       "url": "https://zapier.com/apps",
       "description": "The canonical list of the 9,000+ apps Zapier connects to. Use to check whether Zapier supports a given app or what actions it exposes. Per-app pages at zapier.com/apps/{slug}/integrations.",
-      "tags": ["apps", "integrations", "catalog"],
+      "tags": [
+        "apps",
+        "integrations",
+        "catalog"
+      ],
       "representativeQueries": [
         "does Zapier support Notion",
         "what actions does Zapier have for HubSpot"
