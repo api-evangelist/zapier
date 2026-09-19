@@ -347,10 +347,11 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
 name: Zapier
 tags:
+- Zapier
 - Integration
 - iPaaS
-- Zapier
 tags_raw:
+- Zapier
 - Integrations
 - iPaaS
 kind: contract
