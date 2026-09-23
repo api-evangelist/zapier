@@ -1,81 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Partner Accounts Inputs API
+  title: Partner Inputs API
   version: 2024.11.0
-  description: '
-
-    ## Introduction
+  description: '## Introduction
 
 
-    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
-
-    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
-
-    feel, and flow.
-
-
-    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
-
-    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
-
-    expose relevant Zap information, and more!
-
-
-    With the Partner API, you can:
-
-
-    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
-
-    users all the integration possibilities with your Zapier integration.
-
-    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
-
-    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
-
-    and feel.
-
-    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
-
-    - Streamline Zap setup by pre-filling fields on behalf of your users.
-
-    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
-
-    complete confidence in their Zapier integration.
-
-    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
-
-    your product.
-
-
-    ## Authentication
-
-
-    There are two ways to authenticate with the Partner API.
-
-
-    1. Your application''s `client_id` which you will receive once you are approved for access to the API
-
-    (Client ID Authentication)
-
-    2. A user''s access token (Access Token Authentication).
-
-
-    Which authentication method you should use depends on which endpoint(s) you are using.
-
-    Review each endpoint''s documentation to understand which parameters are required.
-
-
-    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
-
-    need it so it''s not something we provide.''
-
-
-    ## Learn more
-
-
-    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
-
-    '
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.'
   contact:
     name: Zapier
     url: https://developer.zapier.com/contact
@@ -90,7 +20,7 @@ paths:
       operationId: get-fields-inputs
       description: 'Get the Input Fields for a particular Action, using the provided authentication and inputs. See the fields and fieldsets guide for more information.
 
-        See [our docs](https://docs.zapier.com/powered-by-zapier/zap-creation/fields-and-fieldsets#input-fields) for more information.
+        See our docs for more information.
 
 
         #### When using OAuth
@@ -180,7 +110,7 @@ paths:
                   summary: Default get-fields-inputs 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id001
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -193,7 +123,8 @@ paths:
                   summary: Default get-fields-inputs 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -205,7 +136,8 @@ paths:
                   summary: Default get-fields-inputs 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -238,7 +170,8 @@ paths:
                   summary: Default get-fields-inputs 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -271,7 +204,8 @@ paths:
                   summary: Default get-fields-inputs 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -283,7 +217,8 @@ paths:
                   summary: Default get-fields-inputs 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -419,7 +354,7 @@ paths:
                   summary: Default get-choices 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id002
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -432,7 +367,8 @@ paths:
                   summary: Default get-choices 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -444,7 +380,8 @@ paths:
                   summary: Default get-choices 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -477,7 +414,8 @@ paths:
                   summary: Default get-choices 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -510,7 +448,8 @@ paths:
                   summary: Default get-choices 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -522,7 +461,8 @@ paths:
                   summary: Default get-choices 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -571,6 +511,85 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ListInputFieldsRequest:
+      type: object
+      description: Common inputs with inputs and an authentication id.
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListInputFieldsRequest'
+      required:
+      - data
+    Meta:
+      type: object
+      description: Metadata about a certain response
+      properties:
+        page:
+          type: integer
+          description: The current page
+          example: 100
+      required:
+      - page
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    RootFieldset:
+      type: array
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/InputField'
+        - $ref: '#/components/schemas/InfoField'
+        - $ref: '#/components/schemas/Fieldset'
+      description: The base concept of a Fieldset, from which others extend
     Error:
       type: object
       description: Base Error definition
@@ -604,68 +623,11 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    ChoiceResponse:
-      type: object
-      description: A successful response for getting the requested Input Fields.
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Choice'
-          description: A list of Choices matching the given request
-          example:
-          - {}
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/Meta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-      required:
-      - links
-      - meta
-    Meta:
-      type: object
-      description: Metadata about a certain response
-      properties:
-        page:
-          type: integer
-          description: The current page
-          example: 100
-      required:
-      - page
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
+    FieldsetFieldsField:
+      anyOf:
+      - $ref: '#/components/schemas/InputField'
+      - $ref: '#/components/schemas/InfoField'
+      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
     Choice:
       type: object
       description: A single element from a set of Choices, variants in an enumeration.
@@ -692,29 +654,49 @@ components:
       - id
       - type
       - value
-    _ListInputFieldsRequest:
+    ChoiceParams:
       type: object
-      description: The common data object that includes inputs and an authentication id.
+      description: A Choice as to be provided to the /choices endpoint
       properties:
         authentication:
           type:
           - string
           - 'null'
-          description: An Authentication ID provided by the `/authentications` endpoint.
+          description: The Authentication ID for this Choice, if present/required
           example: example-value
         inputs:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties: {}
-          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          description: The Inputs for this Choice, if present/required
           example: {}
       required:
       - authentication
       - inputs
-    FieldsetFieldsField:
-      anyOf:
-      - $ref: '#/components/schemas/InputField'
-      - $ref: '#/components/schemas/InfoField'
-      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
+    ChoiceRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ChoiceParams'
+      required:
+      - data
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
     InfoField:
       type: object
       description: Represents an Info-type Fieldset
@@ -736,6 +718,76 @@ components:
       - description
       - id
       - type
+    Fieldset:
+      type: object
+      description: Represents a Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Fieldset
+          example: standard
+        id:
+          type: string
+          description: The unique identifier for this Fieldset
+          example: '500123'
+        fields:
+          allOf:
+          - $ref: '#/components/schemas/FieldsetFieldsField'
+          description: The fields this Fieldset consists of
+          example: example-value
+        title:
+          type: string
+          description: The title of this Fieldset
+          example: Example Name
+      required:
+      - fields
+      - id
+      - title
+      - type
+    FormatEnum:
+      enum:
+      - DATETIME
+      - MULTILINE
+      - PASSWORD
+      - CODE
+      - READONLY
+      - FILE
+      - SELECT
+      type: string
+      description: '* `DATETIME` - DATETIME
+
+        * `MULTILINE` - MULTILINE
+
+        * `PASSWORD` - PASSWORD
+
+        * `CODE` - CODE
+
+        * `READONLY` - READONLY
+
+        * `FILE` - FILE
+
+        * `SELECT` - SELECT'
+    InputFieldsResponse:
+      type: object
+      description: A successful response for getting the input fields for a particular Action.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          $ref: '#/components/schemas/RootFieldset'
+      required:
+      - data
+      - links
+      - meta
     InputField:
       type: object
       description: Represents Input Field data as accepted by the API
@@ -837,26 +889,17 @@ components:
       - title
       - type
       - value_type
-    ErrorSource:
+    ChoiceResponse:
       type: object
-      description: Populates the `source` object inside our error responses.
+      description: A successful response for getting the requested Input Fields.
       properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    InputFieldsResponse:
-      type: object
-      description: A successful response for getting the input fields for a particular Action.
-      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+          description: A list of Choices matching the given request
+          example:
+          - {}
         links:
           allOf:
           - $ref: '#/components/schemas/Links'
@@ -864,61 +907,30 @@ components:
           example: example-value
         meta:
           allOf:
-          - $ref: '#/components/schemas/BaseMeta'
+          - $ref: '#/components/schemas/Meta'
           description: The meta object returned in paginated response bodies.
           example: example-value
-        data:
-          $ref: '#/components/schemas/RootFieldset'
       required:
-      - data
       - links
       - meta
-    ListInputFieldsRequest:
+    _ListInputFieldsRequest:
       type: object
-      description: Common inputs with inputs and an authentication id.
+      description: The common data object that includes inputs and an authentication id.
       properties:
-        data:
-          $ref: '#/components/schemas/_ListInputFieldsRequest'
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
       required:
-      - data
-    FormatEnum:
-      enum:
-      - DATETIME
-      - MULTILINE
-      - PASSWORD
-      - CODE
-      - READONLY
-      - FILE
-      - SELECT
-      type: string
-      description: '* `DATETIME` - DATETIME
-
-        * `MULTILINE` - MULTILINE
-
-        * `PASSWORD` - PASSWORD
-
-        * `CODE` - CODE
-
-        * `READONLY` - READONLY
-
-        * `FILE` - FILE
-
-        * `SELECT` - SELECT'
-    RootFieldset:
-      type: array
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/InputField'
-        - $ref: '#/components/schemas/InfoField'
-        - $ref: '#/components/schemas/Fieldset'
-      description: The base concept of a Fieldset, from which others extend
-    ChoiceRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ChoiceParams'
-      required:
-      - data
+      - authentication
+      - inputs
     ValueTypeEnum:
       enum:
       - STRING
@@ -939,78 +951,6 @@ components:
         * `ARRAY` - ARRAY
 
         * `OBJECT` - OBJECT'
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    ChoiceParams:
-      type: object
-      description: A Choice as to be provided to the /choices endpoint
-      properties:
-        authentication:
-          type:
-          - string
-          - 'null'
-          description: The Authentication ID for this Choice, if present/required
-          example: example-value
-        inputs:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: The Inputs for this Choice, if present/required
-          example: {}
-      required:
-      - authentication
-      - inputs
-    Fieldset:
-      type: object
-      description: Represents a Fieldset
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this Fieldset
-          example: standard
-        id:
-          type: string
-          description: The unique identifier for this Fieldset
-          example: '500123'
-        fields:
-          allOf:
-          - $ref: '#/components/schemas/FieldsetFieldsField'
-          description: The fields this Fieldset consists of
-          example: example-value
-        title:
-          type: string
-          description: The title of this Fieldset
-          example: Example Name
-      required:
-      - fields
-      - id
-      - title
-      - type
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

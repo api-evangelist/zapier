@@ -1,81 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Partner Accounts Experimental API
+  title: Partner Experimental API
   version: 2024.11.0
-  description: '
-
-    ## Introduction
+  description: '## Introduction
 
 
-    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
-
-    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
-
-    feel, and flow.
-
-
-    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
-
-    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
-
-    expose relevant Zap information, and more!
-
-
-    With the Partner API, you can:
-
-
-    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
-
-    users all the integration possibilities with your Zapier integration.
-
-    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
-
-    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
-
-    and feel.
-
-    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
-
-    - Streamline Zap setup by pre-filling fields on behalf of your users.
-
-    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
-
-    complete confidence in their Zapier integration.
-
-    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
-
-    your product.
-
-
-    ## Authentication
-
-
-    There are two ways to authenticate with the Partner API.
-
-
-    1. Your application''s `client_id` which you will receive once you are approved for access to the API
-
-    (Client ID Authentication)
-
-    2. A user''s access token (Access Token Authentication).
-
-
-    Which authentication method you should use depends on which endpoint(s) you are using.
-
-    Review each endpoint''s documentation to understand which parameters are required.
-
-
-    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
-
-    need it so it''s not something we provide.''
-
-
-    ## Learn more
-
-
-    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
-
-    '
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.'
   contact:
     name: Zapier
     url: https://developer.zapier.com/contact
@@ -143,7 +73,7 @@ paths:
                   summary: Default create-action-run 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id001
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -156,7 +86,8 @@ paths:
                   summary: Default create-action-run 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -168,7 +99,8 @@ paths:
                   summary: Default create-action-run 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -201,7 +133,8 @@ paths:
                   summary: Default create-action-run 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -234,7 +167,8 @@ paths:
                   summary: Default create-action-run 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -246,7 +180,8 @@ paths:
                   summary: Default create-action-run 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -344,7 +279,7 @@ paths:
                   summary: Default retrieve-action-run 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id002
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -357,7 +292,8 @@ paths:
                   summary: Default retrieve-action-run 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -369,7 +305,8 @@ paths:
                   summary: Default retrieve-action-run 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -402,7 +339,8 @@ paths:
                   summary: Default retrieve-action-run 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -435,7 +373,8 @@ paths:
                   summary: Default retrieve-action-run 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -447,7 +386,8 @@ paths:
                   summary: Default retrieve-action-run 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -538,7 +478,7 @@ paths:
                   summary: Default v2-whitelabel-apps-list 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id003
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -551,7 +491,8 @@ paths:
                   summary: Default v2-whitelabel-apps-list 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -563,7 +504,8 @@ paths:
                   summary: Default v2-whitelabel-apps-list 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -596,7 +538,8 @@ paths:
                   summary: Default v2-whitelabel-apps-list 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -629,7 +572,8 @@ paths:
                   summary: Default v2-whitelabel-apps-list 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -641,7 +585,8 @@ paths:
                   summary: Default v2-whitelabel-apps-list 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -824,7 +769,7 @@ paths:
                   summary: Default get-zap-runs 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id004
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -837,7 +782,8 @@ paths:
                   summary: Default get-zap-runs 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -849,7 +795,8 @@ paths:
                   summary: Default get-zap-runs 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -882,7 +829,8 @@ paths:
                   summary: Default get-zap-runs 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -915,7 +863,8 @@ paths:
                   summary: Default get-zap-runs 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -927,7 +876,8 @@ paths:
                   summary: Default get-zap-runs 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -976,62 +926,135 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ZapRunStep:
+    BaseMeta:
       type: object
-      description: A single step in a Zap Run.
+      description: The meta object returned in paginated response bodies.
       properties:
-        status:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
           type:
-          - string
+          - integer
           - 'null'
-          description: Execution status of the step
-          example: active
-        start_time:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Datetime when the step was executed
-          example: '2026-05-01T12:00:00Z'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
       required:
-      - status
-    RunTypeEnum:
-      enum:
-      - run
-      type: string
-      description: '* `run` - Run'
-    _ActionRunResponse:
+      - count
+      - limit
+    Links:
       type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ZapRunsResponse:
+      type: object
+      description: A list of Zap Runs.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    WhitelabelApp:
+      type: object
+      description: An app available for whitelabel connection.
       properties:
         type:
+          type: string
+          readOnly: true
+          default: app
+          description: The resource type.
+          example: app
+        id:
+          type: string
+          readOnly: true
+          description: The app's unique identifier.
+          example: '500123'
+        title:
+          type: string
+          description: The app's display name.
+          example: Example Name
+        image:
+          type: string
+          format: uri
+          description: URL of the app's icon.
+          example: https://example.com/path/abc123
+        is_oauth:
+          type: boolean
+          readOnly: true
+          description: Whether the app uses OAuth for authentication.
+          example: true
+        has_fields:
+          type: boolean
+          readOnly: true
+          description: Whether the app has input fields a user must fill in when connecting.
+          example: true
+        has_byoc:
+          type: boolean
+          readOnly: true
+          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
+          example: true
+        links:
           allOf:
-          - $ref: '#/components/schemas/RunTypeEnum'
-          description: 'The type of this object
-
-
-            * `run` - Run'
-          example: standard
-        status:
-          $ref: '#/components/schemas/_ActionRunResponseStatusEnum'
-        results:
-          type: array
-          items:
-            type: object
-            additionalProperties: {}
-          description: Could be empty, even if the action was successfully run.
-          example:
-          - {}
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/_ActionRunResponseError'
-          description: Any errors returned by the partner when running this action.
-          example:
-          - {}
+          - $ref: '#/components/schemas/WhitelabelAppLinks'
+          readOnly: true
+          description: Related URLs for this app.
+          example: example-value
       required:
-      - errors
-      - status
+      - has_byoc
+      - has_fields
+      - id
+      - image
+      - is_oauth
+      - links
+      - title
       - type
+    RunActionRequest:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_RunActionRequest'
+          description: Data for the Action Run
+          example: example-value
+      required:
+      - data
     ZapRun:
       type: object
       description: A single Zap Run response.
@@ -1096,60 +1119,34 @@ components:
       - steps
       - zap_id
       - zap_title
-    WhitelabelApp:
+    ErrorResponse:
       type: object
-      description: An app available for whitelabel connection.
       properties:
-        type:
-          type: string
-          readOnly: true
-          default: app
-          description: The resource type.
-          example: app
-        id:
-          type: string
-          readOnly: true
-          description: The app's unique identifier.
-          example: '500123'
-        title:
-          type: string
-          description: The app's display name.
-          example: Example Name
-        image:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    WhitelabelAppLinks:
+      type: object
+      properties:
+        mcp_authorize_url:
           type: string
           format: uri
-          description: URL of the app's icon.
+          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
           example: https://example.com/path/abc123
-        is_oauth:
-          type: boolean
-          readOnly: true
-          description: Whether the app uses OAuth for authentication.
-          example: true
-        has_fields:
-          type: boolean
-          readOnly: true
-          description: Whether the app has input fields a user must fill in when connecting.
-          example: true
-        has_byoc:
-          type: boolean
-          readOnly: true
-          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
-          example: true
-        links:
-          allOf:
-          - $ref: '#/components/schemas/WhitelabelAppLinks'
-          readOnly: true
-          description: Related URLs for this app.
-          example: example-value
+        mcp_server_url:
+          type: string
+          format: uri
+          description: URL of the MCP server for this app. Requires an access token bound to a connection.
+          example: https://example.com/path/abc123
       required:
-      - has_byoc
-      - has_fields
-      - id
-      - image
-      - is_oauth
-      - links
-      - title
-      - type
+      - mcp_authorize_url
+      - mcp_server_url
     Error:
       type: object
       description: Base Error definition
@@ -1183,57 +1180,6 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    CodeEnum:
-      enum:
-      - user
-      - authentication
-      - partner
-      - system
-      - throttled
-      - system_throttled
-      - hydration
-      type: string
-      description: '* `user` - user
-
-        * `authentication` - authentication
-
-        * `partner` - partner
-
-        * `system` - system
-
-        * `throttled` - throttled
-
-        * `system_throttled` - system_throttled
-
-        * `hydration` - hydration'
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
     RunActionResponse:
       type: object
       properties:
@@ -1241,26 +1187,11 @@ components:
           $ref: '#/components/schemas/_RunActionResponse'
       required:
       - data
-    _RunActionResponse:
-      type: object
-      description: The response after an Action Run
-      properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/RunTypeEnum'
-          description: 'The type of this object
-
-
-            * `run` - Run'
-          example: standard
-        id:
-          type: string
-          format: uuid
-          description: The UUID of this Action Run
-          example: 550e8400-e29b-41d4-a716-446655440000
-      required:
-      - id
-      - type
+    RunTypeEnum:
+      enum:
+      - run
+      type: string
+      description: '* `run` - Run'
     WhitelabelAppsResponse:
       type: object
       description: A JSON:API-style response of apps available for whitelabel connection.
@@ -1288,57 +1219,6 @@ components:
       - data
       - links
       - meta
-    WhitelabelAppLinks:
-      type: object
-      properties:
-        mcp_authorize_url:
-          type: string
-          format: uri
-          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
-          example: https://example.com/path/abc123
-        mcp_server_url:
-          type: string
-          format: uri
-          description: URL of the MCP server for this app. Requires an access token bound to a connection.
-          example: https://example.com/path/abc123
-      required:
-      - mcp_authorize_url
-      - mcp_server_url
-    ZapRunsResponse:
-      type: object
-      description: A list of Zap Runs.
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapRun'
-          description: The returned data after a successful Zap run
-          example:
-          - {}
-      required:
-      - links
-      - meta
-    ActionRunResponse:
-      type: object
-      description: The response of a given Action Run
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/_ActionRunResponse'
-          description: The resulting data after a given Action was run
-          example: example-value
-      required:
-      - data
     ErrorSource:
       type: object
       description: Populates the `source` object inside our error responses.
@@ -1355,39 +1235,45 @@ components:
           type: string
           description: A string indicating the name of a single request header which caused the error.
           example: example-value
-    _RunActionRequest:
+    _RunActionResponse:
       type: object
+      description: The response after an Action Run
       properties:
-        action:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        id:
           type: string
-          description: The ID for the Action to be run
-          example: example-value
-        authentication:
+          format: uuid
+          description: The UUID of this Action Run
+          example: 550e8400-e29b-41d4-a716-446655440000
+      required:
+      - id
+      - type
+    ZapRunStep:
+      type: object
+      description: A single step in a Zap Run.
+      properties:
+        status:
           type:
           - string
           - 'null'
-          description: The ID for Authentication (if required)
-          example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: Inputs to be provided to the Action referenced by the ID field, when run
-          example: {}
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
       required:
-      - action
-      - authentication
-      - inputs
-    _ActionRunResponseStatusEnum:
-      enum:
-      - success
-      - error
-      - waiting
-      type: string
-      description: '* `success` - success
-
-        * `error` - error
-
-        * `waiting` - waiting'
+      - status
     _ActionRunResponseError:
       type: object
       description: The error information returned from a third party when running an action.
@@ -1431,41 +1317,105 @@ components:
           additionalProperties: {}
           description: Any additional error information returned from the partner.
           example: {}
-    BaseMeta:
+    _RunActionRequest:
       type: object
-      description: The meta object returned in paginated response bodies.
       properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
+        action:
+          type: string
+          description: The ID for the Action to be run
+          example: example-value
+        authentication:
           type:
-          - integer
+          - string
           - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
+          description: The ID for Authentication (if required)
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: Inputs to be provided to the Action referenced by the ID field, when run
+          example: {}
       required:
-      - count
-      - limit
-    RunActionRequest:
+      - action
+      - authentication
+      - inputs
+    CodeEnum:
+      enum:
+      - user
+      - authentication
+      - partner
+      - system
+      - throttled
+      - system_throttled
+      - hydration
+      type: string
+      description: '* `user` - user
+
+        * `authentication` - authentication
+
+        * `partner` - partner
+
+        * `system` - system
+
+        * `throttled` - throttled
+
+        * `system_throttled` - system_throttled
+
+        * `hydration` - hydration'
+    ActionRunResponse:
       type: object
+      description: The response of a given Action Run
       properties:
         data:
           allOf:
-          - $ref: '#/components/schemas/_RunActionRequest'
-          description: Data for the Action Run
+          - $ref: '#/components/schemas/_ActionRunResponse'
+          description: The resulting data after a given Action was run
           example: example-value
       required:
       - data
+    _ActionRunResponseStatusEnum:
+      enum:
+      - success
+      - error
+      - waiting
+      type: string
+      description: '* `success` - success
+
+        * `error` - error
+
+        * `waiting` - waiting'
+    _ActionRunResponse:
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        status:
+          $ref: '#/components/schemas/_ActionRunResponseStatusEnum'
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Could be empty, even if the action was successfully run.
+          example:
+          - {}
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/_ActionRunResponseError'
+          description: Any errors returned by the partner when running this action.
+          example:
+          - {}
+      required:
+      - errors
+      - status
+      - type
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

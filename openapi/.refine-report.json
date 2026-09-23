@@ -1,16 +1,7 @@
 {
   "provider": "zapier",
   "sources": [
-    "zapier-accounts-api-openapi.yml",
-    "zapier-actions-api-openapi.yml",
-    "zapier-apps-api-openapi.yml",
-    "zapier-authentications-api-openapi.yml",
-    "zapier-categories-api-openapi.yml",
-    "zapier-experimental-api-openapi.yml",
-    "zapier-inputs-api-openapi.yml",
-    "zapier-outputs-api-openapi.yml",
-    "zapier-zap-templates-api-openapi.yml",
-    "zapier-zaps-api-openapi.yml"
+    "_original/zapier-partner-api.yml"
   ],
   "outputs": [
     "zapier-accounts-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zapier-partner-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zapier-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-authentications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-experimental-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-inputs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-outputs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-zap-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zapier-zaps-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

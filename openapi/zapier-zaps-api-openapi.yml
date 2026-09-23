@@ -1,81 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Partner Accounts Zaps API
+  title: Partner Zaps API
   version: 2024.11.0
-  description: '
-
-    ## Introduction
+  description: '## Introduction
 
 
-    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.
-
-    Essentially, it lets you customize how you present Zapier within your product without sacrificing your app''s look,
-
-    feel, and flow.
-
-
-    Think of it as a native Zapier integration, helping you showcase your best Zapier-powered workflows where it''s most
-
-    helpful to your users (within the flow of your tool). You can customize styling, streamline Zap set-up for users,
-
-    expose relevant Zap information, and more!
-
-
-    With the Partner API, you can:
-
-
-    - Get a list of all the apps available in Zapier''s app directory so you can power your app directory and show your
-
-    users all the integration possibilities with your Zapier integration.
-
-    - Have complete style control over how you present Zap templates in your product. The Partner API gives you access
-
-    to the raw Zap Template data so you can give your users access to your Zap template with your product''s style, look
-
-    and feel.
-
-    - Get access to all your Zap templates and give your users the ability to search to quickly find the one they need.
-
-    - Streamline Zap setup by pre-filling fields on behalf of your users.
-
-    - Show users the Zaps they have set up from right within your product keeping them on your site longer and giving them
-
-    complete confidence in their Zapier integration.
-
-    - Embed our Zapier Editor to allow your users to create new Zaps and modify existing ones, without needing to leave
-
-    your product.
-
-
-    ## Authentication
-
-
-    There are two ways to authenticate with the Partner API.
-
-
-    1. Your application''s `client_id` which you will receive once you are approved for access to the API
-
-    (Client ID Authentication)
-
-    2. A user''s access token (Access Token Authentication).
-
-
-    Which authentication method you should use depends on which endpoint(s) you are using.
-
-    Review each endpoint''s documentation to understand which parameters are required.
-
-
-    > Note: while we do generate a `client_secret`, the type of grant we use (implicit) doesn''t
-
-    need it so it''s not something we provide.''
-
-
-    ## Learn more
-
-
-    See the [Workflow API documentation](https://docs.zapier.com/partner-solutions/workflow-api/intro) for more information.
-
-    '
+    The Partner API is the best tool for complete style control over a user''s Zapier experience within your app.'
   contact:
     name: Zapier
     url: https://developer.zapier.com/contact
@@ -393,7 +323,7 @@ paths:
                   summary: Default create-zap-guess 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id001
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -406,7 +336,8 @@ paths:
                   summary: Default create-zap-guess 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -418,7 +349,8 @@ paths:
                   summary: Default create-zap-guess 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -451,7 +383,8 @@ paths:
                   summary: Default create-zap-guess 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -484,7 +417,8 @@ paths:
                   summary: Default create-zap-guess 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -496,7 +430,8 @@ paths:
                   summary: Default create-zap-guess 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id001
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -653,7 +588,7 @@ paths:
                   summary: Default get-zap-runs 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id002
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -666,7 +601,8 @@ paths:
                   summary: Default get-zap-runs 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -678,7 +614,8 @@ paths:
                   summary: Default get-zap-runs 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -711,7 +648,8 @@ paths:
                   summary: Default get-zap-runs 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -744,7 +682,8 @@ paths:
                   summary: Default get-zap-runs 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -756,7 +695,8 @@ paths:
                   summary: Default get-zap-runs 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id002
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -809,7 +749,7 @@ paths:
       description: 'This endpoint returns a list of Zaps for the authenticated Zapier user.
 
 
-        The `expand` array can be used to expand selected fields into full objects in the response.  Inputs with keys can
+        The `expand` array can be used to expand selected fields into full objects in the response. Inputs with keys can
 
         also be passed to filter Zaps by certain criteria.
 
@@ -905,7 +845,7 @@ paths:
                   summary: Default get-v2-zaps 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id003
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -918,7 +858,8 @@ paths:
                   summary: Default get-v2-zaps 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -930,7 +871,8 @@ paths:
                   summary: Default get-v2-zaps 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -963,7 +905,8 @@ paths:
                   summary: Default get-v2-zaps 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -996,7 +939,8 @@ paths:
                   summary: Default get-v2-zaps 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -1008,7 +952,8 @@ paths:
                   summary: Default get-v2-zaps 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id003
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -1187,7 +1132,7 @@ paths:
                   summary: Default post-zaps 403 response
                   x-microcks-default: true
                   value:
-                    errors: &id004
+                    errors:
                     - {}
           description: 403 Response
         '401':
@@ -1200,7 +1145,8 @@ paths:
                   summary: Default post-zaps 401 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 401 Response
         '409':
           content:
@@ -1212,7 +1158,8 @@ paths:
                   summary: Default post-zaps 409 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 409 Response
         '429':
           headers:
@@ -1245,7 +1192,8 @@ paths:
                   summary: Default post-zaps 429 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 429 Response
         '503':
           headers:
@@ -1278,7 +1226,8 @@ paths:
                   summary: Default post-zaps 503 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 503 Response
         '504':
           content:
@@ -1290,7 +1239,8 @@ paths:
                   summary: Default post-zaps 504 response
                   x-microcks-default: true
                   value:
-                    errors: *id004
+                    errors:
+                    - {}
           description: 504 Response
         '400':
           content:
@@ -1339,25 +1289,128 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ZapRunStep:
+    ZapsResponse:
       type: object
-      description: A single step in a Zap Run.
+      description: A page of returned Zaps.
       properties:
-        status:
+        next:
           type:
           - string
           - 'null'
-          description: Execution status of the step
-          example: active
-        start_time:
+          format: uri
+          readOnly: true
+          description: The URL to get the next set of records
+          example: https://example.com/path/abc123
+        previous:
           type:
           - string
           - 'null'
-          format: date-time
-          description: Datetime when the step was executed
-          example: '2026-05-01T12:00:00Z'
+          format: uri
+          readOnly: true
+          description: The URL to get the previous set of records
+          example: https://example.com/path/abc123
+        count:
+          type: integer
+          readOnly: true
+          description: The total number of records matching the request
+          example: 100
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Zap'
+          description: The returned Zap data
+          example:
+          - {}
       required:
-      - status
+      - count
+      - next
+      - objects
+      - previous
+    ZapGuesserStep:
+      type: object
+      properties:
+        step:
+          allOf:
+          - $ref: '#/components/schemas/ZapGuesserRawStep'
+          readOnly: true
+          description: The highest scoring (most relevant) step for this Zap
+          example: example-value
+        alternatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapGuesserRawStep'
+          readOnly: true
+          description: Alternative steps that we are less confident are relevant, but may have been intended
+          example:
+          - {}
+      required:
+      - alternatives
+      - step
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ZapRunsResponse:
+      type: object
+      description: A list of Zap Runs.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
     ZapRun:
       type: object
       description: A single Zap Run response.
@@ -1422,6 +1475,35 @@ components:
       - steps
       - zap_id
       - zap_title
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    TypeOfEnum:
+      enum:
+      - read
+      - write
+      - filter
+      - search
+      - search_or_write
+      type: string
+      description: '* `read` - read
+
+        * `write` - write
+
+        * `filter` - filter
+
+        * `search` - search
+
+        * `search_or_write` - search_or_write'
     ExpandedZapsResponse:
       type: object
       description: A page of returned Zaps.
@@ -1484,402 +1566,11 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    Zap:
-      type: object
-      description: User Zaps.
-      properties:
-        id:
-          type: integer
-          description: The numeric identifier of this Zap
-          example: 100
-        title:
-          type: string
-          description: The title of this Zap
-          example: Example Name
-        state:
-          type: string
-          description: The current state of this Zap
-          example: active
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapStep'
-          readOnly: true
-          description: The steps this Zap consists of
-          example:
-          - {}
-        url:
-          type: string
-          format: uri
-          readOnly: true
-          description: The URL to this Zap
-          example: https://example.com/path/abc123
-        modified_at:
-          type: string
-          description: The last time this Zap was modified
-          example: example-value
-      required:
-      - id
-      - modified_at
-      - state
-      - steps
-      - title
-      - url
-    ZapTemplateStepImages:
-      type: object
-      description: Images for a Zap Template at various sizes
-      properties:
-        url_16x16:
-          type: string
-          description: URL to 16x16 image for Zap Template
-          example: example-value
-        url_32x32:
-          type: string
-          description: URL to 32x32 image for Zap Template
-          example: example-value
-        url_64x64:
-          type: string
-          description: URL to 64x64 image for Zap Template
-          example: example-value
-        url_128x128:
-          type: string
-          description: URL to 128x128 image for Zap Template
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
-    TypeOfEnum:
+    ActionTypeEnum:
       enum:
-      - read
-      - write
-      - filter
-      - search
-      - search_or_write
-      type: string
-      description: '* `read` - read
-
-        * `write` - write
-
-        * `filter` - filter
-
-        * `search` - search
-
-        * `search_or_write` - search_or_write'
-    ZapsResponse:
-      type: object
-      description: A page of returned Zaps.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          readOnly: true
-          description: The URL to get the next set of records
-          example: https://example.com/path/abc123
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          readOnly: true
-          description: The URL to get the previous set of records
-          example: https://example.com/path/abc123
-        count:
-          type: integer
-          readOnly: true
-          description: The total number of records matching the request
-          example: 100
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Zap'
-          description: The returned Zap data
-          example:
-          - {}
-      required:
-      - count
-      - next
-      - objects
-      - previous
-    ZapRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CreateZapRequest'
-      required:
-      - data
-    AuthenticationTypeEnum:
-      enum:
-      - authentication
-      type: string
-      description: '* `authentication` - authentication'
-    ZapGuesserResponse:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The generated title for this suggested Zap.
-          example: Example Name
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapGuesserStep'
-          description: The steps this suggested Zap consists of.
-          example:
-          - {}
-        prefilled_url:
-          type: string
-          readOnly: true
-          description: A generated prefilled URL to take you to the Zapier editor (selects the highest confidence steps).
-          example: https://example.com/path/abc123
-        messages:
-          type: array
-          items:
-            type: object
-            additionalProperties: {}
-          description: Contains informational messages about the prompt.
-          example:
-          - {}
-      required:
-      - prefilled_url
-      - steps
-      - title
-    ZapRunsResponse:
-      type: object
-      description: A list of Zap Runs.
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapRun'
-          description: The returned data after a successful Zap run
-          example:
-          - {}
-      required:
-      - links
-      - meta
-    ZapStepApp:
-      type: object
-      description: Data for the App used in a given Zap's step
-      properties:
-        id:
-          type: integer
-          description: The numerical identifier of this Zap step's App
-          example: 100
-        uuid:
-          type: string
-          description: UUID identifier for this Zap step's App
-          example: 550e8400-e29b-41d4-a716-446655440000
-        title:
-          type: string
-          description: The name of this App
-          example: Example Name
-        slug:
-          type: string
-          description: The shortened slug for this App
-          example: example-value
-        description:
-          type: string
-          description: The description of this App
-          example: Example description for this resource.
-        hex_color:
-          type: string
-          description: The primary (hex) color for this App
-          example: example-value
-        image:
-          type: string
-          description: The image for this App
-          example: example-value
-        images:
-          allOf:
-          - $ref: '#/components/schemas/ZapTemplateStepImages'
-          description: A set of images of various sizes for this App
-          example: example-value
-        api:
-          type: string
-          description: The name of the API this App references
-          example: example-value
-        url:
-          type: string
-          format: uri
-          readOnly: true
-          description: The URL for this App
-          example: https://example.com/path/abc123
-      required:
-      - api
-      - description
-      - hex_color
-      - id
-      - image
-      - images
-      - slug
-      - title
-      - url
-      - uuid
-    ExpandedZapStep:
-      type: object
-      description: An ordered list of steps that define the logic of the Zap.
-      properties:
-        action:
-          description: Action
-          oneOf:
-          - $ref: '#/components/schemas/Action'
-          - type: string
-          example: example-value
-        authentication:
-          description: Authentication
-          oneOf:
-          - $ref: '#/components/schemas/Authentication'
-          - type:
-            - string
-            - 'null'
-          example: example-value
-        inputs:
-          readOnly: true
-          description: The inputs for this specific Zap's step
-          example: example-value
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: The custom title of a Zap Step. If a step has not been given a custom title by the user, then the value will be null.
-          example: Example Name
-      required:
       - action
-      - authentication
-      - inputs
-      - title
-    Category:
-      type: object
-      description: Category an app belongs to.
-      properties:
-        slug:
-          type: string
-          description: The shortened slug name for this category
-          example: example-value
-      required:
-      - slug
-    ZapGuesserRawStep:
-      type: object
-      properties:
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of this step
-          example: Example Name
-        app:
-          type: string
-          description: This step's human-readable name
-          example: example-value
-        api:
-          type: string
-          description: The Zapier API integration this step uses
-          example: example-value
-      required:
-      - api
-      - app
-      - title
-    ExpandedZap:
-      type: object
-      description: A Zap is an automated workflow that connects your apps and services together.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this object.
-          example: standard
-        id:
-          type: string
-          readOnly: true
-          description: A unique identifier of the Zap.
-          example: '500123'
-        is_enabled:
-          type: boolean
-          default: true
-          description: Whether the Zap is enabled (running) or not.
-          example: true
-        last_successful_run_date:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: The date/time at which this Zap last ran successfully. A null value indicates that a Zap has never run successfully.
-          example: example-value
-        updated_at:
-          type: string
-          readOnly: true
-          description: The last time this Zap was updated
-          example: example-value
-        title:
-          type: string
-          description: The human readable name of the Zap.
-          example: Example Name
-        links:
-          type: object
-          additionalProperties: {}
-          readOnly: true
-          description: Link to open this Zap in the Zapier Editor
-          example: {}
-        steps:
-          description: A list of the steps this Zap consists of
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/ExpandedZapStep'
-            - type: string
-          example:
-          - example-value
-      required:
-      - id
-      - last_successful_run_date
-      - links
-      - steps
-      - title
-      - type
-      - updated_at
+      type: string
+      description: '* `action` - action'
     Action:
       type: object
       description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
@@ -1947,6 +1638,284 @@ components:
       - key
       - title
       - type
+    ZapStepApp:
+      type: object
+      description: Data for the App used in a given Zap's step
+      properties:
+        id:
+          type: integer
+          description: The numerical identifier of this Zap step's App
+          example: 100
+        uuid:
+          type: string
+          description: UUID identifier for this Zap step's App
+          example: 550e8400-e29b-41d4-a716-446655440000
+        title:
+          type: string
+          description: The name of this App
+          example: Example Name
+        slug:
+          type: string
+          description: The shortened slug for this App
+          example: example-value
+        description:
+          type: string
+          description: The description of this App
+          example: Example description for this resource.
+        hex_color:
+          type: string
+          description: The primary (hex) color for this App
+          example: example-value
+        image:
+          type: string
+          description: The image for this App
+          example: example-value
+        images:
+          allOf:
+          - $ref: '#/components/schemas/ZapTemplateStepImages'
+          description: A set of images of various sizes for this App
+          example: example-value
+        api:
+          type: string
+          description: The name of the API this App references
+          example: example-value
+        url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL for this App
+          example: https://example.com/path/abc123
+      required:
+      - api
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - slug
+      - title
+      - url
+      - uuid
+    Zap:
+      type: object
+      description: User Zaps.
+      properties:
+        id:
+          type: integer
+          description: The numeric identifier of this Zap
+          example: 100
+        title:
+          type: string
+          description: The title of this Zap
+          example: Example Name
+        state:
+          type: string
+          description: The current state of this Zap
+          example: active
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapStep'
+          readOnly: true
+          description: The steps this Zap consists of
+          example:
+          - {}
+        url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL to this Zap
+          example: https://example.com/path/abc123
+        modified_at:
+          type: string
+          description: The last time this Zap was modified
+          example: example-value
+      required:
+      - id
+      - modified_at
+      - state
+      - steps
+      - title
+      - url
+    CreateZapRequestStep:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The ID of the Action to be associated with this step
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The inputs for the Action associated with this step
+          example: {}
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: The authentication, if required, for this Action to run
+          example: example-value
+        alias:
+          type:
+          - string
+          - 'null'
+          description: Optional alias for this step to be referenced by later steps (snake_case, max 64 chars)
+          maxLength: 64
+          pattern: ^[a-z][a-z0-9_]*$
+          example: example-value
+      required:
+      - action
+      - authentication
+      - inputs
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
+    ZapStep:
+      type: object
+      description: One step in a Zap
+      properties:
+        type_of:
+          allOf:
+          - $ref: '#/components/schemas/TypeOfEnum'
+          description: 'The type of this Step
+
+
+            * `read` - read
+
+            * `write` - write
+
+            * `filter` - filter
+
+            * `search` - search
+
+            * `search_or_write` - search_or_write'
+          example: standard
+        app:
+          allOf:
+          - $ref: '#/components/schemas/ZapStepApp'
+          description: The App used in this Step
+          example: example-value
+        params:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          readOnly: true
+          description: The parameters used by this Step
+          example: {}
+      required:
+      - app
+      - params
+      - type_of
+    ZapRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateZapRequest'
+      required:
+      - data
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    ZapGuesserRawStep:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of this step
+          example: Example Name
+        app:
+          type: string
+          description: This step's human-readable name
+          example: example-value
+        api:
+          type: string
+          description: The Zapier API integration this step uses
+          example: example-value
+      required:
+      - api
+      - app
+      - title
+    AuthenticationTypeEnum:
+      enum:
+      - authentication
+      type: string
+      description: '* `authentication` - authentication'
+    ZapRunStep:
+      type: object
+      description: A single step in a Zap Run.
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
+      required:
+      - status
+    ExpandedZapStep:
+      type: object
+      description: An ordered list of steps that define the logic of the Zap.
+      properties:
+        action:
+          description: Action
+          oneOf:
+          - $ref: '#/components/schemas/Action'
+          - type: string
+          example: example-value
+        authentication:
+          description: Authentication
+          oneOf:
+          - $ref: '#/components/schemas/Authentication'
+          - type:
+            - string
+            - 'null'
+          example: example-value
+        inputs:
+          readOnly: true
+          description: The inputs for this specific Zap's step
+          example: example-value
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: The custom title of a Zap Step. If a step has not been given a custom title by the user, then the value will be null.
+          example: Example Name
+      required:
+      - action
+      - authentication
+      - inputs
+      - title
     CreateZapRequest:
       type: object
       description: See our Building a Zap guide to get started.
@@ -1965,22 +1934,154 @@ components:
       required:
       - steps
       - title
-    ErrorSource:
+    ZapGuesserRequest:
       type: object
-      description: Populates the `source` object inside our error responses.
       properties:
-        pointer:
+        description:
           type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
+          description: The description of the Zap you wish to create
+          example: Example description for this resource.
+      required:
+      - description
+    ExpandedZap:
+      type: object
+      description: A Zap is an automated workflow that connects your apps and services together.
+      properties:
+        type:
           type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
+          readOnly: true
+          description: The type of this object.
+          example: standard
+        id:
           type: string
-          description: A string indicating the name of a single request header which caused the error.
+          readOnly: true
+          description: A unique identifier of the Zap.
+          example: '500123'
+        is_enabled:
+          type: boolean
+          default: true
+          description: Whether the Zap is enabled (running) or not.
+          example: true
+        last_successful_run_date:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: The date/time at which this Zap last ran successfully. A null value indicates that a Zap has never run successfully.
           example: example-value
+        updated_at:
+          type: string
+          readOnly: true
+          description: The last time this Zap was updated
+          example: example-value
+        title:
+          type: string
+          description: The human readable name of the Zap.
+          example: Example Name
+        links:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Link to open this Zap in the Zapier Editor
+          example: {}
+        steps:
+          description: A list of the steps this Zap consists of
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ExpandedZapStep'
+            - type: string
+          example:
+          - example-value
+      required:
+      - id
+      - last_successful_run_date
+      - links
+      - steps
+      - title
+      - type
+      - updated_at
+    ZapTemplateStepImages:
+      type: object
+      description: Images for a Zap Template at various sizes
+      properties:
+        url_16x16:
+          type: string
+          description: URL to 16x16 image for Zap Template
+          example: example-value
+        url_32x32:
+          type: string
+          description: URL to 32x32 image for Zap Template
+          example: example-value
+        url_64x64:
+          type: string
+          description: URL to 64x64 image for Zap Template
+          example: example-value
+        url_128x128:
+          type: string
+          description: URL to 128x128 image for Zap Template
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    ZapGuesserResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The generated title for this suggested Zap.
+          example: Example Name
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapGuesserStep'
+          description: The steps this suggested Zap consists of.
+          example:
+          - {}
+        prefilled_url:
+          type: string
+          readOnly: true
+          description: A generated prefilled URL to take you to the Zapier editor (selects the highest confidence steps).
+          example: https://example.com/path/abc123
+        messages:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Contains informational messages about the prompt.
+          example:
+          - {}
+      required:
+      - prefilled_url
+      - steps
+      - title
     Authentication:
       type: object
       description: 'An Authentication contains various fields, often credentials such as API tokens, used to access Partner APIs on
@@ -2021,168 +2122,6 @@ components:
       - is_expired
       - title
       - type
-    ZapStep:
-      type: object
-      description: One step in a Zap
-      properties:
-        type_of:
-          allOf:
-          - $ref: '#/components/schemas/TypeOfEnum'
-          description: 'The type of this Step
-
-
-            * `read` - read
-
-            * `write` - write
-
-            * `filter` - filter
-
-            * `search` - search
-
-            * `search_or_write` - search_or_write'
-          example: standard
-        app:
-          allOf:
-          - $ref: '#/components/schemas/ZapStepApp'
-          description: The App used in this Step
-          example: example-value
-        params:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          readOnly: true
-          description: The parameters used by this Step
-          example: {}
-      required:
-      - app
-      - params
-      - type_of
-    ActionTypeEnum:
-      enum:
-      - action
-      type: string
-      description: '* `action` - action'
-    ZapGuesserRequest:
-      type: object
-      properties:
-        description:
-          type: string
-          description: The description of the Zap you wish to create
-          example: Example description for this resource.
-      required:
-      - description
-    ZapGuesserStep:
-      type: object
-      properties:
-        step:
-          allOf:
-          - $ref: '#/components/schemas/ZapGuesserRawStep'
-          readOnly: true
-          description: The highest scoring (most relevant) step for this Zap
-          example: example-value
-        alternatives:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapGuesserRawStep'
-          readOnly: true
-          description: Alternative steps that we are less confident are relevant, but may have been intended
-          example:
-          - {}
-      required:
-      - alternatives
-      - step
-    AppsImages:
-      type: object
-      description: Images/icons of various resolutions to represent the app.
-      properties:
-        url_16x16:
-          type: string
-          description: 16x16 resolution image URL
-          example: example-value
-        url_32x32:
-          type: string
-          description: 32x32 resolution image URL
-          example: example-value
-        url_64x64:
-          type: string
-          description: 64x64 resolution image URL
-          example: example-value
-        url_128x128:
-          type: string
-          description: 128x128 resolution image URL
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
-    CreateZapRequestStep:
-      type: object
-      properties:
-        action:
-          type: string
-          description: The ID of the Action to be associated with this step
-          example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: The inputs for the Action associated with this step
-          example: {}
-        authentication:
-          type:
-          - string
-          - 'null'
-          description: The authentication, if required, for this Action to run
-          example: example-value
-        alias:
-          type:
-          - string
-          - 'null'
-          description: Optional alias for this step to be referenced by later steps (snake_case, max 64 chars)
-          maxLength: 64
-          pattern: ^[a-z][a-z0-9_]*$
-          example: example-value
-      required:
-      - action
-      - authentication
-      - inputs
-    InvalidZapGuesserResponse:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            type: object
-            additionalProperties: {}
-          description: Contains informational messages about the prompt.
-          example:
-          - {}
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
     Apps:
       type: object
       description: An app that integrates with Zapier
@@ -2245,6 +2184,17 @@ components:
       - images
       - links
       - title
+    InvalidZapGuesserResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Contains informational messages about the prompt.
+          example:
+          - {}
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey
