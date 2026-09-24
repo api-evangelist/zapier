@@ -9,7 +9,7 @@ apis:
   tags_raw:
   - Integrations
   - iPaaS
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   properties:
   - url: https://docs.zapier.com/platform/home
     type: Documentation
@@ -21,8 +21,6 @@ apis:
     type: Authentication
   - url: https://github.com/zapier/zapier-platform
     type: GitHubOrg
-  - url: graphql/zapier-graphql.md
-    type: GraphQL
   description: Build and ship AI workflows in minutesno IT bottlenecks, no complexity. Just results.
 - aid: zapier:ai-actions-api
   name: Zapier AI Actions API
@@ -74,7 +72,7 @@ apis:
 - aid: zapier:zapier-accounts-api
   name: Zapier Accounts API
   description: Refers to resources interacting with 'Accounts' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Account
@@ -103,7 +101,7 @@ apis:
 - aid: zapier:zapier-actions-api
   name: Zapier Actions API
   description: Refers to resources interacting with 'Actions' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Actions
@@ -130,7 +128,7 @@ apis:
 - aid: zapier:zapier-apps-api
   name: Zapier Apps API
   description: Refers to resources interacting with 'Apps' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Application
@@ -159,7 +157,7 @@ apis:
 - aid: zapier:zapier-authentications-api
   name: Zapier Authentications API
   description: Refers to resources interacting with 'Authentications' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Authentications
@@ -186,7 +184,7 @@ apis:
 - aid: zapier:zapier-categories-api
   name: Zapier Categories API
   description: Refers to resources interacting with 'Categories' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Categories
@@ -213,7 +211,7 @@ apis:
 - aid: zapier:zapier-experimental-api
   name: Zapier Experimental API
   description: Refers to resources interacting with 'Experimental' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Experimental
@@ -240,7 +238,7 @@ apis:
 - aid: zapier:zapier-inputs-api
   name: Zapier Inputs API
   description: Refers to resources interacting with 'Inputs' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Inputs
@@ -267,7 +265,7 @@ apis:
 - aid: zapier:zapier-outputs-api
   name: Zapier Outputs API
   description: Refers to resources interacting with 'Outputs' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Outputs
@@ -294,7 +292,7 @@ apis:
 - aid: zapier:zapier-zap-templates-api
   name: Zapier Zap Templates API
   description: Refers to resources interacting with 'Zap Templates' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Zap Templates
@@ -321,7 +319,7 @@ apis:
 - aid: zapier:zapier-zaps-api
   name: Zapier Zaps API
   description: Refers to resources interacting with 'Zaps' associated resources
-  humanURL: ' https://zapier.com/'
+  humanURL: https://zapier.com/
   baseURL: https://api.zapier.com
   tags:
   - Zaps
@@ -350,10 +348,12 @@ tags:
 - Zapier
 - Integration
 - iPaaS
+- Workflow Automation
 tags_raw:
 - Zapier
 - Integrations
 - iPaaS
+- Workflow-Automation
 kind: contract
 deliveryModel:
   model: saas
