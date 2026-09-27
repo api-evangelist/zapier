@@ -215,6 +215,39 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ZapTemplateStepImages:
+      type: object
+      description: Images for a Zap Template at various sizes
+      properties:
+        url_16x16:
+          type: string
+          description: URL to 16x16 image for Zap Template
+          example: example-value
+        url_32x32:
+          type: string
+          description: URL to 32x32 image for Zap Template
+          example: example-value
+        url_64x64:
+          type: string
+          description: URL to 64x64 image for Zap Template
+          example: example-value
+        url_128x128:
+          type: string
+          description: URL to 128x128 image for Zap Template
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    ZapTemplateStatusEnum:
+      enum:
+      - draft
+      - published
+      type: string
+      description: '* `draft` - draft
+
+        * `published` - published'
     ZapTemplateStep:
       type: object
       description: One step in a Zap Template.
@@ -287,31 +320,6 @@ components:
       - title
       - url
       - uuid
-    ZapTemplateStepImages:
-      type: object
-      description: Images for a Zap Template at various sizes
-      properties:
-        url_16x16:
-          type: string
-          description: URL to 16x16 image for Zap Template
-          example: example-value
-        url_32x32:
-          type: string
-          description: URL to 32x32 image for Zap Template
-          example: example-value
-        url_64x64:
-          type: string
-          description: URL to 64x64 image for Zap Template
-          example: example-value
-        url_128x128:
-          type: string
-          description: URL to 128x128 image for Zap Template
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
     ZapTemplate:
       type: object
       description: A Zap Template.
@@ -390,14 +398,6 @@ components:
       - title
       - type
       - url
-    ZapTemplateStatusEnum:
-      enum:
-      - draft
-      - published
-      type: string
-      description: '* `draft` - draft
-
-        * `published` - published'
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

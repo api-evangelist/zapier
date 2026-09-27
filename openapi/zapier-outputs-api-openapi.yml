@@ -284,6 +284,13 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
+    ListOutputFieldsRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListOutputFieldsRequest'
+      required:
+      - data
     ErrorSource:
       type: object
       description: Populates the `source` object inside our error responses.
@@ -299,54 +306,6 @@ components:
         header:
           type: string
           description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    ListOutputFieldsRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/_ListOutputFieldsRequest'
-      required:
-      - data
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
           example: example-value
     OutputFieldsResponse:
       type: object
@@ -373,6 +332,55 @@ components:
       - data
       - links
       - meta
+    OutputField:
+      type: object
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this specific Output Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this specific Output Field
+          example: '500123'
+        title:
+          type: string
+          description: The title of this specific Output Field
+          example: Example Name
+        sample:
+          type: string
+          description: An (optional) sample of what an Output Field's value may look like
+          example: example-value
+      required:
+      - id
+      - title
+      - type
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
     ErrorResponse:
       type: object
       properties:
@@ -408,30 +416,22 @@ components:
       required:
       - authentication
       - inputs
-    OutputField:
+    Links:
       type: object
+      description: The links object returned in paginated response bodies.
       properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this specific Output Field
-          example: standard
-        id:
-          type: string
-          description: The identifier for this specific Output Field
-          example: '500123'
-        title:
-          type: string
-          description: The title of this specific Output Field
-          example: Example Name
-        sample:
-          type: string
-          description: An (optional) sample of what an Output Field's value may look like
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
           example: example-value
-      required:
-      - id
-      - title
-      - type
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

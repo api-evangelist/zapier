@@ -511,123 +511,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    ListInputFieldsRequest:
-      type: object
-      description: Common inputs with inputs and an authentication id.
-      properties:
-        data:
-          $ref: '#/components/schemas/_ListInputFieldsRequest'
-      required:
-      - data
-    Meta:
-      type: object
-      description: Metadata about a certain response
-      properties:
-        page:
-          type: integer
-          description: The current page
-          example: 100
-      required:
-      - page
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    RootFieldset:
-      type: array
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/InputField'
-        - $ref: '#/components/schemas/InfoField'
-        - $ref: '#/components/schemas/Fieldset'
-      description: The base concept of a Fieldset, from which others extend
-    Error:
-      type: object
-      description: Base Error definition
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code applicable to this problem.
-          example: 100
-        code:
-          type: string
-          description: A unique identifier for this particular occurrence of the problem.
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        source:
-          oneOf:
-          - $ref: '#/components/schemas/ErrorSource'
-          - type: 'null'
-          description: An object containing references to the primary source of the error.
-          example: example-value
-        meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Freeform metadata about the error
-          example: {}
-    FieldsetFieldsField:
-      anyOf:
-      - $ref: '#/components/schemas/InputField'
-      - $ref: '#/components/schemas/InfoField'
-      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
     Choice:
       type: object
       description: A single element from a set of Choices, variants in an enumeration.
@@ -674,104 +557,17 @@ components:
       required:
       - authentication
       - inputs
-    ChoiceRequest:
+    ChoiceResponse:
       type: object
+      description: A successful response for getting the requested Input Fields.
       properties:
         data:
-          $ref: '#/components/schemas/ChoiceParams'
-      required:
-      - data
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    InfoField:
-      type: object
-      description: Represents an Info-type Fieldset
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this Info Field
-          example: standard
-        id:
-          type: string
-          description: The identifier of this Info Field
-          example: '500123'
-        description:
-          type: string
-          description: The description for this Info Field
-          example: Example description for this resource.
-      required:
-      - description
-      - id
-      - type
-    Fieldset:
-      type: object
-      description: Represents a Fieldset
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this Fieldset
-          example: standard
-        id:
-          type: string
-          description: The unique identifier for this Fieldset
-          example: '500123'
-        fields:
-          allOf:
-          - $ref: '#/components/schemas/FieldsetFieldsField'
-          description: The fields this Fieldset consists of
-          example: example-value
-        title:
-          type: string
-          description: The title of this Fieldset
-          example: Example Name
-      required:
-      - fields
-      - id
-      - title
-      - type
-    FormatEnum:
-      enum:
-      - DATETIME
-      - MULTILINE
-      - PASSWORD
-      - CODE
-      - READONLY
-      - FILE
-      - SELECT
-      type: string
-      description: '* `DATETIME` - DATETIME
-
-        * `MULTILINE` - MULTILINE
-
-        * `PASSWORD` - PASSWORD
-
-        * `CODE` - CODE
-
-        * `READONLY` - READONLY
-
-        * `FILE` - FILE
-
-        * `SELECT` - SELECT'
-    InputFieldsResponse:
-      type: object
-      description: A successful response for getting the input fields for a particular Action.
-      properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+          description: A list of Choices matching the given request
+          example:
+          - {}
         links:
           allOf:
           - $ref: '#/components/schemas/Links'
@@ -779,15 +575,42 @@ components:
           example: example-value
         meta:
           allOf:
-          - $ref: '#/components/schemas/BaseMeta'
+          - $ref: '#/components/schemas/Meta'
           description: The meta object returned in paginated response bodies.
           example: example-value
-        data:
-          $ref: '#/components/schemas/RootFieldset'
       required:
-      - data
       - links
       - meta
+    RootFieldset:
+      type: array
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/InputField'
+        - $ref: '#/components/schemas/InfoField'
+        - $ref: '#/components/schemas/Fieldset'
+      description: The base concept of a Fieldset, from which others extend
+    Meta:
+      type: object
+      description: Metadata about a certain response
+      properties:
+        page:
+          type: integer
+          description: The current page
+          example: 100
+      required:
+      - page
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
     InputField:
       type: object
       description: Represents Input Field data as accepted by the API
@@ -889,17 +712,51 @@ components:
       - title
       - type
       - value_type
-    ChoiceResponse:
+    Error:
       type: object
-      description: A successful response for getting the requested Input Fields.
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ListInputFieldsRequest:
+      type: object
+      description: Common inputs with inputs and an authentication id.
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Choice'
-          description: A list of Choices matching the given request
-          example:
-          - {}
+          $ref: '#/components/schemas/_ListInputFieldsRequest'
+      required:
+      - data
+    InputFieldsResponse:
+      type: object
+      description: A successful response for getting the input fields for a particular Action.
+      properties:
         links:
           allOf:
           - $ref: '#/components/schemas/Links'
@@ -907,30 +764,86 @@ components:
           example: example-value
         meta:
           allOf:
-          - $ref: '#/components/schemas/Meta'
+          - $ref: '#/components/schemas/BaseMeta'
           description: The meta object returned in paginated response bodies.
           example: example-value
+        data:
+          $ref: '#/components/schemas/RootFieldset'
       required:
+      - data
       - links
       - meta
-    _ListInputFieldsRequest:
+    InfoField:
       type: object
-      description: The common data object that includes inputs and an authentication id.
+      description: Represents an Info-type Fieldset
       properties:
-        authentication:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Info Field
+          example: standard
+        id:
+          type: string
+          description: The identifier of this Info Field
+          example: '500123'
+        description:
+          type: string
+          description: The description for this Info Field
+          example: Example description for this resource.
+      required:
+      - description
+      - id
+      - type
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
           type:
           - string
           - 'null'
-          description: An Authentication ID provided by the `/authentications` endpoint.
+          description: The URL of the next page of paginated results.
           example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
-          example: {}
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    Fieldset:
+      type: object
+      description: Represents a Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Fieldset
+          example: standard
+        id:
+          type: string
+          description: The unique identifier for this Fieldset
+          example: '500123'
+        fields:
+          allOf:
+          - $ref: '#/components/schemas/FieldsetFieldsField'
+          description: The fields this Fieldset consists of
+          example: example-value
+        title:
+          type: string
+          description: The title of this Fieldset
+          example: Example Name
       required:
-      - authentication
-      - inputs
+      - fields
+      - id
+      - title
+      - type
+    ChoiceRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ChoiceParams'
+      required:
+      - data
     ValueTypeEnum:
       enum:
       - STRING
@@ -951,6 +864,93 @@ components:
         * `ARRAY` - ARRAY
 
         * `OBJECT` - OBJECT'
+    _ListInputFieldsRequest:
+      type: object
+      description: The common data object that includes inputs and an authentication id.
+      properties:
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+      required:
+      - authentication
+      - inputs
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    FieldsetFieldsField:
+      anyOf:
+      - $ref: '#/components/schemas/InputField'
+      - $ref: '#/components/schemas/InfoField'
+      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
+    FormatEnum:
+      enum:
+      - DATETIME
+      - MULTILINE
+      - PASSWORD
+      - CODE
+      - READONLY
+      - FILE
+      - SELECT
+      type: string
+      description: '* `DATETIME` - DATETIME
+
+        * `MULTILINE` - MULTILINE
+
+        * `PASSWORD` - PASSWORD
+
+        * `CODE` - CODE
+
+        * `READONLY` - READONLY
+
+        * `FILE` - FILE
+
+        * `SELECT` - SELECT'
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

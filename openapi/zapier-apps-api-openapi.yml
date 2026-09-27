@@ -940,6 +940,47 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
     Error:
       type: object
       description: Base Error definition
@@ -1000,215 +1041,6 @@ components:
       - data
       - links
       - meta
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    ActionsResponse:
-      type: object
-      description: A valid response for fetching available actions for the App
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Action'
-          description: List of Actions for the provided App
-          example:
-          - {}
-      required:
-      - links
-      - meta
-    Action:
-      type: object
-      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
-      properties:
-        id:
-          type: string
-          description: The ID to refer to this action (unstable, may change when referenced app changes)
-          example: '500123'
-        key:
-          type: string
-          description: The developer provided identifier for this Action (stable)
-          example: example-value
-        app:
-          description: Apps
-          oneOf:
-          - $ref: '#/components/schemas/Apps'
-          - type: string
-          example: example-value
-        type:
-          allOf:
-          - $ref: '#/components/schemas/ActionTypeEnum'
-          description: 'The type of this object
-
-
-            * `action` - action'
-          example: standard
-        action_type:
-          allOf:
-          - $ref: '#/components/schemas/ActionTypeEnum'
-          description: 'The type of this Action
-
-
-            * `READ` - READ
-
-            * `READ_BULK` - READ_BULK
-
-            * `WRITE` - WRITE
-
-            * `SEARCH` - SEARCH
-
-            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
-
-            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
-
-            * `FILTER` - FILTER'
-          example: standard
-        is_instant:
-          type: boolean
-          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
-          example: true
-        title:
-          type: string
-          description: The title of this Action.
-          example: Example Name
-        description:
-          type: string
-          description: A longer description of this Action, usually describing what it does in more detail.
-          example: Example description for this resource.
-      required:
-      - action_type
-      - app
-      - description
-      - id
-      - is_instant
-      - key
-      - title
-      - type
-    ActionTypeEnum:
-      enum:
-      - action
-      type: string
-      description: '* `action` - action'
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    AppsImages:
-      type: object
-      description: Images/icons of various resolutions to represent the app.
-      properties:
-        url_16x16:
-          type: string
-          description: 16x16 resolution image URL
-          example: example-value
-        url_32x32:
-          type: string
-          description: 32x32 resolution image URL
-          example: example-value
-        url_64x64:
-          type: string
-          description: 64x64 resolution image URL
-          example: example-value
-        url_128x128:
-          type: string
-          description: 128x128 resolution image URL
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
-    ExpandedAppsResponse:
-      type: object
-      description: An app that integrates with Zapier.
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Apps'
-          description: A list of the Apps matching the request
-          example:
-          - {}
-        meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          readOnly: true
-          description: Used for paginating results. Specifies the maximum number of items to return per page.
-          example: {}
-        links:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          readOnly: true
-          description: Used for paginating results. Specifies the offset to use. Defaults to 0
-          example: {}
-      required:
-      - data
-      - links
-      - meta
     WhitelabelApp:
       type: object
       description: An app available for whitelabel connection.
@@ -1263,6 +1095,22 @@ components:
       - links
       - title
       - type
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
     App:
       type: object
       description: App (Service).
@@ -1330,6 +1178,22 @@ components:
       - title
       - url
       - uuid
+    WhitelabelAppLinks:
+      type: object
+      properties:
+        mcp_authorize_url:
+          type: string
+          format: uri
+          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
+          example: https://example.com/path/abc123
+        mcp_server_url:
+          type: string
+          format: uri
+          description: URL of the MCP server for this app. Requires an access token bound to a connection.
+          example: https://example.com/path/abc123
+      required:
+      - mcp_authorize_url
+      - mcp_server_url
     Category:
       type: object
       description: Category an app belongs to.
@@ -1340,18 +1204,11 @@ components:
           example: example-value
       required:
       - slug
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
+    ActionTypeEnum:
+      enum:
+      - action
+      type: string
+      description: '* `action` - action'
     Apps:
       type: object
       description: An app that integrates with Zapier
@@ -1464,22 +1321,165 @@ components:
       - per_page
       - prev_url
       - total
-    WhitelabelAppLinks:
+    ErrorResponse:
       type: object
       properties:
-        mcp_authorize_url:
-          type: string
-          format: uri
-          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
-          example: https://example.com/path/abc123
-        mcp_server_url:
-          type: string
-          format: uri
-          description: URL of the MCP server for this app. Requires an access token bound to a connection.
-          example: https://example.com/path/abc123
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
       required:
-      - mcp_authorize_url
-      - mcp_server_url
+      - errors
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    ActionsResponse:
+      type: object
+      description: A valid response for fetching available actions for the App
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+          description: List of Actions for the provided App
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    ExpandedAppsResponse:
+      type: object
+      description: An app that integrates with Zapier.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Apps'
+          description: A list of the Apps matching the request
+          example:
+          - {}
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          readOnly: true
+          description: Used for paginating results. Specifies the maximum number of items to return per page.
+          example: {}
+        links:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          readOnly: true
+          description: Used for paginating results. Specifies the offset to use. Defaults to 0
+          example: {}
+      required:
+      - data
+      - links
+      - meta
+    Action:
+      type: object
+      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
+      properties:
+        id:
+          type: string
+          description: The ID to refer to this action (unstable, may change when referenced app changes)
+          example: '500123'
+        key:
+          type: string
+          description: The developer provided identifier for this Action (stable)
+          example: example-value
+        app:
+          description: Apps
+          oneOf:
+          - $ref: '#/components/schemas/Apps'
+          - type: string
+          example: example-value
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this object
+
+
+            * `action` - action'
+          example: standard
+        action_type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this Action
+
+
+            * `READ` - READ
+
+            * `READ_BULK` - READ_BULK
+
+            * `WRITE` - WRITE
+
+            * `SEARCH` - SEARCH
+
+            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
+
+            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
+
+            * `FILTER` - FILTER'
+          example: standard
+        is_instant:
+          type: boolean
+          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
+          example: true
+        title:
+          type: string
+          description: The title of this Action.
+          example: Example Name
+        description:
+          type: string
+          description: A longer description of this Action, usually describing what it does in more detail.
+          example: Example description for this resource.
+      required:
+      - action_type
+      - app
+      - description
+      - id
+      - is_instant
+      - key
+      - title
+      - type
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

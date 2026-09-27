@@ -1223,283 +1223,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    _ActionTestRequest:
-      type: object
-      description: The request structure to test a particular Action
-      properties:
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          default: 10
-          description: Used for paginating results. Specifies the maximum number of items to return per page.
-          example: 10
-        offset:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          default: 0
-          description: Used for paginating results. Specifies the offset to use. Defaults to 0
-          example: 0
-        authentication:
-          type:
-          - string
-          - 'null'
-          description: Authentication, if required, to be able to run the given Action
-          example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: Inputs to be provided to the given 'read' Action's test run
-          example: {}
-      required:
-      - authentication
-      - inputs
-    ListInputFieldsRequest:
-      type: object
-      description: Common inputs with inputs and an authentication id.
-      properties:
-        data:
-          $ref: '#/components/schemas/_ListInputFieldsRequest'
-      required:
-      - data
-    Meta:
-      type: object
-      description: Metadata about a certain response
-      properties:
-        page:
-          type: integer
-          description: The current page
-          example: 100
-      required:
-      - page
-    OutputFieldsResponse:
-      type: object
-      description: A successful response containing Output Field data
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/OutputField'
-          description: A list of the Output Fields matching the given request
-          example:
-          - {}
-      required:
-      - data
-      - links
-      - meta
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    RootFieldset:
-      type: array
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/InputField'
-        - $ref: '#/components/schemas/InfoField'
-        - $ref: '#/components/schemas/Fieldset'
-      description: The base concept of a Fieldset, from which others extend
-    Error:
-      type: object
-      description: Base Error definition
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code applicable to this problem.
-          example: 100
-        code:
-          type: string
-          description: A unique identifier for this particular occurrence of the problem.
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        source:
-          oneOf:
-          - $ref: '#/components/schemas/ErrorSource'
-          - type: 'null'
-          description: An object containing references to the primary source of the error.
-          example: example-value
-        meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Freeform metadata about the error
-          example: {}
-    Action:
-      type: object
-      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
-      properties:
-        id:
-          type: string
-          description: The ID to refer to this action (unstable, may change when referenced app changes)
-          example: '500123'
-        key:
-          type: string
-          description: The developer provided identifier for this Action (stable)
-          example: example-value
-        app:
-          description: Apps
-          oneOf:
-          - $ref: '#/components/schemas/Apps'
-          - type: string
-          example: example-value
-        type:
-          allOf:
-          - $ref: '#/components/schemas/ActionTypeEnum'
-          description: 'The type of this object
-
-
-            * `action` - action'
-          example: standard
-        action_type:
-          allOf:
-          - $ref: '#/components/schemas/ActionTypeEnum'
-          description: 'The type of this Action
-
-
-            * `READ` - READ
-
-            * `READ_BULK` - READ_BULK
-
-            * `WRITE` - WRITE
-
-            * `SEARCH` - SEARCH
-
-            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
-
-            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
-
-            * `FILTER` - FILTER'
-          example: standard
-        is_instant:
-          type: boolean
-          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
-          example: true
-        title:
-          type: string
-          description: The title of this Action.
-          example: Example Name
-        description:
-          type: string
-          description: A longer description of this Action, usually describing what it does in more detail.
-          example: Example description for this resource.
-      required:
-      - action_type
-      - app
-      - description
-      - id
-      - is_instant
-      - key
-      - title
-      - type
-    ActionTypeEnum:
-      enum:
-      - action
-      type: string
-      description: '* `action` - action'
-    ActionTestResponse:
-      type: object
-      description: 'Base Response definition to be used in other Response Serializers.
-
-
-        Be sure to include the `data` field after using this class'
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            type: object
-            additionalProperties: {}
-          description: The result of executing said Action on the third-party API
-          example:
-          - {}
-      required:
-      - data
-      - links
-      - meta
-    FieldsetFieldsField:
-      anyOf:
-      - $ref: '#/components/schemas/InputField'
-      - $ref: '#/components/schemas/InfoField'
-      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
     Choice:
       type: object
       description: A single element from a set of Choices, variants in an enumeration.
@@ -1556,29 +1279,151 @@ components:
           example: example-value
       required:
       - slug
-    ChoiceRequest:
+    ChoiceResponse:
       type: object
+      description: A successful response for getting the requested Input Fields.
       properties:
         data:
-          $ref: '#/components/schemas/ChoiceParams'
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+          description: A list of Choices matching the given request
+          example:
+          - {}
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/Meta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
       required:
-      - data
-    ErrorSource:
+      - links
+      - meta
+    ActionTypeEnum:
+      enum:
+      - action
+      type: string
+      description: '* `action` - action'
+    Apps:
       type: object
-      description: Populates the `source` object inside our error responses.
+      description: An app that integrates with Zapier
       properties:
-        pointer:
+        id:
           type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
+          description: Unique id of the app
+          example: '500123'
+        type:
           type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
+          default: app
+          description: The type of this object.
+          example: app
+        image:
           type: string
-          description: A string indicating the name of a single request header which caused the error.
+          description: Default image/icon to represent the app.
           example: example-value
+        links:
+          type: object
+          additionalProperties: {}
+          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
+          example: {}
+        action_types:
+          type: array
+          items: {}
+          description: A list of action types for this specific App
+          example:
+          - standard
+        title:
+          type: string
+          description: Human readable name of the app
+          example: Example Name
+        images:
+          allOf:
+          - $ref: '#/components/schemas/AppsImages'
+          description: The URL of images (of various sizes) for this specific App
+          example: example-value
+        hex_color:
+          type: string
+          description: A branded color that can be used to represent the app.
+          example: example-value
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
+          example:
+          - {}
+        description:
+          type: string
+          description: Human readable description of the app.
+          example: Example description for this resource.
+      required:
+      - action_types
+      - categories
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - links
+      - title
+    RootFieldset:
+      type: array
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/InputField'
+        - $ref: '#/components/schemas/InfoField'
+        - $ref: '#/components/schemas/Fieldset'
+      description: The base concept of a Fieldset, from which others extend
+    Meta:
+      type: object
+      description: Metadata about a certain response
+      properties:
+        page:
+          type: integer
+          description: The current page
+          example: 100
+      required:
+      - page
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    OutputField:
+      type: object
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this specific Output Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this specific Output Field
+          example: '500123'
+        title:
+          type: string
+          description: The title of this specific Output Field
+          example: Example Name
+        sample:
+          type: string
+          description: An (optional) sample of what an Output Field's value may look like
+          example: example-value
+      required:
+      - id
+      - title
+      - type
     ActionsResponse:
       type: object
       description: A valid response for fetching available actions for the App
@@ -1601,111 +1446,6 @@ components:
           example:
           - {}
       required:
-      - links
-      - meta
-    InfoField:
-      type: object
-      description: Represents an Info-type Fieldset
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this Info Field
-          example: standard
-        id:
-          type: string
-          description: The identifier of this Info Field
-          example: '500123'
-        description:
-          type: string
-          description: The description for this Info Field
-          example: Example description for this resource.
-      required:
-      - description
-      - id
-      - type
-    ListOutputFieldsRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/_ListOutputFieldsRequest'
-      required:
-      - data
-    Fieldset:
-      type: object
-      description: Represents a Fieldset
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this Fieldset
-          example: standard
-        id:
-          type: string
-          description: The unique identifier for this Fieldset
-          example: '500123'
-        fields:
-          allOf:
-          - $ref: '#/components/schemas/FieldsetFieldsField'
-          description: The fields this Fieldset consists of
-          example: example-value
-        title:
-          type: string
-          description: The title of this Fieldset
-          example: Example Name
-      required:
-      - fields
-      - id
-      - title
-      - type
-    ActionTestRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/_ActionTestRequest'
-      required:
-      - data
-    FormatEnum:
-      enum:
-      - DATETIME
-      - MULTILINE
-      - PASSWORD
-      - CODE
-      - READONLY
-      - FILE
-      - SELECT
-      type: string
-      description: '* `DATETIME` - DATETIME
-
-        * `MULTILINE` - MULTILINE
-
-        * `PASSWORD` - PASSWORD
-
-        * `CODE` - CODE
-
-        * `READONLY` - READONLY
-
-        * `FILE` - FILE
-
-        * `SELECT` - SELECT'
-    InputFieldsResponse:
-      type: object
-      description: A successful response for getting the input fields for a particular Action.
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          $ref: '#/components/schemas/RootFieldset'
-      required:
-      - data
       - links
       - meta
     InputField:
@@ -1834,17 +1574,58 @@ components:
       - url_16x16
       - url_32x32
       - url_64x64
-    ChoiceResponse:
+    Error:
       type: object
-      description: A successful response for getting the requested Input Fields.
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    ActionTestRequest:
+      type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Choice'
-          description: A list of Choices matching the given request
-          example:
-          - {}
+          $ref: '#/components/schemas/_ActionTestRequest'
+      required:
+      - data
+    ListInputFieldsRequest:
+      type: object
+      description: Common inputs with inputs and an authentication id.
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListInputFieldsRequest'
+      required:
+      - data
+    OutputFieldsResponse:
+      type: object
+      description: A successful response containing Output Field data
+      properties:
         links:
           allOf:
           - $ref: '#/components/schemas/Links'
@@ -1852,30 +1633,181 @@ components:
           example: example-value
         meta:
           allOf:
-          - $ref: '#/components/schemas/Meta'
+          - $ref: '#/components/schemas/BaseMeta'
           description: The meta object returned in paginated response bodies.
           example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputField'
+          description: A list of the Output Fields matching the given request
+          example:
+          - {}
       required:
+      - data
       - links
       - meta
-    _ListInputFieldsRequest:
+    InputFieldsResponse:
       type: object
-      description: The common data object that includes inputs and an authentication id.
+      description: A successful response for getting the input fields for a particular Action.
       properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          $ref: '#/components/schemas/RootFieldset'
+      required:
+      - data
+      - links
+      - meta
+    InfoField:
+      type: object
+      description: Represents an Info-type Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Info Field
+          example: standard
+        id:
+          type: string
+          description: The identifier of this Info Field
+          example: '500123'
+        description:
+          type: string
+          description: The description for this Info Field
+          example: Example description for this resource.
+      required:
+      - description
+      - id
+      - type
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    ListOutputFieldsRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListOutputFieldsRequest'
+      required:
+      - data
+    Fieldset:
+      type: object
+      description: Represents a Fieldset
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The type of this Fieldset
+          example: standard
+        id:
+          type: string
+          description: The unique identifier for this Fieldset
+          example: '500123'
+        fields:
+          allOf:
+          - $ref: '#/components/schemas/FieldsetFieldsField'
+          description: The fields this Fieldset consists of
+          example: example-value
+        title:
+          type: string
+          description: The title of this Fieldset
+          example: Example Name
+      required:
+      - fields
+      - id
+      - title
+      - type
+    ChoiceRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ChoiceParams'
+      required:
+      - data
+    _ActionTestRequest:
+      type: object
+      description: The request structure to test a particular Action
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          default: 10
+          description: Used for paginating results. Specifies the maximum number of items to return per page.
+          example: 10
+        offset:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          default: 0
+          description: Used for paginating results. Specifies the offset to use. Defaults to 0
+          example: 0
         authentication:
           type:
           - string
           - 'null'
-          description: An Authentication ID provided by the `/authentications` endpoint.
+          description: Authentication, if required, to be able to run the given Action
           example: example-value
         inputs:
           type: object
           additionalProperties: {}
-          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          description: Inputs to be provided to the given 'read' Action's test run
           example: {}
       required:
       - authentication
       - inputs
+    ActionTestResponse:
+      type: object
+      description: 'Base Response definition to be used in other Response Serializers.
+
+
+        Be sure to include the `data` field after using this class'
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: The result of executing said Action on the third-party API
+          example:
+          - {}
+      required:
+      - data
+      - links
+      - meta
     ValueTypeEnum:
       enum:
       - STRING
@@ -1896,68 +1828,6 @@ components:
         * `ARRAY` - ARRAY
 
         * `OBJECT` - OBJECT'
-    Apps:
-      type: object
-      description: An app that integrates with Zapier
-      properties:
-        id:
-          type: string
-          description: Unique id of the app
-          example: '500123'
-        type:
-          type: string
-          default: app
-          description: The type of this object.
-          example: app
-        image:
-          type: string
-          description: Default image/icon to represent the app.
-          example: example-value
-        links:
-          type: object
-          additionalProperties: {}
-          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
-          example: {}
-        action_types:
-          type: array
-          items: {}
-          description: A list of action types for this specific App
-          example:
-          - standard
-        title:
-          type: string
-          description: Human readable name of the app
-          example: Example Name
-        images:
-          allOf:
-          - $ref: '#/components/schemas/AppsImages'
-          description: The URL of images (of various sizes) for this specific App
-          example: example-value
-        hex_color:
-          type: string
-          description: A branded color that can be used to represent the app.
-          example: example-value
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
-          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
-          example:
-          - {}
-        description:
-          type: string
-          description: Human readable description of the app.
-          example: Example description for this resource.
-      required:
-      - action_types
-      - categories
-      - description
-      - hex_color
-      - id
-      - image
-      - images
-      - links
-      - title
     _ListOutputFieldsRequest:
       type: object
       description: The common data object that includes inputs and an authentication id.
@@ -1981,30 +1851,160 @@ components:
       required:
       - authentication
       - inputs
-    OutputField:
+    _ListInputFieldsRequest:
       type: object
+      description: The common data object that includes inputs and an authentication id.
       properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this specific Output Field
-          example: standard
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID provided by the `/authentications` endpoint.
+          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+      required:
+      - authentication
+      - inputs
+    Action:
+      type: object
+      description: An Action is an operation that can be performed against a third-party API; either a read or a write. A Zap is composed of a read, followed by one or more writes.
+      properties:
         id:
           type: string
-          description: The identifier for this specific Output Field
+          description: The ID to refer to this action (unstable, may change when referenced app changes)
           example: '500123'
+        key:
+          type: string
+          description: The developer provided identifier for this Action (stable)
+          example: example-value
+        app:
+          description: Apps
+          oneOf:
+          - $ref: '#/components/schemas/Apps'
+          - type: string
+          example: example-value
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this object
+
+
+            * `action` - action'
+          example: standard
+        action_type:
+          allOf:
+          - $ref: '#/components/schemas/ActionTypeEnum'
+          description: 'The type of this Action
+
+
+            * `READ` - READ
+
+            * `READ_BULK` - READ_BULK
+
+            * `WRITE` - WRITE
+
+            * `SEARCH` - SEARCH
+
+            * `SEARCH_OR_WRITE` - SEARCH_OR_WRITE
+
+            * `SEARCH_AND_WRITE` - SEARCH_AND_WRITE
+
+            * `FILTER` - FILTER'
+          example: standard
+        is_instant:
+          type: boolean
+          description: Will be set to `true` if this Action triggers instantly. May only be `true` when `type` is `READ`.
+          example: true
         title:
           type: string
-          description: The title of this specific Output Field
+          description: The title of this Action.
           example: Example Name
-        sample:
+        description:
           type: string
-          description: An (optional) sample of what an Output Field's value may look like
-          example: example-value
+          description: A longer description of this Action, usually describing what it does in more detail.
+          example: Example description for this resource.
       required:
+      - action_type
+      - app
+      - description
       - id
+      - is_instant
+      - key
       - title
       - type
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    FieldsetFieldsField:
+      anyOf:
+      - $ref: '#/components/schemas/InputField'
+      - $ref: '#/components/schemas/InfoField'
+      description: Somewhat confusingly named, a field that is a list of either input fields or info fields.
+    FormatEnum:
+      enum:
+      - DATETIME
+      - MULTILINE
+      - PASSWORD
+      - CODE
+      - READONLY
+      - FILE
+      - SELECT
+      type: string
+      description: '* `DATETIME` - DATETIME
+
+        * `MULTILINE` - MULTILINE
+
+        * `PASSWORD` - PASSWORD
+
+        * `CODE` - CODE
+
+        * `READONLY` - READONLY
+
+        * `FILE` - FILE
+
+        * `SELECT` - SELECT'
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

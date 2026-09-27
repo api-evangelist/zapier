@@ -926,71 +926,110 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BaseMeta:
+    _ActionRunResponseStatusEnum:
+      enum:
+      - success
+      - error
+      - waiting
+      type: string
+      description: '* `success` - success
+
+        * `error` - error
+
+        * `waiting` - waiting'
+    RunTypeEnum:
+      enum:
+      - run
+      type: string
+      description: '* `run` - Run'
+    ErrorResponse:
       type: object
-      description: The meta object returned in paginated response bodies.
       properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    ZapRunsResponse:
-      type: object
-      description: A list of Zap Runs.
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ZapRun'
-          description: The returned data after a successful Zap run
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
           example:
           - {}
       required:
-      - links
-      - meta
+      - errors
+    _ActionRunResponseError:
+      type: object
+      description: The error information returned from a third party when running an action.
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/CodeEnum'
+          description: 'Error type of the result object.
+
+
+            * `user` - user
+
+            * `authentication` - authentication
+
+            * `partner` - partner
+
+            * `system` - system
+
+            * `throttled` - throttled
+
+            * `system_throttled` - system_throttled
+
+            * `hydration` - hydration'
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        delay:
+          type: integer
+          description: When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.
+          example: 100
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Any additional error information returned from the partner.
+          example: {}
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
     WhitelabelApp:
       type: object
       description: An app available for whitelabel connection.
@@ -1045,16 +1084,45 @@ components:
       - links
       - title
       - type
-    RunActionRequest:
+    WhitelabelAppLinks:
       type: object
       properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/_RunActionRequest'
-          description: Data for the Action Run
-          example: example-value
+        mcp_authorize_url:
+          type: string
+          format: uri
+          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
+          example: https://example.com/path/abc123
+        mcp_server_url:
+          type: string
+          format: uri
+          description: URL of the MCP server for this app. Requires an access token bound to a connection.
+          example: https://example.com/path/abc123
       required:
-      - data
+      - mcp_authorize_url
+      - mcp_server_url
+    CodeEnum:
+      enum:
+      - user
+      - authentication
+      - partner
+      - system
+      - throttled
+      - system_throttled
+      - hydration
+      type: string
+      description: '* `user` - user
+
+        * `authentication` - authentication
+
+        * `partner` - partner
+
+        * `system` - system
+
+        * `throttled` - throttled
+
+        * `system_throttled` - system_throttled
+
+        * `hydration` - hydration'
     ZapRun:
       type: object
       description: A single Zap Run response.
@@ -1119,67 +1187,43 @@ components:
       - steps
       - zap_id
       - zap_title
-    ErrorResponse:
+    Links:
       type: object
+      description: The links object returned in paginated response bodies.
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    WhitelabelAppLinks:
-      type: object
-      properties:
-        mcp_authorize_url:
-          type: string
-          format: uri
-          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
-          example: https://example.com/path/abc123
-        mcp_server_url:
-          type: string
-          format: uri
-          description: URL of the MCP server for this app. Requires an access token bound to a connection.
-          example: https://example.com/path/abc123
-      required:
-      - mcp_authorize_url
-      - mcp_server_url
-    Error:
-      type: object
-      description: Base Error definition
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code applicable to this problem.
-          example: 100
-        code:
-          type: string
-          description: A unique identifier for this particular occurrence of the problem.
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        source:
-          oneOf:
-          - $ref: '#/components/schemas/ErrorSource'
-          - type: 'null'
-          description: An object containing references to the primary source of the error.
-          example: example-value
-        meta:
+        next:
           type:
-          - object
+          - string
           - 'null'
-          additionalProperties: {}
-          description: Freeform metadata about the error
-          example: {}
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    RunActionRequest:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_RunActionRequest'
+          description: Data for the Action Run
+          example: example-value
+      required:
+      - data
+    ActionRunResponse:
+      type: object
+      description: The response of a given Action Run
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_ActionRunResponse'
+          description: The resulting data after a given Action was run
+          example: example-value
+      required:
+      - data
     RunActionResponse:
       type: object
       properties:
@@ -1187,11 +1231,58 @@ components:
           $ref: '#/components/schemas/_RunActionResponse'
       required:
       - data
-    RunTypeEnum:
-      enum:
-      - run
-      type: string
-      description: '* `run` - Run'
+    _ActionRunResponse:
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        status:
+          $ref: '#/components/schemas/_ActionRunResponseStatusEnum'
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          description: Could be empty, even if the action was successfully run.
+          example:
+          - {}
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/_ActionRunResponseError'
+          description: Any errors returned by the partner when running this action.
+          example:
+          - {}
+      required:
+      - errors
+      - status
+      - type
+    _RunActionResponse:
+      type: object
+      description: The response after an Action Run
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        id:
+          type: string
+          format: uuid
+          description: The UUID of this Action Run
+          example: 550e8400-e29b-41d4-a716-446655440000
+      required:
+      - id
+      - type
     WhitelabelAppsResponse:
       type: object
       description: A JSON:API-style response of apps available for whitelabel connection.
@@ -1235,88 +1326,30 @@ components:
           type: string
           description: A string indicating the name of a single request header which caused the error.
           example: example-value
-    _RunActionResponse:
+    ZapRunsResponse:
       type: object
-      description: The response after an Action Run
+      description: A list of Zap Runs.
       properties:
-        type:
+        links:
           allOf:
-          - $ref: '#/components/schemas/RunTypeEnum'
-          description: 'The type of this object
-
-
-            * `run` - Run'
-          example: standard
-        id:
-          type: string
-          format: uuid
-          description: The UUID of this Action Run
-          example: 550e8400-e29b-41d4-a716-446655440000
-      required:
-      - id
-      - type
-    ZapRunStep:
-      type: object
-      description: A single step in a Zap Run.
-      properties:
-        status:
-          type:
-          - string
-          - 'null'
-          description: Execution status of the step
-          example: active
-        start_time:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Datetime when the step was executed
-          example: '2026-05-01T12:00:00Z'
-      required:
-      - status
-    _ActionRunResponseError:
-      type: object
-      description: The error information returned from a third party when running an action.
-      properties:
-        code:
-          allOf:
-          - $ref: '#/components/schemas/CodeEnum'
-          description: 'Error type of the result object.
-
-
-            * `user` - user
-
-            * `authentication` - authentication
-
-            * `partner` - partner
-
-            * `system` - system
-
-            * `throttled` - throttled
-
-            * `system_throttled` - system_throttled
-
-            * `hydration` - hydration'
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
           example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        delay:
-          type: integer
-          description: When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.
-          example: 100
         meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Any additional error information returned from the partner.
-          example: {}
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
     _RunActionRequest:
       type: object
       properties:
@@ -1339,83 +1372,50 @@ components:
       - action
       - authentication
       - inputs
-    CodeEnum:
-      enum:
-      - user
-      - authentication
-      - partner
-      - system
-      - throttled
-      - system_throttled
-      - hydration
-      type: string
-      description: '* `user` - user
-
-        * `authentication` - authentication
-
-        * `partner` - partner
-
-        * `system` - system
-
-        * `throttled` - throttled
-
-        * `system_throttled` - system_throttled
-
-        * `hydration` - hydration'
-    ActionRunResponse:
+    ZapRunStep:
       type: object
-      description: The response of a given Action Run
+      description: A single step in a Zap Run.
       properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/_ActionRunResponse'
-          description: The resulting data after a given Action was run
-          example: example-value
-      required:
-      - data
-    _ActionRunResponseStatusEnum:
-      enum:
-      - success
-      - error
-      - waiting
-      type: string
-      description: '* `success` - success
-
-        * `error` - error
-
-        * `waiting` - waiting'
-    _ActionRunResponse:
-      type: object
-      properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/RunTypeEnum'
-          description: 'The type of this object
-
-
-            * `run` - Run'
-          example: standard
         status:
-          $ref: '#/components/schemas/_ActionRunResponseStatusEnum'
-        results:
-          type: array
-          items:
-            type: object
-            additionalProperties: {}
-          description: Could be empty, even if the action was successfully run.
-          example:
-          - {}
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/_ActionRunResponseError'
-          description: Any errors returned by the partner when running this action.
-          example:
-          - {}
+          type:
+          - string
+          - 'null'
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
       required:
-      - errors
       - status
-      - type
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

@@ -495,63 +495,6 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
     AppsImages:
       type: object
       description: Images/icons of various resolutions to represent the app.
@@ -577,11 +520,82 @@ components:
       - url_16x16
       - url_32x32
       - url_64x64
-    AuthenticationTypeEnum:
-      enum:
-      - authentication
-      type: string
-      description: '* `authentication` - authentication'
+    _AuthenticationCreateRequest:
+      type: object
+      description: The object used to create a new Authentication
+      properties:
+        title:
+          type: string
+          description: The title of the authentication.
+          maxLength: 255
+          example: Example Name
+        app:
+          type: string
+          format: uuid
+          description: A canonical App ID, as provided by the `/apps` endpoint.
+          example: 550e8400-e29b-41d4-a716-446655440000
+        authentication_fields:
+          type: object
+          additionalProperties: {}
+          description: Required values to create an authentication. These values will be used by the target integration to successfully create the Authentication. See our Adding an Authentication guide for more information.
+          example: {}
+      required:
+      - app
+      - authentication_fields
+      - title
+    AuthenticationResponse:
+      type: object
+      description: 'Base Response definition to be used in other Response Serializers.
+
+
+        Be sure to include the `data` field after using this class'
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Authentication'
+          description: The Authentications present, provided they exist
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
     AuthenticationCreateRequest:
       type: object
       description: Inputs to create a new Authentication
@@ -630,55 +644,6 @@ components:
       - is_expired
       - title
       - type
-    AuthenticationResponse:
-      type: object
-      description: 'Base Response definition to be used in other Response Serializers.
-
-
-        Be sure to include the `data` field after using this class'
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Authentication'
-          description: The Authentications present, provided they exist
-          example:
-          - {}
-      required:
-      - links
-      - meta
-    Category:
-      type: object
-      description: Category an app belongs to.
-      properties:
-        slug:
-          type: string
-          description: The shortened slug name for this category
-          example: example-value
-      required:
-      - slug
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
     Apps:
       type: object
       description: An app that integrates with Zapier
@@ -741,29 +706,64 @@ components:
       - images
       - links
       - title
-    _AuthenticationCreateRequest:
+    AuthenticationTypeEnum:
+      enum:
+      - authentication
+      type: string
+      description: '* `authentication` - authentication'
+    ErrorResponse:
       type: object
-      description: The object used to create a new Authentication
       properties:
-        title:
-          type: string
-          description: The title of the authentication.
-          maxLength: 255
-          example: Example Name
-        app:
-          type: string
-          format: uuid
-          description: A canonical App ID, as provided by the `/apps` endpoint.
-          example: 550e8400-e29b-41d4-a716-446655440000
-        authentication_fields:
-          type: object
-          additionalProperties: {}
-          description: Required values to create an authentication. These values will be used by the target integration to successfully create the Authentication. See our Adding an Authentication guide for more information.
-          example: {}
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
       required:
-      - app
-      - authentication_fields
-      - title
+      - errors
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey
