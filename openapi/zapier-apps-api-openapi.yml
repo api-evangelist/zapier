@@ -940,448 +940,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AppsImages:
-      type: object
-      description: Images/icons of various resolutions to represent the app.
-      properties:
-        url_16x16:
-          type: string
-          description: 16x16 resolution image URL
-          example: example-value
-        url_32x32:
-          type: string
-          description: 32x32 resolution image URL
-          example: example-value
-        url_64x64:
-          type: string
-          description: 64x64 resolution image URL
-          example: example-value
-        url_128x128:
-          type: string
-          description: 128x128 resolution image URL
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    Error:
-      type: object
-      description: Base Error definition
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code applicable to this problem.
-          example: 100
-        code:
-          type: string
-          description: A unique identifier for this particular occurrence of the problem.
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        source:
-          oneOf:
-          - $ref: '#/components/schemas/ErrorSource'
-          - type: 'null'
-          description: An object containing references to the primary source of the error.
-          example: example-value
-        meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Freeform metadata about the error
-          example: {}
-    WhitelabelAppsResponse:
-      type: object
-      description: A JSON:API-style response of apps available for whitelabel connection.
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhitelabelApp'
-          description: The list of apps.
-          example:
-          - {}
-        links:
-          type: object
-          additionalProperties: {}
-          readOnly: true
-          description: Pagination links.
-          example: {}
-        meta:
-          type: object
-          additionalProperties: {}
-          readOnly: true
-          description: Pagination metadata.
-          example: {}
-      required:
-      - data
-      - links
-      - meta
-    WhitelabelApp:
-      type: object
-      description: An app available for whitelabel connection.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          default: app
-          description: The resource type.
-          example: app
-        id:
-          type: string
-          readOnly: true
-          description: The app's unique identifier.
-          example: '500123'
-        title:
-          type: string
-          description: The app's display name.
-          example: Example Name
-        image:
-          type: string
-          format: uri
-          description: URL of the app's icon.
-          example: https://example.com/path/abc123
-        is_oauth:
-          type: boolean
-          readOnly: true
-          description: Whether the app uses OAuth for authentication.
-          example: true
-        has_fields:
-          type: boolean
-          readOnly: true
-          description: Whether the app has input fields a user must fill in when connecting.
-          example: true
-        has_byoc:
-          type: boolean
-          readOnly: true
-          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
-          example: true
-        links:
-          allOf:
-          - $ref: '#/components/schemas/WhitelabelAppLinks'
-          readOnly: true
-          description: Related URLs for this app.
-          example: example-value
-      required:
-      - has_byoc
-      - has_fields
-      - id
-      - image
-      - is_oauth
-      - links
-      - title
-      - type
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    App:
-      type: object
-      description: App (Service).
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The UUID identifier of this App
-          example: 550e8400-e29b-41d4-a716-446655440000
-        title:
-          type: string
-          description: The title of this App
-          example: Example Name
-        slug:
-          type: string
-          description: The shortened slug identified of this App
-          pattern: ^[-a-zA-Z0-9_]+$
-          example: example-value
-        description:
-          type: string
-          description: The description of this App
-          example: Example description for this resource.
-        image:
-          type: string
-          format: uri
-          description: A URL to an image representing this App
-          example: https://example.com/path/abc123
-        url:
-          type: string
-          readOnly: true
-          description: A URL to an embed with your App and this one
-          example: https://example.com/path/abc123
-        links:
-          type: object
-          additionalProperties:
-            type: string
-          readOnly: true
-          description: An object whose 'mutual:zap_templates' key is a URL to shared Zap Templates between your App and this one
-          example: {}
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
-          description: A list of Categories associated with this App
-          example:
-          - {}
-        images:
-          type: object
-          additionalProperties: {}
-          description: An object containing images representing this App of various sizes
-          example: {}
-        app_latest:
-          type: string
-          readOnly: true
-          description: Shorthand for referencing the latest version of this App
-          example: example-value
-      required:
-      - app_latest
-      - categories
-      - description
-      - image
-      - images
-      - links
-      - slug
-      - title
-      - url
-      - uuid
-    WhitelabelAppLinks:
-      type: object
-      properties:
-        mcp_authorize_url:
-          type: string
-          format: uri
-          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
-          example: https://example.com/path/abc123
-        mcp_server_url:
-          type: string
-          format: uri
-          description: URL of the MCP server for this app. Requires an access token bound to a connection.
-          example: https://example.com/path/abc123
-      required:
-      - mcp_authorize_url
-      - mcp_server_url
-    Category:
-      type: object
-      description: Category an app belongs to.
-      properties:
-        slug:
-          type: string
-          description: The shortened slug name for this category
-          example: example-value
-      required:
-      - slug
-    ActionTypeEnum:
-      enum:
-      - action
-      type: string
-      description: '* `action` - action'
-    Apps:
-      type: object
-      description: An app that integrates with Zapier
-      properties:
-        id:
-          type: string
-          description: Unique id of the app
-          example: '500123'
-        type:
-          type: string
-          default: app
-          description: The type of this object.
-          example: app
-        image:
-          type: string
-          description: Default image/icon to represent the app.
-          example: example-value
-        links:
-          type: object
-          additionalProperties: {}
-          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
-          example: {}
-        action_types:
-          type: array
-          items: {}
-          description: A list of action types for this specific App
-          example:
-          - standard
-        title:
-          type: string
-          description: Human readable name of the app
-          example: Example Name
-        images:
-          allOf:
-          - $ref: '#/components/schemas/AppsImages'
-          description: The URL of images (of various sizes) for this specific App
-          example: example-value
-        hex_color:
-          type: string
-          description: A branded color that can be used to represent the app.
-          example: example-value
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
-          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
-          example:
-          - {}
-        description:
-          type: string
-          description: Human readable description of the app.
-          example: Example description for this resource.
-      required:
-      - action_types
-      - categories
-      - description
-      - hex_color
-      - id
-      - image
-      - images
-      - links
-      - title
-    AppsResponse:
-      type: object
-      description: A page of returned apps.
-      properties:
-        total:
-          type: integer
-          description: The total number of Apps that matched
-          example: 100
-        page:
-          type: integer
-          readOnly: true
-          description: The current page returned
-          example: 100
-        pages:
-          type: integer
-          readOnly: true
-          description: The total number of pages
-          example: 100
-        per_page:
-          type: integer
-          readOnly: true
-          description: How many Apps are returned per-page
-          example: 100
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/App'
-          description: A list containing all matching Apps'
-          example:
-          - {}
-        prev_url:
-          type: string
-          format: uri
-          readOnly: true
-          description: The URL to call to get the previous matching Apps
-          example: https://example.com/path/abc123
-        next_url:
-          type: string
-          format: uri
-          readOnly: true
-          description: The URL to call to get the next matching Apps
-          example: https://example.com/path/abc123
-      required:
-      - next_url
-      - objects
-      - page
-      - pages
-      - per_page
-      - prev_url
-      - total
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    ActionsResponse:
-      type: object
-      description: A valid response for fetching available actions for the App
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Action'
-          description: List of Actions for the provided App
-          example:
-          - {}
-      required:
-      - links
-      - meta
     ExpandedAppsResponse:
       type: object
       description: An app that integrates with Zapier.
@@ -1480,6 +1038,448 @@ components:
       - key
       - title
       - type
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
+    ActionTypeEnum:
+      enum:
+      - action
+      type: string
+      description: '* `action` - action'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
+    Apps:
+      type: object
+      description: An app that integrates with Zapier
+      properties:
+        id:
+          type: string
+          description: Unique id of the app
+          example: '500123'
+        type:
+          type: string
+          default: app
+          description: The type of this object.
+          example: app
+        image:
+          type: string
+          description: Default image/icon to represent the app.
+          example: example-value
+        links:
+          type: object
+          additionalProperties: {}
+          description: "A url that, when visited, will direct the user to authenticate with the app and allow Zapier access to the app, thus creating a new Authentication.\n\n            If value is `null`, then no authentication is required to use the app. Client ID-authenticated requests will never have this object's fields populated."
+          example: {}
+        action_types:
+          type: array
+          items: {}
+          description: A list of action types for this specific App
+          example:
+          - standard
+        title:
+          type: string
+          description: Human readable name of the app
+          example: Example Name
+        images:
+          allOf:
+          - $ref: '#/components/schemas/AppsImages'
+          description: The URL of images (of various sizes) for this specific App
+          example: example-value
+        hex_color:
+          type: string
+          description: A branded color that can be used to represent the app.
+          example: example-value
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: A list of categories to which this app belongs. Helpful in identifying apps by type and functionality.
+          example:
+          - {}
+        description:
+          type: string
+          description: Human readable description of the app.
+          example: Example description for this resource.
+      required:
+      - action_types
+      - categories
+      - description
+      - hex_color
+      - id
+      - image
+      - images
+      - links
+      - title
+    App:
+      type: object
+      description: App (Service).
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID identifier of this App
+          example: 550e8400-e29b-41d4-a716-446655440000
+        title:
+          type: string
+          description: The title of this App
+          example: Example Name
+        slug:
+          type: string
+          description: The shortened slug identified of this App
+          pattern: ^[-a-zA-Z0-9_]+$
+          example: example-value
+        description:
+          type: string
+          description: The description of this App
+          example: Example description for this resource.
+        image:
+          type: string
+          format: uri
+          description: A URL to an image representing this App
+          example: https://example.com/path/abc123
+        url:
+          type: string
+          readOnly: true
+          description: A URL to an embed with your App and this one
+          example: https://example.com/path/abc123
+        links:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+          description: An object whose 'mutual:zap_templates' key is a URL to shared Zap Templates between your App and this one
+          example: {}
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: A list of Categories associated with this App
+          example:
+          - {}
+        images:
+          type: object
+          additionalProperties: {}
+          description: An object containing images representing this App of various sizes
+          example: {}
+        app_latest:
+          type: string
+          readOnly: true
+          description: Shorthand for referencing the latest version of this App
+          example: example-value
+      required:
+      - app_latest
+      - categories
+      - description
+      - image
+      - images
+      - links
+      - slug
+      - title
+      - url
+      - uuid
+    Error:
+      type: object
+      description: Base Error definition
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code applicable to this problem.
+          example: 100
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    WhitelabelAppLinks:
+      type: object
+      properties:
+        mcp_authorize_url:
+          type: string
+          format: uri
+          description: URL to authorize the user for MCP. Requires a session token to be set in the query parameters. Returns an OAuth exchange code.
+          example: https://example.com/path/abc123
+        mcp_server_url:
+          type: string
+          format: uri
+          description: URL of the MCP server for this app. Requires an access token bound to a connection.
+          example: https://example.com/path/abc123
+      required:
+      - mcp_authorize_url
+      - mcp_server_url
+    AppsResponse:
+      type: object
+      description: A page of returned apps.
+      properties:
+        total:
+          type: integer
+          description: The total number of Apps that matched
+          example: 100
+        page:
+          type: integer
+          readOnly: true
+          description: The current page returned
+          example: 100
+        pages:
+          type: integer
+          readOnly: true
+          description: The total number of pages
+          example: 100
+        per_page:
+          type: integer
+          readOnly: true
+          description: How many Apps are returned per-page
+          example: 100
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+          description: A list containing all matching Apps'
+          example:
+          - {}
+        prev_url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL to call to get the previous matching Apps
+          example: https://example.com/path/abc123
+        next_url:
+          type: string
+          format: uri
+          readOnly: true
+          description: The URL to call to get the next matching Apps
+          example: https://example.com/path/abc123
+      required:
+      - next_url
+      - objects
+      - page
+      - pages
+      - per_page
+      - prev_url
+      - total
+    ActionsResponse:
+      type: object
+      description: A valid response for fetching available actions for the App
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+          description: List of Actions for the provided App
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    WhitelabelApp:
+      type: object
+      description: An app available for whitelabel connection.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          default: app
+          description: The resource type.
+          example: app
+        id:
+          type: string
+          readOnly: true
+          description: The app's unique identifier.
+          example: '500123'
+        title:
+          type: string
+          description: The app's display name.
+          example: Example Name
+        image:
+          type: string
+          format: uri
+          description: URL of the app's icon.
+          example: https://example.com/path/abc123
+        is_oauth:
+          type: boolean
+          readOnly: true
+          description: Whether the app uses OAuth for authentication.
+          example: true
+        has_fields:
+          type: boolean
+          readOnly: true
+          description: Whether the app has input fields a user must fill in when connecting.
+          example: true
+        has_byoc:
+          type: boolean
+          readOnly: true
+          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
+          example: true
+        links:
+          allOf:
+          - $ref: '#/components/schemas/WhitelabelAppLinks'
+          readOnly: true
+          description: Related URLs for this app.
+          example: example-value
+      required:
+      - has_byoc
+      - has_fields
+      - id
+      - image
+      - is_oauth
+      - links
+      - title
+      - type
+    WhitelabelAppsResponse:
+      type: object
+      description: A JSON:API-style response of apps available for whitelabel connection.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelabelApp'
+          description: The list of apps.
+          example:
+          - {}
+        links:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Pagination links.
+          example: {}
+        meta:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Pagination metadata.
+          example: {}
+      required:
+      - data
+      - links
+      - meta
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

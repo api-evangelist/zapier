@@ -462,87 +462,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      description: Base Error definition
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code applicable to this problem.
-          example: 100
-        code:
-          type: string
-          description: A unique identifier for this particular occurrence of the problem.
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        source:
-          oneOf:
-          - $ref: '#/components/schemas/ErrorSource'
-          - type: 'null'
-          description: An object containing references to the primary source of the error.
-          example: example-value
-        meta:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Freeform metadata about the error
-          example: {}
-    AppsImages:
-      type: object
-      description: Images/icons of various resolutions to represent the app.
-      properties:
-        url_16x16:
-          type: string
-          description: 16x16 resolution image URL
-          example: example-value
-        url_32x32:
-          type: string
-          description: 32x32 resolution image URL
-          example: example-value
-        url_64x64:
-          type: string
-          description: 64x64 resolution image URL
-          example: example-value
-        url_128x128:
-          type: string
-          description: 128x128 resolution image URL
-          example: example-value
-      required:
-      - url_128x128
-      - url_16x16
-      - url_32x32
-      - url_64x64
-    _AuthenticationCreateRequest:
-      type: object
-      description: The object used to create a new Authentication
-      properties:
-        title:
-          type: string
-          description: The title of the authentication.
-          maxLength: 255
-          example: Example Name
-        app:
-          type: string
-          format: uuid
-          description: A canonical App ID, as provided by the `/apps` endpoint.
-          example: 550e8400-e29b-41d4-a716-446655440000
-        authentication_fields:
-          type: object
-          additionalProperties: {}
-          description: Required values to create an authentication. These values will be used by the target integration to successfully create the Authentication. See our Adding an Authentication guide for more information.
-          example: {}
-      required:
-      - app
-      - authentication_fields
-      - title
     AuthenticationResponse:
       type: object
       description: 'Base Response definition to be used in other Response Serializers.
@@ -570,40 +489,6 @@ components:
       required:
       - links
       - meta
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    Category:
-      type: object
-      description: Category an app belongs to.
-      properties:
-        slug:
-          type: string
-          description: The shortened slug name for this category
-          example: example-value
-      required:
-      - slug
-    AuthenticationCreateRequest:
-      type: object
-      description: Inputs to create a new Authentication
-      properties:
-        data:
-          $ref: '#/components/schemas/_AuthenticationCreateRequest'
-      required:
-      - data
     Authentication:
       type: object
       description: 'An Authentication contains various fields, often credentials such as API tokens, used to access Partner APIs on
@@ -644,6 +529,138 @@ components:
       - is_expired
       - title
       - type
+    AppsImages:
+      type: object
+      description: Images/icons of various resolutions to represent the app.
+      properties:
+        url_16x16:
+          type: string
+          description: 16x16 resolution image URL
+          example: example-value
+        url_32x32:
+          type: string
+          description: 32x32 resolution image URL
+          example: example-value
+        url_64x64:
+          type: string
+          description: 64x64 resolution image URL
+          example: example-value
+        url_128x128:
+          type: string
+          description: 128x128 resolution image URL
+          example: example-value
+      required:
+      - url_128x128
+      - url_16x16
+      - url_32x32
+      - url_64x64
+    Category:
+      type: object
+      description: Category an app belongs to.
+      properties:
+        slug:
+          type: string
+          description: The shortened slug name for this category
+          example: example-value
+      required:
+      - slug
+    _AuthenticationCreateRequest:
+      type: object
+      description: The object used to create a new Authentication
+      properties:
+        title:
+          type: string
+          description: The title of the authentication.
+          maxLength: 255
+          example: Example Name
+        app:
+          type: string
+          format: uuid
+          description: A canonical App ID, as provided by the `/apps` endpoint.
+          example: 550e8400-e29b-41d4-a716-446655440000
+        authentication_fields:
+          type: object
+          additionalProperties: {}
+          description: Required values to create an authentication. These values will be used by the target integration to successfully create the Authentication. See our Adding an Authentication guide for more information.
+          example: {}
+      required:
+      - app
+      - authentication_fields
+      - title
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    AuthenticationTypeEnum:
+      enum:
+      - authentication
+      type: string
+      description: '* `authentication` - authentication'
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
     Apps:
       type: object
       description: An app that integrates with Zapier
@@ -706,64 +723,47 @@ components:
       - images
       - links
       - title
-    AuthenticationTypeEnum:
-      enum:
-      - authentication
-      type: string
-      description: '* `authentication` - authentication'
-    ErrorResponse:
+    Error:
       type: object
+      description: Base Error definition
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
+        status:
           type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
+          description: The HTTP status code applicable to this problem.
           example: 100
-        limit:
+        code:
+          type: string
+          description: A unique identifier for this particular occurrence of the problem.
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/ErrorSource'
+          - type: 'null'
+          description: An object containing references to the primary source of the error.
+          example: example-value
+        meta:
           type:
-          - integer
+          - object
           - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
-    Links:
+          additionalProperties: {}
+          description: Freeform metadata about the error
+          example: {}
+    AuthenticationCreateRequest:
       type: object
-      description: The links object returned in paginated response bodies.
+      description: Inputs to create a new Authentication
       properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
+        data:
+          $ref: '#/components/schemas/_AuthenticationCreateRequest'
+      required:
+      - data
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

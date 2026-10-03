@@ -926,77 +926,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    _ActionRunResponseStatusEnum:
-      enum:
-      - success
-      - error
-      - waiting
-      type: string
-      description: '* `success` - success
-
-        * `error` - error
-
-        * `waiting` - waiting'
-    RunTypeEnum:
-      enum:
-      - run
-      type: string
-      description: '* `run` - Run'
-    ErrorResponse:
+    Links:
       type: object
+      description: The links object returned in paginated response bodies.
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An array of error objects.
-          example:
-          - {}
-      required:
-      - errors
-    _ActionRunResponseError:
-      type: object
-      description: The error information returned from a third party when running an action.
-      properties:
-        code:
-          allOf:
-          - $ref: '#/components/schemas/CodeEnum'
-          description: 'Error type of the result object.
-
-
-            * `user` - user
-
-            * `authentication` - authentication
-
-            * `partner` - partner
-
-            * `system` - system
-
-            * `throttled` - throttled
-
-            * `system_throttled` - system_throttled
-
-            * `hydration` - hydration'
-          example: example-value
-        title:
-          type: string
-          description: A short summary of the problem.
-          example: Example Name
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: example-value
-        delay:
-          type: integer
-          description: When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.
-          example: 100
-        meta:
+        next:
           type:
-          - object
+          - string
           - 'null'
-          additionalProperties: {}
-          description: Any additional error information returned from the partner.
-          example: {}
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
     Error:
       type: object
       description: Base Error definition
@@ -1030,60 +975,6 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    WhitelabelApp:
-      type: object
-      description: An app available for whitelabel connection.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          default: app
-          description: The resource type.
-          example: app
-        id:
-          type: string
-          readOnly: true
-          description: The app's unique identifier.
-          example: '500123'
-        title:
-          type: string
-          description: The app's display name.
-          example: Example Name
-        image:
-          type: string
-          format: uri
-          description: URL of the app's icon.
-          example: https://example.com/path/abc123
-        is_oauth:
-          type: boolean
-          readOnly: true
-          description: Whether the app uses OAuth for authentication.
-          example: true
-        has_fields:
-          type: boolean
-          readOnly: true
-          description: Whether the app has input fields a user must fill in when connecting.
-          example: true
-        has_byoc:
-          type: boolean
-          readOnly: true
-          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
-          example: true
-        links:
-          allOf:
-          - $ref: '#/components/schemas/WhitelabelAppLinks'
-          readOnly: true
-          description: Related URLs for this app.
-          example: example-value
-      required:
-      - has_byoc
-      - has_fields
-      - id
-      - image
-      - is_oauth
-      - links
-      - title
-      - type
     WhitelabelAppLinks:
       type: object
       properties:
@@ -1100,29 +991,50 @@ components:
       required:
       - mcp_authorize_url
       - mcp_server_url
-    CodeEnum:
+    RunActionRequest:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_RunActionRequest'
+          description: Data for the Action Run
+          example: example-value
+      required:
+      - data
+    ActionRunResponse:
+      type: object
+      description: The response of a given Action Run
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/_ActionRunResponse'
+          description: The resulting data after a given Action was run
+          example: example-value
+      required:
+      - data
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An array of error objects.
+          example:
+          - {}
+      required:
+      - errors
+    _ActionRunResponseStatusEnum:
       enum:
-      - user
-      - authentication
-      - partner
-      - system
-      - throttled
-      - system_throttled
-      - hydration
+      - success
+      - error
+      - waiting
       type: string
-      description: '* `user` - user
+      description: '* `success` - success
 
-        * `authentication` - authentication
+        * `error` - error
 
-        * `partner` - partner
-
-        * `system` - system
-
-        * `throttled` - throttled
-
-        * `system_throttled` - system_throttled
-
-        * `hydration` - hydration'
+        * `waiting` - waiting'
     ZapRun:
       type: object
       description: A single Zap Run response.
@@ -1187,43 +1099,49 @@ components:
       - steps
       - zap_id
       - zap_title
-    Links:
+    ErrorSource:
       type: object
-      description: The links object returned in paginated response bodies.
+      description: Populates the `source` object inside our error responses.
       properties:
-        next:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
+    _RunActionRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The ID for the Action to be run
+          example: example-value
+        authentication:
           type:
           - string
           - 'null'
-          description: The URL of the next page of paginated results.
+          description: The ID for Authentication (if required)
           example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    RunActionRequest:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/_RunActionRequest'
-          description: Data for the Action Run
-          example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: Inputs to be provided to the Action referenced by the ID field, when run
+          example: {}
       required:
-      - data
-    ActionRunResponse:
-      type: object
-      description: The response of a given Action Run
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/_ActionRunResponse'
-          description: The resulting data after a given Action was run
-          example: example-value
-      required:
-      - data
+      - action
+      - authentication
+      - inputs
+    RunTypeEnum:
+      enum:
+      - run
+      type: string
+      description: '* `run` - Run'
     RunActionResponse:
       type: object
       properties:
@@ -1231,6 +1149,137 @@ components:
           $ref: '#/components/schemas/_RunActionResponse'
       required:
       - data
+    ZapRunStep:
+      type: object
+      description: A single step in a Zap Run.
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+          description: Execution status of the step
+          example: active
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Datetime when the step was executed
+          example: '2026-05-01T12:00:00Z'
+      required:
+      - status
+    _ActionRunResponseError:
+      type: object
+      description: The error information returned from a third party when running an action.
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/CodeEnum'
+          description: 'Error type of the result object.
+
+
+            * `user` - user
+
+            * `authentication` - authentication
+
+            * `partner` - partner
+
+            * `system` - system
+
+            * `throttled` - throttled
+
+            * `system_throttled` - system_throttled
+
+            * `hydration` - hydration'
+          example: example-value
+        title:
+          type: string
+          description: A short summary of the problem.
+          example: Example Name
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: example-value
+        delay:
+          type: integer
+          description: When a partner throttled the execution call (error_type = throttled), this value will hold the number of seconds to wait before retrying.
+          example: 100
+        meta:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Any additional error information returned from the partner.
+          example: {}
+    _RunActionResponse:
+      type: object
+      description: The response after an Action Run
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RunTypeEnum'
+          description: 'The type of this object
+
+
+            * `run` - Run'
+          example: standard
+        id:
+          type: string
+          format: uuid
+          description: The UUID of this Action Run
+          example: 550e8400-e29b-41d4-a716-446655440000
+      required:
+      - id
+      - type
+    ZapRunsResponse:
+      type: object
+      description: A list of Zap Runs.
+      properties:
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Links'
+          description: The links object returned in paginated response bodies.
+          example: example-value
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/BaseMeta'
+          description: The meta object returned in paginated response bodies.
+          example: example-value
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZapRun'
+          description: The returned data after a successful Zap run
+          example:
+          - {}
+      required:
+      - links
+      - meta
+    BaseMeta:
+      type: object
+      description: The meta object returned in paginated response bodies.
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          description: The total number of objects in the collection represented by the endpoint.
+          example: 100
+        limit:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: The limit value used in the request.
+          example: 100
+        offset:
+          type: integer
+          minimum: 0
+          default: 0
+          description: The offset value used in the request.
+          example: 0
+      required:
+      - count
+      - limit
     _ActionRunResponse:
       type: object
       properties:
@@ -1263,25 +1312,82 @@ components:
       - errors
       - status
       - type
-    _RunActionResponse:
+    CodeEnum:
+      enum:
+      - user
+      - authentication
+      - partner
+      - system
+      - throttled
+      - system_throttled
+      - hydration
+      type: string
+      description: '* `user` - user
+
+        * `authentication` - authentication
+
+        * `partner` - partner
+
+        * `system` - system
+
+        * `throttled` - throttled
+
+        * `system_throttled` - system_throttled
+
+        * `hydration` - hydration'
+    WhitelabelApp:
       type: object
-      description: The response after an Action Run
+      description: An app available for whitelabel connection.
       properties:
         type:
-          allOf:
-          - $ref: '#/components/schemas/RunTypeEnum'
-          description: 'The type of this object
-
-
-            * `run` - Run'
-          example: standard
+          type: string
+          readOnly: true
+          default: app
+          description: The resource type.
+          example: app
         id:
           type: string
-          format: uuid
-          description: The UUID of this Action Run
-          example: 550e8400-e29b-41d4-a716-446655440000
+          readOnly: true
+          description: The app's unique identifier.
+          example: '500123'
+        title:
+          type: string
+          description: The app's display name.
+          example: Example Name
+        image:
+          type: string
+          format: uri
+          description: URL of the app's icon.
+          example: https://example.com/path/abc123
+        is_oauth:
+          type: boolean
+          readOnly: true
+          description: Whether the app uses OAuth for authentication.
+          example: true
+        has_fields:
+          type: boolean
+          readOnly: true
+          description: Whether the app has input fields a user must fill in when connecting.
+          example: true
+        has_byoc:
+          type: boolean
+          readOnly: true
+          description: Whether the app requires the user to supply their own OAuth client credentials (client ID and/or client secret) when connecting. This is a best-effort heuristic based on the app's auth field names and labels.
+          example: true
+        links:
+          allOf:
+          - $ref: '#/components/schemas/WhitelabelAppLinks'
+          readOnly: true
+          description: Related URLs for this app.
+          example: example-value
       required:
+      - has_byoc
+      - has_fields
       - id
+      - image
+      - is_oauth
+      - links
+      - title
       - type
     WhitelabelAppsResponse:
       type: object
@@ -1310,112 +1416,6 @@ components:
       - data
       - links
       - meta
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
-    ZapRunsResponse:
-      type: object
-      description: A list of Zap Runs.
-      properties:
-        links:
-          allOf:
-          - $ref: '#/components/schemas/Links'
-          description: The links object returned in paginated response bodies.
-          example: example-value
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BaseMeta'
-          description: The meta object returned in paginated response bodies.
-          example: example-value
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZapRun'
-          description: The returned data after a successful Zap run
-          example:
-          - {}
-      required:
-      - links
-      - meta
-    _RunActionRequest:
-      type: object
-      properties:
-        action:
-          type: string
-          description: The ID for the Action to be run
-          example: example-value
-        authentication:
-          type:
-          - string
-          - 'null'
-          description: The ID for Authentication (if required)
-          example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: Inputs to be provided to the Action referenced by the ID field, when run
-          example: {}
-      required:
-      - action
-      - authentication
-      - inputs
-    ZapRunStep:
-      type: object
-      description: A single step in a Zap Run.
-      properties:
-        status:
-          type:
-          - string
-          - 'null'
-          description: Execution status of the step
-          example: active
-        start_time:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Datetime when the step was executed
-          example: '2026-05-01T12:00:00Z'
-      required:
-      - status
-    BaseMeta:
-      type: object
-      description: The meta object returned in paginated response bodies.
-      properties:
-        count:
-          type: integer
-          minimum: 0
-          description: The total number of objects in the collection represented by the endpoint.
-          example: 100
-        limit:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: The limit value used in the request.
-          example: 100
-        offset:
-          type: integer
-          minimum: 0
-          default: 0
-          description: The offset value used in the request.
-          example: 0
-      required:
-      - count
-      - limit
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey
