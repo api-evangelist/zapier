@@ -1,5 +1,332 @@
 aid: zapier
+
 url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/apis.yml
+
+name: Zapier
+
+tags:
+- Zapier
+- Integration
+- iPaaS
+- Workflow Automation
+- Automation
+- No‑code
+- App integration
+- AI workflow
+- Enterprise security
+- Workflow orchestration
+
+kind: contract
+
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
+
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zapier.png
+
+access: 3rd-Party
+
+created: '2025-06-06T00:00:00.000Z'
+
+modified: '2026-06-20'
+
+position: Consuming
+
+description: Zapier is an automation platform that connects different apps and services
+  to automate workflows without requiring coding knowledge. It acts as a bridge between
+  thousands of popular applications like Gmail, Slack, Salesforce, Google Sheets,
+  Trello, and many others.
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+specificationVersion: '0.23'
+
+common:
+- type: FinOps
+  url: finops/zapier-finops.yml
+- type: RateLimits
+  url: rate-limits/zapier-rate-limits.yml
+- type: Plans
+  url: plans/zapier-plans-pricing.yml
+- type: Spectral
+  url: rules/zapier-rules.yml
+- type: Spectral
+  url: rules/zapier-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/zapier-zapier-context.jsonld
+- type: JSONLD
+  url: json-ld/zapier-partner-api-context.jsonld
+- type: JSONLD
+  url: json-ld/zapier-context.jsonld
+- type: Vocabulary
+  url: vocabulary/zapier-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Webhooks
+  url: asyncapi/zapier-webhooks.yml
+- type: Compliance
+  url: https://trust.zapier.com/
+- type: Deprecation
+  url: https://docs.zapier.com/integrations/manage/deprecate
+- type: LLMsTxt
+  url: llms/zapier-llms.txt
+- type: AgentCard
+  url: a2a/zapier-a2a.yml
+- type: Hosts
+  url: hosts/zapier-hosts.yml
+- type: Vendors
+  url: vendors/zapier-vendors.yml
+- type: SDKs
+  url: https://zapier.com/sdk
+- type: Newsroom
+  url: https://zapier.com/press
+- type: VendorFacets
+  url: vendor-facets/zapier-vendor-facets.yml
+- type: AgenticAccess
+  url: agentic-access/zapier-agentic-access.yml
+- type: TrustCenter
+  url: security/zapier-trust-center.yml
+- type: DomainSecurity
+  url: security/zapier-domain-security.yml
+- type: Authentication
+  url: authentication/zapier-authentication.yml
+- type: OAuthScopes
+  url: scopes/zapier-scopes.yml
+- type: Packages
+  url: packages/zapier-packages.yml
+- type: WellKnown
+  url: well-known/zapier-well-known.yml
+- type: MCPServer
+  url: mcp/zapier-mcp.yml
+- type: LlmsText
+  url: llms/zapier-llms.txt
+- type: Overlay
+  url: overlays/zapier-partner-api-overlay.yaml
+- type: Conformance
+  url: conformance/zapier-conformance.yml
+- type: ErrorCatalog
+  url: errors/zapier-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/zapier-lifecycle.yml
+- type: Conventions
+  url: conventions/zapier-conventions.yml
+- type: ChangeLog
+  url: changelog/zapier-changelog.yml
+- type: CLI
+  url: cli/zapier-cli.yml
+- type: Components
+  url: components/zapier-components.yml
+- type: DataModel
+  url: data-model/zapier-data-model.yml
+- type: Sandbox
+  url: sandbox/zapier-sandbox.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/zapier/overview
+- type: Arazzo
+  url: arazzo/zapier-connect-and-test-action-workflow.yml
+  name: Zapier Connect and Test an Action
+- type: Arazzo
+  url: arazzo/zapier-create-zap-from-actions-workflow.yml
+  name: Zapier Create a Zap from Actions
+- type: Arazzo
+  url: arazzo/zapier-discover-and-configure-action-workflow.yml
+  name: Zapier Discover and Configure an Action
+- type: Arazzo
+  url: arazzo/zapier-inspect-action-schema-workflow.yml
+  name: Zapier Inspect an Action Schema
+- type: Arazzo
+  url: arazzo/zapier-monitor-zap-runs-workflow.yml
+  name: Zapier Monitor Zap Runs
+- type: Arazzo
+  url: arazzo/zapier-run-ai-action-workflow.yml
+  name: Zapier Run an AI Action
+- type: LinkedIn
+  url: https://www.linkedin.com/company/zapier
+- url: https://zapier.com/
+  name: 'Zapier: Automate AI Workflows, Agents, and Apps'
+  type: Website
+  description: 'null'
+- url: https://zapier.com/blog/
+  name: Productivity Tips & Workflow Automation Guides | Zapier Blog
+  type: Blog
+  description: 'null'
+- url: https://zapier.com/customer-stories
+  name: See automation in action | Zapier customer stories
+  type: Customers
+  description: 'null'
+- url: https://zapier.com/blog/what-are-webhooks/
+  name: What are webhooks? | Zapier
+  type: Webhooks
+  description: 'null'
+- url: https://zapier.com/resources/guides
+  name: Zapier guides
+  type: Guide
+  description: 'null'
+- url: https://zapier.com/resources/events
+  name: Webinars & events | Zapier
+  type: Webinars
+  description: 'null'
+- url: https://help.zapier.com/hc/en-us
+  name: Zapier
+  type: Support
+  description: 'null'
+- url: https://zapier.com/experts
+  name: Experts Directory
+  type: Partners
+  description: 'null'
+- url: https://zapier.com/l/support
+  name: Zapier Customer Support
+  type: Support
+  description: 'null'
+- url: https://zapier.com/l/support-services
+  name: Support Services | Zapier
+  type: Support
+  description: 'null'
+- url: https://docs.zapier.com/platform/home
+  name: Welcome - Zapier
+  type: Documentation
+  description: 'null'
+- url: https://docs.zapier.com/platform/quickstart/build-integration
+  name: Build your integration on Zapier - Zapier
+  type: GettingStarted
+  description: 'null'
+- url: https://docs.zapier.com/platform/quickstart/glossary
+  name: Zapier Glossary - Zapier
+  type: Glossary
+  description: 'null'
+- url: https://docs.zapier.com/platform/build-cli/overview
+  name: Build with CLI - Zapier
+  type: CLI
+  description: 'null'
+- url: https://docs.zapier.com/platform/reference/forms-app
+  name: Zapier integration structure for a forms app - Zapier
+  type: UseCases
+  description: 'null'
+- url: https://zapier.com/app/login?next=%2Fapp%2Fdeveloper%2F
+  name: Login | Zapier
+  type: Login
+  description: 'null'
+- url: https://zapier.com/sign-up?next=%2Fapp%2Fdeveloper%2F
+  name: Sign up | Zapier
+  type: Signup
+  description: 'null'
+- url: https://zapier.com/pricing
+  name: Plans & Pricing | Zapier
+  type: Pricing
+  description: 'null'
+- url: https://status.zapier.com
+  name: Zapier Status
+  type: StatusPage
+  description: 'null'
+- url: https://community.zapier.com
+  name: Zapier Community
+  type: Forums
+  description: 'null'
+- url: https://zapier.com/legal
+  name: Legal at Zapier
+  type: TermsOfService
+  description: 'null'
+- url: https://zapier.com/legal/data-privacy
+  name: Data Privacy Overview | Zapier
+  type: PrivacyPolicy
+  description: 'null'
+- url: https://zapier.com/developer-platform/tos
+  name: Zapier Developer Platform Terms
+  type: TermsOfService
+  description: 'null'
+- url: https://zapier.com/developer-platform
+  name: Zapier Developer Platform
+  type: DeveloperPortal
+  description: 'null'
+- url: https://zapier.com/developer-platform/partner-program
+  name: Zapier Integration Partner Program
+  type: PartnerProgram
+  description: 'null'
+- url: https://github.com/zapier/zapier-platform
+  name: Zapier Platform SDK - GitHub
+  type: GitHubOrg
+  description: 'null'
+- url: https://zapier.github.io/zapier-platform-schema/build/schema.html
+  name: Zapier Platform Schema Documentation
+  type: Schema
+  description: 'null'
+- url: https://zapier.com/developer-platform/partner-embeds
+  name: Zapier Partner Embed Gallery
+  type: UseCases
+  description: 'null'
+- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/rules/zapier-rules.yml
+  name: Zapier Spectral Ruleset
+  type: SpectralRules
+- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/vocabulary/zapier-vocabulary.yml
+  name: Zapier Vocabulary
+  type: Vocabulary
+- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/zapier-platform-schema.json
+  name: Zapier Platform Schema
+  type: JSONSchema
+- data:
+  - name: Customer support
+  - name: Data management
+  - name: Lead management
+  - name: Marketing campaigns
+  - name: Project management
+  - name: Sales pipeline
+  - name: Tickets and incidents
+  name: Use Cases
+  type: UseCases
+- data:
+  - 'Free: 100 tasks/mo, two-step Zaps, Copilot (daily limit)'
+  - 'Professional at $19.99/mo: multi-step Zaps, premium apps, webhooks'
+  - 'Team at $69/mo: 25 users, SAML SSO, shared Zaps'
+  - 'Enterprise custom: unlimited users, advanced admin, TAM'
+  - 8,000+ app integrations
+  - 'Polling intervals: 15min Free, 2min Pro, 1min Team/Enterprise'
+  - Task = one successful action in a Zap
+  - Webhooks (Pro+)
+  - Tables for data storage
+  - Forms for data capture
+  - Interfaces for app building (separate)
+  - Chatbots and AI assistants (separate)
+  - Zapier Copilot AI assistant
+  - Custom integrations via Developer Platform (Zapier CLI)
+  - Error handling, paths, filters, formatters
+  - Webhook payload size 10 MB
+  name: Features
+  type: Features
+  sources:
+  - https://zapier.com/pricing
+  updated: '2026-05-04'
+- type: Integrations
+  url: https://zapier.com/apps
+- type: LlmsText
+  url: https://docs.zapier.com/llms.txt
+- type: AICatalog
+  url: ai-catalog/zapier-ai-catalog.yml
+
 apis:
 - aid: zapier:zapier
   name: Zapier
@@ -343,281 +670,23 @@ apis:
       https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-ld/zapier-partner-api-context.jsonld
   - type: Examples
     url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/examples/
-name: Zapier
-tags:
-- Zapier
-- Integration
-- iPaaS
-- Workflow Automation
+
 tags_raw:
 - Zapier
 - Integrations
 - iPaaS
 - Workflow-Automation
-kind: contract
-deliveryModel:
-  model: saas
-  open_source: false
-  commercial: true
-  callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
-  source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
-accessModel:
-  pricing: freemium
-  onboarding: self-serve
-  trial: false
-  try_now: true
-  public: false
-  label: Freemium · Self-serve signup
-  confidence: high
-  source:
-  - plans
-  - authentication
-  generated: '2026-07-22'
-  method: derived
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zapier.png
-access: 3rd-Party
-common:
-- type: VendorFacets
-  url: vendor-facets/zapier-vendor-facets.yml
-- type: AgenticAccess
-  url: agentic-access/zapier-agentic-access.yml
-- type: TrustCenter
-  url: security/zapier-trust-center.yml
-- type: DomainSecurity
-  url: security/zapier-domain-security.yml
-- type: Authentication
-  url: authentication/zapier-authentication.yml
-- type: OAuthScopes
-  url: scopes/zapier-scopes.yml
-- type: Packages
-  url: packages/zapier-packages.yml
-- type: WellKnown
-  url: well-known/zapier-well-known.yml
-- type: MCPServer
-  url: mcp/zapier-mcp.yml
-- type: LlmsText
-  url: llms/zapier-llms.txt
-- type: Overlay
-  url: overlays/zapier-partner-api-overlay.yaml
-- type: Conformance
-  url: conformance/zapier-conformance.yml
-- type: ErrorCatalog
-  url: errors/zapier-problem-types.yml
-- type: Lifecycle
-  url: lifecycle/zapier-lifecycle.yml
-- type: Conventions
-  url: conventions/zapier-conventions.yml
-- type: ChangeLog
-  url: changelog/zapier-changelog.yml
-- type: CLI
-  url: cli/zapier-cli.yml
-- type: Components
-  url: components/zapier-components.yml
-- type: DataModel
-  url: data-model/zapier-data-model.yml
-- type: Sandbox
-  url: sandbox/zapier-sandbox.yml
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/zapier/overview
-- type: Arazzo
-  url: arazzo/zapier-connect-and-test-action-workflow.yml
-  name: Zapier Connect and Test an Action
-- type: Arazzo
-  url: arazzo/zapier-create-zap-from-actions-workflow.yml
-  name: Zapier Create a Zap from Actions
-- type: Arazzo
-  url: arazzo/zapier-discover-and-configure-action-workflow.yml
-  name: Zapier Discover and Configure an Action
-- type: Arazzo
-  url: arazzo/zapier-inspect-action-schema-workflow.yml
-  name: Zapier Inspect an Action Schema
-- type: Arazzo
-  url: arazzo/zapier-monitor-zap-runs-workflow.yml
-  name: Zapier Monitor Zap Runs
-- type: Arazzo
-  url: arazzo/zapier-run-ai-action-workflow.yml
-  name: Zapier Run an AI Action
-- type: LinkedIn
-  url: https://www.linkedin.com/company/zapier
-- url: https://zapier.com/
-  name: 'Zapier: Automate AI Workflows, Agents, and Apps'
-  type: Website
-  description: 'null'
-- url: https://zapier.com/blog/
-  name: Productivity Tips & Workflow Automation Guides | Zapier Blog
-  type: Blog
-  description: 'null'
-- url: https://zapier.com/customer-stories
-  name: See automation in action | Zapier customer stories
-  type: Customers
-  description: 'null'
-- url: https://zapier.com/blog/what-are-webhooks/
-  name: What are webhooks? | Zapier
-  type: Webhooks
-  description: 'null'
-- url: https://zapier.com/resources/guides
-  name: Zapier guides
-  type: Guide
-  description: 'null'
-- url: https://zapier.com/resources/events
-  name: Webinars & events | Zapier
-  type: Webinars
-  description: 'null'
-- url: https://help.zapier.com/hc/en-us
-  name: Zapier
-  type: Support
-  description: 'null'
-- url: https://zapier.com/experts
-  name: Experts Directory
-  type: Partners
-  description: 'null'
-- url: https://zapier.com/l/support
-  name: Zapier Customer Support
-  type: Support
-  description: 'null'
-- url: https://zapier.com/l/support-services
-  name: Support Services | Zapier
-  type: Support
-  description: 'null'
-- url: https://docs.zapier.com/platform/home
-  name: Welcome - Zapier
-  type: Documentation
-  description: 'null'
-- url: https://docs.zapier.com/platform/quickstart/build-integration
-  name: Build your integration on Zapier - Zapier
-  type: GettingStarted
-  description: 'null'
-- url: https://docs.zapier.com/platform/quickstart/glossary
-  name: Zapier Glossary - Zapier
-  type: Glossary
-  description: 'null'
-- url: https://docs.zapier.com/platform/build-cli/overview
-  name: Build with CLI - Zapier
-  type: CLI
-  description: 'null'
-- url: https://docs.zapier.com/platform/reference/forms-app
-  name: Zapier integration structure for a forms app - Zapier
-  type: UseCases
-  description: 'null'
-- url: https://zapier.com/app/login?next=%2Fapp%2Fdeveloper%2F
-  name: Login | Zapier
-  type: Login
-  description: 'null'
-- url: https://zapier.com/sign-up?next=%2Fapp%2Fdeveloper%2F
-  name: Sign up | Zapier
-  type: Signup
-  description: 'null'
-- url: https://zapier.com/pricing
-  name: Plans & Pricing | Zapier
-  type: Pricing
-  description: 'null'
-- url: https://status.zapier.com
-  name: Zapier Status
-  type: StatusPage
-  description: 'null'
-- url: https://community.zapier.com
-  name: Zapier Community
-  type: Forums
-  description: 'null'
-- url: https://zapier.com/legal
-  name: Legal at Zapier
-  type: TermsOfService
-  description: 'null'
-- url: https://zapier.com/legal/data-privacy
-  name: Data Privacy Overview | Zapier
-  type: PrivacyPolicy
-  description: 'null'
-- url: https://zapier.com/developer-platform/tos
-  name: Zapier Developer Platform Terms
-  type: TermsOfService
-  description: 'null'
-- url: https://zapier.com/developer-platform
-  name: Zapier Developer Platform
-  type: DeveloperPortal
-  description: 'null'
-- url: https://zapier.com/developer-platform/partner-program
-  name: Zapier Integration Partner Program
-  type: PartnerProgram
-  description: 'null'
-- url: https://github.com/zapier/zapier-platform
-  name: Zapier Platform SDK - GitHub
-  type: GitHubOrg
-  description: 'null'
-- url: https://zapier.github.io/zapier-platform-schema/build/schema.html
-  name: Zapier Platform Schema Documentation
-  type: Schema
-  description: 'null'
-- url: https://zapier.com/developer-platform/partner-embeds
-  name: Zapier Partner Embed Gallery
-  type: UseCases
-  description: 'null'
-- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/rules/zapier-rules.yml
-  name: Zapier Spectral Ruleset
-  type: SpectralRules
-- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/vocabulary/zapier-vocabulary.yml
-  name: Zapier Vocabulary
-  type: Vocabulary
-- url: https://raw.githubusercontent.com/api-evangelist/zapier/refs/heads/main/json-schema/zapier-platform-schema.json
-  name: Zapier Platform Schema
-  type: JSONSchema
-- data:
-  - name: Customer support
-  - name: Data management
-  - name: Lead management
-  - name: Marketing campaigns
-  - name: Project management
-  - name: Sales pipeline
-  - name: Tickets and incidents
-  name: Use Cases
-  type: UseCases
-- data:
-  - 'Free: 100 tasks/mo, two-step Zaps, Copilot (daily limit)'
-  - 'Professional at $19.99/mo: multi-step Zaps, premium apps, webhooks'
-  - 'Team at $69/mo: 25 users, SAML SSO, shared Zaps'
-  - 'Enterprise custom: unlimited users, advanced admin, TAM'
-  - 8,000+ app integrations
-  - 'Polling intervals: 15min Free, 2min Pro, 1min Team/Enterprise'
-  - Task = one successful action in a Zap
-  - Webhooks (Pro+)
-  - Tables for data storage
-  - Forms for data capture
-  - Interfaces for app building (separate)
-  - Chatbots and AI assistants (separate)
-  - Zapier Copilot AI assistant
-  - Custom integrations via Developer Platform (Zapier CLI)
-  - Error handling, paths, filters, formatters
-  - Webhook payload size 10 MB
-  name: Features
-  type: Features
-  sources:
-  - https://zapier.com/pricing
-  updated: '2026-05-04'
-- type: Integrations
-  url: https://zapier.com/apps
-- type: LlmsText
-  url: https://docs.zapier.com/llms.txt
-- type: AICatalog
-  url: ai-catalog/zapier-ai-catalog.yml
-created: '2025-06-06T00:00:00.000Z'
-modified: '2026-06-20'
-position: Consuming
+
 segments:
 - iPaaS
 - Embedded_iPaaS
-description: Zapier is an automation platform that connects different apps and services
-  to automate workflows without requiring coding knowledge. It acts as a bridge between
-  thousands of popular applications like Gmail, Slack, Salesforce, Google Sheets,
-  Trello, and many others.
+
 integrations:
 - name: Custom Unlimited
 - name: Zapier AI
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 11
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

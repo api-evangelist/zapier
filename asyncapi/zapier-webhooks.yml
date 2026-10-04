@@ -1,0 +1,21 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.zapier.com/api-reference/connections/connection-webhooks/create-a-connection-webhook.md
+sources:
+- https://docs.zapier.com/api-reference/connections/connection-webhooks/create-a-connection-webhook.md
+- https://docs.zapier.com/white-label/connection-webhooks/what-is-connection-webhooks.md
+- https://docs.zapier.com/white-label/connection-webhooks/connection-webhooks-quickstart.md
+- https://docs.zapier.com/white-label/connection-webhooks/verify-signatures.md
+description: Zapier connection webhooks allow a White Label partner to receive signed HTTP POST deliveries when a managed app connection is scheduled
+  to expire.
+events:
+- event: connection.expiry_scheduled
+  description: A connection you manage is scheduled to expire and needs to be reconnected.
+delivery:
+  signature: Signed using the Standard Webhooks specification. Verify the `webhook-signature` header with the `secret` (whsec_…) returned once
+    at webhook creation. The signed content is `{webhook-id}.{webhook-timestamp}.{raw-body}` and the signature is a space‑delimited list of `v1,<base64>`
+    values.
+  retries: Zapier retries deliveries with backoff when the response is non‑2xx, a timeout occurs, or a `429` status is returned. Each delivery
+    includes a stable `webhook-id` for deduplication across retries.
+docs: https://docs.zapier.com/api-reference/connections/connection-webhooks/create-a-connection-webhook.md

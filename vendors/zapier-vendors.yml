@@ -1,0 +1,99 @@
+generated: '2026-10-04'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: docs.zapier.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: cloudfront
+  name: Amazon CloudFront
+  area: cdn
+  host: zapier.com
+  evidence: header:x-amz-cf-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: mintlify
+  name: Mintlify
+  area: documentation
+  host: docs.zapier.com
+  evidence: markup:mintlify
+  signal: docs-platform
+  confidence: medium
+  kin_score:
+  - openapi_published
+  - llms_txt
+  - mcp_server
+  - markdown_negotiation
+  - x_mint_pointer
+- vendor: vercel
+  name: Vercel
+  area: hosting
+  host: zapier.com
+  evidence: header:x-vercel-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: incident-io
+  name: incident.io
+  area: status-page
+  host: status.zapier.com
+  evidence: cname:incident.io
+  signal: cname
+  confidence: high
+  kin_score:
+  - status_page
+- vendor: zendesk
+  name: Zendesk
+  area: support
+  host: help.zapier.com
+  evidence: cname:zendesk.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - support_channel
+reliance:
+  areas_vendor_served:
+  - cdn
+  - documentation
+  - hosting
+  - status-page
+  - support
+  vendor_count: 6
+  areas_observed: 12
+  share_of_observable_areas: 0.417
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: mintlify'
+- zapier.com (Website)
+- help.zapier.com (Support)
+- zapier.com (Support)
+- docs.zapier.com (Documentation)
+- docs.zapier.com (GettingStarted)
+- zapier.com (Login)
+- status.zapier.com (StatusPage)
+- zapier.com (DeveloperPortal)
+- api.zapier.com (baseURL)
+- mcp.zapier.com (mcp)

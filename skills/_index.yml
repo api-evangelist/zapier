@@ -1,0 +1,23 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/zapier-experimental-api-openapi.yml
+skills:
+- file: skills/zapier-create-and-list-zaps.md
+  name: zapier-create-and-list-zaps
+  api: openapi/zapier-zaps-api-openapi.yml
+  operations:
+  - post-zaps
+  - get-v2-zaps
+- file: skills/zapier-get-input-fields-and-choices.md
+  name: zapier-get-input-fields-and-choices
+  api: openapi/zapier-inputs-api-openapi.yml
+  operations:
+  - get-fields-inputs
+  - get-choices
+- file: skills/zapier-authentications-create-and-list.md
+  name: zapier-authentications-create-and-list
+  api: openapi/zapier-authentications-api-openapi.yml
+  operations:
+  - get-authentications
+  - create-authentication

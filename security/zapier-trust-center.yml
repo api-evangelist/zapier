@@ -1,4 +1,4 @@
-generated: '2026-07-16'
+generated: '2026-10-04'
 method: searched
 probe: true
 source: https://trust.zapier.com/
@@ -9,7 +9,6 @@ certifications:
 - ISO 27017
 - ISO 27018
 - HIPAA
-- FedRAMP
 - GDPR
 - CSA STAR
 evidence:
@@ -18,7 +17,6 @@ evidence:
   - soc 2
   - soc2
   - hipaa
-  - fedramp
   - trust center
   - gdpr
   - csa star

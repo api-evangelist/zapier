@@ -10,6 +10,9 @@ description: >-
   invocation/unit-test tooling in the Platform CLI, and private integration
   versions that only you and your team can access. Captured verbatim from the
   docs — no values invented.
+  docs: https://docs.zapier.com/integrations/publish/zps
+
+docs: https://docs.zapier.com/integrations/publish/zps
 partner_sandbox:
   name: Zapier Partner Sandbox (ZPS)
   what: A complimentary Zapier account provided to integration partners for building and testing integrations without consuming a paid plan.

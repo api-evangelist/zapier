@@ -251,6 +251,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ListOutputFieldsRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/_ListOutputFieldsRequest'
+      required:
+      - data
+    Links:
+      type: object
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL of the next page of paginated results.
+          example: example-value
+        prev:
+          type:
+          - string
+          - 'null'
+          description: The URL of the previous page of paginated results.
+          example: example-value
     ErrorResponse:
       type: object
       properties:
@@ -263,46 +286,29 @@ components:
           - {}
       required:
       - errors
-    OutputField:
+    _ListOutputFieldsRequest:
       type: object
+      description: The common data object that includes inputs and an authentication id.
       properties:
-        type:
-          type: string
-          readOnly: true
-          description: The type of this specific Output Field
-          example: standard
-        id:
-          type: string
-          description: The identifier for this specific Output Field
-          example: '500123'
-        title:
-          type: string
-          description: The title of this specific Output Field
-          example: Example Name
-        sample:
-          type: string
-          description: An (optional) sample of what an Output Field's value may look like
+        authentication:
+          type:
+          - string
+          - 'null'
+          description: An Authentication ID, as provided by the `/authentications` endpoint.
           example: example-value
+        inputs:
+          type: object
+          additionalProperties: {}
+          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
+          example: {}
+        fetch_live_samples:
+          type: boolean
+          default: false
+          description: Whether to retrieve live samples for the field. While this can be helpful in supporting the identification of an output, note that this has latency implications as it may require an additional request to 3rd party services. This is not supported for `WRITE` actions, please use step testing instead.
+          example: false
       required:
-      - id
-      - title
-      - type
-    ErrorSource:
-      type: object
-      description: Populates the `source` object inside our error responses.
-      properties:
-        pointer:
-          type: string
-          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
-          example: example-value
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error.
-          example: example-value
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error.
-          example: example-value
+      - authentication
+      - inputs
     BaseMeta:
       type: object
       description: The meta object returned in paginated response bodies.
@@ -328,29 +334,6 @@ components:
       required:
       - count
       - limit
-    Links:
-      type: object
-      description: The links object returned in paginated response bodies.
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: The URL of the next page of paginated results.
-          example: example-value
-        prev:
-          type:
-          - string
-          - 'null'
-          description: The URL of the previous page of paginated results.
-          example: example-value
-    ListOutputFieldsRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/_ListOutputFieldsRequest'
-      required:
-      - data
     Error:
       type: object
       description: Base Error definition
@@ -384,29 +367,30 @@ components:
           additionalProperties: {}
           description: Freeform metadata about the error
           example: {}
-    _ListOutputFieldsRequest:
+    OutputField:
       type: object
-      description: The common data object that includes inputs and an authentication id.
       properties:
-        authentication:
-          type:
-          - string
-          - 'null'
-          description: An Authentication ID, as provided by the `/authentications` endpoint.
+        type:
+          type: string
+          readOnly: true
+          description: The type of this specific Output Field
+          example: standard
+        id:
+          type: string
+          description: The identifier for this specific Output Field
+          example: '500123'
+        title:
+          type: string
+          description: The title of this specific Output Field
+          example: Example Name
+        sample:
+          type: string
+          description: An (optional) sample of what an Output Field's value may look like
           example: example-value
-        inputs:
-          type: object
-          additionalProperties: {}
-          description: The current set of input fields in a JSON object, where each key is the `id` of an Input Field, and the corresponding value the current value of the field.
-          example: {}
-        fetch_live_samples:
-          type: boolean
-          default: false
-          description: Whether to retrieve live samples for the field. While this can be helpful in supporting the identification of an output, note that this has latency implications as it may require an additional request to 3rd party services. This is not supported for `WRITE` actions, please use step testing instead.
-          example: false
       required:
-      - authentication
-      - inputs
+      - id
+      - title
+      - type
     OutputFieldsResponse:
       type: object
       description: A successful response containing Output Field data
@@ -432,6 +416,22 @@ components:
       - data
       - links
       - meta
+    ErrorSource:
+      type: object
+      description: Populates the `source` object inside our error responses.
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the value in the request document that caused the error e.g. `/actions`.
+          example: example-value
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: example-value
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error.
+          example: example-value
   securitySchemes:
     ClientIDAuthentication:
       type: apiKey

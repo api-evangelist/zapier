@@ -70,6 +70,7 @@ versioning:
   detail: lifecycle/zapier-lifecycle.yml
 
 idempotency:
+  coverage: none
   supported: null
   notes: No dedicated idempotency-key header is documented for the Partner/Workflow API; action runs are executed and polled via retrieve-action-run.
 

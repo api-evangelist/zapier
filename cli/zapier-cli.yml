@@ -8,6 +8,8 @@ description: >-
   Zapier's first-party command-line tools. The Platform CLI builds, tests, and
   publishes integrations to the Zapier App Directory; the Zapier SDK CLI is a
   terminal surface for connecting agents/code to Zapier's app integrations.
+install: []
+commands: []
 clis:
   - name: zapier-platform-cli
     binary: zapier   # v18+ also installs a "zapier-platform" binary alias
