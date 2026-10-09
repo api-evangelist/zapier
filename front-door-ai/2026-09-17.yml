@@ -1,0 +1,38 @@
+# Front Door AI Index — zapier — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: zapier
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: zapier.com
+  final_host: zapier.com
+  ownership: own
+  owner: zapier
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 47
+  band: 6
+  band_label: dominant
+  host_score: 47
+  density: 34.81
+  words: 1350
+  tiers:
+    agentic: 6
+    core: 35
+    model: 6
+  ambiguous: 20
+  top_terms:
+    AI: 35
+    agent: 11
+    automation: 9
+    ChatGPT: 2
+    Claude: 2
+    OpenAI: 2
+    prompts: 2
+    AI assistant: 1
+    MCP: 1
+    agentic: 1
+    chatbot: 1

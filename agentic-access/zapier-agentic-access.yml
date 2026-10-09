@@ -1,39 +1,22 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/zapier-partner-api.yml
+source: openapi/zapier-accounts-api-openapi.yml, openapi/zapier-actions-api-openapi.yml, openapi/zapier-apps-api-openapi.yml,
+  openapi/zapier-authentications-api-openapi.yml, openapi/zapier-categories-api-openapi.yml,
+  openapi/zapier-experimental-api-openapi.yml, openapi/zapier-inputs-api-openapi.yml, openapi/zapier-outputs-api-openapi.yml,
+  openapi/zapier-zap-templates-api-openapi.yml, openapi/zapier-zaps-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 21
+  operations: 27
   by_action_class:
-    connected: 13
-    acting: 8
+    connected: 22
+    acting: 5
   by_consequence:
-    read: 13
-    write: 8
+    read: 22
+    write: 5
   human_in_the_loop_required: 0
 operations:
-- path: /v1/apps
-  method: get
-  operationId: v1_apps_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/categories
-  method: get
-  operationId: v1_categories_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v1/profiles/me
   method: get
   operationId: v1_profiles_me_list
@@ -46,55 +29,13 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/zap-templates
+- path: /v2/authorize
   method: get
-  operationId: v1_zap_templates_list
+  operationId: v2_authorize_list
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/zaps
-  method: get
-  operationId: v1_zaps_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - zap
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/action-runs
-  method: post
-  operationId: create-action-run
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - action:run
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/action-runs/{id}
-  method: get
-  operationId: retrieve-action-run
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - action:run
     token:
       max-ttl: 3600
     audit: none
@@ -114,56 +55,38 @@ operations:
   method: post
   operationId: get-fields-inputs
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - zap:write
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/actions/{action_id}/inputs/{input_id}/choices
   method: post
   operationId: get-choices
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - zap
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/actions/{action_id}/outputs
   method: post
   operationId: get-fields-outputs
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - zap:write
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/actions/{action_id}/test
   method: post
   operationId: test-action
@@ -182,6 +105,28 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v1/apps
+  method: get
+  operationId: v1_apps_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/actions
+  method: get
+  operationId: get-actions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v2/apps
   method: get
   operationId: get-v2-apps
@@ -191,6 +136,16 @@ operations:
     subject: optional
     scope:
     - zap
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/whitelabel/apps
+  method: get
+  operationId: v2-whitelabel-apps-list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
       max-ttl: 3600
     audit: none
@@ -224,13 +179,123 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v2/authorize
+- path: /v1/categories
   method: get
-  operationId: v2_authorize_list
+  operationId: v1_categories_list
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/action-runs
+  method: post
+  operationId: create-action-run
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - action:run
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/action-runs/{id}
+  method: get
+  operationId: retrieve-action-run
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - action:run
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/whitelabel/apps
+  method: get
+  operationId: v2-whitelabel-apps-list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/zap-runs
+  method: get
+  operationId: get-zap-runs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap:runs
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/actions/{action_id}/inputs
+  method: post
+  operationId: get-fields-inputs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap:write
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/actions/{action_id}/inputs/{input_id}/choices
+  method: post
+  operationId: get-choices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/actions/{action_id}/outputs
+  method: post
+  operationId: get-fields-outputs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap:write
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/zap-templates
+  method: get
+  operationId: v1_zap_templates_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/zaps
+  method: get
+  operationId: v1_zaps_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - zap
     token:
       max-ttl: 3600
     audit: none
@@ -250,16 +315,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v2/whitelabel/apps
-  method: get
-  operationId: v2-whitelabel-apps-list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/zap-runs
   method: get
   operationId: get-zap-runs

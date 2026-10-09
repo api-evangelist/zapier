@@ -72,3 +72,18 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://mcp.zapier.com/api/v1/connect
+  metadata_url: https://mcp.zapier.com/.well-known/oauth-protected-resource/api/v1/connect
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.zapier.com/api/v1/connect
+    authorization_servers:
+    - https://mcp.zapier.com
+    scopes_supported:
+    - openid
+    - profile
+    - email
