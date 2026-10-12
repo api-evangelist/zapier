@@ -1,0 +1,61 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/zapier/integrations
+- https://n8n.io/integrations/zapier/
+- https://composio.dev/toolkits/zapier
+- https://monid.ai/tools/zapier
+checked:
+- https://composio.dev/toolkits/zapier
+- https://monid.ai/tools/zapier
+- https://n8n.io/integrations/zapier/
+- https://zapier.com/apps/zapier/integrations
+summary: null
+marketplace_apps: []
+edges:
+- partner_name: bonjoro
+  partner: bonjoro
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/bonjoro/blob/main/openapi/bonjoro-integrations-api-openapi.yml
+  contract_reference:
+    repo: bonjoro
+    spec_file: bonjoro-integrations-api-openapi.yml
+    value: zapier
+    property: schemas.integration.provider
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: cacheflow
+  partner: cacheflow
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/cacheflow/blob/main/openapi/cacheflow-self-service-api-openapi.yml
+  contract_reference:
+    repo: cacheflow
+    spec_file: cacheflow-self-service-api-openapi.yml
+    value: zapier
+    property: schemas.ExternalSource.sourceType
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: emotive
+  partner: emotive
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/emotive/blob/main/openapi/emotive-webhooks-api-openapi.yml
+  contract_reference:
+    repo: emotive
+    spec_file: emotive-webhooks-api-openapi.yml
+    value: zapier
+    property: schemas.WebhookSchema.platform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+templates: []

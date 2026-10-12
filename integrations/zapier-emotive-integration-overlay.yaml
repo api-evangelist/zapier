@@ -1,0 +1,30 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where emotive's enum names zapier, and what that value is.
+overlay: 1.0.0
+info:
+  title: zapier as a processor-connection in emotive's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/emotive/refs/heads/main/openapi/emotive-webhooks-api-openapi.yml
+actions:
+- target: $.components.schemas.WebhookSchema.properties.platform
+  update:
+    x-apievangelist-integration:
+      values:
+        zapier:
+          provider: zapier
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/emotive/blob/main/openapi/emotive-webhooks-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
+- target: $.components.schemas.WebhookRequestSchema.properties.platform
+  update:
+    x-apievangelist-integration:
+      values:
+        zapier:
+          provider: zapier
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/emotive/blob/main/openapi/emotive-webhooks-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
