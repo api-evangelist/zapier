@@ -57,6 +57,18 @@
     detected: '2026-10-12'
   arazzo: zapier-emotive-preconfig.yml
   status: arazzo
+- slug: zapier-atlassian-marketplace
+  label: Atlassian Marketplace
+  partner: atlassian
+  partner_name: Atlassian Marketplace
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  evidence: https://marketplace.atlassian.com/vendors/1210983/zapier
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: zapier-twilio-segment
   label: Twilio Segment
   partner: segment
@@ -93,14 +105,53 @@
   relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
-- slug: zapier-atlassian-marketplace
-  label: Atlassian Marketplace
-  partner: atlassian
-  partner_name: Atlassian Marketplace
+- slug: zapier-bamboohr-own
+  label: BambooHR (own)
+  partner: bamboohr
+  partner_name: BambooHR (own)
+  category: Integration Platforms
   type: marketplace
-  marketplace: atlassian
+  marketplace: own
   channel: partner-built
-  evidence: https://marketplace.atlassian.com/vendors/1210983/zapier
+  evidence: https://www.bamboohr.com/integrations/listings/zapier
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zapier-greenhouse-own
+  label: Greenhouse (own)
+  partner: greenhouse
+  partner_name: Greenhouse (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://integrations.greenhouse.com/partners/zapier
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zapier-okta-own
+  label: Okta (own)
+  partner: okta
+  partner_name: Okta (own)
+  category: Lifecycle Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.okta.com/integrations/zapier/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zapier-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Workflow builders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.xero.com/us/app/zapier
   source: edge
   relationship: platform-app
   status: not-a-workflow

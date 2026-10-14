@@ -6,6 +6,8 @@ source:
 - https://composio.dev/toolkits/zapier
 - https://monid.ai/tools/zapier
 checked:
+- bamboohr/integrations/bamboohr-integration-edges.yml
+- greenhouse/integrations/greenhouse-integration-edges.yml
 - https://composio.dev/toolkits/zapier
 - https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/zapier
 - https://hightouch.com/docs/destinations/zapier
@@ -14,6 +16,8 @@ checked:
 - https://n8n.io/integrations/zapier/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/zapier
 - https://zapier.com/apps/zapier/integrations
+- okta/integrations/okta-integration-edges.yml
+- xero/integrations/xero-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -62,6 +66,23 @@ edges:
     property: schemas.WebhookSchema.platform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1210983/zapier
+  listing_count: 3
+  apps:
+  - Zapier AI Actions
+  - Zapier Integration for Jira
+  - Zapier Integration for Bitbucket
+  publisher_name: Zapier
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -134,21 +155,83 @@ edges:
       status: released
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: Atlassian Marketplace
-  partner: atlassian
-  partner_match: aggregator
+- partner_name: BambooHR (own)
+  partner: bamboohr
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: atlassian
-  channel: partner-built
   relationship: platform-app
   direction: third-party
-  evidence: https://marketplace.atlassian.com/vendors/1210983/zapier
-  listing_count: 3
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bamboohr.com/integrations/listings/zapier
+  mirror_of: bamboohr/integrations/bamboohr-integration-edges.yml
   apps:
-  - Zapier AI Actions
-  - Zapier Integration for Jira
-  - Zapier Integration for Bitbucket
-  publisher_name: Zapier
-  detected_by: sweep-devtools.py
+  - Zapier
+  listing_count: 1
   detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Integration Platforms
+- partner_name: Greenhouse (own)
+  partner: greenhouse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://integrations.greenhouse.com/partners/zapier
+  mirror_of: greenhouse/integrations/greenhouse-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/zapier/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - Zapier SAML
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Lifecycle Management
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - CREATE
+  - DEACTIVATE
+  - EVENT_HOOKS
+  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
+  - PAM_INTEGRATION
+  - SAML
+  - SWA
+  - SYNC_PASSWORD
+  - UPDATE
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/us/app/zapier
+  mirror_of: xero/integrations/xero-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Workflow builders
 templates: []
