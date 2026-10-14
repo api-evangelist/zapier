@@ -9,6 +9,7 @@ checked:
 - https://composio.dev/toolkits/zapier
 - https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/zapier
 - https://hightouch.com/docs/destinations/zapier
+- https://marketplace.atlassian.com/
 - https://monid.ai/tools/zapier
 - https://n8n.io/integrations/zapier/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/zapier
@@ -133,4 +134,21 @@ edges:
       status: released
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1210983/zapier
+  listing_count: 3
+  apps:
+  - Zapier AI Actions
+  - Zapier Integration for Jira
+  - Zapier Integration for Bitbucket
+  publisher_name: Zapier
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 templates: []
