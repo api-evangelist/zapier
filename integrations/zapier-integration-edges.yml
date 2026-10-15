@@ -17,6 +17,8 @@ checked:
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/zapier
 - https://zapier.com/apps/zapier/integrations
 - okta/integrations/okta-integration-edges.yml
+- shopify/integrations/shopify-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
 - xero/integrations/xero-integration-edges.yml
 summary: null
 marketplace_apps: []
@@ -217,6 +219,41 @@ edges:
   - SWA
   - SYNC_PASSWORD
   - UPDATE
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/zapier
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - 'Zapier: Workflow Automation'
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/zapier
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: productivity
 - partner_name: Xero (own)
   partner: xero
   partner_match: mirror

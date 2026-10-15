@@ -143,6 +143,31 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: zapier-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/zapier
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zapier-stripe-own
+  label: Stripe (own)
+  partner: stripe
+  partner_name: Stripe (own)
+  category: productivity
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.stripe.com/apps/zapier
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: zapier-xero-own
   label: Xero (own)
   partner: xero
