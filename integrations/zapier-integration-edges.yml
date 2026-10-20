@@ -1,10 +1,11 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/zapier/integrations
 - https://n8n.io/integrations/zapier/
 - https://composio.dev/toolkits/zapier
 - https://monid.ai/tools/zapier
+- https://zapier.com/apps
 checked:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
