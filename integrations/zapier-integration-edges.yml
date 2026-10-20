@@ -101,78 +101,6 @@ edges:
   publisher_name: Zapier
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Twilio Segment
-  partner: segment
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/zapier
-  coverage_role:
-  - destination
-  - source
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - zapier
-      status: PUBLIC
-      partner_owned: false
-      connection_modes:
-      - cloud:mobile
-      - cloud:server
-      - cloud:web
-      accepted_methods:
-      - Page
-      - Track
-    source:
-      catalog_entries:
-      - zapier
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: RudderStack
-  partner: rudderstack
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/zapier
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - zapier
-      connection_modes:
-      - cloud
-      cloud_event_types:
-      - page
-      - screen
-      - track
-      source_types: 13
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: Hightouch
-  partner: hightouch
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://hightouch.com/docs/destinations/zapier
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - zapier
-      status: released
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
 - partner_name: BambooHR (own)
   partner: bamboohr
   partner_match: mirror
@@ -287,39 +215,190 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Workflow builders
-- partner_name: A2A protocol (own Agent Card)
-  partner: null
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: A2A agent
-  evidence: https://docs.zapier.com/.well-known/agent-card.json
-  channel: provider-built
-  relationship: compatible
-  shape: a2a
-  evidence_kind: own-wellknown
-  degree: conformant
-  report_only: true
-  a2a_card:
-    grade: conformant
-    verdict: live
-    protocol_version: '0.3'
-    deviations:
-    - supportedInterfaces-instead-of-additionalInterfaces
-    card_subject: docs
+- partner_name: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200002044
+  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Microsoft Teams app
+  publisher_verified:
+  - Microsoft 365 Publisher Attestation
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A024R9PQM-zapier
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/Reljv66AS92-32P2hdEdng
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/zapier
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - zapier
+      status: PUBLIC
+      partner_owned: false
+      connection_modes:
+      - cloud:mobile
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Page
+      - Track
+    source:
+      catalog_entries:
+      - zapier
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: RudderStack
+  partner: rudderstack
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/zapier
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - zapier
+      connection_modes:
+      - cloud
+      cloud_event_types:
+      - page
+      - screen
+      - track
+      source_types: 13
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/zapier
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - zapier
+      status: released
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Airbyte
+  partner: airbyte
+  partner_match: aggregator
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://docs.airbyte.com/integrations/sources/zapier-supported-storage
+  category: null
   contract_reference:
-    register: provider's own /.well-known/agent-card.json
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
     spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: Zapier
-    organization: Zapier
+    role: elt-connector:airbyte-community
+    registered_name: Zapier Supported Storage
     matched_domain: zapier.com
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  detected_by: sweep-ai-agents.py
-  first_seen: '2026-10-15'
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/source-zapier-supported-storage
+    support_level:
+    - community
+    release_stage:
+    - alpha
+    in_cloud: true
+    builder: unknown (community connector; contributor not in the record)
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-zapier-supported-storage--airbyte
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Zapier Supported Storage
+    matched_domain: zapier.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-zapier-supported-storage--airbyte
+    maintenance_status:
+    - beta
+    quality:
+    - bronze
+    builder: 'community (Meltano Hub variant maintainers: airbyte)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 - partner_name: 123FormBuilder
   partner: 123formbuilder
   partner_match: domain
@@ -5302,7 +5381,7 @@ edges:
 - partner_name: Chatfuel
   partner: chatfuel
   partner_match: domain
-  partner_url: https://chatfuel.com?src=zapier
+  partner_url: https://chatfuel.com
   type: coverage
   marketplace: coverage
   channel: provider-built
@@ -5314,7 +5393,7 @@ edges:
     spec_file: null
     role: ipaas-connector:zapier
     registered_name: Chatfuel
-    matched_domain: chatfuel.com?src=zapier
+    matched_domain: chatfuel.com
     matched_by: domain
     detected_by: sweep-workflow-automation.py
     detected: '2026-10-15'
@@ -22978,31 +23057,6 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: PushPress
-  partner: pushpress
-  partner_match: domain
-  partner_url: https://pushpress.com
-  type: coverage
-  marketplace: coverage
-  channel: provider-built
-  relationship: connector-coverage
-  direction: provider-built
-  evidence: https://zapier.com/apps/pushpress/integrations
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Pushpress
-    matched_domain: pushpress.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: pushpress
-    beta: false
-    builder: unknown (not in the directory record)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
 - partner_name: Pylon
   partner: pylon
   partner_match: domain
@@ -23078,6 +23132,31 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Quickbase
+  partner: quickbase
+  partner_match: domain
+  partner_url: https://quickbase.com
+  type: coverage
+  marketplace: coverage
+  channel: provider-built
+  relationship: connector-coverage
+  direction: provider-built
+  evidence: https://zapier.com/apps/quickbase/integrations
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Quickbase
+    matched_domain: quickbase.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-20'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: quickbase
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-20'
 - partner_name: QuickBooks
   partner: quickbooks
   partner_match: domain+name-among-holders
@@ -26760,6 +26839,31 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Skribble
+  partner: skribble
+  partner_match: domain
+  partner_url: https://skribble.com
+  type: coverage
+  marketplace: coverage
+  channel: provider-built
+  relationship: connector-coverage
+  direction: provider-built
+  evidence: https://zapier.com/apps/skribble/integrations
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Skribble
+    matched_domain: skribble.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-20'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: skribble
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-20'
 - partner_name: SleekFlow
   partner: sleekflow
   partner_match: domain
@@ -29894,31 +29998,6 @@ edges:
     detected: '2026-10-15'
     signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
     app_slug: trato-ca191333
-    beta: false
-    builder: unknown (not in the directory record)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
-- partner_name: TravelJoy
-  partner: traveljoy
-  partner_match: domain
-  partner_url: https://traveljoy.com
-  type: coverage
-  marketplace: coverage
-  channel: provider-built
-  relationship: connector-coverage
-  direction: provider-built
-  evidence: https://zapier.com/apps/traveljoy/integrations
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: TravelJoy
-    matched_domain: traveljoy.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: traveljoy
     beta: false
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
@@ -33828,116 +33907,4 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: Airbyte
-  partner: airbyte
-  partner_match: aggregator
-  type: marketplace
-  marketplace: airbyte-registry
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://docs.airbyte.com/integrations/sources/zapier-supported-storage
-  category: null
-  contract_reference:
-    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
-    spec_file: null
-    role: elt-connector:airbyte-community
-    registered_name: Zapier Supported Storage
-    matched_domain: zapier.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connectors:
-    - airbyte/source-zapier-supported-storage
-    support_level:
-    - community
-    release_stage:
-    - alpha
-    in_cloud: true
-    builder: unknown (community connector; contributor not in the record)
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: Meltano
-  partner: meltano
-  partner_match: aggregator
-  type: marketplace
-  marketplace: meltano-hub
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://hub.meltano.com/extractors/tap-zapier-supported-storage--airbyte
-  category: null
-  contract_reference:
-    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
-    spec_file: null
-    role: elt-connector:meltano-hub
-    registered_name: Zapier Supported Storage
-    matched_domain: zapier.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    plugins:
-    - tap-zapier-supported-storage--airbyte
-    maintenance_status:
-    - beta
-    quality:
-    - bronze
-    builder: 'community (Meltano Hub variant maintainers: airbyte)'
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200002044
-  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
-  apps:
-  - Zapier
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Microsoft Teams app
-  publisher_verified:
-  - Microsoft 365 Publisher Attestation
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A024R9PQM-zapier
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Zapier
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
-- partner_name: Zoom (own)
-  partner: zoom
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.zoom.us/apps/Reljv66AS92-32P2hdEdng
-  mirror_of: zoom/integrations/zoom-integration-edges.yml
-  apps:
-  - Zapier
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Zoom app
 templates: []
