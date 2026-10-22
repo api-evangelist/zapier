@@ -48,6 +48,7 @@ checked:
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
 - pipedrive/integrations/pipedrive-integration-edges.yml
+- netlify/integrations/netlify-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: coverage
@@ -34053,4 +34054,23 @@ edges:
   detected: '2026-10-22'
   detected_by: mirror-platform-listings.py
   category: Qualify my leads
+- partner_name: Netlify (own)
+  partner: netlify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.netlify.com/integrations/zapier/
+  mirror_of: netlify/integrations/netlify-integration-edges.yml
+  apps:
+  - Zapier
+  - Zapier Netlify API
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Search
+  partner_tier: listing
 templates: []
