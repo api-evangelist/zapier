@@ -47,6 +47,7 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- pipedrive/integrations/pipedrive-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: coverage
@@ -33825,6 +33826,32 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-salesforce-appexchange.py
   first_seen: '2026-10-21'
+- partner_name: Sequoia Capital
+  partner: sequoia-capital
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://sequoiacap.com/companies/zapier
+  category: vc portfolio participation
+  contract_reference:
+    register: Sequoia Capital companies (sequoiacap.com/companies/<slug>, from the site's sitemap.xml)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Zapier
+    register_id: https://sequoiacap.com/companies/zapier
+    register_country: null
+    register_website: https://zapier.com/
+    matched_domain: zapier.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 - partner_name: BambooHR (own)
   partner: bamboohr
   partner_match: mirror
@@ -34009,30 +34036,21 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: integration
-- partner_name: Sequoia Capital
-  partner: sequoia-capital
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://sequoiacap.com/companies/zapier
-  category: vc portfolio participation
-  contract_reference:
-    register: Sequoia Capital companies (sequoiacap.com/companies/<slug>, from the site's sitemap.xml)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Zapier
-    register_id: https://sequoiacap.com/companies/zapier
-    register_country: null
-    register_website: https://zapier.com/
-    matched_domain: zapier.com
-    matched_by: domain
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-  detected_by: sweep-vc-portfolios.py
-  first_seen: '2026-10-21'
+- partner_name: Pipedrive (own)
+  partner: pipedrive
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.pipedrive.com/en/marketplace/app/zapier/10f6b602cda330ef
+  mirror_of: pipedrive/integrations/pipedrive-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Qualify my leads
 templates: []
