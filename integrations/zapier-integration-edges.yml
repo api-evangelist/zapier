@@ -51,6 +51,7 @@ checked:
 - netlify/integrations/netlify-integration-edges.yml
 - https://api.apis.guru/v2/list.json
 - https://api.apis.guru/v2/providers.json
+- intercom/integrations/intercom-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: coverage
@@ -33855,6 +33856,47 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: zapier.com
+    matched_domain: zapier.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2023-03-22'
+    last_updated: '2023-03-22'
+    origin_publisher_hosted: true
+    origin_hosts:
+    - nla.zapier.com
+    categories:
+    - developer_tools
+    own_openapi_files: 10
+    listings:
+    - key: zapier.com:nla
+      title: Zapier Natural Language Actions (NLA) API - Beta
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/zapier.com/nla/1.0.0/openapi.json
+      origin_url: https://nla.zapier.com/api/v1/openapi.json
+      openapi_version: 3.0.2
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 - partner_name: BambooHR (own)
   partner: bamboohr
   partner_match: mirror
@@ -34075,45 +34117,21 @@ edges:
   detected_by: mirror-platform-listings.py
   category: Search
   partner_tier: listing
-- partner_name: APIs.guru OpenAPI Directory
-  partner: apis-guru
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
+- partner_name: Intercom (own)
+  partner: intercom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
   direction: third-party
-  evidence: https://apis.guru/
-  category: API definition directory listing (OpenAPI)
-  contract_reference:
-    register: APIs.guru OpenAPI Directory
-    spec_file: null
-    standard: APIs.guru OpenAPI Directory
-    role: listed-in-directory
-    directory_provider: zapier.com
-    matched_domain: zapier.com
-    matched_by: domain
-    apis_listed: 1
-    version_count: 1
-    first_added: '2023-03-22'
-    last_updated: '2023-03-22'
-    origin_publisher_hosted: true
-    origin_hosts:
-    - nla.zapier.com
-    categories:
-    - developer_tools
-    own_openapi_files: 10
-    listings:
-    - key: zapier.com:nla
-      title: Zapier Natural Language Actions (NLA) API - Beta
-      preferred: 1.0.0
-      versions: 1
-      swagger_url: https://api.apis.guru/v2/specs/zapier.com/nla/1.0.0/openapi.json
-      origin_url: https://nla.zapier.com/api/v1/openapi.json
-      openapi_version: 3.0.2
-    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
-      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
-    detected_by: sweep-openapi-directory-apis-guru.py
-    detected: '2026-10-22'
-  detected_by: sweep-openapi-directory-apis-guru.py
-  first_seen: '2026-10-22'
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.intercom.com/app-store/?app_package_code=zapier
+  mirror_of: intercom/integrations/intercom-integration-edges.yml
+  apps:
+  - Zapier
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Automation platforms
 templates: []
